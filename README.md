@@ -11,14 +11,14 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 | Download | Purpose |
 | --- | --- |
 | [orchard_mesh.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/orchard_mesh.zip) | Closed canopy PLY/OBJ/STL, open observed surfaces, separate ground, previews and quality reports |
-| [orchard_row_result.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/orchard_row_result.zip) | Merged, ground-refined row: 1,242,944 measured points |
+| [orchard_row_result.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/orchard_row_result.zip) | Merged, east-anchored row: 1,219,008 measured points |
 | [separate_registered_scans.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/separate_registered_scans.zip) | 18 separate registered PLYs, one uniform RGB colour per recording |
-| [combined_by_recording.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/combined_by_recording.zip) | 1,746,622 points with overlaps preserved and recording colours |
+| [combined_by_recording.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/combined_by_recording.zip) | 1,739,386 points with overlaps preserved and recording colours |
 | [trunk_slice_diagnostics.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_diagnostics.zip) | Separate A/B circle fits and centres at nine heights below 0.5 m, per-candidate PNG/PDF, centre trajectories, JSON and CSV |
 
 All clouds and meshes share one local metric frame. Load the separate PLYs together and enable RGB colours. The crop covers 7.1 m along the row and a 1.4 m ground strip. Current metadata lives directly in [`results/`](results/); large downloads use this repository's single active **Current results** release. Older Git/release history is retained as provenance.
 
-The [across-row check](docs/cross_row_quality.md) compares fitted trunk centres rather than opposite bark faces. [Thin-slice plots](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_fits.pdf) use nine heights wholly below 0.5 m and preserve visible trunk lean. A common sideways shift fails the held-out-candidate check, so the existing ground-refined poses are retained. The [mesh archive](docs/meshing.md) contains supported open surface patches and a closed voxel/SDF canopy proxy; the proxy adds offset and fills gaps, and is not validated as biological or CFD geometry.
+The current [east-anchored registration](docs/anchored_registration.md) holds all nine east/Side A files fixed and fits a separate bounded rigid pose for each west/Side B recording. Low stem observations stay below 0.5 m; ground and west-overlap constraints preserve scene consistency. [Before/after circles](https://github.com/u0063882/GreensprayAI/releases/download/current/anchored_trunk_sections.png) show the improvement and remaining model uncertainty. The [mesh archive](docs/meshing.md) is rebuilt from this refined cloud using the existing independent voxel/SDF mesher.
 
 ![Current observed-surface mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/shrinkwrap_preview.png)
 
@@ -43,7 +43,7 @@ python run_pipeline.py
 python run_pipeline.py --export-only
 ```
 
-Generated files go to `output/`; caches and poses go to `work/`. Raw recordings and generated binaries are excluded from Git history. Use a fresh `work/` directory for a new capture/full rerun. These capture-specific scripts assume the supplied station ordering, inward FOV, mounting, nine recordings per side and fixed row crop; review these before applying the pipeline elsewhere.
+Generated final files go to `output/`; seed caches and the separate `anchored_poses.npy` go to `work/`. The full command includes the bounded east-anchored stage; only internally validated candidates are promoted. Raw recordings and generated binaries are excluded from Git history. Use a fresh `work/` directory for a new capture/full rerun. These capture-specific scripts assume the supplied station ordering, inward FOV, mounting, nine recordings per side and fixed row crop; review these before applying the pipeline elsewhere.
 
 ## Mesh any point cloud independently
 
@@ -65,17 +65,19 @@ See [standalone meshing and the orchard release recipe](docs/meshing.md), the [R
 3. Robust same-side point-to-plane ICP and a global pose graph with GPS/gravity priors.
 4. Explicit opposite-side XY/yaw registration using low stems.
 5. Joint relative ground roll/pitch/height refinement using overlapping patches and held-out validation.
-6. Row/ground crop, individual scan export and cross-row diagnostics. Meshing consumes exported clouds separately.
+6. Fixed east anchor; sequential west insertion and joint bounded per-recording refinement using low stems, scanner-facing consistency, ground and same-face overlap.
+7. Validated point-cloud export and cross-row diagnostics. Meshing consumes the resulting cloud independently.
 
 Python exports use **X along / Y across / Z up**. The MATLAB toolbox row convention uses **X across / Y along / Z up**, with the appropriate sign change to preserve handedness. The [MATLAB description](docs/registration_matlab.md) maps the objectives, parameters, transformation composition and actual solver differences. [`matlab/`](matlab/) includes a contribution viewer and an explanatory opposite-side SE(2) solver. These MATLAB functions have not been runtime-tested in MATLAB here.
 
-Ground refinement reduced held-out ground-patch height-difference RMSE from 3.98 cm to 0.76 cm. These and trunk/mesh checks are internal agreement diagnostics, not independent survey accuracy. The antenna offset and elevation datum are uncalibrated; foliage motion/occlusions and support hardware remain relevant. Individual tree identities are still unassigned.
+The seed ground stage reduced held-out patch RMSE from 3.98 cm to 0.76 cm. The final bounded stage improves excluded-stem/height residuals while preserving ground and west overlap; see its [validation report](results/anchored_registration_quality.json). These are internal checks, not independent survey accuracy. The antenna offset and elevation datum are uncalibrated; foliage motion/occlusions and support hardware remain relevant. Individual tree identities are still unassigned.
 
 ## Repository layout
 
 - `run_pipeline.py`: capture-specific registration and point-cloud export.
 - `run_meshing.py`: standalone point-cloud-to-envelope interface.
-- `processing/`: implementation modules; the mesher imports no registration modules.
+- `processing/register_anchored.py`, `export_anchored.py`: final bounded pose refinement and measured-point export.
+- `processing/`: acquisition and geometry implementations; the mesher imports no registration modules.
 - `docs/`, `matlab/`: method descriptions and MATLAB-format examples.
 - `results/`: current transforms, scan mapping, diagnostic tables and report snapshots.
 - `tools/`: mesh validation and current-release publishing.

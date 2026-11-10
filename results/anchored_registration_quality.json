@@ -1,0 +1,1061 @@
+{
+  "method": "Bounded per-recording west registration against a fixed assembled east side.\n\nUses low stems and ground only. Starts from registered per-recording clouds; no\nmesh reconstruction is imported or required. One rigid pose per acquisition.\n",
+  "anchor": "East = Side A, confirmed by RTK longitude; all nine east corrections are exact identity",
+  "reference_assumption": "Uses the delivered, within-side-registered east cloud as a fixed anchor. This does not establish independent survey accuracy of the anchor.",
+  "visibility_constraint": "Stem surface normals must face the actual supplying scanner; normal/view cosine penalties prevent matching the wrong bark hemisphere. Not a full ray-tracing or occlusion model.",
+  "maximum_alignment_input_z_m": 0.48,
+  "held_out_candidate": 5,
+  "held_out_height_bands_m": [
+    [
+      0.2,
+      0.26
+    ],
+    [
+      0.34,
+      0.4
+    ]
+  ],
+  "maximum_transformed_fitting_z_m": 0.45759275852190917,
+  "bounds": {
+    "roll_pitch_deg": 0.5,
+    "yaw_deg": 2.0,
+    "along_m": 0.04,
+    "across_m": 0.15,
+    "height_m": 0.025,
+    "rotation_pivot": "Per-recording local row pivot, not coordinate origin"
+  },
+  "solver_success": true,
+  "insertion_order_scan_ids": [
+    15,
+    16,
+    17,
+    12,
+    14,
+    11,
+    13,
+    10,
+    9
+  ],
+  "reference_models": [
+    {
+      "parameters": [
+        0.07136081949106396,
+        2.1088432185796853,
+        0.08365854486505617,
+        0.10787943548886986,
+        -0.36219581956239216,
+        -0.03776646706573481
+      ],
+      "points": 687,
+      "inlier_fraction": 0.7234352256186317,
+      "radial_rmse_m": 0.008695879585958492,
+      "at_bound": false,
+      "usable": true,
+      "candidate": 1,
+      "seed": [
+        0.0609451922828225,
+        2.149878328737406
+      ]
+    },
+    {
+      "parameters": [
+        1.066582548963847,
+        1.9783142286582887,
+        0.11339062367031717,
+        0.2221535764118099,
+        -0.4999999998007338,
+        -0.01669667534769308
+      ],
+      "points": 1913,
+      "inlier_fraction": 0.32618923157344487,
+      "radial_rmse_m": 0.00999176972628691,
+      "at_bound": true,
+      "usable": false,
+      "candidate": 2,
+      "seed": [
+        1.0496284599859753,
+        2.0076759036864416
+      ]
+    },
+    {
+      "parameters": [
+        1.559091456237053,
+        2.0200283403292145,
+        0.10267569919016545,
+        0.04853379012364946,
+        -0.49999999999999994,
+        -0.23717903165922538
+      ],
+      "points": 1392,
+      "inlier_fraction": 0.5926724137931034,
+      "radial_rmse_m": 0.009425843617785519,
+      "at_bound": true,
+      "usable": false,
+      "candidate": 3,
+      "seed": [
+        1.6306475142800032,
+        2.0643900531953827
+      ]
+    },
+    {
+      "parameters": [
+        3.008596319662852,
+        1.9091568011169942,
+        0.06670665865219631,
+        0.07468774302018574,
+        -0.2530622099446045,
+        -0.0857918289666905
+      ],
+      "points": 1399,
+      "inlier_fraction": 0.7012151536812009,
+      "radial_rmse_m": 0.00903715997515083,
+      "at_bound": false,
+      "usable": true,
+      "candidate": 4,
+      "seed": [
+        3.010392429627271,
+        1.967455568366283
+      ]
+    },
+    {
+      "parameters": [
+        3.6818880051370058,
+        1.8203192304588143,
+        0.040401729543677614,
+        -0.021858110573626296,
+        -0.2487983306142035,
+        -0.06824947792095204
+      ],
+      "points": 827,
+      "inlier_fraction": 0.720677146311971,
+      "radial_rmse_m": 0.008144689549351734,
+      "at_bound": false,
+      "usable": true,
+      "candidate": 5,
+      "seed": [
+        3.689612220059806,
+        1.8664323125400144
+      ]
+    },
+    {
+      "parameters": [
+        4.529204399117824,
+        1.8813450414675112,
+        0.06964355299827309,
+        0.16880490515996582,
+        -0.11288792083820251,
+        0.060461212891112864
+      ],
+      "points": 753,
+      "inlier_fraction": 0.5232403718459495,
+      "radial_rmse_m": 0.010294283609457808,
+      "at_bound": false,
+      "usable": false,
+      "candidate": 6,
+      "seed": [
+        4.545645679631107,
+        1.926885425199541
+      ]
+    },
+    {
+      "parameters": [
+        5.936081447934768,
+        1.8080926235377315,
+        0.0690003918114745,
+        0.08266733166666729,
+        -0.16842757621340596,
+        -0.022989661921099056
+      ],
+      "points": 712,
+      "inlier_fraction": 0.6966292134831461,
+      "radial_rmse_m": 0.00947440817509851,
+      "at_bound": false,
+      "usable": true,
+      "candidate": 7,
+      "seed": [
+        5.947794759922218,
+        1.818058681544578
+      ]
+    }
+  ],
+  "per_recording": [
+    {
+      "scan_id": 9,
+      "stem_models": [
+        7
+      ],
+      "parameters": [
+        0.0007899946483820775,
+        -0.0003934313139952819,
+        0.0074864453883152415,
+        -0.01714366420328158,
+        -0.02477944650713926,
+        -0.004754249067858309
+      ],
+      "pivot_m": [
+        5.6305460929870605,
+        1.9875,
+        0.3
+      ],
+      "correction": [
+        [
+          0.9999718993066951,
+          -0.0074865298882918485,
+          -0.00039047047594195443,
+          -0.001988822658621065
+        ],
+        [
+          0.007486219081131111,
+          0.9999716646561334,
+          -0.0007914598604468971,
+          -0.0666371936515785
+        ],
+        [
+          0.0003963846997273679,
+          0.0007885144723484806,
+          0.9999996105619725,
+          -0.008553167072612434
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bound_fraction_max": 0.4285916050820395
+    },
+    {
+      "scan_id": 10,
+      "stem_models": [
+        5,
+        7
+      ],
+      "parameters": [
+        0.0008047107122337979,
+        -0.0004395493265575147,
+        0.009330237578775361,
+        -0.012291640786191604,
+        -0.031373264651384875,
+        -0.004410340909904265
+      ],
+      "pivot_m": [
+        5.180815696716309,
+        1.9875,
+        0.3
+      ],
+      "correction": [
+        [
+          0.9999563770510745,
+          -0.009330277754306554,
+          -0.0004357888440536582,
+          0.0066090253622385076
+        ],
+        [
+          0.009329924046845664,
+          0.9999561498748786,
+          -0.0008067494588684371,
+          -0.07938070464111432
+        ],
+        [
+          0.000443296931187699,
+          0.000802648389262514,
+          0.9999995796216086,
+          -0.008302118169449469
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bound_fraction_max": 0.3072910196547901
+    },
+    {
+      "scan_id": 11,
+      "stem_models": [
+        4,
+        5,
+        7
+      ],
+      "parameters": [
+        0.0007171224360595005,
+        -0.0006914840948056983,
+        0.011312152389073765,
+        -0.005393746090844401,
+        -0.06708510995975761,
+        -0.006107004369757287
+      ],
+      "pivot_m": [
+        4.668106555938721,
+        1.9875,
+        0.3
+      ],
+      "correction": [
+        [
+          0.9999357792191853,
+          -0.011312157196760967,
+          -0.0006874131773745726,
+          0.017595179738879384
+        ],
+        [
+          0.011311661323331309,
+          0.999935761162212,
+          -0.0007210180678386777,
+          -0.11954517023130332
+        ],
+        [
+          0.0006955252884760739,
+          0.0007131959784437234,
+          0.9999995037979116,
+          -0.010771118675243975
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bound_fraction_max": 0.4472340663983841
+    },
+    {
+      "scan_id": 12,
+      "stem_models": [
+        4,
+        5,
+        7
+      ],
+      "parameters": [
+        0.000545815256577396,
+        -0.000572920586648711,
+        0.017422405302002664,
+        -0.012118262907396314,
+        -0.05440480950407099,
+        -0.0037806633907102407
+      ],
+      "pivot_m": [
+        3.9724695682525635,
+        1.9875,
+        0.3
+      ],
+      "correction": [
+        [
+          0.9998480696288148,
+          -0.017421678447606514,
+          -0.0005681369564361872,
+          0.0232813028701791
+        ],
+        [
+          0.017421365746735726,
+          0.9998480847902826,
+          -0.0005507782880560371,
+          -0.12314348980464594
+        ],
+        [
+          0.0005776461300217374,
+          0.0005407968863939799,
+          0.9999996869317892,
+          -0.007150084954685257
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bound_fraction_max": 0.49911514638555055
+    },
+    {
+      "scan_id": 13,
+      "stem_models": [
+        4,
+        5,
+        7
+      ],
+      "parameters": [
+        0.000491538187794654,
+        -0.000567741740843477,
+        0.018221461000321886,
+        -0.007681534116785768,
+        -0.05497445250193022,
+        -0.004209140661090601
+      ],
+      "pivot_m": [
+        3.1363131999969482,
+        1.9875,
+        0.3
+      ],
+      "correction": [
+        [
+          0.9998338326196475,
+          -0.018220590514090248,
+          -0.0005632321230704505,
+          0.029222012115297926
+        ],
+        [
+          0.018220311455078197,
+          0.9998338729789761,
+          -0.0004966833404654383,
+          -0.11163987337012293
+        ],
+        [
+          0.000572188418757491,
+          0.00048633854319203996,
+          0.9999997180375777,
+          -0.006970216017592597
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bound_fraction_max": 0.5220064059403356
+    },
+    {
+      "scan_id": 14,
+      "stem_models": [
+        4,
+        5
+      ],
+      "parameters": [
+        0.00036516912722323866,
+        -2.0863928420430267e-05,
+        -0.0007068959938040598,
+        -0.011830823899430853,
+        -0.07383793933188039,
+        -0.0069467947649388745
+      ],
+      "pivot_m": [
+        2.5088186264038086,
+        1.9875,
+        0.3
+      ],
+      "correction": [
+        [
+          0.9999997499313884,
+          0.000706892109738242,
+          -2.099299450733075e-05,
+          -0.013228846692392604
+        ],
+        [
+          -0.0007068997286003715,
+          0.999999683474798,
+          -0.00036516171435501565,
+          -0.07195427851762233
+        ],
+        [
+          2.073485792786287e-05,
+          0.00036517646298165246,
+          0.9999999331081061,
+          -0.007724582915332018
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bound_fraction_max": 0.49225292887920263
+    },
+    {
+      "scan_id": 15,
+      "stem_models": [
+        1,
+        4,
+        5
+      ],
+      "parameters": [
+        0.0003911713947356222,
+        0.0005259740153437867,
+        -0.01163357844651204,
+        -0.00011549841023630293,
+        -0.05683554530657607,
+        -0.0041450395022231655
+      ],
+      "pivot_m": [
+        1.7181073427200317,
+        1.9875,
+        0.3
+      ],
+      "correction": [
+        [
+          0.999932192369123,
+          0.011633418072004895,
+          0.0005236867777161129,
+          -0.023277522073158495
+        ],
+        [
+          -0.011633212328343547,
+          0.9999322541852259,
+          -0.000394221988620212,
+          -0.03659552638237827
+        ],
+        [
+          -0.0005282374493354662,
+          0.0003881030978824065,
+          0.9999997851705682,
+          -0.004008761320031969
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bound_fraction_max": 0.3789036353771738
+    },
+    {
+      "scan_id": 16,
+      "stem_models": [
+        1,
+        4
+      ],
+      "parameters": [
+        0.00017047391103696435,
+        0.0005876404765145681,
+        -0.014792420438545105,
+        -0.015397130191735714,
+        -0.054055068416485844,
+        -0.004300772222298723
+      ],
+      "pivot_m": [
+        1.1257202625274658,
+        1.9875,
+        0.3
+      ],
+      "correction": [
+        [
+          0.9998904214896852,
+          0.014791930140255257,
+          0.0005863581714030805,
+          -0.04484864404751509
+        ],
+        [
+          -0.014791829964714752,
+          0.9998905796167845,
+          -0.00017481391651588956,
+          -0.037133688518749944
+        ],
+        [
+          -0.0005888798471079114,
+          0.00016612145029752006,
+          0.9999998128120771,
+          -0.003967968472304719
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bound_fraction_max": 0.42377162995584644
+    },
+    {
+      "scan_id": 17,
+      "stem_models": [
+        1,
+        4
+      ],
+      "parameters": [
+        0.000283818191824092,
+        -0.00016546474761796668,
+        -0.005192862982648554,
+        0.0013243805124745801,
+        -0.029475247613696347,
+        -0.0018875763952188097
+      ],
+      "pivot_m": [
+        0.758452445268631,
+        1.9875,
+        0.3
+      ],
+      "correction": [
+        [
+          0.9999865034281806,
+          0.005192816070061824,
+          -0.0001662009138220514,
+          -0.008936244644727472
+        ],
+        [
+          -0.005192863031861351,
+          0.9999864768411489,
+          -0.0002833872942428789,
+          -0.02542481448274691
+        ],
+        [
+          0.00016472708816509682,
+          0.0002842465280671576,
+          0.9999999460344473,
+          -0.0025774378429072654
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bound_fraction_max": 0.19650165075797565
+    }
+  ],
+  "held_out_height_validation": {
+    "before": {
+      "points": 1007,
+      "median_absolute_m": 0.04465579302757333,
+      "rmse_m": 0.06319423861138784,
+      "capped_rmse_5cm_m": 0.0400955722224618
+    },
+    "after": {
+      "points": 1007,
+      "median_absolute_m": 0.015499585886241563,
+      "rmse_m": 0.028563096660230613,
+      "capped_rmse_5cm_m": 0.02413087262660572
+    }
+  },
+  "held_out_stem_validation": {
+    "before": {
+      "points": 617,
+      "median_absolute_m": 0.05743324710042892,
+      "rmse_m": 0.08390724372773048,
+      "capped_rmse_5cm_m": 0.043901826479865035
+    },
+    "after": {
+      "points": 617,
+      "median_absolute_m": 0.02213613107537274,
+      "rmse_m": 0.055937921257431744,
+      "capped_rmse_5cm_m": 0.029304770907462394
+    }
+  },
+  "held_out_ground_validation": {
+    "before": {
+      "points": 1093,
+      "median_absolute_m": 0.008175549037092883,
+      "rmse_m": 0.022479192414684705,
+      "capped_rmse_5cm_m": 0.016563731271590554
+    },
+    "after": {
+      "points": 1093,
+      "median_absolute_m": 0.008754947900163504,
+      "rmse_m": 0.0216924880700169,
+      "capped_rmse_5cm_m": 0.016183046875492654
+    }
+  },
+  "per_stem": [
+    {
+      "candidate": 1,
+      "held_out_from_alignment": false,
+      "before": {
+        "points": 837,
+        "median_absolute_m": 0.02756689821456383,
+        "rmse_m": 0.041452210383308236,
+        "capped_rmse_5cm_m": 0.03242847127838695
+      },
+      "after": {
+        "points": 837,
+        "median_absolute_m": 0.014679406340900383,
+        "rmse_m": 0.03474288865837084,
+        "capped_rmse_5cm_m": 0.022220375987020837
+      },
+      "scanner_back_facing_fraction_before": 0.07287933094384708,
+      "scanner_back_facing_fraction_after": 0.10752688172043011
+    },
+    {
+      "candidate": 4,
+      "held_out_from_alignment": false,
+      "before": {
+        "points": 1409,
+        "median_absolute_m": 0.06863903641422772,
+        "rmse_m": 0.07635142569276253,
+        "capped_rmse_5cm_m": 0.04528054060631209
+      },
+      "after": {
+        "points": 1409,
+        "median_absolute_m": 0.014956742763385447,
+        "rmse_m": 0.027977060866001102,
+        "capped_rmse_5cm_m": 0.02375835524605504
+      },
+      "scanner_back_facing_fraction_before": 0.0234208658623137,
+      "scanner_back_facing_fraction_after": 0.0745209368346345
+    },
+    {
+      "candidate": 5,
+      "held_out_from_alignment": true,
+      "before": {
+        "points": 617,
+        "median_absolute_m": 0.05743324710042892,
+        "rmse_m": 0.08390724372773048,
+        "capped_rmse_5cm_m": 0.043901826479865035
+      },
+      "after": {
+        "points": 617,
+        "median_absolute_m": 0.02213613107537274,
+        "rmse_m": 0.055937921257431744,
+        "capped_rmse_5cm_m": 0.029304770907462394
+      },
+      "scanner_back_facing_fraction_before": 0.059967585089141004,
+      "scanner_back_facing_fraction_after": 0.1393841166936791
+    },
+    {
+      "candidate": 7,
+      "held_out_from_alignment": false,
+      "before": {
+        "points": 715,
+        "median_absolute_m": 0.026552821962272065,
+        "rmse_m": 0.048814350553957435,
+        "capped_rmse_5cm_m": 0.0315337727718131
+      },
+      "after": {
+        "points": 715,
+        "median_absolute_m": 0.02225188907094413,
+        "rmse_m": 0.041972673817871,
+        "capped_rmse_5cm_m": 0.02925413236644829
+      },
+      "scanner_back_facing_fraction_before": 0.1258741258741259,
+      "scanner_back_facing_fraction_after": 0.1972027972027972
+    }
+  ],
+  "held_out_west_overlap_validation": {
+    "before": {
+      "points": 551,
+      "median_absolute_m": 0.010440638235746784,
+      "rmse_m": 0.013485395624522606,
+      "capped_rmse_5cm_m": 0.013485395624522606
+    },
+    "after": {
+      "points": 551,
+      "median_absolute_m": 0.006428063879308546,
+      "rmse_m": 0.011142817220495385,
+      "capped_rmse_5cm_m": 0.011011553897180207
+    },
+    "pairs": [
+      {
+        "scan_ids": [
+          9,
+          10
+        ],
+        "before": {
+          "points": 44,
+          "median_absolute_m": 0.005372205986383513,
+          "rmse_m": 0.009662180087016055,
+          "capped_rmse_5cm_m": 0.009662180087016055
+        },
+        "after": {
+          "points": 44,
+          "median_absolute_m": 0.004441676298957739,
+          "rmse_m": 0.008273579014476201,
+          "capped_rmse_5cm_m": 0.008273579014476201
+        }
+      },
+      {
+        "scan_ids": [
+          10,
+          12
+        ],
+        "before": {
+          "points": 36,
+          "median_absolute_m": 0.011950036500808888,
+          "rmse_m": 0.015645434114577562,
+          "capped_rmse_5cm_m": 0.015645434114577562
+        },
+        "after": {
+          "points": 36,
+          "median_absolute_m": 0.009427226019570608,
+          "rmse_m": 0.014351998237379942,
+          "capped_rmse_5cm_m": 0.014351998237379942
+        }
+      },
+      {
+        "scan_ids": [
+          11,
+          12
+        ],
+        "before": {
+          "points": 60,
+          "median_absolute_m": 0.006023147587461121,
+          "rmse_m": 0.012490608728501974,
+          "capped_rmse_5cm_m": 0.012490608728501974
+        },
+        "after": {
+          "points": 60,
+          "median_absolute_m": 0.006164543145963968,
+          "rmse_m": 0.009818711547735795,
+          "capped_rmse_5cm_m": 0.009818711547735795
+        }
+      },
+      {
+        "scan_ids": [
+          11,
+          13
+        ],
+        "before": {
+          "points": 49,
+          "median_absolute_m": 0.012380839260379403,
+          "rmse_m": 0.014866586558973424,
+          "capped_rmse_5cm_m": 0.014866586558973424
+        },
+        "after": {
+          "points": 49,
+          "median_absolute_m": 0.015143319095747572,
+          "rmse_m": 0.021675585429550413,
+          "capped_rmse_5cm_m": 0.020907659038588242
+        }
+      },
+      {
+        "scan_ids": [
+          12,
+          13
+        ],
+        "before": {
+          "points": 55,
+          "median_absolute_m": 0.010696789587830342,
+          "rmse_m": 0.012634342131851174,
+          "capped_rmse_5cm_m": 0.012634342131851174
+        },
+        "after": {
+          "points": 55,
+          "median_absolute_m": 0.005133512331228609,
+          "rmse_m": 0.011680825875199629,
+          "capped_rmse_5cm_m": 0.011680825875199629
+        }
+      },
+      {
+        "scan_ids": [
+          12,
+          14
+        ],
+        "before": {
+          "points": 51,
+          "median_absolute_m": 0.004962040498581664,
+          "rmse_m": 0.0077674674650899155,
+          "capped_rmse_5cm_m": 0.0077674674650899155
+        },
+        "after": {
+          "points": 51,
+          "median_absolute_m": 0.0049608026800118344,
+          "rmse_m": 0.0071742018125383195,
+          "capped_rmse_5cm_m": 0.0071742018125383195
+        }
+      },
+      {
+        "scan_ids": [
+          13,
+          14
+        ],
+        "before": {
+          "points": 39,
+          "median_absolute_m": 0.011487736296561028,
+          "rmse_m": 0.014934907250825758,
+          "capped_rmse_5cm_m": 0.014934907250825758
+        },
+        "after": {
+          "points": 39,
+          "median_absolute_m": 0.006747904058551823,
+          "rmse_m": 0.00759179139522307,
+          "capped_rmse_5cm_m": 0.00759179139522307
+        }
+      },
+      {
+        "scan_ids": [
+          13,
+          15
+        ],
+        "before": {
+          "points": 37,
+          "median_absolute_m": 0.010974258034227375,
+          "rmse_m": 0.010749117158182112,
+          "capped_rmse_5cm_m": 0.010749117158182112
+        },
+        "after": {
+          "points": 37,
+          "median_absolute_m": 0.005366775122713837,
+          "rmse_m": 0.008279194758697322,
+          "capped_rmse_5cm_m": 0.008279194758697322
+        }
+      },
+      {
+        "scan_ids": [
+          14,
+          15
+        ],
+        "before": {
+          "points": 35,
+          "median_absolute_m": 0.007136263082413682,
+          "rmse_m": 0.009992191709306042,
+          "capped_rmse_5cm_m": 0.009992191709306042
+        },
+        "after": {
+          "points": 35,
+          "median_absolute_m": 0.006310786115116197,
+          "rmse_m": 0.008892672885425728,
+          "capped_rmse_5cm_m": 0.008892672885425728
+        }
+      },
+      {
+        "scan_ids": [
+          14,
+          16
+        ],
+        "before": {
+          "points": 34,
+          "median_absolute_m": 0.012318908440985148,
+          "rmse_m": 0.016117850161132735,
+          "capped_rmse_5cm_m": 0.016117850161132735
+        },
+        "after": {
+          "points": 34,
+          "median_absolute_m": 0.007289874483837031,
+          "rmse_m": 0.010236425495243328,
+          "capped_rmse_5cm_m": 0.010236425495243328
+        }
+      },
+      {
+        "scan_ids": [
+          15,
+          16
+        ],
+        "before": {
+          "points": 42,
+          "median_absolute_m": 0.01616977648682734,
+          "rmse_m": 0.017951241240994682,
+          "capped_rmse_5cm_m": 0.017951241240994682
+        },
+        "after": {
+          "points": 42,
+          "median_absolute_m": 0.006346488542806724,
+          "rmse_m": 0.008747857772552037,
+          "capped_rmse_5cm_m": 0.008747857772552037
+        }
+      },
+      {
+        "scan_ids": [
+          15,
+          17
+        ],
+        "before": {
+          "points": 34,
+          "median_absolute_m": 0.012627756336559898,
+          "rmse_m": 0.014950240389827793,
+          "capped_rmse_5cm_m": 0.014950240389827793
+        },
+        "after": {
+          "points": 34,
+          "median_absolute_m": 0.006245340082631888,
+          "rmse_m": 0.008112501623904068,
+          "capped_rmse_5cm_m": 0.008112501623904068
+        }
+      },
+      {
+        "scan_ids": [
+          16,
+          17
+        ],
+        "before": {
+          "points": 35,
+          "median_absolute_m": 0.014914719738091598,
+          "rmse_m": 0.015857033639648296,
+          "capped_rmse_5cm_m": 0.015857033639648296
+        },
+        "after": {
+          "points": 35,
+          "median_absolute_m": 0.0052837235131051805,
+          "rmse_m": 0.008425900165995811,
+          "capped_rmse_5cm_m": 0.008425900165995811
+        }
+      }
+    ],
+    "method": "Baseline same-face west point/plane matches, spatial checkerboard matches excluded from pose residuals. Conditional on local normal estimates and correspondence assumptions; not independent survey accuracy."
+  },
+  "validation_caveat": "Held-out features/heights share acquisitions and may be correlated. East geometry and circular tapered-stem assumptions are not independent survey truth.",
+  "input_transforms_sha256": "762d458572fd53c87ecebb8aa58ad5841b186a1ae6dda2084c1f48b28e929d31",
+  "input_candidate_windows_sha256": "d4723b823d08cce91e7ebc50ba32c1d8a4c2cae1e831560fad1ca63821e20194",
+  "input_scans": [
+    {
+      "file": "scan_00_sideA_083208_registered.ply",
+      "sha256": "2d45696fb7691e5bf6adedd87dec8cee7cfe4cda7b7893ac62164994fa8fe502"
+    },
+    {
+      "file": "scan_01_sideA_083214_registered.ply",
+      "sha256": "bc458db532984e0e0c4440078628367c1b2d644860bc3a50a8985960219e45e2"
+    },
+    {
+      "file": "scan_02_sideA_083237_registered.ply",
+      "sha256": "65e62d1846cc64efb7a77a74924ed298613e9544db8454daf234211c8a517529"
+    },
+    {
+      "file": "scan_03_sideA_083244_registered.ply",
+      "sha256": "9d487d33547a19bd06018fb922cc295e5a7528d9867d0e82c3d68cdca727095b"
+    },
+    {
+      "file": "scan_04_sideA_083252_registered.ply",
+      "sha256": "7e7a4afc9840d6e6cc3f9d49d11f448ddb2d708d599189cf9952a4066d748284"
+    },
+    {
+      "file": "scan_05_sideA_083258_registered.ply",
+      "sha256": "59834464cdb98245635992097ca81e724b80a789e3ec489be4092fdbb7aefdbf"
+    },
+    {
+      "file": "scan_06_sideA_083305_registered.ply",
+      "sha256": "4c827e91500461691f1c61aa9827ee6674b6d1fab747226c5b2ad6696d20afe5"
+    },
+    {
+      "file": "scan_07_sideA_083313_registered.ply",
+      "sha256": "b983032c33cd05bd435077b91d21fa5a3698fe7d3935f111c101ab6567374333"
+    },
+    {
+      "file": "scan_08_sideA_083319_registered.ply",
+      "sha256": "60299df46dadcce8dbd27f67fc42dd94a98462b62533aa2363c11ce78278e1fe"
+    },
+    {
+      "file": "scan_09_sideB_083639_registered.ply",
+      "sha256": "c6ef670e3f77869740ae4a5fa6c3d38f10e0a677c9a47b184975ba2212a12772"
+    },
+    {
+      "file": "scan_10_sideB_083646_registered.ply",
+      "sha256": "804e54442dd41d887350b846a53a24f5fddc6f535cb1fbb5feada42a9b0a3db7"
+    },
+    {
+      "file": "scan_11_sideB_083654_registered.ply",
+      "sha256": "fb6e27fd25a1b1de2df3dcf4f8f8cb3f4e5726325afc57156c874387c23b971d"
+    },
+    {
+      "file": "scan_12_sideB_083701_registered.ply",
+      "sha256": "733000fb8e5dab89245c43640149ea5c64bb80b59ae99346f014f24a86817350"
+    },
+    {
+      "file": "scan_13_sideB_083710_registered.ply",
+      "sha256": "8df94348de7da53be2a52457747b9e32a487ebac337beedd5c60d9ed98a33103"
+    },
+    {
+      "file": "scan_14_sideB_083719_registered.ply",
+      "sha256": "8dc9f3d12c469a300aef52653a49a8903441fd5362deb1142e580a0ec8ed11b7"
+    },
+    {
+      "file": "scan_15_sideB_083725_registered.ply",
+      "sha256": "d069dabf0356eb02624b68f09ea3217c6d3fe3c512abab7ba695331bce667573"
+    },
+    {
+      "file": "scan_16_sideB_083732_registered.ply",
+      "sha256": "fcbe5f58124c11fe7dc90574e23daf449fc0b32dd89a1b71e5907c4eb2d92f79"
+    },
+    {
+      "file": "scan_17_sideB_083744_registered.ply",
+      "sha256": "b2a8fcf130e5ee172508b790e863fd971ab1d1a5298af89ef53e012a2bf709f8"
+    }
+  ],
+  "candidate_exported": true,
+  "validation_passed": true,
+  "rejection_reasons": [],
+  "export": {
+    "merged_points": 1219008,
+    "separate_scan_points": 1739386,
+    "east_files_unchanged": true
+  }
+}

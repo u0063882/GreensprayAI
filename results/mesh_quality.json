@@ -1,7 +1,7 @@
 {
   "method": "Ball-pivoting open observed-surface reconstruction; separate supported 2.5-D ground triangulation",
   "source_file": "orchard_row_registered.ply",
-  "source_sha256": "77fbe573d769851fdd7dd0b87180d95d2d155925d9718c5a61638b02dd19b723",
+  "source_sha256": "fed7a9e87071c2ec5828faada80c76bde855dd17630898f77c1a790ebd99c831",
   "coordinate_frame": "Same local metric frame as the registered point clouds; X along row, Y across, Z up",
   "voxel_m": 0.02,
   "ball_radii_m": [
@@ -12,50 +12,50 @@
   "maximum_tree_edge_m": 0.1,
   "support_distance_m": 0.025,
   "normal_orientation": "each normal oriented toward the scanner that supplied the nearest measured point",
-  "input_points": 1242944,
-  "raw_tree_triangles": 167710,
-  "supported_tree_triangles": 139589,
+  "input_points": 1219008,
+  "raw_tree_triangles": 144436,
+  "supported_tree_triangles": 120006,
   "min_component_triangles": 1,
   "tree": {
-    "vertices": 144855,
-    "triangles": 139589,
-    "connected_components": 20395,
+    "vertices": 129238,
+    "triangles": 120006,
+    "connected_components": 19307,
     "edge_manifold": true,
     "vertex_manifold": false,
     "watertight": false,
-    "surface_area_m2": 52.45506611382469
+    "surface_area_m2": 44.9433194932153
   },
   "ground": {
-    "vertices": 6333,
-    "triangles": 12386,
+    "vertices": 6204,
+    "triangles": 12141,
     "connected_components": 1,
     "edge_manifold": true,
     "vertex_manifold": true,
     "watertight": false,
-    "surface_area_m2": 10.06156651321056
+    "surface_area_m2": 9.899807708342982
   },
   "combined": {
-    "vertices": 151188,
-    "triangles": 151975,
-    "connected_components": 20396,
+    "vertices": 135442,
+    "triangles": 132147,
+    "connected_components": 19308,
     "edge_manifold": true,
     "vertex_manifold": false,
     "watertight": false,
-    "surface_area_m2": 62.51663262703521
+    "surface_area_m2": 54.84312720155859
   },
   "tree_source_to_mesh": {
     "sample_points": 60000,
-    "median_distance_m": 0.026296501979231834,
-    "p95_distance_m": 0.06309729814529419,
-    "fraction_within_3cm": 0.5681666666666667
+    "median_distance_m": 0.02814086526632309,
+    "p95_distance_m": 0.06663686782121658,
+    "fraction_within_3cm": 0.5339833333333334
   },
   "ground_source_to_mesh": {
     "sample_points": 60000,
-    "median_distance_m": 0.0067737288773059845,
-    "p95_distance_m": 0.01843360625207424,
-    "fraction_within_3cm": 0.9998333333333334
+    "median_distance_m": 0.006783630233258009,
+    "p95_distance_m": 0.018490955233573914,
+    "fraction_within_3cm": 0.9993833333333333
   },
-  "elapsed_seconds": 65.61554903200158,
+  "elapsed_seconds": 72.55590460500025,
   "limitations": [
     "Observed-surface interpolation only; occluded regions and unsupported gaps remain open.",
     "The result is not a watertight solid or validated leaf-area/volume/CFD geometry.",

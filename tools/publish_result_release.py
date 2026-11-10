@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -40,25 +41,40 @@ def main():
     subprocess.run(['git','archive','--format=zip','--output',str(code),'HEAD'],cwd=ROOT,check=True)
     paths.append(code)
     out=ROOT/'output';out.mkdir(exist_ok=True)
-    # Only the two named members are extracted; the checksummed archive is not
-    # allowed to choose arbitrary filesystem paths.
-    with zipfile.ZipFile(args.asset_dir/'orchard_row_result.zip') as z:
-        for name in ['orchard_row_registered.ply','scan_transforms.json']:
-            (out/name).write_bytes(z.read(name))
+    baseline=out/'baseline_inputs';baseline.mkdir(exist_ok=True)
+    # Historical, checksummed seed clouds remain inputs, not current downloads.
+    with zipfile.ZipFile(args.asset_dir/'orchard_row_result.zip') as archive:
+        (baseline/'scan_transforms.json').write_bytes(archive.read('scan_transforms.json'))
+    seed_scans=baseline/'registered_scans';seed_scans.mkdir(exist_ok=True)
+    with zipfile.ZipFile(args.asset_dir/'separate_registered_scans.zip') as archive:
+        raw_manifest=archive.read('scan_manifest.json')
+        entries=json.loads(raw_manifest)['scans']
+        (seed_scans/'scan_manifest.json').write_bytes(raw_manifest)
+        for entry in entries:
+            name=entry['filename']
+            if Path(name).name!=name or not name.endswith('.ply'):raise RuntimeError('Invalid scan filename')
+            (seed_scans/name).write_bytes(archive.read(name))
+    anchored=out/'anchored_registration'
+    subprocess.run([sys.executable,str(ROOT/'processing/register_anchored.py'),
+                    '--scan-dir',str(seed_scans),'--transforms',str(baseline/'scan_transforms.json'),
+                    '--output-dir',str(anchored),'--export'],cwd=ROOT,check=True)
+    quality=json.loads((anchored/'anchored_registration_quality.json').read_text())
+    if not quality['validation_passed'] or not quality['candidate_exported']:
+        raise RuntimeError('Anchored registration did not pass; refusing to publish inconsistent assets.')
+    subprocess.run([sys.executable,str(ROOT/'tools/validate_registered_result.py'),'--baseline-scan-dir',str(seed_scans),'--baseline-transforms',str(baseline/'scan_transforms.json'),'--result-dir',str(anchored)],cwd=ROOT,check=True)
+    # Publish newly registered clouds, preserving the familiar asset names.
+    paths=[anchored/name for name in ['orchard_row_result.zip','separate_registered_scans.zip','combined_by_recording.zip']]+[code]
+    paths.extend([anchored/name for name in ['registration_quality.json','anchored_registration_quality.json','anchored_registration_comparison.png','anchored_trunk_sections.png','orchard_row_preview.png']])
+    for name in ['orchard_row_registered.ply','scan_transforms.json']:
+        shutil.copy2(anchored/name,out/name)
     subprocess.run([sys.executable,str(ROOT/'processing/mesh.py'),'--transforms',str(out/'scan_transforms.json'),'--voxel',str(manifest['mesh_build']['voxel_m'])],cwd=ROOT,check=True)
     subprocess.run([sys.executable,str(ROOT/'run_meshing.py'),'--input',str(out/'orchard_row_registered.ply'),'--output-dir',str(out/'mesh'),'--ground',str(out/'mesh/ground_surface.ply'),'--include-observed','--archive',str(out/'orchard_mesh.zip'),'--voxel',str(manifest['mesh_build']['wrap_voxel_m']),'--offset',str(manifest['mesh_build']['wrap_outward_offset_m']),'--closing-radius',str(manifest['mesh_build']['wrap_closing_radius_m'])],cwd=ROOT,check=True)
     subprocess.run([sys.executable,str(ROOT/'tools/validate_mesh.py')],cwd=ROOT,check=True)
     paths.extend([out/'orchard_mesh.zip',out/'mesh/mesh_preview.png',out/'mesh/mesh_quality.json',out/'mesh/shrinkwrap_preview.png',out/'mesh/shrinkwrap_quality.json'])
-    scan_dir=out/'registered_scans';scan_dir.mkdir(exist_ok=True)
-    with zipfile.ZipFile(args.asset_dir/'separate_registered_scans.zip') as z:
-        entries=json.loads(z.read('scan_manifest.json'))['scans']
-        for entry in entries:
-            name=entry['filename']
-            if Path(name).name!=name or not name.endswith('.ply'):raise RuntimeError('Invalid scan filename')
-            (scan_dir/name).write_bytes(z.read(name))
+    scan_dir=anchored/'registered_scans'
     subprocess.run([sys.executable,str(ROOT/'processing/check_cross_row.py'),'--scan-dir',str(scan_dir)],cwd=ROOT,check=True)
     paths.extend([out/'cross_row_trunk_sections.png',out/'cross_row_quality.json',out/'cross_row_trunks.csv'])
-    subprocess.run([sys.executable,str(ROOT/'processing/plot_trunk_slices.py'),'--scan-dir',str(scan_dir),'--candidate-report',str(out/'cross_row_quality.json')],cwd=ROOT,check=True)
+    subprocess.run([sys.executable,str(ROOT/'processing/plot_trunk_slices.py'),'--scan-dir',str(scan_dir),'--candidate-report',str(ROOT/'presets/orchard_stem_candidates.json')],cwd=ROOT,check=True)
     paths.extend([out/'trunk_slice_diagnostics.zip',*[out/'trunk_slices'/name for name in [
         'trunk_slice_fits.png','trunk_slice_fits.pdf','trunk_slice_centres.png',
         'trunk_slice_quality.json','trunk_slice_centres.csv','candidate_04_slices.png',

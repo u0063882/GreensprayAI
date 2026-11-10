@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """Check exported geometry and its provenance before publishing it."""
 from pathlib import Path
-import hashlib,json
+import argparse,hashlib,json
 import numpy as np
 import open3d as o3d
 
 root=Path(__file__).resolve().parent.parent
-source=root/'output/orchard_row_registered.ply';folder=root/'output/mesh'
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--source',type=Path,default=root/'output/orchard_row_registered.ply')
+parser.add_argument('--mesh-dir',type=Path,default=root/'output/mesh')
+args=parser.parse_args();source=args.source;folder=args.mesh_dir
 report=json.loads((folder/'mesh_quality.json').read_text())
 assert hashlib.sha256(source.read_bytes()).hexdigest()==report['source_sha256']
 p=np.asarray(o3d.io.read_point_cloud(str(source)).points)

@@ -1,40 +1,48 @@
 {
   "method": "Voxel occupancy + distance-field offset + binary closing/fill + smoothed signed-distance marching cubes",
   "rhino_equivalence": "Shrink-wrap-style approximation; Rhino 8 proprietary ShrinkWrap internals are not reproduced or validated.",
-  "source_sha256": "77fbe573d769851fdd7dd0b87180d95d2d155925d9718c5a61638b02dd19b723",
+  "source_sha256": "fed7a9e87071c2ec5828faada80c76bde855dd17630898f77c1a790ebd99c831",
+  "source_file": "orchard_row_registered.ply",
+  "coordinate_frame": "Input coordinates, preserved without rotation or translation",
+  "units": "m",
+  "metadata": {},
+  "input_points": 1219008,
+  "meshed_input_points": 1074924,
+  "ground_source_sha256": "2a5e60dc4b70151bce1930c7e7b43f1075fa66a9f60d8b41ca15d088677219ef",
+  "ground_clearance_m": 0.05,
   "voxel_m": 0.025,
   "outward_offset_m": 0.04,
   "gap_closing_radius_m": 0.05,
   "min_component_volume_m3": 0.0005,
-  "vertices": 223178,
-  "triangles": 446284,
-  "components": 31,
+  "vertices": 218928,
+  "triangles": 437824,
+  "components": 24,
   "watertight": true,
-  "topology_validation": "Closed-edge, vertex-manifold and orientability checks; full global triangle self-intersection search is not run. Surface construction uses topology-preserving Lewiner marching cubes.",
+  "topology_validation": "Closed-edge, vertex-manifold and orientability checks; full global triangle self-intersection search is not run. The watertight field records these checks, not an independent intersection-free guarantee.",
   "edge_manifold": true,
   "vertex_manifold": true,
-  "surface_area_m2": 90.6655000900575,
-  "envelope_proxy_volume_m3": 16.298476425058066,
+  "surface_area_m2": 88.95488279651124,
+  "envelope_proxy_volume_m3": 15.341011179572005,
   "wrap_surface_to_observation_distance_m": {
-    "median": 0.04500773451884961,
-    "p95": 0.061957884754824694
+    "median": 0.04485785722186876,
+    "p95": 0.06186659548084564
   },
   "grid": {
     "grid_shape": [
       301,
-      73,
-      181
+      72,
+      180
     ],
-    "grid_voxels": 3977113,
-    "retained_occupied_voxels": 1046580,
-    "occupied_proxy_volume_m3": 16.352812500000002
+    "grid_voxels": 3900960,
+    "retained_occupied_voxels": 985315,
+    "occupied_proxy_volume_m3": 15.395546875000004
   },
-  "elapsed_seconds": 9.94267666199994,
+  "elapsed_seconds": 10.373668735999672,
   "limitations": [
     "Offset, gap closing, enclosed-void filling and crop-end caps infer unobserved geometry.",
-    "This is a canopy/solid proxy, not measured trunk diameters, biomass, leaf area or validated CFD geometry.",
-    "The closed canopy wrap is watertight; the ground sheet and combined canopy-plus-ground scene are open.",
-    "Nearby leaves/branches/trees can be merged at the chosen scale. Small isolated components are removed.",
-    "Existing cross-row registration uncertainty remains; the wrap does not correct it."
+    "This is a solid envelope proxy, not measured trunk diameters, biomass, leaf area or validated CFD geometry.",
+    "Adding an optional open ground sheet produces an open combined scene.",
+    "Nearby surfaces can merge at the chosen scale. Small isolated components are removed.",
+    "Input alignment uncertainty is inherited; meshing does not estimate or correct registration."
   ]
 }

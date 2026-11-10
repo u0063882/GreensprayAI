@@ -86,5 +86,6 @@
         "capped_rmse_10cm_m": 0.0455555718089961
       }
     ]
-  }
+  },
+  "stage": "Seed relative-ground stage, before final east-anchored west refinement"
 }

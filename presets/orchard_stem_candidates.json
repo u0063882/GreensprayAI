@@ -1,0 +1,42 @@
+{
+  "purpose": "Coarse window seeds for this capture, not fixed target centres or verified tree identities. East stem shapes are fitted from measurements.",
+  "coordinates": "Original delivered frame, metres: X along, Y across, Z up. East remains fixed.",
+  "source_qa_sha256": "445e2286ed41349b0142a22589c1b4781a02c3538fd9c9bb646489d6ec80ca2c",
+  "candidates": [
+    {
+      "candidate": 1,
+      "along_m": 0.0609451922828225,
+      "across_m": 2.149878328737406
+    },
+    {
+      "candidate": 2,
+      "along_m": 1.0496284599859753,
+      "across_m": 2.0076759036864416
+    },
+    {
+      "candidate": 3,
+      "along_m": 1.6306475142800032,
+      "across_m": 2.0643900531953827
+    },
+    {
+      "candidate": 4,
+      "along_m": 3.010392429627271,
+      "across_m": 1.967455568366283
+    },
+    {
+      "candidate": 5,
+      "along_m": 3.689612220059806,
+      "across_m": 1.8664323125400144
+    },
+    {
+      "candidate": 6,
+      "along_m": 4.545645679631107,
+      "across_m": 1.926885425199541
+    },
+    {
+      "candidate": 7,
+      "along_m": 5.947794759922218,
+      "across_m": 1.818058681544578
+    }
+  ]
+}

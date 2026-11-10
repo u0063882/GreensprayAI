@@ -54,9 +54,9 @@ fixedSmall  = pcdownsample(fixed, "gridAverage",0.035);
 
 The residual for pair (i,j), where Ti maps scan i into the common frame, is based on `inv(Tij) * inv(Tj) * Ti`. Rotation and translation residuals are scaled separately. The toolbox's `greenspray_registerNeighbourScan.m` instead uses bounded XY/yaw refinement, with an optional phase-correlation seed; it accumulates neighbours separately per side. That is the same broad placement/refinement strategy, but a different solver.
 
-## 3. Opposite-side registration: along and across together
+## 3. Coarse opposite-side seed: along and across together
 
-The toolbox currently keeps West and East independent. This pipeline adds an explicit inter-side registration. Low stem points, Z=0.13…0.38 m, are downsampled to 0.025 m. Side B is moved onto Side A using only a planar rigid transform:
+The toolbox currently keeps West and East independent. The seed pipeline adds an explicit inter-side initializer, followed by the new per-recording bounded stage below. Low stem points, Z=0.13…0.38 m, are downsampled to 0.025 m. Side B is moved onto Side A using only a planar rigid transform:
 
 ```matlab
 Rz = [cos(theta) -sin(theta) 0;
@@ -67,9 +67,9 @@ T_B_to_A = [Rz, [dAcross; dAlong; 0]; 0 0 0 1];
 
 In this MATLAB convention the optimized parameters are `[dAcross, dAlong, yaw]`; in Python they are `[dAlong, dAcross, yaw]` with the across sign reversed. Multi-start translations avoid matching a neighbouring tree or a repeated canopy pattern. Each iteration finds XY nearest neighbours, gates them at 0.25/0.13/0.07 m and computes a weighted proper Procrustes/SVD update. Weights are `1/(1+(distance/0.045)^2)`. Candidate selection uses the symmetric mean squared nearest-neighbour distance capped at 0.12 m. Vertical shift, roll and pitch are not optimized in this inter-side step.
 
-`matlab/registerOppositeSidesSE2.m` is an explanatory numerical port of that solver in the MATLAB row convention. It has not been executed in MATLAB here; the production implementation remains `processing/trunk_align.py`.
+`matlab/registerOppositeSidesSE2.m` is an explanatory numerical port of that solver in the MATLAB row convention. It has not been executed in MATLAB here; the Python seed implementation remains `processing/trunk_align.py`. This aggregate is an initializer, not the final restriction on west degrees of freedom.
 
-Critically, **opposite-facing bark returns are not the same surface**. Blindly minimizing their separation can shrink a real trunk. Current cross-row QA fits candidate cross-sections separately by side, reports arc coverage and acquisition-block-bootstrap uncertainty, and declines to infer a global correction from too few usable trunks.
+Critically, **opposite-facing bark returns are not the same surface**. Blindly minimizing their separation can shrink a real trunk. Current QA fits independent circles and uncertainty per height. The final stage uses fixed east stem geometry, scanner-facing consistency and separate west poses; it does not match opposite bark returns directly onto one another.
 
 ## 4. Relative ground refinement
 
@@ -91,7 +91,9 @@ Under the MATLAB axis mapping, small rotation components become `roll_matlab=-pi
 For raw **SDK sensor-frame** points:
 
 ```matlab
-T_sensor_to_python = Eground_i * Cside_i * Pwithin_i * Llevel_i;
+T_seed = Eground_i * Cside_i * Pwithin_i * Llevel_i;
+T_sensor_to_python = Dwest_i * T_seed;
+% Dwest_i is identity for east; each west recording has its own correction.
 % Cside_i is identity for A and the fitted opposite-side transform for B.
 C = [0 -1 0 1.9875; 1 0 0 0; 0 0 1 0; 0 0 0 1];
 T_sensor_to_matlabRow = C * T_sensor_to_python;
@@ -102,3 +104,34 @@ pcRegistered = pctransform(pcSensor,rigidtform3d(R,t));
 ```
 
 `results/scan_transforms.json` stores `sensor_to_merged` as column-vector 4x4 matrices. Before applying these to MATLAB-decoded raw points, verify that `ousterFileReader/readOS0` returns the same SDK **sensor** frame; a LiDAR-frame-to-sensor calibration transform may also be needed. Already registered PLYs need only the display-axis conversion above.
+
+## 5. Final bounded west poses with fixed east
+
+See the [implemented method and validation](anchored_registration.md). East/A is MATLAB scan indices 1:9; west/B is 10:18 (Python IDs 0:8 and 9:17). The already completed east solution is fixed. There are nine separate six-component west pose updates, with soft relative-pose/overlap constraints rather than a single aggregate transform.
+
+MATLAB-style expressions for each west correction:
+
+```matlab
+omega = x(1:3); % rotation vector, radians
+S = [0 -omega(3) omega(2); omega(3) 0 -omega(1); -omega(2) omega(1) 0];
+R = expm(S);
+dt = x(4:6);   % [along; across; height], metres in the Python frame
+Dwest_i = [R, pivot_i - R*pivot_i + dt; 0 0 0 1];
+Tfinal_i = Dwest_i * Tseed_i;
+```
+
+The translation bounds are ±[0.04, 0.15, 0.025] m at the local row pivot. Rotation-vector component bounds are ±[0.5, 0.5, 2] degrees. Initializers are fitted one recording at a time and then jointly refined in a bounded least-squares objective. Physical relative-pose priors compare corrections at a common midpoint, so identical world transforms have zero relative residual even when pivot positions differ.
+
+East low stems are leaning tapered circular-axis models. With row-vector points, their radial objective is:
+
+```matlab
+u = [slopeAlong; slopeAcross; 1]; u = u / norm(u);
+Q = P - centreAtZ03.';
+t = Q*u;
+radial = Q - t*u.';
+r = radiusAtZ03 + taper*t;
+e = sqrt(sum(radial.^2,2)) - r;
+% Also penalize model surface normals facing away from the supplying scanner.
+```
+
+This preserves opposite bark faces and supports lean/taper without forcing vertical stems. The objective adds local east-ground planes, same-face west overlap, and bounded pose priors. West candidate 5 and two low-height bands are excluded for validation. Ground/overlap checkerboards provide additional checks, conditional on model/correspondence assumptions. The expressions specify the Python method; a full MATLAB optimizer for this stage has not been runtime-tested or supplied.

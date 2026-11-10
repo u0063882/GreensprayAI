@@ -1,29 +1,54 @@
 {
-  "A_to_B": {
-    "point_count": 2711,
-    "fraction_within_7cm": 0.8701586130579122,
-    "matched_rmse_m": 0.032606922956249965,
-    "median_distance_m": 0.028418752069972388
-  },
-  "B_to_A": {
-    "point_count": 2790,
-    "fraction_within_7cm": 0.9290322580645162,
-    "matched_rmse_m": 0.03289283686002512,
-    "median_distance_m": 0.02741405530662419
-  },
+  "method": "East-anchored bounded per-recording west registration",
+  "anchor": "East / Side A unchanged",
+  "validation_passed": true,
   "export": {
-    "points": 1242944,
-    "bounds_min": [
-      -0.49997857213020325,
-      1.287501573562622,
-      -0.09608133137226105
-    ],
-    "bounds_max": [
-      6.599998474121094,
-      2.6874938011169434,
-      4.084774017333984
-    ],
-    "source_scans": 18
+    "merged_points": 1219008,
+    "separate_scan_points": 1739386,
+    "east_files_unchanged": true
   },
-  "caveat": "Nearest-neighbour residuals on the fitted trunk band quantify agreement, not independent survey accuracy. Opposite sides observe different stem surfaces."
+  "details_file": "anchored_registration_quality.json",
+  "held_out_height_validation": {
+    "before": {
+      "points": 1007,
+      "median_absolute_m": 0.04465579302757333,
+      "rmse_m": 0.06319423861138784,
+      "capped_rmse_5cm_m": 0.0400955722224618
+    },
+    "after": {
+      "points": 1007,
+      "median_absolute_m": 0.015499585886241563,
+      "rmse_m": 0.028563096660230613,
+      "capped_rmse_5cm_m": 0.02413087262660572
+    }
+  },
+  "held_out_stem_validation": {
+    "before": {
+      "points": 617,
+      "median_absolute_m": 0.05743324710042892,
+      "rmse_m": 0.08390724372773048,
+      "capped_rmse_5cm_m": 0.043901826479865035
+    },
+    "after": {
+      "points": 617,
+      "median_absolute_m": 0.02213613107537274,
+      "rmse_m": 0.055937921257431744,
+      "capped_rmse_5cm_m": 0.029304770907462394
+    }
+  },
+  "held_out_ground_validation": {
+    "before": {
+      "points": 1093,
+      "median_absolute_m": 0.008175549037092883,
+      "rmse_m": 0.022479192414684705,
+      "capped_rmse_5cm_m": 0.016563731271590554
+    },
+    "after": {
+      "points": 1093,
+      "median_absolute_m": 0.008754947900163504,
+      "rmse_m": 0.0216924880700169,
+      "capped_rmse_5cm_m": 0.016183046875492654
+    }
+  },
+  "accuracy_note": "Held-out features/heights share acquisitions and may be correlated. East geometry and circular tapered-stem assumptions are not independent survey truth."
 }

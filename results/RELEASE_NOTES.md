@@ -2,7 +2,7 @@ Current outputs for the 18-recording Ouster OS0-128 orchard capture, in one repo
 
 Downloads:
 - `orchard_mesh.zip`: closed shrink-wrap-style canopy PLY/OBJ/STL, open observed surfaces, separate ground, previews and quality reports.
-- `orchard_row_result.zip`: ground-refined merged PLY and the original registration/export notes.
+- `orchard_row_result.zip`: east-anchored merged PLY, current transforms and registration quality reports.
 - `separate_registered_scans.zip`: all 18 registered clouds, one uniform RGB colour per recording.
 - `combined_by_recording.zip`: all contributions in one PLY, with the same recording colours.
 - `processing_code_and_notes.zip`: current repository code and documentation, including standalone meshing, registration, QA, MATLAB-format notes and the ShrinkWrap research report.
@@ -11,12 +11,12 @@ Downloads:
 
 The active repository metadata is consolidated under `results/`, with no separate versioned result directories. This `current` release is the active download location; the older tagged release remains historical provenance for the input archives.
 
-The meshing code provides OPEN observed surfaces and a CLOSED voxel/SDF shrink-wrap-style canopy proxy. The closed proxy is not validated as Rhino-equivalent, biological volume or a CFD-ready model. Its explicit outward offset, gap closing and caps infer unobserved geometry. Ground is a separate open sheet. Cross-row trunk-centre QA finds possible residual offsets but insufficient well-constrained independent trunks for an automatic global correction. Existing ground-refined point-cloud transforms are retained. All outputs use local metres, X along the row, Y across, Z up.
+Current registration: the completed east/Side A seed is fixed; each west/Side B recording has its own bounded rigid correction. All nine east cloud files are unchanged. Low stems, scanner-facing consistency, ground and west-to-west overlap constrain the 54 west pose variables. Held-out feature/height/ground/overlap checks pass. The three familiar cloud ZIPs contain the refined result; historical ZIPs are immutable seed inputs only.
 
-For MATLAB row axes X across / Y along, documentation and numerical examples are in `docs/registration_matlab.md` and `matlab/`. The axis conversion is a proper rotation with an across-axis sign reversal, not a simple X/Y exchange.
+New assets: `anchored_trunk_sections.png` (before/after circles), `anchored_registration_comparison.png`, detailed `anchored_registration_quality.json`, summary `registration_quality.json`, and `orchard_row_preview.png`. The merged cloud contains 1,219,008 measured points; separate contributions contain 1,739,386 points with overlap retained. The same crop is reapplied. Input seeds were already cropped, so omitted boundary returns are not recovered.
 
-Registration and meshing are separate programs. `run_meshing.py` accepts a point cloud alone and optional metadata, without raw Ouster scans, registration caches, GPS or poses. See `docs/meshing.md` for the standalone interface and `docs/shrinkwrap_research.md` for the researched alternatives and experiments.
+Held-out median radial residuals improve from 4.47 to 1.55 cm on excluded height bands and 5.74 to 2.21 cm on an excluded stem. Withheld west overlap RMS improves from 1.35 to 1.11 cm; held-out ground median changes by less than 1 mm. These are internal model/correspondence checks, not independent survey accuracy. Foliage motion, non-circular/root-flared stems and the fixed east anchor remain limitations. Current transforms and source hashes are in the reports.
 
-Thin-slice trunk QA uses only 6 cm slices wholly below Z=0.5 m, centred every 4 cm from 0.14 to 0.46 m. Overlapping slices are correlated; each candidate has one vote in the common-shift check. Three of 63 comparisons pass the strict gates, from two candidates. A trial −6.53 cm across translation of Side B improves average fitted centres but worsens the far-end candidate; it is rejected and no registration changes are applied. The new plot/report are included in the diagnostics ZIP and as individual assets.
+Registration and meshing are independent programs. Meshes are rebuilt from the final cloud using the existing voxel/SDF prototype; it is not validated as Rhino-equivalent, biological volume or CFD geometry. Ground is a separate open sheet. The user's Rhino reference is ShrinkWrap with 15 mm target edges, −5 mm offset, smoothing 1 and optimization 50%, followed by Reduce Mesh by 75%. That reference is recorded; the prototype uses different controls.
 
-The user's Rhino 8 reference is recorded in `presets/rhino8_reference.json`: 15 mm target edges, −5 mm offset, smoothing 1, optimization 50%, point inflation on, plus a separate Reduce Mesh by 75% operation. These are reference settings, not equivalent controls supported by the current voxel/SDF mesher. See `docs/rhino_reference.md`.
+Trunk QA uses nine overlapping 6 cm slices centred from Z=0.14 to 0.46 m, with every full slice below 0.5 m. Green/solid comparisons pass diagnostic gates; dashed/hollow fits remain uncertain. The common-shift check is an additional diagnostic on the current result and applies no further correction. MATLAB axis conversion and the final per-recording objective are documented under `docs/`.

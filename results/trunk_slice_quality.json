@@ -56,42 +56,42 @@
     },
     {
       "file": "scan_09_sideB_083639_registered.ply",
-      "sha256": "c6ef670e3f77869740ae4a5fa6c3d38f10e0a677c9a47b184975ba2212a12772"
+      "sha256": "1134eed91d57dc635228bf6f9f090d5653be31acb27044646e4453d5b276b9ad"
     },
     {
       "file": "scan_10_sideB_083646_registered.ply",
-      "sha256": "804e54442dd41d887350b846a53a24f5fddc6f535cb1fbb5feada42a9b0a3db7"
+      "sha256": "38e7d81592dee6ad3f9279f1e401fc9c912d85c5cadc9079b7735d1d30a00665"
     },
     {
       "file": "scan_11_sideB_083654_registered.ply",
-      "sha256": "fb6e27fd25a1b1de2df3dcf4f8f8cb3f4e5726325afc57156c874387c23b971d"
+      "sha256": "b23208e1b668b42b7529ceb5557b34799ad1a7047727e68d65de3235726eee24"
     },
     {
       "file": "scan_12_sideB_083701_registered.ply",
-      "sha256": "733000fb8e5dab89245c43640149ea5c64bb80b59ae99346f014f24a86817350"
+      "sha256": "999ea686acaaa1fca8ad7d4490bbf8e1cba19dc1651b743ff3e3db24bbbfd07f"
     },
     {
       "file": "scan_13_sideB_083710_registered.ply",
-      "sha256": "8df94348de7da53be2a52457747b9e32a487ebac337beedd5c60d9ed98a33103"
+      "sha256": "0fdc85f46b494c6bb1b9b3ac5ced7648db2380a3dd89bb0e99d2b2b9496ac506"
     },
     {
       "file": "scan_14_sideB_083719_registered.ply",
-      "sha256": "8dc9f3d12c469a300aef52653a49a8903441fd5362deb1142e580a0ec8ed11b7"
+      "sha256": "0fcb9aeda4103dafc0700ca4c501e8de3e548defd236cdf9c1a4281c4983ba00"
     },
     {
       "file": "scan_15_sideB_083725_registered.ply",
-      "sha256": "d069dabf0356eb02624b68f09ea3217c6d3fe3c512abab7ba695331bce667573"
+      "sha256": "920272abfad436ff5d1a0caadffdb6f255302a9f338b530b560407187f119c90"
     },
     {
       "file": "scan_16_sideB_083732_registered.ply",
-      "sha256": "fcbe5f58124c11fe7dc90574e23daf449fc0b32dd89a1b71e5907c4eb2d92f79"
+      "sha256": "3a1eab8f99f52bfa9a507b9776a023e96623977c02558b468de64bcddc65d938"
     },
     {
       "file": "scan_17_sideB_083744_registered.ply",
-      "sha256": "b2a8fcf130e5ee172508b790e863fd971ab1d1a5298af89ef53e012a2bf709f8"
+      "sha256": "cfb15a64313862c988579733ae759e02acbb496806733a6056c149cf9bfc9f0b"
     }
   ],
-  "candidate_report_sha256": "445e2286ed41349b0142a22589c1b4781a02c3538fd9c9bb646489d6ec80ca2c",
+  "candidate_report_sha256": "d4723b823d08cce91e7ebc50ba32c1d8a4c2cae1e831560fad1ca63821e20194",
   "candidate_reference": [
     {
       "candidate": 1,
@@ -129,11 +129,13 @@
       "across_m": 1.818058681544578
     }
   ],
-  "usable_comparisons": 3,
+  "usable_comparisons": 9,
   "total_sections": 63,
   "usable_candidates": [
     1,
-    4
+    3,
+    4,
+    7
   ],
   "method": "Separate robust XY circle fits in identical thin Z slices; acquisition-block bootstrap of B-minus-A centres. Independent centres/radii at every height; no vertical-cylinder or common-centre constraint.",
   "gates": {
@@ -170,13 +172,13 @@
       ],
       "side_A": {
         "centre_m": [
-          0.04819245873859041,
-          2.1572948189305556
+          0.048192458975367114,
+          2.1572948178144378
         ],
-        "radius_m": 0.09784029197572772,
-        "radial_rmse_m": 0.007442436808990739,
-        "arc_deg": 292.3202218299123,
-        "condition": 17.50195594218128,
+        "radius_m": 0.0978402913072397,
+        "radial_rmse_m": 0.007442436771334249,
+        "arc_deg": 292.3202225785034,
+        "condition": 17.5019569593049,
         "input_points": 222,
         "inlier_points": 198,
         "inlier_fraction": 0.8918918918918919,
@@ -186,32 +188,32 @@
       },
       "side_B": {
         "centre_m": [
-          0.06231113283287017,
-          2.194884107261111
+          0.06309872437798357,
+          2.158895588469725
         ],
-        "radius_m": 0.07766678201287514,
-        "radial_rmse_m": 0.011545296449067556,
-        "arc_deg": 293.6835265130775,
-        "condition": 7.719375385626657,
-        "input_points": 217,
-        "inlier_points": 166,
-        "inlier_fraction": 0.7649769585253456,
+        "radius_m": 0.07831211716999226,
+        "radial_rmse_m": 0.010423384592067559,
+        "arc_deg": 288.62484765942344,
+        "condition": 8.601364684223993,
+        "input_points": 215,
+        "inlier_points": 198,
+        "inlier_fraction": 0.9209302325581395,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 222,
-      "points_B": 217,
-      "centre_delta_along_m": 0.014118674094279755,
-      "centre_delta_across_m": 0.037589288330555526,
+      "points_B": 215,
+      "centre_delta_along_m": 0.014906265402616456,
+      "centre_delta_across_m": 0.001600770655287409,
       "delta_ci95_m": [
         [
-          -0.003618176634991241,
-          -0.051897951705062215
+          0.0014473652427282459,
+          -0.09014308603747626
         ],
         [
-          0.03773056584636202,
-          0.042393951307128926
+          0.026416829383685003,
+          0.010210948261038277
         ]
       ],
       "bootstrap_successes": 45,
@@ -235,13 +237,13 @@
       ],
       "side_A": {
         "centre_m": [
-          0.04888154996324199,
-          2.1498050814819987
+          0.048881550538869493,
+          2.149805080548148
         ],
-        "radius_m": 0.09537113521126786,
-        "radial_rmse_m": 0.006498559607998479,
-        "arc_deg": 195.1863493894427,
-        "condition": 31.22854746898792,
+        "radius_m": 0.09537113441863075,
+        "radial_rmse_m": 0.006498559638420284,
+        "arc_deg": 195.18635061812077,
+        "condition": 31.228546630168708,
         "input_points": 173,
         "inlier_points": 154,
         "inlier_fraction": 0.8901734104046243,
@@ -251,32 +253,32 @@
       },
       "side_B": {
         "centre_m": [
-          0.07366735641370288,
-          2.185750910630487
+          0.06873076750185601,
+          2.151178797401369
         ],
-        "radius_m": 0.08001805817524811,
-        "radial_rmse_m": 0.011604572359976488,
-        "arc_deg": 300.1676889901734,
-        "condition": 9.211741663527468,
-        "input_points": 183,
-        "inlier_points": 138,
-        "inlier_fraction": 0.7540983606557377,
+        "radius_m": 0.07647078556264046,
+        "radial_rmse_m": 0.010046887962106671,
+        "arc_deg": 280.0910994089126,
+        "condition": 17.111271541526705,
+        "input_points": 188,
+        "inlier_points": 173,
+        "inlier_fraction": 0.9202127659574468,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 173,
-      "points_B": 183,
-      "centre_delta_along_m": 0.02478580645046089,
-      "centre_delta_across_m": 0.03594582914848843,
+      "points_B": 188,
+      "centre_delta_along_m": 0.01984921696298652,
+      "centre_delta_across_m": 0.0013737168532212962,
       "delta_ci95_m": [
         [
-          -0.006877650207038113,
-          0.01689510357100641
+          -0.008998473389293738,
+          -0.010658397971693389
         ],
         [
-          0.03767982625113926,
-          0.05032630878758959
+          0.02771590485866345,
+          0.016139592449167628
         ]
       ],
       "bootstrap_successes": 45,
@@ -298,13 +300,13 @@
       ],
       "side_A": {
         "centre_m": [
-          0.06495918430975794,
-          2.137268905697782
+          0.06495918431831334,
+          2.1372689057154286
         ],
-        "radius_m": 0.08256551069474585,
-        "radial_rmse_m": 0.008836897419702557,
-        "arc_deg": 295.5554242824501,
-        "condition": 12.93560770212465,
+        "radius_m": 0.08256551069970276,
+        "radial_rmse_m": 0.008836897419859897,
+        "arc_deg": 295.5554242705452,
+        "condition": 12.935607704834618,
         "input_points": 142,
         "inlier_points": 133,
         "inlier_fraction": 0.9366197183098591,
@@ -314,39 +316,37 @@
       },
       "side_B": {
         "centre_m": [
-          0.07773046653503196,
-          2.180262305426441
+          0.07207841137876904,
+          2.1492216703024973
         ],
-        "radius_m": 0.07735508164770255,
-        "radial_rmse_m": 0.01122132258094856,
-        "arc_deg": 289.8767754034496,
-        "condition": 6.6275825640313375,
-        "input_points": 185,
-        "inlier_points": 153,
-        "inlier_fraction": 0.827027027027027,
+        "radius_m": 0.07111238840291151,
+        "radial_rmse_m": 0.00871681009932129,
+        "arc_deg": 276.52616825956846,
+        "condition": 6.98433120350161,
+        "input_points": 182,
+        "inlier_points": 174,
+        "inlier_fraction": 0.9560439560439561,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 142,
-      "points_B": 185,
-      "centre_delta_along_m": 0.012771282225274017,
-      "centre_delta_across_m": 0.04299339972865912,
+      "points_B": 182,
+      "centre_delta_along_m": 0.007119227060455702,
+      "centre_delta_across_m": 0.011952764587068732,
       "delta_ci95_m": [
         [
-          -0.022629015501019884,
-          0.013450075973394426
+          -0.01744409232997714,
+          -0.0037959303922193042
         ],
         [
-          0.03491726684267679,
-          0.06150253479216916
+          0.025416354563445796,
+          0.02614825701503367
         ]
       ],
       "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "across-centre interval at least 4 cm wide"
-      ],
+      "usable_comparison": true,
+      "issues": [],
       "candidate": 1
     },
     {
@@ -363,13 +363,13 @@
       ],
       "side_A": {
         "centre_m": [
-          0.07029039975448595,
-          2.131343393270002
+          0.07029039974402641,
+          2.1313433930987227
         ],
-        "radius_m": 0.08552724648116089,
-        "radial_rmse_m": 0.010751852732017085,
-        "arc_deg": 298.1546452668376,
-        "condition": 6.899523503076379,
+        "radius_m": 0.08552724640590484,
+        "radial_rmse_m": 0.010751852726748463,
+        "arc_deg": 298.1546453649847,
+        "condition": 6.899523632204913,
         "input_points": 142,
         "inlier_points": 130,
         "inlier_fraction": 0.9154929577464789,
@@ -379,32 +379,32 @@
       },
       "side_B": {
         "centre_m": [
-          0.07486131177691357,
-          2.1819071861093
+          0.07437273980860565,
+          2.144455698458495
         ],
-        "radius_m": 0.06930850921621207,
-        "radial_rmse_m": 0.010945134717133015,
-        "arc_deg": 262.0604004582598,
-        "condition": 9.668798573660913,
-        "input_points": 156,
-        "inlier_points": 130,
-        "inlier_fraction": 0.8333333333333334,
+        "radius_m": 0.06736620415028838,
+        "radial_rmse_m": 0.008671094966857366,
+        "arc_deg": 234.14203390752468,
+        "condition": 11.5842509615306,
+        "input_points": 151,
+        "inlier_points": 147,
+        "inlier_fraction": 0.9735099337748344,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 142,
-      "points_B": 156,
-      "centre_delta_along_m": 0.004570912022427626,
-      "centre_delta_across_m": 0.05056379283929768,
+      "points_B": 151,
+      "centre_delta_along_m": 0.004082340064579235,
+      "centre_delta_across_m": 0.013112305359772147,
       "delta_ci95_m": [
         [
-          -0.010321325019005297,
-          0.02964365919216654
+          -0.008768705090488096,
+          0.0038109227689573813
         ],
         [
-          0.030238202899340587,
-          0.08310469537130352
+          0.02306402354709568,
+          0.045541989714959624
         ]
       ],
       "bootstrap_successes": 45,
@@ -428,13 +428,13 @@
       ],
       "side_A": {
         "centre_m": [
-          0.07751251741249222,
-          2.110936033342153
+          0.07751251741231252,
+          2.1109360332426634
         ],
-        "radius_m": 0.08229653360004584,
-        "radial_rmse_m": 0.009704128048252136,
-        "arc_deg": 220.1138631837568,
-        "condition": 10.914764900329583,
+        "radius_m": 0.08229653353983254,
+        "radial_rmse_m": 0.009704128048598994,
+        "arc_deg": 220.11386330546247,
+        "condition": 10.914764874713414,
         "input_points": 113,
         "inlier_points": 100,
         "inlier_fraction": 0.8849557522123894,
@@ -444,39 +444,37 @@
       },
       "side_B": {
         "centre_m": [
-          0.08929404116735663,
-          2.1595615498831084
+          0.07827080339298068,
+          2.1354312807038007
         ],
-        "radius_m": 0.08006989718476937,
-        "radial_rmse_m": 0.009637943383549655,
-        "arc_deg": 278.9041239481909,
-        "condition": 18.321109056831435,
-        "input_points": 140,
-        "inlier_points": 114,
-        "inlier_fraction": 0.8142857142857143,
+        "radius_m": 0.06695919000888312,
+        "radial_rmse_m": 0.00858125590682225,
+        "arc_deg": 275.22309129949264,
+        "condition": 19.67577636185712,
+        "input_points": 139,
+        "inlier_points": 135,
+        "inlier_fraction": 0.9712230215827338,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 113,
-      "points_B": 140,
-      "centre_delta_along_m": 0.01178152375486441,
-      "centre_delta_across_m": 0.04862551654095526,
+      "points_B": 139,
+      "centre_delta_along_m": 0.0007582859806681552,
+      "centre_delta_across_m": 0.024495247461137293,
       "delta_ci95_m": [
         [
-          -0.009281633671385995,
-          0.03355350307775255
+          -0.007053704021969949,
+          0.00993085539806402
         ],
         [
-          0.021524319015340746,
-          0.08249766795063164
+          0.009826776759810665,
+          0.03989809211353781
         ]
       ],
       "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "across-centre interval at least 4 cm wide"
-      ],
+      "usable_comparison": true,
+      "issues": [],
       "candidate": 1
     },
     {
@@ -493,13 +491,13 @@
       ],
       "side_A": {
         "centre_m": [
-          0.08626785476406484,
-          2.127150867327984
+          0.08626785095625417,
+          2.1271508534382004
         ],
-        "radius_m": 0.10360856591654329,
-        "radial_rmse_m": 0.01071277314637002,
-        "arc_deg": 235.45548720036982,
-        "condition": 54.343757315371995,
+        "radius_m": 0.10360855364128123,
+        "radial_rmse_m": 0.010712772813263096,
+        "arc_deg": 235.45549431641493,
+        "condition": 54.344133821353836,
         "input_points": 102,
         "inlier_points": 81,
         "inlier_fraction": 0.7941176470588235,
@@ -509,37 +507,38 @@
       },
       "side_B": {
         "centre_m": [
-          0.08910929894401863,
-          2.1542343422973653
+          0.0811072592254956,
+          2.128698630992853
         ],
-        "radius_m": 0.07489704329831251,
-        "radial_rmse_m": 0.010638935196690812,
-        "arc_deg": 268.45926422723016,
-        "condition": 9.728784820906752,
-        "input_points": 172,
-        "inlier_points": 140,
-        "inlier_fraction": 0.813953488372093,
+        "radius_m": 0.06612969433939189,
+        "radial_rmse_m": 0.008619168062831993,
+        "arc_deg": 263.2775890958037,
+        "condition": 10.076719214667808,
+        "input_points": 170,
+        "inlier_points": 163,
+        "inlier_fraction": 0.9588235294117647,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 102,
-      "points_B": 172,
-      "centre_delta_along_m": 0.0028414441799537865,
-      "centre_delta_across_m": 0.02708347496938135,
+      "points_B": 170,
+      "centre_delta_along_m": -0.005160591730758571,
+      "centre_delta_across_m": 0.0015477775546526296,
       "delta_ci95_m": [
         [
-          -0.056756029001484715,
-          -0.04516897351544164
+          -0.05573615700491008,
+          -0.07424694692080877
         ],
         [
-          0.11009335858440744,
-          0.08813658034120427
+          0.11279315862984736,
+          0.05496208245026954
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
+        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 1
@@ -558,13 +557,13 @@
       ],
       "side_A": {
         "centre_m": [
-          0.0815361671226412,
-          2.090115797880982
+          0.0815361671236087,
+          2.090115797865906
         ],
-        "radius_m": 0.08370284458336051,
-        "radial_rmse_m": 0.010615616197277387,
-        "arc_deg": 231.2504379239906,
-        "condition": 22.57315591294776,
+        "radius_m": 0.08370284457363483,
+        "radial_rmse_m": 0.010615616197414801,
+        "arc_deg": 231.25043793815905,
+        "condition": 22.573155890740967,
         "input_points": 83,
         "inlier_points": 52,
         "inlier_fraction": 0.6265060240963856,
@@ -574,32 +573,32 @@
       },
       "side_B": {
         "centre_m": [
-          0.08968778119184201,
-          2.147138905587592
+          0.08158214323568952,
+          2.122191936848358
         ],
-        "radius_m": 0.07438607632418726,
-        "radial_rmse_m": 0.010583087233036253,
-        "arc_deg": 235.27076315439243,
-        "condition": 12.371896018214207,
-        "input_points": 135,
-        "inlier_points": 116,
-        "inlier_fraction": 0.8592592592592593,
+        "radius_m": 0.06588752024472302,
+        "radial_rmse_m": 0.009085178354787057,
+        "arc_deg": 228.7004688605897,
+        "condition": 17.715566216967634,
+        "input_points": 136,
+        "inlier_points": 134,
+        "inlier_fraction": 0.9852941176470589,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 83,
-      "points_B": 135,
-      "centre_delta_along_m": 0.008151614069200813,
-      "centre_delta_across_m": 0.0570231077066099,
+      "points_B": 136,
+      "centre_delta_along_m": 4.5976112080819975e-05,
+      "centre_delta_across_m": 0.03207613898245176,
       "delta_ci95_m": [
         [
-          -0.1042843106555881,
-          -0.018783822842655028
+          -0.10236526517021252,
+          -0.049360223001779245
         ],
         [
-          0.13581947468596778,
-          0.11672121369955098
+          0.12479433528389786,
+          0.09177424800561033
         ]
       ],
       "bootstrap_successes": 45,
@@ -623,13 +622,13 @@
       ],
       "side_A": {
         "centre_m": [
-          0.10012197067379296,
-          2.048973448556029
+          0.10012196991311773,
+          2.0489734465766
         ],
-        "radius_m": 0.09430382462351328,
-        "radial_rmse_m": 0.008377893090814267,
-        "arc_deg": 267.1934246800396,
-        "condition": 24.76128803255639,
+        "radius_m": 0.09430382365406807,
+        "radial_rmse_m": 0.008377893143955659,
+        "arc_deg": 267.1934260150346,
+        "condition": 24.761286802841152,
         "input_points": 88,
         "inlier_points": 46,
         "inlier_fraction": 0.5227272727272727,
@@ -641,32 +640,32 @@
       },
       "side_B": {
         "centre_m": [
-          0.11519546572367798,
-          2.073544119564296
+          0.09974815432531323,
+          2.0346376456780497
         ],
-        "radius_m": 0.13518325247996835,
-        "radial_rmse_m": 0.010313152839390008,
-        "arc_deg": 210.12595771660256,
-        "condition": 16.700471425865747,
-        "input_points": 179,
-        "inlier_points": 107,
-        "inlier_fraction": 0.5977653631284916,
+        "radius_m": 0.14047775983514746,
+        "radial_rmse_m": 0.01153623014529297,
+        "arc_deg": 187.88014583252635,
+        "condition": 31.148903705123175,
+        "input_points": 184,
+        "inlier_points": 123,
+        "inlier_fraction": 0.6684782608695652,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 88,
-      "points_B": 179,
-      "centre_delta_along_m": 0.015073495049885019,
-      "centre_delta_across_m": 0.02457067100826693,
+      "points_B": 184,
+      "centre_delta_along_m": -0.0003738155878044991,
+      "centre_delta_across_m": -0.014335800898550133,
       "delta_ci95_m": [
         [
-          -0.18704603038814016,
-          -0.09833284758759606
+          -0.18876231135182875,
+          -0.1283218858109606
         ],
         [
-          0.03796626030017603,
-          0.13877072506600927
+          0.03291249831022621,
+          0.11080498761583658
         ]
       ],
       "bootstrap_successes": 45,
@@ -692,13 +691,13 @@
       ],
       "side_A": {
         "centre_m": [
-          0.17408407699695805,
-          2.112592691049935
+          0.17408407688367342,
+          2.1125926910323334
         ],
         "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.011431851594871992,
-        "arc_deg": 95.92803201465665,
-        "condition": 290.79998450262525,
+        "radial_rmse_m": 0.011431851593816173,
+        "arc_deg": 95.92803204698183,
+        "condition": 290.7999823000029,
         "input_points": 120,
         "inlier_points": 59,
         "inlier_fraction": 0.49166666666666664,
@@ -713,32 +712,32 @@
       },
       "side_B": {
         "centre_m": [
-          0.11236689987363808,
-          2.0594489408291734
+          0.07548485708032754,
+          1.9992615522530108
         ],
-        "radius_m": 0.1324384527435506,
-        "radial_rmse_m": 0.011900820081821084,
-        "arc_deg": 199.361164558048,
-        "condition": 19.856755774567066,
-        "input_points": 207,
-        "inlier_points": 116,
-        "inlier_fraction": 0.5603864734299517,
+        "radius_m": 0.15673603347740744,
+        "radial_rmse_m": 0.012798101066064216,
+        "arc_deg": 149.84178693097562,
+        "condition": 73.55227732676616,
+        "input_points": 193,
+        "inlier_points": 107,
+        "inlier_fraction": 0.5544041450777202,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 120,
-      "points_B": 207,
-      "centre_delta_along_m": -0.06171717712331996,
-      "centre_delta_across_m": -0.053143750220761454,
+      "points_B": 193,
+      "centre_delta_along_m": -0.09859921980334588,
+      "centre_delta_across_m": -0.11333113877932255,
       "delta_ci95_m": [
         [
-          -0.16170974941902214,
-          -0.10025001387880077
+          -0.1606606424131963,
+          -0.12983394363096584
         ],
         [
-          -0.008025893372025797,
-          0.14405518250004273
+          -0.017894648869162973,
+          0.10924397502493721
         ]
       ],
       "bootstrap_successes": 45,
@@ -748,7 +747,6 @@
         "A: ill-conditioned circle",
         "A: mixed/cluttered section",
         "A: fit reaches search bound",
-        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 1
@@ -767,13 +765,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.0292129230715839,
-          2.0486115812415417
+          1.0292129223681294,
+          2.048611581213906
         ],
-        "radius_m": 0.1340751883023817,
-        "radial_rmse_m": 0.011569787190238436,
-        "arc_deg": 317.06150686798634,
-        "condition": 5.617258541141269,
+        "radius_m": 0.13407518815237957,
+        "radial_rmse_m": 0.0115697871662888,
+        "arc_deg": 317.0615070111721,
+        "condition": 5.617258396039145,
         "input_points": 587,
         "inlier_points": 211,
         "inlier_fraction": 0.3594548551959114,
@@ -785,34 +783,35 @@
       },
       "side_B": {
         "centre_m": [
-          1.0326038921158966,
-          1.9309759364508199
+          1.014204052379457,
+          1.887979198535687
         ],
-        "radius_m": 0.11581634035455499,
-        "radial_rmse_m": 0.012485106073999004,
-        "arc_deg": 332.9016814014634,
-        "condition": 5.193598927960018,
-        "input_points": 316,
-        "inlier_points": 156,
-        "inlier_fraction": 0.4936708860759494,
+        "radius_m": 0.1030759572024456,
+        "radial_rmse_m": 0.011790313060729828,
+        "arc_deg": 332.7952245307997,
+        "condition": 7.3431374751262375,
+        "input_points": 308,
+        "inlier_points": 144,
+        "inlier_fraction": 0.4675324675324675,
         "acquisitions": 5,
-        "touches_bound": false,
+        "touches_bound": true,
         "issues": [
-          "mixed/cluttered section"
+          "mixed/cluttered section",
+          "fit reaches search bound"
         ]
       },
       "points_A": 587,
-      "points_B": 316,
-      "centre_delta_along_m": 0.003390969044312797,
-      "centre_delta_across_m": -0.11763564479072186,
+      "points_B": 308,
+      "centre_delta_along_m": -0.015008869988672346,
+      "centre_delta_across_m": -0.160632382678219,
       "delta_ci95_m": [
         [
-          -0.030661053399943138,
-          -0.13652869126453168
+          -0.047553982789547346,
+          -0.16997795335488203
         ],
         [
-          0.049223382062028635,
-          -0.07571176739606843
+          0.02896150149845946,
+          -0.1297863232306617
         ]
       ],
       "bootstrap_successes": 45,
@@ -820,6 +819,7 @@
       "issues": [
         "A: mixed/cluttered section",
         "B: mixed/cluttered section",
+        "B: fit reaches search bound",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 2
@@ -838,13 +838,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.0492659009798022,
-          2.0387311214344157
+          1.049265900929752,
+          2.0387311213442323
         ],
-        "radius_m": 0.12124518504125918,
-        "radial_rmse_m": 0.011277092437784807,
-        "arc_deg": 312.6692460927822,
-        "condition": 6.323418157930574,
+        "radius_m": 0.12124518497944993,
+        "radial_rmse_m": 0.011277092433195648,
+        "arc_deg": 312.6692461360328,
+        "condition": 6.323418116194027,
         "input_points": 491,
         "inlier_points": 162,
         "inlier_fraction": 0.329938900203666,
@@ -856,16 +856,16 @@
       },
       "side_B": {
         "centre_m": [
-          1.0341998069671199,
-          1.9370497539000242
+          1.0310923613022625,
+          1.9113469730708061
         ],
-        "radius_m": 0.11655171489516543,
-        "radial_rmse_m": 0.01173430535861681,
-        "arc_deg": 299.0146623422994,
-        "condition": 8.75918724435013,
-        "input_points": 292,
-        "inlier_points": 151,
-        "inlier_fraction": 0.5171232876712328,
+        "radius_m": 0.10446928243292154,
+        "radial_rmse_m": 0.012113114077813205,
+        "arc_deg": 315.42572108218263,
+        "condition": 6.801186205792187,
+        "input_points": 276,
+        "inlier_points": 134,
+        "inlier_fraction": 0.4855072463768116,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
@@ -873,17 +873,17 @@
         ]
       },
       "points_A": 491,
-      "points_B": 292,
-      "centre_delta_along_m": -0.01506609401268233,
-      "centre_delta_across_m": -0.1016813675343915,
+      "points_B": 276,
+      "centre_delta_along_m": -0.018173539627489577,
+      "centre_delta_across_m": -0.12738414827342615,
       "delta_ci95_m": [
         [
-          -0.05047523596624233,
-          -0.11917734593491132
+          -0.06093394632362059,
+          -0.15672125451963712
         ],
         [
-          0.01007595490851802,
-          -0.045935079330783404
+          0.09974985352184614,
+          0.01607853582912102
         ]
       ],
       "bootstrap_successes": 45,
@@ -909,13 +909,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.0626490391153784,
-          2.0317545095115706
+          1.0626490391449432,
+          2.031754509555216
         ],
-        "radius_m": 0.12234414722427389,
-        "radial_rmse_m": 0.012010980488493887,
-        "arc_deg": 333.7379330079632,
-        "condition": 6.3011315721619185,
+        "radius_m": 0.12234414725127522,
+        "radial_rmse_m": 0.012010980485421105,
+        "arc_deg": 333.73793299775394,
+        "condition": 6.301131576990158,
         "input_points": 535,
         "inlier_points": 196,
         "inlier_fraction": 0.3663551401869159,
@@ -927,16 +927,16 @@
       },
       "side_B": {
         "centre_m": [
-          1.04485930643275,
-          1.966708164741514
+          1.022630213745275,
+          1.959263984372075
         ],
-        "radius_m": 0.11230787740346143,
-        "radial_rmse_m": 0.010636713312243997,
-        "arc_deg": 272.0023115170874,
-        "condition": 7.110793856151142,
-        "input_points": 346,
-        "inlier_points": 145,
-        "inlier_fraction": 0.4190751445086705,
+        "radius_m": 0.0964491171853365,
+        "radial_rmse_m": 0.011817404508937056,
+        "arc_deg": 336.4668066168718,
+        "condition": 2.5221711231786195,
+        "input_points": 351,
+        "inlier_points": 117,
+        "inlier_fraction": 0.3333333333333333,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
@@ -944,17 +944,17 @@
         ]
       },
       "points_A": 535,
-      "points_B": 346,
-      "centre_delta_along_m": -0.0177897326826284,
-      "centre_delta_across_m": -0.06504634477005644,
+      "points_B": 351,
+      "centre_delta_along_m": -0.04001882539966828,
+      "centre_delta_across_m": -0.07249052518314114,
       "delta_ci95_m": [
         [
-          -0.03921820748850598,
-          -0.11555950729890727
+          -0.051158263392510464,
+          -0.15970972277451573
         ],
         [
-          0.015985559105544084,
-          0.00958343078546481
+          0.0017776256376635267,
+          -0.004299808859561968
         ]
       ],
       "bootstrap_successes": 45,
@@ -980,13 +980,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.069734590562828,
-          2.027578911342666
+          1.0697345908949032,
+          2.027578912155972
         ],
-        "radius_m": 0.12736306965595937,
-        "radial_rmse_m": 0.011325511952528093,
-        "arc_deg": 300.4308183116328,
-        "condition": 6.815561449848427,
+        "radius_m": 0.1273630699312379,
+        "radial_rmse_m": 0.011325511982872476,
+        "arc_deg": 300.430817957366,
+        "condition": 6.8155622051825855,
         "input_points": 407,
         "inlier_points": 140,
         "inlier_fraction": 0.343980343980344,
@@ -998,16 +998,16 @@
       },
       "side_B": {
         "centre_m": [
-          1.02239990640059,
-          2.0673674243888875
+          1.0310788598221405,
+          2.033413534805845
         ],
-        "radius_m": 0.09018324565241397,
-        "radial_rmse_m": 0.012486314293433408,
-        "arc_deg": 321.07222144553793,
-        "condition": 3.907359679496865,
+        "radius_m": 0.08838355835595,
+        "radial_rmse_m": 0.011937503194588743,
+        "arc_deg": 283.1508921724279,
+        "condition": 4.5143920816370375,
         "input_points": 410,
-        "inlier_points": 190,
-        "inlier_fraction": 0.4634146341463415,
+        "inlier_points": 222,
+        "inlier_fraction": 0.5414634146341464,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
@@ -1016,16 +1016,16 @@
       },
       "points_A": 407,
       "points_B": 410,
-      "centre_delta_along_m": -0.04733468416223796,
-      "centre_delta_across_m": 0.03978851304622166,
+      "centre_delta_along_m": -0.038655731072762656,
+      "centre_delta_across_m": 0.005834622649872667,
       "delta_ci95_m": [
         [
-          -0.09237555841233422,
-          -0.08688477663945182
+          -0.09818560366507577,
+          -0.04611577358910368
         ],
         [
-          0.00875982321629471,
-          0.06110304072395367
+          -0.016744092209362026,
+          0.0381355047599535
         ]
       ],
       "bootstrap_successes": 45,
@@ -1052,13 +1052,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.0829823478969476,
-          2.0256596928657817
+          1.0829823478951603,
+          2.025659692880396
         ],
-        "radius_m": 0.13389992320329988,
-        "radial_rmse_m": 0.011890345413667418,
-        "arc_deg": 273.8247632537171,
-        "condition": 6.208196272210452,
+        "radius_m": 0.13389992320853536,
+        "radial_rmse_m": 0.011890345413841994,
+        "arc_deg": 273.8247632488524,
+        "condition": 6.208196262878556,
         "input_points": 340,
         "inlier_points": 132,
         "inlier_fraction": 0.38823529411764707,
@@ -1070,16 +1070,16 @@
       },
       "side_B": {
         "centre_m": [
-          1.0483563607018946,
-          2.078221645235718
+          1.0400182114013885,
+          2.0187516299167028
         ],
-        "radius_m": 0.09664818728768249,
-        "radial_rmse_m": 0.01072763821686528,
-        "arc_deg": 283.124859928749,
-        "condition": 2.9661941400983527,
-        "input_points": 383,
-        "inlier_points": 173,
-        "inlier_fraction": 0.4516971279373368,
+        "radius_m": 0.09993495179088874,
+        "radial_rmse_m": 0.01221849731704771,
+        "arc_deg": 289.36446701313025,
+        "condition": 3.2438791302343337,
+        "input_points": 375,
+        "inlier_points": 169,
+        "inlier_fraction": 0.45066666666666666,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
@@ -1087,17 +1087,17 @@
         ]
       },
       "points_A": 340,
-      "points_B": 383,
-      "centre_delta_along_m": -0.03462598719505294,
-      "centre_delta_across_m": 0.052561952369936105,
+      "points_B": 375,
+      "centre_delta_along_m": -0.04296413649377184,
+      "centre_delta_across_m": -0.006908062963693062,
       "delta_ci95_m": [
         [
-          -0.06558608993198847,
-          -0.00013767224399945186
+          -0.06399234559498546,
+          -0.04965006388299213
         ],
         [
-          -0.011582280338071809,
-          0.11130528277755611
+          -0.019320236383341217,
+          0.05572219636531994
         ]
       ],
       "bootstrap_successes": 45,
@@ -1105,7 +1105,6 @@
       "issues": [
         "A: mixed/cluttered section",
         "B: mixed/cluttered section",
-        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 2
@@ -1124,13 +1123,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.0712144271838615,
-          1.9643769862052547
+          1.071214424674657,
+          1.9643769804249944
         ],
-        "radius_m": 0.12061835529195196,
-        "radial_rmse_m": 0.012400292926357057,
-        "arc_deg": 302.25321068052557,
-        "condition": 5.5078411445384186,
+        "radius_m": 0.12061835440458514,
+        "radial_rmse_m": 0.012400292410510282,
+        "arc_deg": 302.2532079843262,
+        "condition": 5.5078412733586095,
         "input_points": 295,
         "inlier_points": 153,
         "inlier_fraction": 0.5186440677966102,
@@ -1142,16 +1141,16 @@
       },
       "side_B": {
         "centre_m": [
-          1.0778882347929368,
-          2.0830371021717546
+          1.0790577070850595,
+          2.0371982964576634
         ],
-        "radius_m": 0.12417743089618763,
-        "radial_rmse_m": 0.012304444295537356,
-        "arc_deg": 258.22975367327814,
-        "condition": 4.600105117965435,
-        "input_points": 427,
-        "inlier_points": 211,
-        "inlier_fraction": 0.49414519906323184,
+        "radius_m": 0.12893839397351303,
+        "radial_rmse_m": 0.01087924015259673,
+        "arc_deg": 256.116272513837,
+        "condition": 4.000130887452155,
+        "input_points": 432,
+        "inlier_points": 229,
+        "inlier_fraction": 0.5300925925925926,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
@@ -1159,17 +1158,17 @@
         ]
       },
       "points_A": 295,
-      "points_B": 427,
-      "centre_delta_along_m": 0.006673807609075322,
-      "centre_delta_across_m": 0.11866011596649995,
+      "points_B": 432,
+      "centre_delta_along_m": 0.007843282410402441,
+      "centre_delta_across_m": 0.07282131603266895,
       "delta_ci95_m": [
         [
-          -0.024073509635812118,
-          0.06321384555336931
+          -0.01750206589059402,
+          0.026881407944120417
         ],
         [
-          0.02720567039670021,
-          0.15985897737534263
+          0.019591866396468035,
+          0.10861253779249351
         ]
       ],
       "bootstrap_successes": 45,
@@ -1195,13 +1194,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.087015326272346,
-          1.9281225586904993
+          1.087015336533005,
+          1.928122417037195
         ],
-        "radius_m": 0.11412487307123484,
-        "radial_rmse_m": 0.011033838423311074,
-        "arc_deg": 223.56923992948683,
-        "condition": 12.537415624831755,
+        "radius_m": 0.11412489395027707,
+        "radial_rmse_m": 0.011033825613216497,
+        "arc_deg": 223.56911307864326,
+        "condition": 12.537373372951029,
         "input_points": 292,
         "inlier_points": 172,
         "inlier_fraction": 0.589041095890411,
@@ -1211,16 +1210,16 @@
       },
       "side_B": {
         "centre_m": [
-          1.085948019774988,
-          2.098844857412888
+          1.0856883549140228,
+          2.048724031825639
         ],
-        "radius_m": 0.12067468476426918,
-        "radial_rmse_m": 0.011936585258841078,
-        "arc_deg": 252.23241918901772,
-        "condition": 4.374365170095264,
-        "input_points": 311,
-        "inlier_points": 160,
-        "inlier_fraction": 0.5144694533762058,
+        "radius_m": 0.1202119631972105,
+        "radial_rmse_m": 0.011214979958866455,
+        "arc_deg": 246.7821159688643,
+        "condition": 6.222835992062581,
+        "input_points": 271,
+        "inlier_points": 141,
+        "inlier_fraction": 0.5202952029520295,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
@@ -1228,17 +1227,17 @@
         ]
       },
       "points_A": 292,
-      "points_B": 311,
-      "centre_delta_along_m": -0.0010673064973580892,
-      "centre_delta_across_m": 0.17072229872238864,
+      "points_B": 271,
+      "centre_delta_along_m": -0.0013269816189822592,
+      "centre_delta_across_m": 0.12060161478844411,
       "delta_ci95_m": [
         [
-          -0.019185048916166812,
-          0.10374102164438384
+          -0.012882553557235488,
+          0.06921111334974853
         ],
         [
-          0.01800938279629498,
-          0.1914231248136158
+          0.013211744976717971,
+          0.14130773073159794
         ]
       ],
       "bootstrap_successes": 45,
@@ -1263,13 +1262,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.1231822035338355,
-          2.084302906866247
+          1.123182202971546,
+          2.0843029069390915
         ],
-        "radius_m": 0.1592008261954195,
-        "radial_rmse_m": 0.011432630007512549,
-        "arc_deg": 182.6408335470328,
-        "condition": 26.135579457018917,
+        "radius_m": 0.1592008258670143,
+        "radial_rmse_m": 0.011432630014133855,
+        "arc_deg": 182.64083384882755,
+        "condition": 26.135581030552657,
         "input_points": 128,
         "inlier_points": 69,
         "inlier_fraction": 0.5390625,
@@ -1281,39 +1280,38 @@
       },
       "side_B": {
         "centre_m": [
-          1.0972182325673823,
-          2.1113720818786685
+          1.104353109560427,
+          2.0676349282008264
         ],
-        "radius_m": 0.11947130585362735,
-        "radial_rmse_m": 0.012167692044003243,
-        "arc_deg": 213.01108456190565,
-        "condition": 11.660776447017671,
-        "input_points": 199,
-        "inlier_points": 113,
-        "inlier_fraction": 0.5678391959798995,
+        "radius_m": 0.12869710372813714,
+        "radial_rmse_m": 0.011185743485020777,
+        "arc_deg": 222.52795535665604,
+        "condition": 16.529692764351562,
+        "input_points": 192,
+        "inlier_points": 114,
+        "inlier_fraction": 0.59375,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 128,
-      "points_B": 199,
-      "centre_delta_along_m": -0.025963970966453198,
-      "centre_delta_across_m": 0.027069175012421454,
+      "points_B": 192,
+      "centre_delta_along_m": -0.018829093411118825,
+      "centre_delta_across_m": -0.016667978738265088,
       "delta_ci95_m": [
         [
-          -0.11225660729608825,
-          -0.0017850623601241898
+          -0.10544919685604631,
+          -0.044072826160151644
         ],
         [
-          0.00734650079293295,
-          0.07705237895253697
+          0.0017750746701474516,
+          0.03022612662066172
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
         "A: mixed/cluttered section",
-        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 2
@@ -1332,67 +1330,59 @@
       ],
       "side_A": {
         "centre_m": [
-          1.1383266640255083,
-          2.0384180032810293
+          0.854199346689845,
+          2.051493554475735
         ],
-        "radius_m": 0.17999997461940065,
-        "radial_rmse_m": 0.009784642423007821,
-        "arc_deg": 76.74344354624608,
-        "condition": 2332.9574175333155,
+        "radius_m": 0.16512807716615704,
+        "radial_rmse_m": 0.009938638297030556,
+        "arc_deg": 103.77690262816293,
+        "condition": 261.51810658546856,
         "input_points": 74,
-        "inlier_points": 30,
-        "inlier_fraction": 0.40540540540540543,
+        "inlier_points": 61,
+        "inlier_fraction": 0.8243243243243243,
         "acquisitions": 5,
         "touches_bound": true,
         "issues": [
-          "short observed arc",
           "ill-conditioned circle",
-          "mixed/cluttered section",
           "fit reaches search bound"
         ]
       },
       "side_B": {
         "centre_m": [
-          0.9962837327244802,
-          2.1118002775107496
+          1.0052900284112345,
+          2.0599400382006396
         ],
-        "radius_m": 0.09322646789624259,
-        "radial_rmse_m": 0.012557906852313828,
-        "arc_deg": 244.41324037547002,
-        "condition": 9.126879204389338,
-        "input_points": 189,
-        "inlier_points": 115,
-        "inlier_fraction": 0.6084656084656085,
+        "radius_m": 0.09045278881001217,
+        "radial_rmse_m": 0.011145766574411362,
+        "arc_deg": 254.865344948588,
+        "condition": 9.627906731999264,
+        "input_points": 168,
+        "inlier_points": 111,
+        "inlier_fraction": 0.6607142857142857,
         "acquisitions": 5,
-        "touches_bound": true,
-        "issues": [
-          "fit reaches search bound"
-        ]
+        "touches_bound": false,
+        "issues": []
       },
       "points_A": 74,
-      "points_B": 189,
-      "centre_delta_along_m": -0.14204293130102807,
-      "centre_delta_across_m": 0.07338227422972032,
+      "points_B": 168,
+      "centre_delta_along_m": 0.1510906817213895,
+      "centre_delta_across_m": 0.008446483724904752,
       "delta_ci95_m": [
         [
-          -0.15038903535330833,
-          0.035426337073420376
+          0.013210392006795758,
+          -0.00851952210378255
         ],
         [
-          0.03340388248144399,
-          0.18303307003831626
+          0.2917913325056311,
+          0.02862712294910663
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: short observed arc",
         "A: ill-conditioned circle",
-        "A: mixed/cluttered section",
         "A: fit reaches search bound",
-        "B: fit reaches search bound",
-        "side radii disagree by at least 3.5 cm",
-        "across-centre interval at least 4 cm wide"
+        "side radii disagree by at least 3.5 cm"
       ],
       "candidate": 2
     },
@@ -1410,13 +1400,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.5317616838630344,
-          2.123425466745591
+          1.5317616838701766,
+          2.123425466745234
         ],
-        "radius_m": 0.16762234905988257,
-        "radial_rmse_m": 0.011403336547217043,
-        "arc_deg": 274.7169621222057,
-        "condition": 10.124661120003873,
+        "radius_m": 0.1676223490587962,
+        "radial_rmse_m": 0.011403336547348958,
+        "arc_deg": 274.71696212591877,
+        "condition": 10.124661120877233,
         "input_points": 501,
         "inlier_points": 285,
         "inlier_fraction": 0.5688622754491018,
@@ -1426,16 +1416,16 @@
       },
       "side_B": {
         "centre_m": [
-          1.6073124254934712,
-          2.130414333845271
+          1.5861002329152674,
+          2.121071839962907
         ],
-        "radius_m": 0.13687988346375463,
-        "radial_rmse_m": 0.01140736146135156,
-        "arc_deg": 294.18978572565294,
-        "condition": 24.994251918196433,
-        "input_points": 811,
-        "inlier_points": 244,
-        "inlier_fraction": 0.3008631319358816,
+        "radius_m": 0.11507401654787218,
+        "radial_rmse_m": 0.012090999238935965,
+        "arc_deg": 300.5621393568698,
+        "condition": 6.507038288506096,
+        "input_points": 877,
+        "inlier_points": 253,
+        "inlier_fraction": 0.28848346636259975,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
@@ -1443,23 +1433,24 @@
         ]
       },
       "points_A": 501,
-      "points_B": 811,
-      "centre_delta_along_m": 0.07555074163043685,
-      "centre_delta_across_m": 0.00698886709967983,
+      "points_B": 877,
+      "centre_delta_along_m": 0.05433854904509072,
+      "centre_delta_across_m": -0.0023536267823272006,
       "delta_ci95_m": [
         [
-          0.05250937863871328,
-          -0.054817540568371514
+          0.0021659136539020412,
+          -0.08947604604884782
         ],
         [
-          0.1140743483868966,
-          0.08070069535531368
+          0.09976164033675768,
+          0.06947786696993886
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
         "B: mixed/cluttered section",
+        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 3
@@ -1478,13 +1469,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.5597155770163762,
-          2.105237546426454
+          1.5597155770249762,
+          2.1052375464506494
         ],
-        "radius_m": 0.15959253522241562,
-        "radial_rmse_m": 0.011886636561813308,
-        "arc_deg": 257.60548888773775,
-        "condition": 13.534576528595224,
+        "radius_m": 0.15959253523653522,
+        "radial_rmse_m": 0.011886636561257134,
+        "arc_deg": 257.6054888855686,
+        "condition": 13.534576524271433,
         "input_points": 414,
         "inlier_points": 234,
         "inlier_fraction": 0.5652173913043478,
@@ -1494,16 +1485,16 @@
       },
       "side_B": {
         "centre_m": [
-          1.6200788024044055,
-          2.0626829606461476
+          1.5449164294218305,
+          2.170935948283907
         ],
-        "radius_m": 0.15370770222838387,
-        "radial_rmse_m": 0.011123877971529477,
-        "arc_deg": 236.49465970876196,
-        "condition": 34.62820472778999,
-        "input_points": 665,
-        "inlier_points": 319,
-        "inlier_fraction": 0.47969924812030074,
+        "radius_m": 0.1129706620621976,
+        "radial_rmse_m": 0.012732297664788273,
+        "arc_deg": 280.95204049501973,
+        "condition": 2.9277526362412165,
+        "input_points": 718,
+        "inlier_points": 236,
+        "inlier_fraction": 0.3286908077994429,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
@@ -1511,23 +1502,24 @@
         ]
       },
       "points_A": 414,
-      "points_B": 665,
-      "centre_delta_along_m": 0.060363225388029296,
-      "centre_delta_across_m": -0.042554585780306464,
+      "points_B": 718,
+      "centre_delta_along_m": -0.014799147603145713,
+      "centre_delta_across_m": 0.06569840183325759,
       "delta_ci95_m": [
         [
-          0.024777469628352367,
-          -0.06770528763055421
+          -0.04688212446533406,
+          -0.08136876496881715
         ],
         [
-          0.10855813482368566,
-          0.04873963200032334
+          0.0917587862367285,
+          0.09787432875148405
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
         "B: mixed/cluttered section",
+        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 3
@@ -1546,13 +1538,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.5711466689541416,
-          2.0968975191112853
+          1.5711466684271935,
+          2.0968975190815877
         ],
-        "radius_m": 0.1533979869336616,
-        "radial_rmse_m": 0.012403966603389556,
-        "arc_deg": 278.31803442124067,
-        "condition": 9.700248021303933,
+        "radius_m": 0.15339798691488085,
+        "radial_rmse_m": 0.01240396659169356,
+        "arc_deg": 278.3180346462862,
+        "condition": 9.700248178534903,
         "input_points": 327,
         "inlier_points": 199,
         "inlier_fraction": 0.6085626911314985,
@@ -1562,16 +1554,16 @@
       },
       "side_B": {
         "centre_m": [
-          1.6414372538330906,
-          2.036618116751622
+          1.5869067999625983,
+          2.1624579945789946
         ],
-        "radius_m": 0.1688642688268651,
-        "radial_rmse_m": 0.01091574923815352,
-        "arc_deg": 176.1349575756508,
-        "condition": 57.799510923550905,
-        "input_points": 445,
-        "inlier_points": 242,
-        "inlier_fraction": 0.5438202247191011,
+        "radius_m": 0.1037517037983792,
+        "radial_rmse_m": 0.011306754885499601,
+        "arc_deg": 285.1069957128427,
+        "condition": 4.895895456458995,
+        "input_points": 456,
+        "inlier_points": 169,
+        "inlier_fraction": 0.3706140350877193,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
@@ -1579,23 +1571,24 @@
         ]
       },
       "points_A": 327,
-      "points_B": 445,
-      "centre_delta_along_m": 0.07029058487894901,
-      "centre_delta_across_m": -0.06027940235966334,
+      "points_B": 456,
+      "centre_delta_along_m": 0.015760131535404787,
+      "centre_delta_across_m": 0.06556047549740684,
       "delta_ci95_m": [
         [
-          0.020510633224202678,
-          -0.0792621132443196
+          -0.022097448159612322,
+          -0.12002376981543336
         ],
         [
-          0.12267719313802579,
-          0.013781997863120132
+          0.10198310490036436,
+          0.0879322687943322
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
         "B: mixed/cluttered section",
+        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 3
@@ -1614,13 +1607,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.5583175869400285,
-          2.086843862680278
+          1.5583175868849297,
+          2.0868438623571315
         ],
-        "radius_m": 0.14966569345598457,
-        "radial_rmse_m": 0.0103106884714206,
-        "arc_deg": 252.86842816018958,
-        "condition": 17.90248320207578,
+        "radius_m": 0.14966569322247406,
+        "radial_rmse_m": 0.010310688460008894,
+        "arc_deg": 252.86842814764316,
+        "condition": 17.90248343877998,
         "input_points": 261,
         "inlier_points": 182,
         "inlier_fraction": 0.6973180076628352,
@@ -1630,37 +1623,40 @@
       },
       "side_B": {
         "centre_m": [
-          1.5463659678984996,
-          2.067697650793493
+          1.619344914132922,
+          2.1152086799797463
         ],
-        "radius_m": 0.07367047016900853,
-        "radial_rmse_m": 0.01058557696313675,
-        "arc_deg": 312.0718953137097,
-        "condition": 11.836417155679925,
-        "input_points": 289,
-        "inlier_points": 216,
-        "inlier_fraction": 0.7474048442906575,
+        "radius_m": 0.10855178638501788,
+        "radial_rmse_m": 0.011935742574183908,
+        "arc_deg": 253.84560944153637,
+        "condition": 8.232291299491099,
+        "input_points": 279,
+        "inlier_points": 125,
+        "inlier_fraction": 0.44802867383512546,
         "acquisitions": 5,
         "touches_bound": false,
-        "issues": []
+        "issues": [
+          "mixed/cluttered section"
+        ]
       },
       "points_A": 261,
-      "points_B": 289,
-      "centre_delta_along_m": -0.011951619041528971,
-      "centre_delta_across_m": -0.01914621188678467,
+      "points_B": 279,
+      "centre_delta_along_m": 0.0610273272479922,
+      "centre_delta_across_m": 0.02836481762261478,
       "delta_ci95_m": [
         [
-          -0.05897101611530655,
-          -0.0605417708935803
+          0.03761787348889374,
+          -0.10527169646270088
         ],
         [
-          0.12663862490944594,
-          0.04735130164512417
+          0.14815120559345296,
+          0.05879950478459967
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
+        "B: mixed/cluttered section",
         "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
@@ -1680,13 +1676,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.551880586658017,
-          1.9854033156967326
+          1.551880586612473,
+          1.9854033141794443
         ],
-        "radius_m": 0.06773827049615164,
-        "radial_rmse_m": 0.009433295068726352,
-        "arc_deg": 280.0873649921968,
-        "condition": 7.787879136649975,
+        "radius_m": 0.06773826982205025,
+        "radial_rmse_m": 0.00943329502611969,
+        "arc_deg": 280.087366418606,
+        "condition": 7.787879184176805,
         "input_points": 212,
         "inlier_points": 183,
         "inlier_fraction": 0.8632075471698113,
@@ -1696,32 +1692,32 @@
       },
       "side_B": {
         "centre_m": [
-          1.5514206575605318,
-          2.049036548556603
+          1.5390164067030165,
+          2.001788643974514
         ],
-        "radius_m": 0.08051998682528914,
-        "radial_rmse_m": 0.00968970425756937,
-        "arc_deg": 302.4828694162028,
-        "condition": 15.058811973356304,
-        "input_points": 242,
-        "inlier_points": 198,
-        "inlier_fraction": 0.8181818181818182,
+        "radius_m": 0.06605236314366902,
+        "radial_rmse_m": 0.010533638112987577,
+        "arc_deg": 286.7775244929699,
+        "condition": 12.652257435336052,
+        "input_points": 236,
+        "inlier_points": 199,
+        "inlier_fraction": 0.8432203389830508,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 212,
-      "points_B": 242,
-      "centre_delta_along_m": -0.00045992909748515665,
-      "centre_delta_across_m": 0.06363323285987033,
+      "points_B": 236,
+      "centre_delta_along_m": -0.01286417990945643,
+      "centre_delta_across_m": 0.016385329795069792,
       "delta_ci95_m": [
         [
-          -0.012994879598245367,
-          0.024720722454861076
+          -0.027379706359078337,
+          -0.02009286350756483
         ],
         [
-          0.0280946848232727,
-          0.10743067801340887
+          0.014448650941978742,
+          0.037076861646210754
         ]
       ],
       "bootstrap_successes": 45,
@@ -1745,13 +1741,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.557040543799199,
-          1.9720355310467994
+          1.5570405435817858,
+          1.972035522134165
         ],
-        "radius_m": 0.06705973944280783,
-        "radial_rmse_m": 0.009201536801028724,
-        "arc_deg": 274.039154689083,
-        "condition": 9.023152417598842,
+        "radius_m": 0.0670597345525217,
+        "radial_rmse_m": 0.009201536288474954,
+        "arc_deg": 274.03916338123736,
+        "condition": 9.023151383197451,
         "input_points": 211,
         "inlier_points": 183,
         "inlier_fraction": 0.8672985781990521,
@@ -1761,32 +1757,32 @@
       },
       "side_B": {
         "centre_m": [
-          1.5488537555782478,
-          2.058364471343885
+          1.540346751838462,
+          2.003944603220596
         ],
-        "radius_m": 0.06815611722599044,
-        "radial_rmse_m": 0.0101757965644287,
-        "arc_deg": 277.9875990257084,
-        "condition": 14.933540061774668,
-        "input_points": 231,
-        "inlier_points": 207,
-        "inlier_fraction": 0.8961038961038961,
+        "radius_m": 0.06079644018351537,
+        "radial_rmse_m": 0.009810981919511595,
+        "arc_deg": 285.42554155636225,
+        "condition": 7.4206267198900635,
+        "input_points": 235,
+        "inlier_points": 220,
+        "inlier_fraction": 0.9361702127659575,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 211,
-      "points_B": 231,
-      "centre_delta_along_m": -0.008186788220951202,
-      "centre_delta_across_m": 0.08632894029708549,
+      "points_B": 235,
+      "centre_delta_along_m": -0.01669379174332386,
+      "centre_delta_across_m": 0.03190908108643087,
       "delta_ci95_m": [
         [
-          -0.012858946716237284,
-          0.02686713194154713
+          -0.022218676521594972,
+          -0.01269000020332984
         ],
         [
-          0.026110644948278444,
-          0.11486395691716993
+          0.014191782261880236,
+          0.05202440972490158
         ]
       ],
       "bootstrap_successes": 45,
@@ -1810,13 +1806,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.5609467835460729,
-          1.960922078964123
+          1.5609467828529813,
+          1.9609220684966115
         ],
-        "radius_m": 0.0703271814494788,
-        "radial_rmse_m": 0.00903561839543032,
-        "arc_deg": 276.1315731534169,
-        "condition": 6.5710930656796975,
+        "radius_m": 0.0703271760328641,
+        "radial_rmse_m": 0.009035618497940665,
+        "arc_deg": 276.1315832214138,
+        "condition": 6.571095477775335,
         "input_points": 208,
         "inlier_points": 187,
         "inlier_fraction": 0.8990384615384616,
@@ -1826,39 +1822,37 @@
       },
       "side_B": {
         "centre_m": [
-          1.5549224073274417,
-          2.054701231998315
+          1.5484300226496417,
+          1.9932911428459363
         ],
-        "radius_m": 0.06668658799363826,
-        "radial_rmse_m": 0.010180570295930325,
-        "arc_deg": 278.5802143641053,
-        "condition": 10.660894517014267,
-        "input_points": 221,
-        "inlier_points": 208,
-        "inlier_fraction": 0.9411764705882353,
+        "radius_m": 0.06367842331309495,
+        "radial_rmse_m": 0.010097874543924551,
+        "arc_deg": 275.23233711872604,
+        "condition": 5.630240895168524,
+        "input_points": 225,
+        "inlier_points": 211,
+        "inlier_fraction": 0.9377777777777778,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 208,
-      "points_B": 221,
-      "centre_delta_along_m": -0.006024376218631167,
-      "centre_delta_across_m": 0.09377915303419182,
+      "points_B": 225,
+      "centre_delta_along_m": -0.012516760203339583,
+      "centre_delta_across_m": 0.03236907434932479,
       "delta_ci95_m": [
         [
-          -0.04564177849757851,
-          0.062192933870067614
+          -0.0512962286155777,
+          0.010430690985001224
         ],
         [
-          0.01990547783736642,
-          0.11697150918671086
+          -0.005905147250521071,
+          0.04957364394823771
         ]
       ],
       "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "across-centre interval at least 4 cm wide"
-      ],
+      "usable_comparison": true,
+      "issues": [],
       "candidate": 3
     },
     {
@@ -1875,13 +1869,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.565999136430838,
-          1.9583461287358543
+          1.5659991364758588,
+          1.9583461284823647
         ],
-        "radius_m": 0.07199287753549921,
-        "radial_rmse_m": 0.00854636090569699,
-        "arc_deg": 280.9126794552652,
-        "condition": 9.573509551215585,
+        "radius_m": 0.07199287740408494,
+        "radial_rmse_m": 0.00854636090979717,
+        "arc_deg": 280.9126796767986,
+        "condition": 9.573509648719824,
         "input_points": 212,
         "inlier_points": 201,
         "inlier_fraction": 0.9481132075471698,
@@ -1891,32 +1885,32 @@
       },
       "side_B": {
         "centre_m": [
-          1.564019217553309,
-          2.041565831261526
+          1.5560547883377474,
+          1.9783264241940428
         ],
-        "radius_m": 0.06823385113635401,
-        "radial_rmse_m": 0.010502394582335308,
-        "arc_deg": 300.3371448600117,
-        "condition": 7.239961392269736,
-        "input_points": 234,
-        "inlier_points": 212,
-        "inlier_fraction": 0.905982905982906,
+        "radius_m": 0.06656913206227698,
+        "radial_rmse_m": 0.00999792332417925,
+        "arc_deg": 306.692678826846,
+        "condition": 4.968317842061698,
+        "input_points": 229,
+        "inlier_points": 202,
+        "inlier_fraction": 0.8820960698689956,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 212,
-      "points_B": 234,
-      "centre_delta_along_m": -0.00197991887752913,
-      "centre_delta_across_m": 0.08321970252567179,
+      "points_B": 229,
+      "centre_delta_along_m": -0.009944348138111403,
+      "centre_delta_across_m": 0.019980295711678142,
       "delta_ci95_m": [
         [
-          -0.016271291638889386,
-          0.05580530658450047
+          -0.033675443178868815,
+          -0.0005786928789406783
         ],
         [
-          0.013047121273232879,
-          0.10531270411028516
+          0.005923630812069519,
+          0.043166966221696
         ]
       ],
       "bootstrap_successes": 45,
@@ -1940,13 +1934,13 @@
       ],
       "side_A": {
         "centre_m": [
-          1.575612952281944,
-          1.9536396766009998
+          1.5756129523070548,
+          1.9536396765575723
         ],
-        "radius_m": 0.0745509236096363,
-        "radial_rmse_m": 0.008521216506299074,
-        "arc_deg": 240.08507544479372,
-        "condition": 15.51456121460779,
+        "radius_m": 0.07455092360000068,
+        "radial_rmse_m": 0.008521216507383984,
+        "arc_deg": 240.0850754961202,
+        "condition": 15.514561197695445,
         "input_points": 163,
         "inlier_points": 148,
         "inlier_fraction": 0.9079754601226994,
@@ -1956,39 +1950,37 @@
       },
       "side_B": {
         "centre_m": [
-          1.5699766278326717,
-          2.0367874346067327
+          1.556420730498446,
+          1.9707945120852786
         ],
-        "radius_m": 0.06584276485959917,
-        "radial_rmse_m": 0.009794428621400432,
-        "arc_deg": 262.395023976251,
-        "condition": 9.839094378819311,
-        "input_points": 195,
-        "inlier_points": 169,
-        "inlier_fraction": 0.8666666666666667,
+        "radius_m": 0.06959562966229214,
+        "radial_rmse_m": 0.01049912918996498,
+        "arc_deg": 289.0790024030565,
+        "condition": 6.901570071876533,
+        "input_points": 187,
+        "inlier_points": 167,
+        "inlier_fraction": 0.893048128342246,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 163,
-      "points_B": 195,
-      "centre_delta_along_m": -0.005636324449272312,
-      "centre_delta_across_m": 0.08314775800573293,
+      "points_B": 187,
+      "centre_delta_along_m": -0.01919222180860869,
+      "centre_delta_across_m": 0.017154835527706247,
       "delta_ci95_m": [
         [
-          -0.031327504574857376,
-          0.043611468822564524
+          -0.04425139481272415,
+          0.002184511689796143
         ],
         [
-          0.004186703204184216,
-          0.10799481971413735
+          -0.00016012473278182238,
+          0.04150264551555834
         ]
       ],
       "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "across-centre interval at least 4 cm wide"
-      ],
+      "usable_comparison": true,
+      "issues": [],
       "candidate": 3
     },
     {
@@ -2005,13 +1997,13 @@
       ],
       "side_A": {
         "centre_m": [
-          2.991309033162505,
-          1.9470524465829597
+          2.991309032797922,
+          1.947052444350432
         ],
-        "radius_m": 0.08626037944672722,
-        "radial_rmse_m": 0.009225427819017992,
-        "arc_deg": 259.1287770169234,
-        "condition": 11.764635909891616,
+        "radius_m": 0.08626037805290024,
+        "radial_rmse_m": 0.009225427781530161,
+        "arc_deg": 259.1287787490125,
+        "condition": 11.764637739222517,
         "input_points": 384,
         "inlier_points": 301,
         "inlier_fraction": 0.7838541666666666,
@@ -2021,32 +2013,32 @@
       },
       "side_B": {
         "centre_m": [
-          2.9900536259768358,
-          2.00849697799504
+          2.982216064133579,
+          1.9459675711792104
         ],
-        "radius_m": 0.08950847427235903,
-        "radial_rmse_m": 0.010225344316028992,
-        "arc_deg": 268.7502713833132,
-        "condition": 9.412370419352673,
-        "input_points": 371,
-        "inlier_points": 302,
-        "inlier_fraction": 0.8140161725067385,
+        "radius_m": 0.08192858385549774,
+        "radial_rmse_m": 0.007757705859578944,
+        "arc_deg": 320.9817157515742,
+        "condition": 5.744422914412773,
+        "input_points": 376,
+        "inlier_points": 348,
+        "inlier_fraction": 0.925531914893617,
         "acquisitions": 7,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 384,
-      "points_B": 371,
-      "centre_delta_along_m": -0.0012554071856691884,
-      "centre_delta_across_m": 0.061444531412080394,
+      "points_B": 376,
+      "centre_delta_along_m": -0.009092968664342838,
+      "centre_delta_across_m": -0.0010848731712216342,
       "delta_ci95_m": [
         [
-          -0.005982528764397976,
-          0.04716932094717587
+          -0.013472128367272518,
+          -0.010945676871535581
         ],
         [
-          0.0207957831511149,
-          0.09155558663321095
+          0.009745522456088309,
+          0.031073937652834255
         ]
       ],
       "bootstrap_successes": 45,
@@ -2070,13 +2062,13 @@
       ],
       "side_A": {
         "centre_m": [
-          2.9966284375272054,
-          1.9360442289169832
+          2.9966284376063057,
+          1.9360442292247337
         ],
-        "radius_m": 0.07653863075985796,
-        "radial_rmse_m": 0.008640852037327564,
-        "arc_deg": 316.3640156924733,
-        "condition": 6.43254789180098,
+        "radius_m": 0.07653863091211222,
+        "radial_rmse_m": 0.008640852040670659,
+        "arc_deg": 316.3640155281754,
+        "condition": 6.432547969169244,
         "input_points": 337,
         "inlier_points": 273,
         "inlier_fraction": 0.8100890207715133,
@@ -2086,32 +2078,32 @@
       },
       "side_B": {
         "centre_m": [
-          2.9909142960943385,
-          2.023183798816954
+          2.984482497395317,
+          1.9559964721590954
         ],
-        "radius_m": 0.07785997271840463,
-        "radial_rmse_m": 0.010263510864933663,
-        "arc_deg": 321.9209868020341,
-        "condition": 6.348469442135112,
-        "input_points": 357,
-        "inlier_points": 293,
-        "inlier_fraction": 0.8207282913165266,
+        "radius_m": 0.072301080109522,
+        "radial_rmse_m": 0.008406515534186863,
+        "arc_deg": 289.32698696554894,
+        "condition": 6.201620359387313,
+        "input_points": 352,
+        "inlier_points": 326,
+        "inlier_fraction": 0.9261363636363636,
         "acquisitions": 7,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 337,
-      "points_B": 357,
-      "centre_delta_along_m": -0.00571414143286697,
-      "centre_delta_across_m": 0.08713956989997063,
+      "points_B": 352,
+      "centre_delta_along_m": -0.012145940210988915,
+      "centre_delta_across_m": 0.019952242934361708,
       "delta_ci95_m": [
         [
-          -0.009475259678033865,
-          0.07292301735658699
+          -0.018101087849475707,
+          0.014225221070173055
         ],
         [
-          0.005123712205714125,
-          0.10536392980851263
+          -0.005851377014815329,
+          0.028266439518274053
         ]
       ],
       "bootstrap_successes": 45,
@@ -2133,13 +2125,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.0058186554925195,
-          1.9308970581843254
+          3.005818655466656,
+          1.9308970581416776
         ],
-        "radius_m": 0.06994737650809374,
-        "radial_rmse_m": 0.008795541866219954,
-        "arc_deg": 266.774173772165,
-        "condition": 8.474885104125885,
+        "radius_m": 0.06994737648013866,
+        "radial_rmse_m": 0.008795541865753022,
+        "arc_deg": 266.77417382636486,
+        "condition": 8.474885105754977,
         "input_points": 314,
         "inlier_points": 256,
         "inlier_fraction": 0.8152866242038217,
@@ -2149,32 +2141,32 @@
       },
       "side_B": {
         "centre_m": [
-          2.998775488036929,
-          2.0266641894873416
+          2.988929610904893,
+          1.9498466040710445
         ],
-        "radius_m": 0.06834799571597562,
-        "radial_rmse_m": 0.010317618958123947,
-        "arc_deg": 281.22275538189086,
-        "condition": 5.443649371461208,
-        "input_points": 356,
-        "inlier_points": 281,
-        "inlier_fraction": 0.7893258426966292,
+        "radius_m": 0.06917503345067536,
+        "radial_rmse_m": 0.008995381417849117,
+        "arc_deg": 269.24051936444374,
+        "condition": 6.321903526489169,
+        "input_points": 345,
+        "inlier_points": 308,
+        "inlier_fraction": 0.8927536231884058,
         "acquisitions": 7,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 314,
-      "points_B": 356,
-      "centre_delta_along_m": -0.007043167455590638,
-      "centre_delta_across_m": 0.09576713130301617,
+      "points_B": 345,
+      "centre_delta_along_m": -0.0168890445617631,
+      "centre_delta_across_m": 0.01894954592936693,
       "delta_ci95_m": [
         [
-          -0.017382395673115437,
-          0.06584722776592997
+          -0.024611854846801284,
+          0.006230658562495384
         ],
         [
-          0.018680484362032863,
-          0.12600939783578494
+          0.006200193867108703,
+          0.04954766887870562
         ]
       ],
       "bootstrap_successes": 45,
@@ -2198,13 +2190,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.0128163053711643,
-          1.9313011696572926
+          3.0128163053537538,
+          1.9313011694434556
         ],
-        "radius_m": 0.07236999344291574,
-        "radial_rmse_m": 0.009214184086071855,
-        "arc_deg": 294.77260186241074,
-        "condition": 9.542990566956108,
+        "radius_m": 0.07236999333058464,
+        "radial_rmse_m": 0.00921418408497395,
+        "arc_deg": 294.77260201932086,
+        "condition": 9.542990451590699,
         "input_points": 317,
         "inlier_points": 257,
         "inlier_fraction": 0.8107255520504731,
@@ -2214,32 +2206,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.011056431879981,
-          2.0152211379801144
+          3.0031921177421945,
+          1.9406692874874993
         ],
-        "radius_m": 0.06713732692946564,
-        "radial_rmse_m": 0.010308020457517624,
-        "arc_deg": 334.8077716523437,
-        "condition": 9.072036784458254,
-        "input_points": 323,
-        "inlier_points": 277,
-        "inlier_fraction": 0.8575851393188855,
+        "radius_m": 0.06694349687296818,
+        "radial_rmse_m": 0.008820288582567016,
+        "arc_deg": 321.2887570138452,
+        "condition": 6.5410112982091775,
+        "input_points": 305,
+        "inlier_points": 289,
+        "inlier_fraction": 0.9475409836065574,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 317,
-      "points_B": 323,
-      "centre_delta_along_m": -0.0017598734911832281,
-      "centre_delta_across_m": 0.08391996832282178,
+      "points_B": 305,
+      "centre_delta_along_m": -0.009624187611559254,
+      "centre_delta_across_m": 0.009368118044043694,
       "delta_ci95_m": [
         [
-          -0.010827187539612027,
-          0.071055776971686
+          -0.018015866724330955,
+          -0.00026174122274493774
         ],
         [
-          0.018017420851532323,
-          0.10790209686415438
+          0.007262695926431915,
+          0.029429682509043296
         ]
       ],
       "bootstrap_successes": 45,
@@ -2261,13 +2253,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.0162738756643876,
-          1.9196202753448113
+          3.016273875156703,
+          1.9196202730779524
         ],
-        "radius_m": 0.06992179186490567,
-        "radial_rmse_m": 0.009465122820143876,
-        "arc_deg": 281.3268216089326,
-        "condition": 6.461641611029274,
+        "radius_m": 0.06992179062039046,
+        "radial_rmse_m": 0.009465122847838911,
+        "arc_deg": 281.3268236888692,
+        "condition": 6.461641163526233,
         "input_points": 297,
         "inlier_points": 239,
         "inlier_fraction": 0.8047138047138047,
@@ -2277,32 +2269,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.017427677143854,
-          2.0178330475735273
+          3.007990173250537,
+          1.939384185602085
         ],
-        "radius_m": 0.06120833118706909,
-        "radial_rmse_m": 0.008472090725501017,
-        "arc_deg": 312.04681253691035,
-        "condition": 5.95975787161936,
-        "input_points": 281,
-        "inlier_points": 252,
-        "inlier_fraction": 0.896797153024911,
+        "radius_m": 0.06273572189643718,
+        "radial_rmse_m": 0.007414627185289042,
+        "arc_deg": 297.0278761635854,
+        "condition": 7.081914783441217,
+        "input_points": 264,
+        "inlier_points": 261,
+        "inlier_fraction": 0.9886363636363636,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 297,
-      "points_B": 281,
-      "centre_delta_along_m": 0.0011538014794663098,
-      "centre_delta_across_m": 0.09821277222871605,
+      "points_B": 264,
+      "centre_delta_along_m": -0.008283701906166119,
+      "centre_delta_across_m": 0.019763912524132676,
       "delta_ci95_m": [
         [
-          -0.004428193843111527,
-          0.09186119963979697
+          -0.012398098680836167,
+          0.012390739941760187
         ],
         [
-          0.02478258521376419,
-          0.1322724742466281
+          0.01539447079981077,
+          0.056791156294937285
         ]
       ],
       "bootstrap_successes": 45,
@@ -2326,13 +2318,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.013423641672679,
-          1.904875614834971
+          3.0134236414847284,
+          1.9048756140743293
         ],
-        "radius_m": 0.06225854649881892,
-        "radial_rmse_m": 0.009371483578234745,
-        "arc_deg": 227.51736351678113,
-        "condition": 13.002940667965301,
+        "radius_m": 0.06225854603744933,
+        "radial_rmse_m": 0.009371483571280943,
+        "arc_deg": 227.51736464522406,
+        "condition": 13.002940651763373,
         "input_points": 263,
         "inlier_points": 220,
         "inlier_fraction": 0.8365019011406845,
@@ -2342,39 +2334,37 @@
       },
       "side_B": {
         "centre_m": [
-          3.016926001517564,
-          2.018111826389642
+          3.0091379999856227,
+          1.9384485977190404
         ],
-        "radius_m": 0.0577283359140175,
-        "radial_rmse_m": 0.008553096481950387,
-        "arc_deg": 270.33099745425346,
-        "condition": 8.25737061107596,
-        "input_points": 244,
-        "inlier_points": 212,
-        "inlier_fraction": 0.8688524590163934,
+        "radius_m": 0.06114064064608172,
+        "radial_rmse_m": 0.008001220152906045,
+        "arc_deg": 258.01283288634386,
+        "condition": 7.810287707362325,
+        "input_points": 246,
+        "inlier_points": 235,
+        "inlier_fraction": 0.9552845528455285,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 263,
-      "points_B": 244,
-      "centre_delta_along_m": 0.0035023598448851168,
-      "centre_delta_across_m": 0.11323621155467078,
+      "points_B": 246,
+      "centre_delta_along_m": -0.004285641499105708,
+      "centre_delta_across_m": 0.033572983644711174,
       "delta_ci95_m": [
         [
-          -0.0054023205266022336,
-          0.08372421798827345
+          -0.012109480962234053,
+          0.01135433740855769
         ],
         [
-          0.01759779821742029,
-          0.1251076722828127
+          0.012306930275420265,
+          0.04448503908800671
         ]
       ],
       "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "across-centre interval at least 4 cm wide"
-      ],
+      "usable_comparison": true,
+      "issues": [],
       "candidate": 4
     },
     {
@@ -2391,13 +2381,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.0141723547121417,
-          1.8990964876135228
+          3.0141723545357486,
+          1.8990964866808668
         ],
-        "radius_m": 0.062055758268879754,
-        "radial_rmse_m": 0.009767701749735121,
-        "arc_deg": 279.7797719576796,
-        "condition": 16.870464601860768,
+        "radius_m": 0.06205575774624781,
+        "radial_rmse_m": 0.009767701774237924,
+        "arc_deg": 279.77977304721225,
+        "condition": 16.870462524465836,
         "input_points": 249,
         "inlier_points": 201,
         "inlier_fraction": 0.8072289156626506,
@@ -2407,32 +2397,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.01719130087181,
-          2.0102665831850977
+          3.0101386892390503,
+          1.9292549362296518
         ],
-        "radius_m": 0.0600006532435805,
-        "radial_rmse_m": 0.010481576026281558,
-        "arc_deg": 276.58817077114674,
-        "condition": 5.128156973808594,
-        "input_points": 292,
-        "inlier_points": 244,
-        "inlier_fraction": 0.8356164383561644,
+        "radius_m": 0.06549483957213421,
+        "radial_rmse_m": 0.009400490799801707,
+        "arc_deg": 272.7750349924452,
+        "condition": 5.758220996790015,
+        "input_points": 288,
+        "inlier_points": 260,
+        "inlier_fraction": 0.9027777777777778,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 249,
-      "points_B": 292,
-      "centre_delta_along_m": 0.0030189461596683564,
-      "centre_delta_across_m": 0.11117009557157487,
+      "points_B": 288,
+      "centre_delta_along_m": -0.004033665296698352,
+      "centre_delta_across_m": 0.030158449548784994,
       "delta_ci95_m": [
         [
-          -0.023220426867113807,
-          0.08490075906918548
+          -0.029111964621038135,
+          0.008934026506044402
         ],
         [
-          0.03128976907814906,
-          0.1315969894547116
+          0.021730959185544383,
+          0.049469000153830336
         ]
       ],
       "bootstrap_successes": 45,
@@ -2456,13 +2446,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.018074575239536,
-          1.8691346331068075
+          3.018074485533282,
+          1.869134533029704
         ],
-        "radius_m": 0.05951358497096244,
-        "radial_rmse_m": 0.011238291772828,
-        "arc_deg": 317.62632635470084,
-        "condition": 18.84444540799495,
+        "radius_m": 0.05951350687042944,
+        "radial_rmse_m": 0.0112383005920685,
+        "arc_deg": 317.6264565166663,
+        "condition": 18.84444513158255,
         "input_points": 197,
         "inlier_points": 142,
         "inlier_fraction": 0.7208121827411168,
@@ -2472,32 +2462,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.026487008731591,
-          1.9946384153332624
+          3.0199477870853193,
+          1.9136467649666429
         ],
-        "radius_m": 0.06759979297669005,
-        "radial_rmse_m": 0.011237537974891184,
-        "arc_deg": 249.56908989795582,
-        "condition": 16.455070292603878,
-        "input_points": 252,
-        "inlier_points": 201,
-        "inlier_fraction": 0.7976190476190477,
+        "radius_m": 0.07341702672298771,
+        "radial_rmse_m": 0.009895441074000063,
+        "arc_deg": 231.3846171690288,
+        "condition": 16.58585294503666,
+        "input_points": 237,
+        "inlier_points": 211,
+        "inlier_fraction": 0.890295358649789,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 197,
-      "points_B": 252,
-      "centre_delta_along_m": 0.008412433492055005,
-      "centre_delta_across_m": 0.12550378222645486,
+      "points_B": 237,
+      "centre_delta_along_m": 0.0018733015520373542,
+      "centre_delta_across_m": 0.04451223193693887,
       "delta_ci95_m": [
         [
-          -0.019369683336052067,
-          0.026402158539785517
+          -0.02359088113855474,
+          0.027808726789885573
         ],
         [
-          0.07989396930488699,
-          0.1563930369840981
+          0.01885835196341672,
+          0.08051806205601536
         ]
       ],
       "bootstrap_successes": 45,
@@ -2521,13 +2511,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.014655529329451,
-          1.867787545083972
+          3.014655532486783,
+          1.867787538057043
         ],
-        "radius_m": 0.06039351550464853,
-        "radial_rmse_m": 0.010422135877613896,
-        "arc_deg": 308.02174781924697,
-        "condition": 11.608611233487915,
+        "radius_m": 0.06039351137789235,
+        "radial_rmse_m": 0.010422135745295737,
+        "arc_deg": 308.02175465054273,
+        "condition": 11.60860760971355,
         "input_points": 201,
         "inlier_points": 152,
         "inlier_fraction": 0.7562189054726368,
@@ -2537,32 +2527,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.0477383115372256,
-          1.9702785456354277
+          3.0332730184765073,
+          1.8940777804093958
         ],
-        "radius_m": 0.0878342247000198,
-        "radial_rmse_m": 0.01061528898561165,
-        "arc_deg": 173.4750451515266,
-        "condition": 53.59542706128936,
-        "input_points": 218,
-        "inlier_points": 154,
-        "inlier_fraction": 0.7064220183486238,
+        "radius_m": 0.08645993263663158,
+        "radial_rmse_m": 0.009682099591871919,
+        "arc_deg": 187.0186840620817,
+        "condition": 39.842008032284966,
+        "input_points": 219,
+        "inlier_points": 190,
+        "inlier_fraction": 0.867579908675799,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 201,
-      "points_B": 218,
-      "centre_delta_along_m": 0.03308278220777483,
-      "centre_delta_across_m": 0.10249100055145566,
+      "points_B": 219,
+      "centre_delta_along_m": 0.018617485989724347,
+      "centre_delta_across_m": 0.026290242352352777,
       "delta_ci95_m": [
         [
-          -0.06626091088586161,
-          -0.020136060194186324
+          -0.01230815062776207,
+          -0.06776525404292588
         ],
         [
-          0.1297026518170453,
-          0.15745345415110557
+          0.0944621198150103,
+          0.04494519474935332
         ]
       ],
       "bootstrap_successes": 45,
@@ -2586,13 +2576,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.6852515882786427,
-          1.8697767971491037
+          3.685251586136539,
+          1.8697767999718522
         ],
-        "radius_m": 0.06152476100229742,
-        "radial_rmse_m": 0.010179354113310684,
-        "arc_deg": 288.1881717175455,
-        "condition": 18.217722914228,
+        "radius_m": 0.061524762814273486,
+        "radial_rmse_m": 0.010179354285236513,
+        "arc_deg": 288.18816888009127,
+        "condition": 18.217726657137714,
         "input_points": 200,
         "inlier_points": 140,
         "inlier_fraction": 0.7,
@@ -2602,32 +2592,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.6802899152246087,
-          1.9047216453909603
+          3.670497400521071,
+          1.8379738897853504
         ],
-        "radius_m": 0.04897607036888182,
-        "radial_rmse_m": 0.010294539021445495,
-        "arc_deg": 329.64657603810303,
-        "condition": 5.11186746444646,
-        "input_points": 210,
-        "inlier_points": 172,
-        "inlier_fraction": 0.819047619047619,
+        "radius_m": 0.048513911688594605,
+        "radial_rmse_m": 0.008734630585491277,
+        "arc_deg": 331.67355613221156,
+        "condition": 6.917744920203844,
+        "input_points": 205,
+        "inlier_points": 165,
+        "inlier_fraction": 0.8048780487804879,
         "acquisitions": 7,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 200,
-      "points_B": 210,
-      "centre_delta_along_m": -0.004961673054034055,
-      "centre_delta_across_m": 0.03494484824185662,
+      "points_B": 205,
+      "centre_delta_along_m": -0.014754185615467819,
+      "centre_delta_across_m": -0.03180291018650183,
       "delta_ci95_m": [
         [
-          -0.044782227060530214,
-          -0.07152126924323936
+          -0.05088275189007212,
+          -0.1332933697281436
         ],
         [
-          0.07446192071025148,
-          0.058889281044178364
+          0.06884800892939706,
+          0.0007917073696050991
         ]
       ],
       "bootstrap_successes": 45,
@@ -2651,13 +2641,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.698380670515677,
-          1.8688284403814863
+          3.6983806678352713,
+          1.8688284389859573
         ],
-        "radius_m": 0.06728684790816145,
-        "radial_rmse_m": 0.009072683482701474,
-        "arc_deg": 293.7780451143439,
-        "condition": 19.07961709167639,
+        "radius_m": 0.06728684592001423,
+        "radial_rmse_m": 0.00907268352559439,
+        "arc_deg": 293.77804617772847,
+        "condition": 19.079619772361678,
         "input_points": 204,
         "inlier_points": 131,
         "inlier_fraction": 0.6421568627450981,
@@ -2667,32 +2657,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.672699213320728,
-          1.8581621647593103
+          3.6721305523749117,
+          1.837059719382061
         ],
-        "radius_m": 0.08960831515459171,
-        "radial_rmse_m": 0.010007737552589765,
-        "arc_deg": 285.76169349683903,
-        "condition": 21.655890334804614,
-        "input_points": 152,
-        "inlier_points": 112,
-        "inlier_fraction": 0.7368421052631579,
+        "radius_m": 0.04481744213006003,
+        "radial_rmse_m": 0.009528564519499239,
+        "arc_deg": 244.0733144774687,
+        "condition": 9.46097995571688,
+        "input_points": 146,
+        "inlier_points": 121,
+        "inlier_fraction": 0.8287671232876712,
         "acquisitions": 7,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 204,
-      "points_B": 152,
-      "centre_delta_along_m": -0.025681457194949076,
-      "centre_delta_across_m": -0.010666275622176036,
+      "points_B": 146,
+      "centre_delta_along_m": -0.026250115460359602,
+      "centre_delta_across_m": -0.03176871960389627,
       "delta_ci95_m": [
         [
-          -0.04985875630368346,
-          -0.07409661039409862
+          -0.053272025386315834,
+          -0.1228826806809882
         ],
         [
-          0.08141548168160233,
-          0.052596307383468405
+          0.07294887120331688,
+          0.003254426779164729
         ]
       ],
       "bootstrap_successes": 45,
@@ -2716,13 +2706,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.6819955816812637,
-          1.8294219069971307
+          3.681995582791377,
+          1.8294218958837973
         ],
-        "radius_m": 0.04128442882092515,
-        "radial_rmse_m": 0.009426534742017725,
-        "arc_deg": 288.09659222683473,
-        "condition": 6.198432727123812,
+        "radius_m": 0.04128442333705567,
+        "radial_rmse_m": 0.009426534536933921,
+        "arc_deg": 288.0966072851746,
+        "condition": 6.198428580816136,
         "input_points": 185,
         "inlier_points": 124,
         "inlier_fraction": 0.6702702702702703,
@@ -2732,32 +2722,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.6796509428475845,
-          1.9104966939409884
+          3.6726272253309746,
+          1.8326266476028046
         ],
-        "radius_m": 0.04246949865622188,
-        "radial_rmse_m": 0.009989915937827928,
-        "arc_deg": 314.4771039530458,
-        "condition": 8.481691433453719,
-        "input_points": 145,
-        "inlier_points": 128,
-        "inlier_fraction": 0.8827586206896552,
+        "radius_m": 0.04327804983178934,
+        "radial_rmse_m": 0.008527944568201244,
+        "arc_deg": 301.10465575968044,
+        "condition": 6.084391514298754,
+        "input_points": 152,
+        "inlier_points": 109,
+        "inlier_fraction": 0.7171052631578947,
         "acquisitions": 7,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 185,
-      "points_B": 145,
-      "centre_delta_along_m": -0.0023446388336791912,
-      "centre_delta_across_m": 0.08107478694385772,
+      "points_B": 152,
+      "centre_delta_along_m": -0.009368357460402432,
+      "centre_delta_across_m": 0.0032047517190072483,
       "delta_ci95_m": [
         [
-          -0.02947121062236917,
-          0.01935746949805548
+          -0.04077028528450324,
+          -0.04080960054616791
         ],
         [
-          0.09846847967272314,
-          0.10312673796595803
+          0.08860856591014263,
+          0.022346640204776592
         ]
       ],
       "bootstrap_successes": 45,
@@ -2781,13 +2771,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.6830713730424662,
-          1.8223672893843657
+          3.6830713724957618,
+          1.8223672913822972
         ],
-        "radius_m": 0.03771290456187898,
-        "radial_rmse_m": 0.007786217163921566,
-        "arc_deg": 288.194689435538,
-        "condition": 5.278435924450763,
+        "radius_m": 0.03771290541927023,
+        "radial_rmse_m": 0.007786217108332779,
+        "arc_deg": 288.19468689126154,
+        "condition": 5.2784374735447495,
         "input_points": 166,
         "inlier_points": 130,
         "inlier_fraction": 0.7831325301204819,
@@ -2797,32 +2787,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.6778503711626973,
-          1.8945293233892773
+          3.6738814755643685,
+          1.821136438470168
         ],
-        "radius_m": 0.048219112999569796,
-        "radial_rmse_m": 0.009989714128379658,
-        "arc_deg": 334.17712627293554,
-        "condition": 7.311137388333513,
-        "input_points": 161,
-        "inlier_points": 144,
-        "inlier_fraction": 0.8944099378881988,
+        "radius_m": 0.04736350687509315,
+        "radial_rmse_m": 0.008283326381324096,
+        "arc_deg": 334.21316151420797,
+        "condition": 7.541692638295582,
+        "input_points": 156,
+        "inlier_points": 119,
+        "inlier_fraction": 0.7628205128205128,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 166,
-      "points_B": 161,
-      "centre_delta_along_m": -0.005221001879768927,
-      "centre_delta_across_m": 0.07216203400491161,
+      "points_B": 156,
+      "centre_delta_along_m": -0.009189896931393271,
+      "centre_delta_across_m": -0.00123085291212921,
       "delta_ci95_m": [
         [
-          -0.07407277660633187,
-          -0.05034118573358735
+          -0.0649874585998433,
+          -0.07019470446715463
         ],
         [
-          0.09821970141402224,
-          0.08436978737530727
+          0.05181802069691929,
+          0.03028416381430493
         ]
       ],
       "bootstrap_successes": 45,
@@ -2846,13 +2836,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.683970938459429,
-          1.816721511051331
+          3.6839709394776246,
+          1.8167215057115185
         ],
-        "radius_m": 0.03700888523732137,
-        "radial_rmse_m": 0.007681078795105999,
-        "arc_deg": 323.27518930710386,
-        "condition": 11.190358276169547,
+        "radius_m": 0.03700888223035111,
+        "radial_rmse_m": 0.007681079042130776,
+        "arc_deg": 323.2751934526999,
+        "condition": 11.190352410193247,
         "input_points": 159,
         "inlier_points": 126,
         "inlier_fraction": 0.7924528301886793,
@@ -2862,32 +2852,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.671825082537774,
-          1.8926355352328115
+          3.6681809736968303,
+          1.827280476756498
         ],
-        "radius_m": 0.044601062333529035,
-        "radial_rmse_m": 0.010178488906125481,
-        "arc_deg": 308.58256470121387,
-        "condition": 12.963726590814835,
-        "input_points": 114,
-        "inlier_points": 99,
-        "inlier_fraction": 0.868421052631579,
+        "radius_m": 0.03950924012312836,
+        "radial_rmse_m": 0.008958161778855766,
+        "arc_deg": 213.44761760779963,
+        "condition": 55.416541426961345,
+        "input_points": 108,
+        "inlier_points": 80,
+        "inlier_fraction": 0.7407407407407407,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 159,
-      "points_B": 114,
-      "centre_delta_along_m": -0.012145855921654736,
-      "centre_delta_across_m": 0.07591402418148041,
+      "points_B": 108,
+      "centre_delta_along_m": -0.01578996578079428,
+      "centre_delta_across_m": 0.010558971044979604,
       "delta_ci95_m": [
         [
-          -0.034106722231794825,
-          -0.021993462757770407
+          -0.05423588056887789,
+          -0.1273220476733065
         ],
         [
-          0.06768093276449301,
-          0.11400022688358387
+          0.07036975356649602,
+          0.0903633022025384
         ]
       ],
       "bootstrap_successes": 45,
@@ -2911,13 +2901,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.68066628320478,
-          1.8073467017502047
+          3.68066628332428,
+          1.8073467014547202
         ],
-        "radius_m": 0.03462327798365013,
-        "radial_rmse_m": 0.009655231278418764,
-        "arc_deg": 307.78149430232514,
-        "condition": 6.893843303044062,
+        "radius_m": 0.03462327785063882,
+        "radial_rmse_m": 0.009655231274976337,
+        "arc_deg": 307.7814949089806,
+        "condition": 6.893843137591699,
         "input_points": 162,
         "inlier_points": 135,
         "inlier_fraction": 0.8333333333333334,
@@ -2927,32 +2917,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.7005208820208253,
-          1.8487486837617861
+          3.710388659289059,
+          1.8001127570287538
         ],
-        "radius_m": 0.09314512604442482,
-        "radial_rmse_m": 0.008468977864055307,
-        "arc_deg": 199.81577500523645,
-        "condition": 59.63583392643231,
-        "input_points": 77,
-        "inlier_points": 50,
-        "inlier_fraction": 0.6493506493506493,
+        "radius_m": 0.0867948841525017,
+        "radial_rmse_m": 0.013040735035411262,
+        "arc_deg": 217.39591754704912,
+        "condition": 9.213065116831753,
+        "input_points": 78,
+        "inlier_points": 58,
+        "inlier_fraction": 0.7435897435897436,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 162,
-      "points_B": 77,
-      "centre_delta_along_m": 0.019854598816045232,
-      "centre_delta_across_m": 0.041401982011581406,
+      "points_B": 78,
+      "centre_delta_along_m": 0.02972237596477889,
+      "centre_delta_across_m": -0.0072339444259663654,
       "delta_ci95_m": [
         [
-          -0.03955695532093166,
-          -0.05684779674587499
+          -0.05377114284743647,
+          -0.08437761651202502
         ],
         [
-          0.07691117655216835,
-          0.19052261450514385
+          0.08585345657502365,
+          0.10382098487565553
         ]
       ],
       "bootstrap_successes": 45,
@@ -2977,13 +2967,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.67996271624049,
-          1.797858096801247
+          3.6799627153914938,
+          1.7978580937875954
         ],
-        "radius_m": 0.03238794073240586,
-        "radial_rmse_m": 0.008403584724622527,
-        "arc_deg": 316.9973526033299,
-        "condition": 3.7173940999837987,
+        "radius_m": 0.03238793972770071,
+        "radial_rmse_m": 0.008403584687508327,
+        "arc_deg": 316.99735574904594,
+        "condition": 3.7173932805845378,
         "input_points": 156,
         "inlier_points": 139,
         "inlier_fraction": 0.8910256410256411,
@@ -2993,16 +2983,16 @@
       },
       "side_B": {
         "centre_m": [
-          3.70795489122932,
-          1.8633303323696535
+          3.703678183133583,
+          1.8169707766955403
         ],
-        "radius_m": 0.08797626421848752,
-        "radial_rmse_m": 0.009052218528314402,
-        "arc_deg": 229.3410862970609,
-        "condition": 6.1172639120647645,
-        "input_points": 76,
-        "inlier_points": 39,
-        "inlier_fraction": 0.5131578947368421,
+        "radius_m": 0.0830887421190191,
+        "radial_rmse_m": 0.008013265566834757,
+        "arc_deg": 239.33707281584572,
+        "condition": 7.371443475908821,
+        "input_points": 81,
+        "inlier_points": 36,
+        "inlier_fraction": 0.4444444444444444,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
@@ -3010,17 +3000,17 @@
         ]
       },
       "points_A": 156,
-      "points_B": 76,
-      "centre_delta_along_m": 0.027992174988829888,
-      "centre_delta_across_m": 0.06547223556840653,
+      "points_B": 81,
+      "centre_delta_along_m": 0.023715467742089213,
+      "centre_delta_across_m": 0.019112682907944878,
       "delta_ci95_m": [
         [
-          -0.03303889099338266,
-          -0.07005710805373586
+          -0.13238072779863158,
+          -0.05774388001094055
         ],
         [
-          0.1730145691530788,
-          0.2043921406896675
+          0.14512761187880033,
+          0.1850774791737277
         ]
       ],
       "bootstrap_successes": 45,
@@ -3046,13 +3036,13 @@
       ],
       "side_A": {
         "centre_m": [
-          3.679078020730472,
-          1.7962515388965026
+          3.6790780204820606,
+          1.7962515399318337
         ],
-        "radius_m": 0.03299555273330315,
-        "radial_rmse_m": 0.008390908717780194,
-        "arc_deg": 284.1476989982255,
-        "condition": 4.823191136466378,
+        "radius_m": 0.032995553071046006,
+        "radial_rmse_m": 0.00839090873270543,
+        "arc_deg": 284.1476967149334,
+        "condition": 4.8231910406436365,
         "input_points": 151,
         "inlier_points": 132,
         "inlier_fraction": 0.8741721854304636,
@@ -3062,32 +3052,32 @@
       },
       "side_B": {
         "centre_m": [
-          3.6519807037987393,
-          1.9747316817180138
+          3.6048721780834656,
+          1.9930718579489033
         ],
-        "radius_m": 0.09506855973658061,
-        "radial_rmse_m": 0.012372895377235587,
-        "arc_deg": 166.3151519139244,
-        "condition": 44.33532109521754,
-        "input_points": 119,
-        "inlier_points": 80,
-        "inlier_fraction": 0.6722689075630253,
+        "radius_m": 0.16569666996274635,
+        "radial_rmse_m": 0.009882087752215373,
+        "arc_deg": 138.08542059660903,
+        "condition": 59.38845848888756,
+        "input_points": 136,
+        "inlier_points": 79,
+        "inlier_fraction": 0.5808823529411765,
         "acquisitions": 7,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 151,
-      "points_B": 119,
-      "centre_delta_along_m": -0.027097316931732784,
-      "centre_delta_across_m": 0.17848014282151126,
+      "points_B": 136,
+      "centre_delta_along_m": -0.07420584239859496,
+      "centre_delta_across_m": 0.19682031801706956,
       "delta_ci95_m": [
         [
-          -0.04840028241140866,
-          0.00012000117488719729
+          -0.12861681706984304,
+          0.024776748349428692
         ],
         [
-          0.12680675967533878,
-          0.19506112204857684
+          0.10243777494063153,
+          0.2101007875294624
         ]
       ],
       "bootstrap_successes": 45,
@@ -3112,62 +3102,60 @@
       ],
       "side_A": {
         "centre_m": [
-          3.7118781417443607,
-          1.9404441659005536
+          3.612070951788747,
+          1.9136669459675788
         ],
-        "radius_m": 0.17994261669064224,
-        "radial_rmse_m": 0.012306510392894253,
-        "arc_deg": 189.4693652933956,
-        "condition": 133.81463193558486,
+        "radius_m": 0.1667047628017721,
+        "radial_rmse_m": 0.010915453874139884,
+        "arc_deg": 99.88208253917713,
+        "condition": 354.9110565994786,
         "input_points": 136,
-        "inlier_points": 90,
-        "inlier_fraction": 0.6617647058823529,
+        "inlier_points": 96,
+        "inlier_fraction": 0.7058823529411765,
         "acquisitions": 7,
-        "touches_bound": true,
+        "touches_bound": false,
         "issues": [
-          "fit reaches search bound"
+          "short observed arc",
+          "ill-conditioned circle"
         ]
       },
       "side_B": {
         "centre_m": [
-          3.8639248878102475,
-          1.8934429960947048
+          3.5870406302592284,
+          1.9942643445876396
         ],
-        "radius_m": 0.17999999999944086,
-        "radial_rmse_m": 0.011790365114927037,
-        "arc_deg": 112.55251176338966,
-        "condition": 484.6488948465532,
-        "input_points": 147,
-        "inlier_points": 61,
-        "inlier_fraction": 0.41496598639455784,
-        "acquisitions": 5,
+        "radius_m": 0.1799999999999998,
+        "radial_rmse_m": 0.010228138699450075,
+        "arc_deg": 174.387187455259,
+        "condition": 37.310898038189016,
+        "input_points": 176,
+        "inlier_points": 104,
+        "inlier_fraction": 0.5909090909090909,
+        "acquisitions": 6,
         "touches_bound": true,
         "issues": [
-          "ill-conditioned circle",
-          "mixed/cluttered section",
           "fit reaches search bound"
         ]
       },
       "points_A": 136,
-      "points_B": 147,
-      "centre_delta_along_m": 0.15204674606588675,
-      "centre_delta_across_m": -0.047001169805848786,
+      "points_B": 176,
+      "centre_delta_along_m": -0.025030321529518673,
+      "centre_delta_across_m": 0.08059739862006077,
       "delta_ci95_m": [
         [
-          -0.088105963993541,
-          -0.13313868716625576
+          -0.1550578898305448,
+          0.0451306995932645
         ],
         [
-          0.1887850128495888,
-          0.17947165395484524
+          0.05729981255673957,
+          0.15644965088101023
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: fit reaches search bound",
-        "B: ill-conditioned circle",
-        "B: mixed/cluttered section",
+        "A: short observed arc",
+        "A: ill-conditioned circle",
         "B: fit reaches search bound",
         "across-centre interval at least 4 cm wide"
       ],
@@ -3187,13 +3175,13 @@
       ],
       "side_A": {
         "centre_m": [
-          4.496072511242147,
-          1.8962766233360782
+          4.496072529248904,
+          1.8962766305554464
         ],
-        "radius_m": 0.0693281486677079,
-        "radial_rmse_m": 0.011016711584509837,
-        "arc_deg": 288.32920421834405,
-        "condition": 7.502702810413814,
+        "radius_m": 0.06932815018937759,
+        "radial_rmse_m": 0.011016712272997421,
+        "arc_deg": 288.3291879791463,
+        "condition": 7.502701962036176,
         "input_points": 248,
         "inlier_points": 172,
         "inlier_fraction": 0.6935483870967742,
@@ -3203,32 +3191,32 @@
       },
       "side_B": {
         "centre_m": [
-          4.523078163467963,
-          1.9805965633694917
+          4.513620124474608,
+          1.92293073630497
         ],
-        "radius_m": 0.0766232676902893,
-        "radial_rmse_m": 0.00999797370555164,
-        "arc_deg": 289.64724324710124,
-        "condition": 5.363527935697164,
-        "input_points": 383,
-        "inlier_points": 320,
-        "inlier_fraction": 0.835509138381201,
+        "radius_m": 0.08334675929897344,
+        "radial_rmse_m": 0.011759980944295796,
+        "arc_deg": 334.22632639308875,
+        "condition": 3.7002187174526546,
+        "input_points": 380,
+        "inlier_points": 276,
+        "inlier_fraction": 0.7263157894736842,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 248,
-      "points_B": 383,
-      "centre_delta_along_m": 0.027005652225815524,
-      "centre_delta_across_m": 0.08431994003341359,
+      "points_B": 380,
+      "centre_delta_along_m": 0.017547595225703816,
+      "centre_delta_across_m": 0.026654105749523538,
       "delta_ci95_m": [
         [
-          -0.019304664179843202,
-          0.05577696614776919
+          -0.031469752094508155,
+          0.002677164819710898
         ],
         [
-          0.04538375990655012,
-          0.09650682587430393
+          0.04446931479542444,
+          0.04954903316915888
         ]
       ],
       "bootstrap_successes": 45,
@@ -3252,13 +3240,13 @@
       ],
       "side_A": {
         "centre_m": [
-          4.511457119715247,
-          1.890467186857463
+          4.5114571196656605,
+          1.8904671865959806
         ],
-        "radius_m": 0.059587027794918444,
-        "radial_rmse_m": 0.011751919027067056,
-        "arc_deg": 291.80707319633706,
-        "condition": 3.517679741240607,
+        "radius_m": 0.05958702771471889,
+        "radial_rmse_m": 0.011751919033655349,
+        "arc_deg": 291.807073440436,
+        "condition": 3.517679683917438,
         "input_points": 243,
         "inlier_points": 179,
         "inlier_fraction": 0.7366255144032922,
@@ -3268,32 +3256,32 @@
       },
       "side_B": {
         "centre_m": [
-          4.5312681071741165,
-          1.9681614172085853
+          4.52415019502861,
+          1.9223701229380745
         ],
-        "radius_m": 0.07329868031994052,
-        "radial_rmse_m": 0.009385549750338909,
-        "arc_deg": 300.02789217809806,
-        "condition": 4.4739617213328025,
-        "input_points": 327,
-        "inlier_points": 258,
-        "inlier_fraction": 0.7889908256880734,
+        "radius_m": 0.07380080429045036,
+        "radial_rmse_m": 0.011383532351232495,
+        "arc_deg": 298.44024310720175,
+        "condition": 6.87225356772471,
+        "input_points": 311,
+        "inlier_points": 231,
+        "inlier_fraction": 0.7427652733118971,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 243,
-      "points_B": 327,
-      "centre_delta_along_m": 0.01981098745886989,
-      "centre_delta_across_m": 0.07769423035112233,
+      "points_B": 311,
+      "centre_delta_along_m": 0.01269307536294928,
+      "centre_delta_across_m": 0.03190293634209396,
       "delta_ci95_m": [
         [
-          -0.02479932496232058,
-          0.03871264779844259
+          -0.022123825854966483,
+          -0.013169283749922522
         ],
         [
-          0.049841077473311735,
-          0.09176527613595742
+          0.0541269791788923,
+          0.049793860489748855
         ]
       ],
       "bootstrap_successes": 45,
@@ -3317,13 +3305,13 @@
       ],
       "side_A": {
         "centre_m": [
-          4.517863303605226,
-          1.8877848530945847
+          4.517863303142231,
+          1.887784852819884
         ],
-        "radius_m": 0.05653704139091602,
-        "radial_rmse_m": 0.011584708160003069,
-        "arc_deg": 296.5012051712969,
-        "condition": 9.735484295395645,
+        "radius_m": 0.0565370411978575,
+        "radial_rmse_m": 0.011584708162287384,
+        "arc_deg": 296.5012055693654,
+        "condition": 9.73548409679326,
         "input_points": 206,
         "inlier_points": 154,
         "inlier_fraction": 0.7475728155339806,
@@ -3333,32 +3321,32 @@
       },
       "side_B": {
         "centre_m": [
-          4.53586276732708,
-          1.9461825431411508
+          4.534131007656437,
+          1.9089021832180417
         ],
-        "radius_m": 0.08132086973844668,
-        "radial_rmse_m": 0.010235593851812332,
-        "arc_deg": 326.90964494093555,
-        "condition": 14.491567271960324,
-        "input_points": 269,
-        "inlier_points": 203,
-        "inlier_fraction": 0.7546468401486989,
+        "radius_m": 0.07210663148127945,
+        "radial_rmse_m": 0.010899641228588637,
+        "arc_deg": 283.02732121998184,
+        "condition": 9.667821603456655,
+        "input_points": 268,
+        "inlier_points": 198,
+        "inlier_fraction": 0.7388059701492538,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 206,
-      "points_B": 269,
-      "centre_delta_along_m": 0.017999463721854347,
-      "centre_delta_across_m": 0.05839769004656614,
+      "points_B": 268,
+      "centre_delta_along_m": 0.016267704514206116,
+      "centre_delta_across_m": 0.021117330398157774,
       "delta_ci95_m": [
         [
-          -0.02116957022670558,
-          -0.07227686988243123
+          -0.03437815842110661,
+          -0.09196936361166083
         ],
         [
-          0.05972482896063837,
-          0.09471866699065395
+          0.07867305131880968,
+          0.043442201415717696
         ]
       ],
       "bootstrap_successes": 45,
@@ -3382,13 +3370,13 @@
       ],
       "side_A": {
         "centre_m": [
-          4.526046588605067,
-          1.9262589953616254
+          4.526046582570139,
+          1.9262589914403572
         ],
-        "radius_m": 0.09481108965881314,
-        "radial_rmse_m": 0.01017403908467098,
-        "arc_deg": 202.85784438842194,
-        "condition": 37.15178480420935,
+        "radius_m": 0.09481108627445761,
+        "radial_rmse_m": 0.010174038958720377,
+        "arc_deg": 202.85785066039247,
+        "condition": 37.15180419856153,
         "input_points": 173,
         "inlier_points": 127,
         "inlier_fraction": 0.7341040462427746,
@@ -3398,32 +3386,32 @@
       },
       "side_B": {
         "centre_m": [
-          4.542635863240328,
-          1.9579212895558422
+          4.54230845878139,
+          1.8988076895318593
         ],
-        "radius_m": 0.06670249636145423,
-        "radial_rmse_m": 0.009508639843793226,
-        "arc_deg": 311.1038516408632,
-        "condition": 8.032838235972855,
-        "input_points": 279,
-        "inlier_points": 233,
-        "inlier_fraction": 0.8351254480286738,
+        "radius_m": 0.07669401383081635,
+        "radial_rmse_m": 0.010862288273865485,
+        "arc_deg": 317.9620422932072,
+        "condition": 17.436787638533556,
+        "input_points": 273,
+        "inlier_points": 187,
+        "inlier_fraction": 0.684981684981685,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 173,
-      "points_B": 279,
-      "centre_delta_along_m": 0.016589274635260942,
-      "centre_delta_across_m": 0.031662294194216845,
+      "points_B": 273,
+      "centre_delta_along_m": 0.01626187621125119,
+      "centre_delta_across_m": -0.02745130190849787,
       "delta_ci95_m": [
         [
-          -0.014271530100606621,
-          0.004791104709670169
+          -0.02202240555701307,
+          -0.08500732839251146
         ],
         [
-          0.05662628091046214,
-          0.08900543705950244
+          0.0730878424201977,
+          0.04622038856053486
         ]
       ],
       "bootstrap_successes": 45,
@@ -3447,13 +3435,13 @@
       ],
       "side_A": {
         "centre_m": [
-          4.552270130153126,
-          1.8914545178907698
+          4.552270139349601,
+          1.891454531622457
         ],
-        "radius_m": 0.07214712938538784,
-        "radial_rmse_m": 0.009334053531759966,
-        "arc_deg": 269.1449542011867,
-        "condition": 22.655453981479038,
+        "radius_m": 0.07214714171923794,
+        "radial_rmse_m": 0.009334054043660845,
+        "arc_deg": 269.14494160800757,
+        "condition": 22.655541894859144,
         "input_points": 154,
         "inlier_points": 97,
         "inlier_fraction": 0.6298701298701299,
@@ -3463,32 +3451,32 @@
       },
       "side_B": {
         "centre_m": [
-          4.5532914242124924,
-          1.9400773278651315
+          4.553815793050049,
+          1.895966249814151
         ],
-        "radius_m": 0.07819847227737917,
-        "radial_rmse_m": 0.009981211054678397,
-        "arc_deg": 298.9053975042708,
-        "condition": 17.389622915296997,
-        "input_points": 289,
-        "inlier_points": 205,
-        "inlier_fraction": 0.7093425605536332,
+        "radius_m": 0.0839139571690689,
+        "radial_rmse_m": 0.010852477800319834,
+        "arc_deg": 302.162962599608,
+        "condition": 13.32395093912808,
+        "input_points": 291,
+        "inlier_points": 170,
+        "inlier_fraction": 0.584192439862543,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 154,
-      "points_B": 289,
-      "centre_delta_along_m": 0.0010212940593667952,
-      "centre_delta_across_m": 0.04862280997436175,
+      "points_B": 291,
+      "centre_delta_along_m": 0.00154565370044768,
+      "centre_delta_across_m": 0.004511718191694047,
       "delta_ci95_m": [
         [
-          -0.03671888672845265,
-          0.001381992080665251
+          -0.003931155714185941,
+          -0.06185657925527892
         ],
         [
-          0.060231692982315885,
-          0.0710849005890198
+          0.05792733480111884,
+          0.031686367894321686
         ]
       ],
       "bootstrap_successes": 45,
@@ -3512,13 +3500,13 @@
       ],
       "side_A": {
         "centre_m": [
-          4.571699857535549,
-          1.8872308886856672
+          4.571699846757856,
+          1.8872309015824948
         ],
-        "radius_m": 0.09057358183289964,
-        "radial_rmse_m": 0.010988337141330856,
-        "arc_deg": 254.94385538083782,
-        "condition": 7.107271775124716,
+        "radius_m": 0.09057358206509346,
+        "radial_rmse_m": 0.010988336868669173,
+        "arc_deg": 254.94387180426918,
+        "condition": 7.107267324429834,
         "input_points": 113,
         "inlier_points": 69,
         "inlier_fraction": 0.6106194690265486,
@@ -3528,32 +3516,32 @@
       },
       "side_B": {
         "centre_m": [
-          4.581265331611255,
-          1.9201793972389856
+          4.570831892380551,
+          1.883452912526862
         ],
-        "radius_m": 0.1056565537992054,
-        "radial_rmse_m": 0.01035626155057643,
-        "arc_deg": 212.59736550037636,
-        "condition": 19.961541597563443,
-        "input_points": 364,
-        "inlier_points": 242,
-        "inlier_fraction": 0.6648351648351648,
+        "radius_m": 0.10033023397647435,
+        "radial_rmse_m": 0.010527250858578086,
+        "arc_deg": 225.3017316560049,
+        "condition": 15.29075175637647,
+        "input_points": 370,
+        "inlier_points": 227,
+        "inlier_fraction": 0.6135135135135135,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 113,
-      "points_B": 364,
-      "centre_delta_along_m": 0.00956547407570607,
-      "centre_delta_across_m": 0.03294850855331832,
+      "points_B": 370,
+      "centre_delta_along_m": -0.0008679543773046916,
+      "centre_delta_across_m": -0.003777989055632869,
       "delta_ci95_m": [
         [
-          -0.019028824093518713,
-          0.008619546990714167
+          -0.08029827369585901,
+          -0.03859226675522598
         ],
         [
-          0.06333752234099278,
-          0.09873546810748327
+          0.054811202274375054,
+          0.06637822828331806
         ]
       ],
       "bootstrap_successes": 45,
@@ -3577,13 +3565,13 @@
       ],
       "side_A": {
         "centre_m": [
-          4.56056075114182,
-          1.867302986176079
+          4.560560754111536,
+          1.8673029805639458
         ],
-        "radius_m": 0.07263716382485352,
-        "radial_rmse_m": 0.010067033283754823,
-        "arc_deg": 255.3044205969771,
-        "condition": 9.869148652299128,
+        "radius_m": 0.07263716252779576,
+        "radial_rmse_m": 0.010067033381884772,
+        "arc_deg": 255.3044278012422,
+        "condition": 9.869146966974608,
         "input_points": 81,
         "inlier_points": 52,
         "inlier_fraction": 0.6419753086419753,
@@ -3593,32 +3581,32 @@
       },
       "side_B": {
         "centre_m": [
-          4.546024130330233,
-          1.9458113607060326
+          4.530388914110881,
+          1.9026709984615775
         ],
-        "radius_m": 0.06517155147004929,
-        "radial_rmse_m": 0.00858661085940871,
-        "arc_deg": 258.73652151457213,
-        "condition": 7.95642689639376,
-        "input_points": 337,
-        "inlier_points": 280,
-        "inlier_fraction": 0.8308605341246291,
+        "radius_m": 0.062492343328858856,
+        "radial_rmse_m": 0.01020354892567733,
+        "arc_deg": 273.55113766034646,
+        "condition": 7.141806393766592,
+        "input_points": 333,
+        "inlier_points": 238,
+        "inlier_fraction": 0.7147147147147147,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 81,
-      "points_B": 337,
-      "centre_delta_along_m": -0.014536620811586687,
-      "centre_delta_across_m": 0.07850837452995352,
+      "points_B": 333,
+      "centre_delta_along_m": -0.03017184000065498,
+      "centre_delta_across_m": 0.035368017897631665,
       "delta_ci95_m": [
         [
-          -0.07553887596913186,
-          0.0432265822922608
+          -0.12941072924359798,
+          -0.0129083706656967
         ],
         [
-          0.02129949573640439,
-          0.14056947327056354
+          -0.004898389910524604,
+          0.09345975692419137
         ]
       ],
       "bootstrap_successes": 45,
@@ -3642,58 +3630,56 @@
       ],
       "side_A": {
         "centre_m": [
-          4.490215343606878,
-          1.755554562921982
+          4.490215303515368,
+          1.7555545677666218
         ],
-        "radius_m": 0.06730760005481772,
-        "radial_rmse_m": 0.008376892069444976,
-        "arc_deg": 272.4483217523515,
-        "condition": 16.839938842431426,
+        "radius_m": 0.067307614825537,
+        "radial_rmse_m": 0.008376892247532809,
+        "arc_deg": 272.44833839745803,
+        "condition": 16.83982408682767,
         "input_points": 60,
         "inlier_points": 30,
         "inlier_fraction": 0.5,
         "acquisitions": 4,
-        "touches_bound": true,
+        "touches_bound": false,
         "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
+          "mixed/cluttered section"
         ]
       },
       "side_B": {
         "centre_m": [
-          4.54310944729975,
-          1.9419425934931125
+          4.5306577357295,
+          1.8913974386768928
         ],
-        "radius_m": 0.06550562897893196,
-        "radial_rmse_m": 0.00921288487140984,
-        "arc_deg": 265.17304617399077,
-        "condition": 8.319863783404537,
-        "input_points": 270,
-        "inlier_points": 257,
-        "inlier_fraction": 0.9518518518518518,
+        "radius_m": 0.06319152857991106,
+        "radial_rmse_m": 0.01057976663415779,
+        "arc_deg": 259.06064869279226,
+        "condition": 8.198682538880849,
+        "input_points": 267,
+        "inlier_points": 206,
+        "inlier_fraction": 0.7715355805243446,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 60,
-      "points_B": 270,
-      "centre_delta_along_m": 0.052894103692872285,
-      "centre_delta_across_m": 0.18638803057113051,
+      "points_B": 267,
+      "centre_delta_along_m": 0.04044243221413257,
+      "centre_delta_across_m": 0.13584287091027103,
       "delta_ci95_m": [
         [
-          -0.15575805344006177,
-          0.06278345440476518
+          -0.16190260131266418,
+          -0.0003467373554507079
         ],
         [
-          0.0532153664041779,
-          0.19015220226154472
+          0.03355712430956322,
+          0.13904833206463782
         ]
       ],
-      "bootstrap_successes": 41,
+      "bootstrap_successes": 39,
       "usable_comparison": false,
       "issues": [
         "A: mixed/cluttered section",
-        "A: fit reaches search bound",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 6
@@ -3712,13 +3698,13 @@
       ],
       "side_A": {
         "centre_m": [
-          4.502890702034565,
-          1.7623575840614871
+          4.502889802806023,
+          1.7623579565715557
         ],
-        "radius_m": 0.06035998591152847,
-        "radial_rmse_m": 0.012743553730390099,
-        "arc_deg": 282.34967269806816,
-        "condition": 9.069915861320688,
+        "radius_m": 0.06036008249993285,
+        "radial_rmse_m": 0.012743837487283733,
+        "arc_deg": 282.35077029359275,
+        "condition": 9.070278798863791,
         "input_points": 53,
         "inlier_points": 28,
         "inlier_fraction": 0.5283018867924528,
@@ -3730,35 +3716,35 @@
       },
       "side_B": {
         "centre_m": [
-          4.543104561531536,
-          1.9370147041733137
+          4.537628889419897,
+          1.8799874061369148
         ],
-        "radius_m": 0.06641929358232261,
-        "radial_rmse_m": 0.010550997529240689,
-        "arc_deg": 259.3156927758101,
-        "condition": 9.293365823591396,
-        "input_points": 262,
-        "inlier_points": 213,
-        "inlier_fraction": 0.8129770992366412,
+        "radius_m": 0.06744556012927057,
+        "radial_rmse_m": 0.011354173184288033,
+        "arc_deg": 256.5993428310824,
+        "condition": 24.146218840253525,
+        "input_points": 256,
+        "inlier_points": 171,
+        "inlier_fraction": 0.66796875,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 53,
-      "points_B": 262,
-      "centre_delta_along_m": 0.04021385949697098,
-      "centre_delta_across_m": 0.17465712011182655,
+      "points_B": 256,
+      "centre_delta_along_m": 0.03473908661387348,
+      "centre_delta_across_m": 0.11762944956535915,
       "delta_ci95_m": [
         [
-          -0.1496191640109185,
-          -0.0300273970551131
+          -0.1400635020864499,
+          -0.1192556163913655
         ],
         [
-          0.16337855773675905,
-          0.1879481905545542
+          0.13931020418395365,
+          0.15982061858204577
         ]
       ],
-      "bootstrap_successes": 44,
+      "bootstrap_successes": 42,
       "usable_comparison": false,
       "issues": [
         "A: mixed/cluttered section",
@@ -3780,13 +3766,13 @@
       ],
       "side_A": {
         "centre_m": [
-          5.91375758875281,
-          1.8291849071528155
+          5.913757587247838,
+          1.8291849041862855
         ],
-        "radius_m": 0.07945358679607656,
-        "radial_rmse_m": 0.011617257908231803,
-        "arc_deg": 250.2163492037564,
-        "condition": 8.411740093396483,
+        "radius_m": 0.07945358494294495,
+        "radial_rmse_m": 0.011617257782004302,
+        "arc_deg": 250.21635264317297,
+        "condition": 8.411744255425871,
         "input_points": 164,
         "inlier_points": 136,
         "inlier_fraction": 0.8292682926829268,
@@ -3796,32 +3782,32 @@
       },
       "side_B": {
         "centre_m": [
-          5.962201597668808,
-          1.8194196179976045
+          5.948916506461569,
+          1.8101681536530723
         ],
-        "radius_m": 0.08758636155677506,
-        "radial_rmse_m": 0.011070733058964909,
-        "arc_deg": 233.06422682632132,
-        "condition": 31.104959435152132,
+        "radius_m": 0.07457571944153568,
+        "radial_rmse_m": 0.009900939654925512,
+        "arc_deg": 217.46734757722675,
+        "condition": 11.818127841400996,
         "input_points": 217,
-        "inlier_points": 186,
-        "inlier_fraction": 0.8571428571428571,
+        "inlier_points": 192,
+        "inlier_fraction": 0.8847926267281107,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 164,
       "points_B": 217,
-      "centre_delta_along_m": 0.04844400891599765,
-      "centre_delta_across_m": -0.00976528915521091,
+      "centre_delta_along_m": 0.03515891921373093,
+      "centre_delta_across_m": -0.019016750533213278,
       "delta_ci95_m": [
         [
-          0.026924002955508362,
-          -0.03932501612953112
+          0.016555661466056647,
+          -0.05649987535518479
         ],
         [
-          0.08599246385391926,
-          0.016549544002628504
+          0.09924249837476945,
+          -0.007982201476552334
         ]
       ],
       "bootstrap_successes": 45,
@@ -3845,13 +3831,13 @@
       ],
       "side_A": {
         "centre_m": [
-          5.920861096807323,
-          1.811262497330109
+          5.920861094572784,
+          1.8112624941676871
         ],
-        "radius_m": 0.060255512683138314,
-        "radial_rmse_m": 0.01042459299758095,
-        "arc_deg": 250.0385447177285,
-        "condition": 13.714279537507391,
+        "radius_m": 0.06025551051160155,
+        "radial_rmse_m": 0.010424593033876961,
+        "arc_deg": 250.03854914023748,
+        "condition": 13.714281087041686,
         "input_points": 151,
         "inlier_points": 128,
         "inlier_fraction": 0.847682119205298,
@@ -3861,32 +3847,32 @@
       },
       "side_B": {
         "centre_m": [
-          5.9653808848473195,
-          1.807017856446851
+          5.953074431993246,
+          1.7914732755017215
         ],
-        "radius_m": 0.0810155849714548,
-        "radial_rmse_m": 0.009839210657750612,
-        "arc_deg": 230.31500350995444,
-        "condition": 9.895941346472407,
-        "input_points": 151,
-        "inlier_points": 131,
-        "inlier_fraction": 0.8675496688741722,
+        "radius_m": 0.07320769707757226,
+        "radial_rmse_m": 0.00944944695361398,
+        "arc_deg": 233.7923161734212,
+        "condition": 8.196769374844301,
+        "input_points": 144,
+        "inlier_points": 129,
+        "inlier_fraction": 0.8958333333333334,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 151,
-      "points_B": 151,
-      "centre_delta_along_m": 0.04451978803999612,
-      "centre_delta_across_m": -0.004244640883257933,
+      "points_B": 144,
+      "centre_delta_along_m": 0.03221333742046184,
+      "centre_delta_across_m": -0.019789218665965613,
       "delta_ci95_m": [
         [
-          0.023511797800992974,
-          -0.0831866653824516
+          0.017015462835353556,
+          -0.05512519385904308
         ],
         [
-          0.12818764459321358,
-          0.008037794729020262
+          0.10519268192897097,
+          -0.013019291272784717
         ]
       ],
       "bootstrap_successes": 45,
@@ -3910,13 +3896,13 @@
       ],
       "side_A": {
         "centre_m": [
-          5.91915323749533,
-          1.8015557098689514
+          5.91915323729026,
+          1.8015557092639864
         ],
-        "radius_m": 0.05216859023999005,
-        "radial_rmse_m": 0.009723685712577961,
-        "arc_deg": 245.20689626084365,
-        "condition": 12.49266234880365,
+        "radius_m": 0.052168589839676496,
+        "radial_rmse_m": 0.00972368570326187,
+        "arc_deg": 245.20689738921376,
+        "condition": 12.49266103860745,
         "input_points": 136,
         "inlier_points": 108,
         "inlier_fraction": 0.7941176470588235,
@@ -3926,32 +3912,32 @@
       },
       "side_B": {
         "centre_m": [
-          5.974134246021577,
-          1.7884121782639684
+          5.95979054144603,
+          1.7791511063987842
         ],
-        "radius_m": 0.08391527193924268,
-        "radial_rmse_m": 0.008858527320294782,
-        "arc_deg": 281.50662884390977,
-        "condition": 8.31345578629734,
-        "input_points": 108,
-        "inlier_points": 98,
-        "inlier_fraction": 0.9074074074074074,
+        "radius_m": 0.07371092027558018,
+        "radial_rmse_m": 0.008066702726272653,
+        "arc_deg": 290.0219349830765,
+        "condition": 5.993198037188202,
+        "input_points": 104,
+        "inlier_points": 96,
+        "inlier_fraction": 0.9230769230769231,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 136,
-      "points_B": 108,
-      "centre_delta_along_m": 0.05498100852624699,
-      "centre_delta_across_m": -0.01314353160498305,
+      "points_B": 104,
+      "centre_delta_along_m": 0.04063730415577016,
+      "centre_delta_across_m": -0.022404602865202294,
       "delta_ci95_m": [
         [
-          0.02801953997502036,
-          -0.09110255843020203
+          0.012347472183890497,
+          -0.11859673117164912
         ],
         [
-          0.0754525214373026,
-          0.01254037044567393
+          0.06533607506169731,
+          -0.007985942155466821
         ]
       ],
       "bootstrap_successes": 45,
@@ -3975,13 +3961,13 @@
       ],
       "side_A": {
         "centre_m": [
-          5.931033359722202,
-          1.8030400781080607
+          5.931033357476991,
+          1.8030400757460263
         ],
-        "radius_m": 0.060431234882699206,
-        "radial_rmse_m": 0.01033635060429134,
-        "arc_deg": 267.52351861632377,
-        "condition": 11.283814061972064,
+        "radius_m": 0.060431232767933114,
+        "radial_rmse_m": 0.010336350572518364,
+        "arc_deg": 267.52352227247474,
+        "condition": 11.283815195710332,
         "input_points": 134,
         "inlier_points": 113,
         "inlier_fraction": 0.8432835820895522,
@@ -3991,39 +3977,37 @@
       },
       "side_B": {
         "centre_m": [
-          5.974762939226311,
-          1.7973917215095174
+          5.961376419854208,
+          1.777265700977308
         ],
-        "radius_m": 0.07395582473108518,
-        "radial_rmse_m": 0.007786775910656158,
-        "arc_deg": 226.4547206344921,
-        "condition": 11.54155870490573,
-        "input_points": 110,
+        "radius_m": 0.07115417001726713,
+        "radial_rmse_m": 0.00785121420326595,
+        "arc_deg": 233.61374885871626,
+        "condition": 8.181827248426625,
+        "input_points": 106,
         "inlier_points": 98,
-        "inlier_fraction": 0.8909090909090909,
+        "inlier_fraction": 0.9245283018867925,
         "acquisitions": 4,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 134,
-      "points_B": 110,
-      "centre_delta_along_m": 0.043729579504109495,
-      "centre_delta_across_m": -0.005648356598543236,
+      "points_B": 106,
+      "centre_delta_along_m": 0.030343062377216512,
+      "centre_delta_across_m": -0.025774374768718245,
       "delta_ci95_m": [
         [
-          0.017400543598146533,
-          -0.03605038762738444
+          0.006768572960446218,
+          -0.05587305582735591
         ],
         [
-          0.06481966131284925,
-          0.014756076264479655
+          0.05115710843924663,
+          -0.016817472999266614
         ]
       ],
       "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "across-centre interval at least 4 cm wide"
-      ],
+      "usable_comparison": true,
+      "issues": [],
       "candidate": 7
     },
     {
@@ -4040,13 +4024,13 @@
       ],
       "side_A": {
         "centre_m": [
-          5.932040200989985,
-          1.801262521199971
+          5.932040198825225,
+          1.8012625172763372
         ],
-        "radius_m": 0.05976951827653895,
-        "radial_rmse_m": 0.00983573547937685,
-        "arc_deg": 250.2891146311928,
-        "condition": 10.62718966659619,
+        "radius_m": 0.059769515596121,
+        "radial_rmse_m": 0.009835735378993883,
+        "arc_deg": 250.28912047034447,
+        "condition": 10.627200405888162,
         "input_points": 149,
         "inlier_points": 126,
         "inlier_fraction": 0.8456375838926175,
@@ -4056,32 +4040,32 @@
       },
       "side_B": {
         "centre_m": [
-          5.973567925963151,
-          1.7946198033376417
+          5.959695802226544,
+          1.7792611345124016
         ],
-        "radius_m": 0.0722127004243693,
-        "radial_rmse_m": 0.007003313157789488,
-        "arc_deg": 220.2880213507582,
-        "condition": 24.053242687498255,
-        "input_points": 123,
-        "inlier_points": 98,
-        "inlier_fraction": 0.7967479674796748,
+        "radius_m": 0.06708346942391595,
+        "radial_rmse_m": 0.007476906448753433,
+        "arc_deg": 214.2024609307098,
+        "condition": 29.729957503238616,
+        "input_points": 130,
+        "inlier_points": 110,
+        "inlier_fraction": 0.8461538461538461,
         "acquisitions": 4,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 149,
-      "points_B": 123,
-      "centre_delta_along_m": 0.04152772497316537,
-      "centre_delta_across_m": -0.006642717862329395,
+      "points_B": 130,
+      "centre_delta_along_m": 0.02765560340131845,
+      "centre_delta_across_m": -0.022001382763935595,
       "delta_ci95_m": [
         [
-          -0.00767881477042458,
-          -0.05245707531849127
+          -0.0014310815414718013,
+          -0.07002011922264251
         ],
         [
-          0.06151327376791853,
-          0.027078153008755934
+          0.04776911962436259,
+          -0.0038399032306941873
         ]
       ],
       "bootstrap_successes": 45,
@@ -4105,13 +4089,13 @@
       ],
       "side_A": {
         "centre_m": [
-          5.928168528613763,
-          1.79820413137896
+          5.928168528552744,
+          1.798204131209362
         ],
-        "radius_m": 0.05756026108888488,
-        "radial_rmse_m": 0.010144810016064819,
-        "arc_deg": 272.5349787108138,
-        "condition": 5.580690795414229,
+        "radius_m": 0.05756026102829107,
+        "radial_rmse_m": 0.010144810020000027,
+        "arc_deg": 272.53497893163546,
+        "condition": 5.580690720002739,
         "input_points": 138,
         "inlier_points": 119,
         "inlier_fraction": 0.8623188405797102,
@@ -4121,32 +4105,32 @@
       },
       "side_B": {
         "centre_m": [
-          5.966573522782603,
-          1.8118509267444192
+          5.954641322731369,
+          1.7877126017460827
         ],
-        "radius_m": 0.06508723226804874,
-        "radial_rmse_m": 0.010026012717480205,
-        "arc_deg": 216.14218624788563,
-        "condition": 13.91636063036968,
+        "radius_m": 0.06417284693173668,
+        "radial_rmse_m": 0.01040834440176637,
+        "arc_deg": 238.99009879724977,
+        "condition": 12.166659538363941,
         "input_points": 141,
-        "inlier_points": 101,
-        "inlier_fraction": 0.7163120567375887,
+        "inlier_points": 111,
+        "inlier_fraction": 0.7872340425531915,
         "acquisitions": 4,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 138,
       "points_B": 141,
-      "centre_delta_along_m": 0.03840499416884047,
-      "centre_delta_across_m": 0.013646795365459097,
+      "centre_delta_along_m": 0.026472794178625136,
+      "centre_delta_across_m": -0.010491529463279248,
       "delta_ci95_m": [
         [
-          0.0074217218310193905,
-          -0.07237346820917626
+          -0.000592692479499579,
+          -0.10907011461885867
         ],
         [
-          0.05386551811324018,
-          0.04338587451362481
+          0.043686554391593274,
+          0.0021820198316336178
         ]
       ],
       "bootstrap_successes": 45,
@@ -4170,13 +4154,13 @@
       ],
       "side_A": {
         "centre_m": [
-          5.946879872742148,
-          1.7908360991287144
+          5.946879856150473,
+          1.7908360796419462
         ],
-        "radius_m": 0.06672727241491376,
-        "radial_rmse_m": 0.009877833060632994,
-        "arc_deg": 207.3048474890898,
-        "condition": 27.606739973363737,
+        "radius_m": 0.06672725548959758,
+        "radial_rmse_m": 0.00987783365121814,
+        "arc_deg": 207.30488790503455,
+        "condition": 27.60668078006725,
         "input_points": 120,
         "inlier_points": 88,
         "inlier_fraction": 0.7333333333333333,
@@ -4186,32 +4170,32 @@
       },
       "side_B": {
         "centre_m": [
-          5.974690217572694,
-          1.803118380013213
+          5.9588615341941535,
+          1.787012433352461
         ],
-        "radius_m": 0.07202198507887765,
-        "radial_rmse_m": 0.010447517795881127,
-        "arc_deg": 220.49945108202832,
-        "condition": 6.840711632390468,
-        "input_points": 140,
-        "inlier_points": 90,
-        "inlier_fraction": 0.6428571428571429,
+        "radius_m": 0.07022861665142484,
+        "radial_rmse_m": 0.010786627104470146,
+        "arc_deg": 234.6392317734452,
+        "condition": 5.333991060395576,
+        "input_points": 136,
+        "inlier_points": 81,
+        "inlier_fraction": 0.5955882352941176,
         "acquisitions": 4,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 120,
-      "points_B": 140,
-      "centre_delta_along_m": 0.027810344830546008,
-      "centre_delta_across_m": 0.012282280884498453,
+      "points_B": 136,
+      "centre_delta_along_m": 0.011981678043680333,
+      "centre_delta_across_m": -0.003823646289485172,
       "delta_ci95_m": [
         [
-          -0.015838303917689343,
-          -0.13096295111586975
+          -0.025552700692359487,
+          -0.12018888411223563
         ],
         [
-          0.054383829854148934,
-          0.07085772559180116
+          0.04250178392891221,
+          0.09875233185121816
         ]
       ],
       "bootstrap_successes": 45,
@@ -4235,13 +4219,13 @@
       ],
       "side_A": {
         "centre_m": [
-          5.981319312124762,
-          1.8656115528212847
+          5.981319311203428,
+          1.8656115524473806
         ],
-        "radius_m": 0.14590042358605376,
-        "radial_rmse_m": 0.010474814525449579,
-        "arc_deg": 158.6639745912614,
-        "condition": 53.77509867140455,
+        "radius_m": 0.14590042300611647,
+        "radial_rmse_m": 0.010474814514946702,
+        "arc_deg": 158.6639753649757,
+        "condition": 53.77509868858884,
         "input_points": 141,
         "inlier_points": 110,
         "inlier_fraction": 0.7801418439716312,
@@ -4251,16 +4235,16 @@
       },
       "side_B": {
         "centre_m": [
-          5.8853076766552235,
-          1.9032138241376755
+          5.877431583771635,
+          1.8793987860733037
         ],
-        "radius_m": 0.08673728443735879,
-        "radial_rmse_m": 0.011610059320975431,
-        "arc_deg": 238.92682384666577,
-        "condition": 6.263775482814878,
+        "radius_m": 0.0870455516652107,
+        "radial_rmse_m": 0.010951857423994987,
+        "arc_deg": 251.40077840772148,
+        "condition": 6.702969181871154,
         "input_points": 166,
-        "inlier_points": 87,
-        "inlier_fraction": 0.5240963855421686,
+        "inlier_points": 91,
+        "inlier_fraction": 0.5481927710843374,
         "acquisitions": 4,
         "touches_bound": false,
         "issues": [
@@ -4269,16 +4253,16 @@
       },
       "points_A": 141,
       "points_B": 166,
-      "centre_delta_along_m": -0.09601163546953817,
-      "centre_delta_across_m": 0.03760227131639082,
+      "centre_delta_along_m": -0.10388772743179331,
+      "centre_delta_across_m": 0.013787233625923045,
       "delta_ci95_m": [
         [
-          -0.14595249888502176,
-          -0.07887940739778479
+          -0.13881603517680458,
+          -0.09427868719836294
         ],
         [
-          0.15554171458974494,
-          0.10325153466221305
+          0.0481405562557545,
+          0.07818040166146001
         ]
       ],
       "bootstrap_successes": 45,
@@ -4304,13 +4288,13 @@
       ],
       "side_A": {
         "centre_m": [
-          5.9572694146259515,
-          1.8560260202681491
+          5.957269414941085,
+          1.8560260203605028
         ],
-        "radius_m": 0.13493994529140801,
-        "radial_rmse_m": 0.009412922034131235,
-        "arc_deg": 182.08735386294435,
-        "condition": 41.475666119570974,
+        "radius_m": 0.1349399454269109,
+        "radial_rmse_m": 0.009412922039872693,
+        "arc_deg": 182.0873535939112,
+        "condition": 41.47566655157845,
         "input_points": 130,
         "inlier_points": 89,
         "inlier_fraction": 0.6846153846153846,
@@ -4320,16 +4304,16 @@
       },
       "side_B": {
         "centre_m": [
-          5.908558557703761,
-          1.9024987409025815
+          5.893390547371054,
+          1.872470813858342
         ],
-        "radius_m": 0.07974553150573398,
-        "radial_rmse_m": 0.011028077865081254,
-        "arc_deg": 326.16515012200375,
-        "condition": 3.360430388748786,
-        "input_points": 179,
-        "inlier_points": 93,
-        "inlier_fraction": 0.5195530726256983,
+        "radius_m": 0.0849048531251709,
+        "radial_rmse_m": 0.011004190931879789,
+        "arc_deg": 323.46282359563315,
+        "condition": 4.346387279372669,
+        "input_points": 187,
+        "inlier_points": 86,
+        "inlier_fraction": 0.45989304812834225,
         "acquisitions": 4,
         "touches_bound": false,
         "issues": [
@@ -4337,17 +4321,17 @@
         ]
       },
       "points_A": 130,
-      "points_B": 179,
-      "centre_delta_along_m": -0.04871085692219079,
-      "centre_delta_across_m": 0.04647272063443242,
+      "points_B": 187,
+      "centre_delta_along_m": -0.0638788675700308,
+      "centre_delta_across_m": 0.016444793497839116,
       "delta_ci95_m": [
         [
-          -0.09729129605878147,
-          -0.034251234517136256
+          -0.10596894713490768,
+          -0.05184355463458159
         ],
         [
-          0.048155572845820234,
-          0.1307138373488648
+          0.04497457708035881,
+          0.09720447397467055
         ]
       ],
       "bootstrap_successes": 45,

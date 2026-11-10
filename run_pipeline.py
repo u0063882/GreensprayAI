@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Reproduce the current 18-recording chandelier dataset from the repository root."""
+"""Build the 18-recording seed graph, then anchor east and refine west poses."""
 import argparse
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -10,7 +11,7 @@ ROOT = Path(__file__).resolve().parent
 STAGES = [
     'decode.py', 'register.py', 'trunk_align.py', 'refine_ground.py',
     'check_ground_refinement.py', 'finish.py', 'export.py', 'quality.py',
-    'export_contributions.py', 'check_cross_row.py',
+    'export_contributions.py',
 ]
 
 def main():
@@ -50,11 +51,37 @@ def main():
     for stage in stages:
         print(f'Running {stage}', flush=True)
         subprocess.run([sys.executable, str(ROOT / 'processing' / stage)], cwd=ROOT, env=env, check=True)
+    anchored = ROOT / 'output/anchored_registration'
     subprocess.run([
-        sys.executable, str(ROOT / 'processing/plot_trunk_slices.py'),
+        sys.executable, str(ROOT / 'processing/register_anchored.py'),
         '--scan-dir', str(ROOT / 'output/registered_scans'),
-        '--candidate-report', str(ROOT / 'output/cross_row_quality.json'),
+        '--transforms', str(ROOT / 'output/scan_transforms.json'),
+        '--output-dir', str(anchored), '--export',
     ], cwd=ROOT, env=env, check=True)
+    subprocess.run([
+        sys.executable, str(ROOT / 'tools/validate_registered_result.py'),
+        '--baseline-scan-dir', str(ROOT / 'output/registered_scans'),
+        '--baseline-transforms', str(ROOT / 'output/scan_transforms.json'),
+        '--result-dir', str(anchored),
+    ], cwd=ROOT, env=env, check=True)
+    for name in ['orchard_row_registered.ply', 'scan_transforms.json', 'orchard_row_result.zip',
+                 'separate_registered_scans.zip', 'combined_by_recording.zip',
+                 'registration_quality.json', 'anchored_registration_quality.json', 'anchored_registration_comparison.png',
+                 'anchored_trunk_sections.png', 'orchard_row_preview.png']:
+        shutil.copy2(anchored / name, ROOT / 'output' / name)
+    shutil.copytree(anchored / 'registered_scans', ROOT / 'output/registered_scans', dirs_exist_ok=True)
+    # Keep legacy seed caches intact, so export-only repeats one bounded refinement.
+    # The authoritative current transforms are output/scan_transforms.json.
+    import numpy as np
+    seed = np.load(ROOT / 'work/registered/final_poses.npy')
+    correction = np.load(anchored / 'corrections.npy')
+    np.save(ROOT / 'work/registered/anchored_poses.npy', correction @ seed)
+    for command in [
+        [sys.executable, str(ROOT / 'processing/check_cross_row.py'), '--scan-dir', str(ROOT / 'output/registered_scans')],
+        [sys.executable, str(ROOT / 'processing/plot_trunk_slices.py'), '--scan-dir', str(ROOT / 'output/registered_scans'),
+         '--candidate-report', str(ROOT / 'presets/orchard_stem_candidates.json')],
+    ]:
+        subprocess.run(command, cwd=ROOT, env=env, check=True)
     print(f'Finished. Results: {ROOT / "output"}', flush=True)
 
 if __name__ == '__main__':

@@ -139,5 +139,6 @@
   ],
   "method": "Relative rigid roll/pitch/height corrections using overlapping 15cm ground patches. Every fourth patch held out. Mean correction anchored; no ground flattening or per-point deformation.",
   "solver_success": true,
-  "solver_message": "IRLS iterations 8, final parameter change 3.1e-09"
+  "solver_message": "IRLS iterations 8, final parameter change 3.1e-09",
+  "stage": "Seed relative-ground stage, before final east-anchored west refinement"
 }
