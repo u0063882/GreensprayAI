@@ -25,6 +25,10 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
+      - name: Install Open3D runtime libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libegl1 libgl1 libgomp1
       - name: Install meshing dependencies
         run: python -m pip install numpy==2.3.5 scipy==1.17.0 open3d==0.20.0 matplotlib==3.10.8 scikit-learn==1.8.0 scikit-image==0.26.0
       - name: Test cross-section geometry

@@ -28,7 +28,7 @@ python run_pipeline.py --mesh
 python run_pipeline.py --export-only --mesh
 ```
 
-Neither mesher needs raw PCAPs. GitHub Actions builds these outputs from checksummed registered clouds and publishes them in this repository's single **Current results** release.
+On minimal Ubuntu runners Open3D also needs `libegl1`, `libgl1` and `libgomp1`; the GitHub workflow installs these system libraries. Neither mesher needs raw PCAPs. GitHub Actions builds these outputs from checksummed registered clouds and publishes them in this repository's single **Current results** release.
 
 ## Closed proxy: relation to Rhino 8 ShrinkWrap
 
