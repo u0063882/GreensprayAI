@@ -79,7 +79,13 @@ def export_candidate(scan_dir,out,corrections,transforms_path,quality_path):
     _,keep=pc.remove_radius_outlier(nb_points=5,radius=.06);merged=merged[keep];points=xyz(merged)
     colours=(plt.get_cmap('turbo')(np.clip(points[:,2]/4,0,1))[:,:3]*255).astype('u1');colours[points[:,2]<.12]=[110,125,136]
     for j,key in enumerate(['red','green','blue']):merged[key]=colours[:,j]
-    write_records(out/'orchard_row_registered.ply',header,merged)
+    merged_header=[line for line in header if not line.startswith('comment ')]
+    merged_header[2:2]=[
+        'comment East-anchored registered orchard row; metres; X along, Y across, Z up\n',
+        'comment RGB is height colour with grey ground; scan_id identifies the source recording\n',
+        'comment Measured samples selected in 12mm voxels; cross-recording overlaps deduplicated and sparse returns filtered\n',
+    ]
+    write_records(out/'orchard_row_registered.ply',merged_header,merged)
     description='BOUNDED EAST-ANCHORED ORCHARD REGISTRATION\n\nMetres; X along row, Y across, Z up.\nEast/Side A is unchanged. Each west/Side B recording has a bounded rigid correction.\nLow-stem constraints are below 0.5 m; full-height clouds are exported.\nPer-recording colours and point fields are retained. The same row crop is reapplied.\nInput was already cropped, so missing returns outside the original crop are not recovered.\nModel-based internal checks are not independent survey accuracy. Read the quality report.\n'
     (dest/'README.txt').write_text(description);(out/'README.txt').write_text(description)
     counts=dict(merged_points=len(merged),separate_scan_points=len(combined),east_files_unchanged=True)

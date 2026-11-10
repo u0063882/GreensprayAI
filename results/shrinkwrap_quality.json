@@ -1,7 +1,7 @@
 {
   "method": "Voxel occupancy + distance-field offset + binary closing/fill + smoothed signed-distance marching cubes",
   "rhino_equivalence": "Shrink-wrap-style approximation; Rhino 8 proprietary ShrinkWrap internals are not reproduced or validated.",
-  "source_sha256": "fed7a9e87071c2ec5828faada80c76bde855dd17630898f77c1a790ebd99c831",
+  "source_sha256": "b16c24efe0667369f45a9cb2ae595e9f7e6dd2e942297bac98b43068e641ae8b",
   "source_file": "orchard_row_registered.ply",
   "coordinate_frame": "Input coordinates, preserved without rotation or translation",
   "units": "m",
@@ -37,7 +37,7 @@
     "retained_occupied_voxels": 985315,
     "occupied_proxy_volume_m3": 15.395546875000004
   },
-  "elapsed_seconds": 10.373668735999672,
+  "elapsed_seconds": 10.093829888999608,
   "limitations": [
     "Offset, gap closing, enclosed-void filling and crop-end caps infer unobserved geometry.",
     "This is a solid envelope proxy, not measured trunk diameters, biomass, leaf area or validated CFD geometry.",

@@ -1,7 +1,7 @@
 {
   "method": "Ball-pivoting open observed-surface reconstruction; separate supported 2.5-D ground triangulation",
   "source_file": "orchard_row_registered.ply",
-  "source_sha256": "fed7a9e87071c2ec5828faada80c76bde855dd17630898f77c1a790ebd99c831",
+  "source_sha256": "b16c24efe0667369f45a9cb2ae595e9f7e6dd2e942297bac98b43068e641ae8b",
   "coordinate_frame": "Same local metric frame as the registered point clouds; X along row, Y across, Z up",
   "voxel_m": 0.02,
   "ball_radii_m": [
@@ -55,7 +55,7 @@
     "p95_distance_m": 0.018490955233573914,
     "fraction_within_3cm": 0.9993833333333333
   },
-  "elapsed_seconds": 72.55590460500025,
+  "elapsed_seconds": 71.03392341599829,
   "limitations": [
     "Observed-surface interpolation only; occluded regions and unsupported gaps remain open.",
     "The result is not a watertight solid or validated leaf-area/volume/CFD geometry.",
