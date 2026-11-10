@@ -50,6 +50,11 @@ def main():
     for stage in stages:
         print(f'Running {stage}', flush=True)
         subprocess.run([sys.executable, str(ROOT / 'processing' / stage)], cwd=ROOT, env=env, check=True)
+    subprocess.run([
+        sys.executable, str(ROOT / 'processing/plot_trunk_slices.py'),
+        '--scan-dir', str(ROOT / 'output/registered_scans'),
+        '--candidate-report', str(ROOT / 'output/cross_row_quality.json'),
+    ], cwd=ROOT, env=env, check=True)
     print(f'Finished. Results: {ROOT / "output"}', flush=True)
 
 if __name__ == '__main__':

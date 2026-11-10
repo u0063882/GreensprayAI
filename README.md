@@ -6,16 +6,19 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 
 ## Current results
 
+**Finished data is under [Releases → Current results → Assets](https://github.com/u0063882/GreensprayAI/releases/tag/current).** Open that page and expand **Assets** if needed. The repository file list contains code and small report snapshots; the large point clouds and meshes are release downloads.
+
 | Download | Purpose |
 | --- | --- |
-| `orchard_mesh.zip` | Closed canopy PLY/OBJ/STL, open observed surfaces, separate ground, previews and quality reports |
-| `orchard_row_result.zip` | Merged, ground-refined row: 1,242,944 measured points |
-| `separate_registered_scans.zip` | 18 separate registered PLYs, one uniform RGB colour per recording |
-| `combined_by_recording.zip` | 1,746,622 points with overlaps preserved and recording colours |
+| [orchard_mesh.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/orchard_mesh.zip) | Closed canopy PLY/OBJ/STL, open observed surfaces, separate ground, previews and quality reports |
+| [orchard_row_result.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/orchard_row_result.zip) | Merged, ground-refined row: 1,242,944 measured points |
+| [separate_registered_scans.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/separate_registered_scans.zip) | 18 separate registered PLYs, one uniform RGB colour per recording |
+| [combined_by_recording.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/combined_by_recording.zip) | 1,746,622 points with overlaps preserved and recording colours |
+| [trunk_slice_diagnostics.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_diagnostics.zip) | Separate A/B circle fits and centres at six heights, per-candidate PNG/PDF, centre trajectories, JSON and CSV |
 
 All clouds and meshes share one local metric frame. Load the separate PLYs together and enable RGB colours. The crop covers 7.1 m along the row and a 1.4 m ground strip. Current metadata lives directly in [`results/`](results/); large downloads use this repository's single active **Current results** release. Older Git/release history is retained as provenance.
 
-The [across-row check](docs/cross_row_quality.md) distinguishes opposite bark faces from fitted trunk-centre errors. It flags possible residual offsets, but the current partial sections do not provide enough independent evidence for a global correction. The existing ground-refined poses are retained. The [mesh archive](docs/meshing.md) contains both supported open surface patches and a closed, voxel/SDF shrink-wrap-style canopy proxy. The proxy deliberately adds offset and fills gaps; neither output is a validated biological or CFD model.
+The [across-row check](docs/cross_row_quality.md) distinguishes opposite bark faces from fitted trunk-centre errors. [Thin-slice plots](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_fits.pdf) show independent circles/centres at six heights and centre drift with trunk lean. They flag possible residual offsets, but the current partial sections do not provide enough independent evidence for a global correction. The existing ground-refined poses are retained. The [mesh archive](docs/meshing.md) contains both supported open surface patches and a closed, voxel/SDF shrink-wrap-style canopy proxy. The proxy deliberately adds offset and fills gaps; neither output is a validated biological or CFD model.
 
 ![Current observed-surface mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/shrinkwrap_preview.png)
 

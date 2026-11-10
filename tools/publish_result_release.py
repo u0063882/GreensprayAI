@@ -58,6 +58,10 @@ def main():
             (scan_dir/name).write_bytes(z.read(name))
     subprocess.run([sys.executable,str(ROOT/'processing/check_cross_row.py'),'--scan-dir',str(scan_dir)],cwd=ROOT,check=True)
     paths.extend([out/'cross_row_trunk_sections.png',out/'cross_row_quality.json',out/'cross_row_trunks.csv'])
+    subprocess.run([sys.executable,str(ROOT/'processing/plot_trunk_slices.py'),'--scan-dir',str(scan_dir),'--candidate-report',str(out/'cross_row_quality.json')],cwd=ROOT,check=True)
+    paths.extend([out/'trunk_slice_diagnostics.zip',*[out/'trunk_slices'/name for name in [
+        'trunk_slice_fits.png','trunk_slice_fits.pdf','trunk_slice_centres.png',
+        'trunk_slice_quality.json','trunk_slice_centres.csv','candidate_04_slices.png']]])
     sums=args.asset_dir/'SHA256SUMS.txt'
     sums.write_text(''.join(f'{digest(p)}  {p.name}\n' for p in paths));paths.append(sums)
     repo=os.environ.get('GITHUB_REPOSITORY','u0063882/GreensprayAI');tag=manifest['tag']

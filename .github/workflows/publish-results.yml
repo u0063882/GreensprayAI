@@ -10,6 +10,7 @@ on:
       - run_meshing.py
       - tests/**
       - processing/check_cross_row.py
+      - processing/plot_trunk_slices.py
       - tools/publish_result_release.py
       - .github/workflows/publish-results.yml
   workflow_dispatch:
