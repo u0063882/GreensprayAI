@@ -1,0 +1,43 @@
+{
+  "tag": "current",
+  "title": "GreensprayAI \u2014 current orchard point clouds and meshes",
+  "dataset": "Ouster OS0-128 orchard, 18 stationary recordings, nine per side",
+  "merged_points": 1242944,
+  "separate_scan_points": 1746622,
+  "assets": [
+    {
+      "name": "orchard_row_result.zip",
+      "url": "https://github.com/u0063882/GreensprayAI/releases/download/chandelier-v2/orchard_row_result.zip",
+      "bytes": 20710586,
+      "sha256": "2124a040f4018129a7435f4096fb9c54d69220ef215830c81f4133aab8193bf6"
+    },
+    {
+      "name": "separate_registered_scans.zip",
+      "url": "https://github.com/u0063882/GreensprayAI/releases/download/chandelier-v2/separate_registered_scans_v2.zip",
+      "bytes": 21872039,
+      "sha256": "8c0b6c64669d4a8a000ccfe191695895feb7b7efdd73d90b56a499e79556b5fc"
+    },
+    {
+      "name": "combined_by_recording.zip",
+      "url": "https://github.com/u0063882/GreensprayAI/releases/download/chandelier-v2/combined_by_recording_v2.zip",
+      "bytes": 21863877,
+      "sha256": "6efed7c8a76b0f988a6a66d8320b7b07a645ff038617e7f68809402f43254f2f"
+    },
+    {
+      "name": "processing_code_and_notes.zip",
+      "url": "https://github.com/u0063882/GreensprayAI/releases/download/chandelier-v2/processing_code_and_notes.zip",
+      "bytes": 26715,
+      "sha256": "6b4c833c303acf6c070e4089ff52f5c26a7cc31cfa0af1463ae9c51f7ce22a1a"
+    }
+  ],
+  "mesh_build": {
+    "script": "processing/mesh.py",
+    "input": "orchard_row_registered.ply",
+    "voxel_m": 0.02,
+    "mode": "closed shrink-wrap-style canopy proxy plus open observed surfaces",
+    "wrap_script": "processing/shrinkwrap.py",
+    "wrap_voxel_m": 0.025,
+    "wrap_outward_offset_m": 0.04,
+    "wrap_closing_radius_m": 0.05
+  }
+}
