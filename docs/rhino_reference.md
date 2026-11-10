@@ -1,6 +1,6 @@
 # User's Rhino 8 reference settings
 
-The supplied screenshots establish this reference for future comparisons. The ShrinkWrap status line explicitly reports millimetres; converted SI lengths are provided for this project's metre-based point clouds.
+The supplied screenshots and the user's sequence clarification establish this reference for future comparisons. The ShrinkWrap status line explicitly reports millimetres; converted SI lengths are provided for this project's metre-based point clouds.
 
 | Operation / setting | Rhino value | SI interpretation |
 | --- | --- | --- |
@@ -15,9 +15,11 @@ The supplied screenshots establish this reference for future comparisons. The Sh
 | Separate Reduce Mesh operation | Reduce by 75% | Keep approximately 25% of that operation's input polygons |
 | Reduce Mesh “Planar only” | Disabled | No planar-only restriction |
 
+**Confirmed sequence: point cloud → ShrinkWrap → Reduce Mesh by 75%, retaining approximately 25% of the ShrinkWrap output polygons.**
+
 Machine-readable record: [`presets/rhino8_reference.json`](../presets/rhino8_reference.json). This file is deliberately a **reference**, not a preset accepted by `run_meshing.py`. Registration and meshing remain independent; there is no dependency on raw LiDAR scans, pose fitting, or the low-trunk diagnostic.
 
-The separate mesh reduction is not the same operation as ShrinkWrap's 50% optimization. Do not multiply those percentages to infer a final face count. The screenshots show 395,880 faces in the ShrinkWrap preview and 4,297,912 starting polygons in Reduce Mesh; they cannot be assumed to describe consecutive states of one mesh. The latter dialog's 75% reduction corresponds to 1,074,478 remaining polygons. Those counts depend on the input and are not targets for an arbitrary new cloud. “Show” under locked mesh points only indicates a display option; it does not reveal whether vertices were locked.
+The 75% reduction is applied after ShrinkWrap. ShrinkWrap's 50% optimization remains part of the preceding wrapping operation; it is not a promised 50% face reduction, so do not multiply the percentages to infer a final face count. The screenshots show 395,880 faces in the ShrinkWrap preview and 4,297,912 starting polygons in Reduce Mesh; those displayed counts are not a matched before/after pair. The latter dialog's 75% reduction corresponds to 1,074,478 remaining polygons. Those counts depend on the input and are not targets for an arbitrary new cloud. “Show” under locked mesh points only indicates a display option; it does not reveal whether vertices were locked.
 
 According to the [Rhino 8 command reference](https://docs.mcneel.com/rhino/8/help/en-us/commands/shrinkwrap.htm), filling holes in input objects has no effect for point-cloud input or point inflation mode. Negative offset pulls an inflated result back toward the observations. This does not establish an exact formula for support radius or make a negative offset equivalent to a negative particle radius.
 

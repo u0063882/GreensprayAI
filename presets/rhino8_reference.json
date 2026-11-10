@@ -19,19 +19,25 @@
     "reduce_by_percent": 75,
     "remaining_fraction": 0.25,
     "planar_only": false,
-    "locked_vertices": "Unspecified: Show is a display toggle, not proof of locked vertices"
+    "locked_vertices": "Unspecified: Show is a display toggle, not proof of locked vertices",
+    "input": "shrinkwrap_output",
+    "order_confirmed_by": "User clarification: After ShrinkWrap"
   },
   "screenshot_statistics": {
     "shrinkwrap_average_edge_mm": 14.9,
     "shrinkwrap_faces": 395880,
     "reduce_mesh_starting_polygons": 4297912,
     "reduce_mesh_target_polygons": 1074478,
-    "note": "The screenshots show different polygon counts; do not assume they describe the same mesh or use these counts as fixed targets for new input."
+    "note": "The user confirmed Reduce Mesh is applied after ShrinkWrap. The displayed screenshot counts are not a matched before/after pair and are not fixed targets for new input."
   },
   "interpretation": [
     "ShrinkWrap optimization 50% and Reduce Mesh by 75% are separate operations; do not multiply them into a claimed final face count.",
     "For point-cloud input, Fill holes in input objects has no effect in Rhino 8 according to the command reference.",
     "Negative offset compensates point inflation; it is not a negative support radius.",
     "The current voxel/SDF mesher cannot reproduce these controls directly and does not load this preset."
+  ],
+  "operation_order": [
+    "shrinkwrap",
+    "separate_reduce_mesh_operation"
   ]
 }

@@ -91,4 +91,4 @@ The release carries reports from its own build; repository report snapshots are 
 
 ## User's Rhino baseline
 
-The [reference settings](rhino_reference.md) are now recorded: 15 mm target edges, −5 mm offset, smoothing 1, optimization 50%, point inflation enabled, with a separate Reduce Mesh by 75% operation. These are not interchangeable with the voxel prototype's parameters. The 0.5 m ceiling in the trunk alignment diagnostics does **not** crop meshing input; the standalone mesher still receives the full supplied tree cloud.
+The [reference settings](rhino_reference.md) are now recorded: 15 mm target edges, −5 mm offset, smoothing 1, optimization 50%, point inflation enabled, followed by Reduce Mesh by 75%, retaining approximately 25% of the ShrinkWrap output polygons. These are not interchangeable with the voxel prototype's parameters. The 0.5 m ceiling in the trunk alignment diagnostics does **not** crop meshing input; the standalone mesher still receives the full supplied tree cloud.
