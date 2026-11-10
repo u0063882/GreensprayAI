@@ -35,24 +35,25 @@ Extract the original `sideA.zip` and `sideB.zip` into `work/data/sideA/` and `wo
 
 ```sh
 python run_pipeline.py --check-inputs-only
-python run_pipeline.py --mesh
+python run_pipeline.py
 # With existing decoded caches and final poses:
-python run_pipeline.py --export-only --mesh
+python run_pipeline.py --export-only
 ```
 
 Generated files go to `output/`; caches and poses go to `work/`. Raw recordings and generated binaries are excluded from Git history. Use a fresh `work/` directory for a new capture/full rerun. These capture-specific scripts assume the supplied station ordering, inward FOV, mounting, nine recordings per side and fixed row crop; review these before applying the pipeline elsewhere.
 
-## Mesh an existing result
+## Mesh any point cloud independently
 
-Extract `orchard_row_registered.ply` and `scan_transforms.json` from the merged ZIP into `output/`, then:
+Registration and meshing are separate programs. Meshing requires a point cloud in metres; it does not load raw recordings, cached scans, GPS, fitted poses or registration modules. It also accepts clouds exported from MATLAB or other software.
 
 ```sh
-python processing/mesh.py
-python processing/shrinkwrap.py
-python tools/validate_mesh.py
+python -m pip install -r requirements-meshing.txt
+python run_meshing.py --input /path/to/trees.ply --output-dir /path/to/mesh
 ```
 
-See [meshing settings, geometry checks and limitations](docs/meshing.md). Mesh generation is also implemented in GitHub Actions; publication validates the source ZIP checksums, reconstructs the mesh and uploads all current downloads to the same release.
+Optional `--metadata metadata.json` records units and frame information without changing coordinates. Ground is included in the envelope unless explicitly excluded using an optional ground mesh; the general mesher does not assume that soil lies near Z=0. The defaults are the existing voxel/SDF prototype, not a validated Rhino equivalent.
+
+See [standalone meshing and the orchard release recipe](docs/meshing.md), and the [Rhino ShrinkWrap study, tested alternatives and proposed controls](docs/shrinkwrap_research.md). GitHub Actions separately builds the orchard demonstration from checksummed exported clouds and publishes its downloads to the same release.
 
 ## Registration and MATLAB
 
@@ -61,7 +62,7 @@ See [meshing settings, geometry checks and limitations](docs/meshing.md). Mesh g
 3. Robust same-side point-to-plane ICP and a global pose graph with GPS/gravity priors.
 4. Explicit opposite-side XY/yaw registration using low stems.
 5. Joint relative ground roll/pitch/height refinement using overlapping patches and held-out validation.
-6. Row/ground crop, individual scan export, cross-row diagnostics and optional meshing.
+6. Row/ground crop, individual scan export and cross-row diagnostics. Meshing consumes exported clouds separately.
 
 Python exports use **X along / Y across / Z up**. The MATLAB toolbox row convention uses **X across / Y along / Z up**, with the appropriate sign change to preserve handedness. The [MATLAB description](docs/registration_matlab.md) maps the objectives, parameters, transformation composition and actual solver differences. [`matlab/`](matlab/) includes a contribution viewer and an explanatory opposite-side SE(2) solver. These MATLAB functions have not been runtime-tested in MATLAB here.
 
@@ -69,7 +70,9 @@ Ground refinement reduced held-out ground-patch height-difference RMSE from 3.98
 
 ## Repository layout
 
-- `processing/`: decode, register, ground refinement, export, cross-row QA and meshing.
+- `run_pipeline.py`: capture-specific registration and point-cloud export.
+- `run_meshing.py`: standalone point-cloud-to-envelope interface.
+- `processing/`: implementation modules; the mesher imports no registration modules.
 - `docs/`, `matlab/`: method descriptions and MATLAB-format examples.
 - `results/`: current transforms, scan mapping, diagnostic tables and report snapshots.
 - `tools/`: mesh validation and current-release publishing.

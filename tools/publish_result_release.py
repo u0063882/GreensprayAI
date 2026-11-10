@@ -35,14 +35,18 @@ def main():
             subprocess.run(['curl','--fail','--location','--retry','3','--max-time','180','--output',str(path),asset['url']],check=True)
         verify(path,asset);paths.append(path);print(f'Verified {name}',flush=True)
     if args.verify_only:return
+    # Publish the checked-out code/docs, not an obsolete historical snapshot.
+    code=args.asset_dir/'processing_code_and_notes.zip'
+    subprocess.run(['git','archive','--format=zip','--output',str(code),'HEAD'],cwd=ROOT,check=True)
+    paths.append(code)
     out=ROOT/'output';out.mkdir(exist_ok=True)
     # Only the two named members are extracted; the checksummed archive is not
     # allowed to choose arbitrary filesystem paths.
     with zipfile.ZipFile(args.asset_dir/'orchard_row_result.zip') as z:
         for name in ['orchard_row_registered.ply','scan_transforms.json']:
             (out/name).write_bytes(z.read(name))
-    subprocess.run([sys.executable,str(ROOT/'processing/mesh.py'),'--voxel',str(manifest['mesh_build']['voxel_m'])],cwd=ROOT,check=True)
-    subprocess.run([sys.executable,str(ROOT/'processing/shrinkwrap.py'),'--voxel',str(manifest['mesh_build']['wrap_voxel_m']),'--offset',str(manifest['mesh_build']['wrap_outward_offset_m']),'--closing-radius',str(manifest['mesh_build']['wrap_closing_radius_m'])],cwd=ROOT,check=True)
+    subprocess.run([sys.executable,str(ROOT/'processing/mesh.py'),'--transforms',str(out/'scan_transforms.json'),'--voxel',str(manifest['mesh_build']['voxel_m'])],cwd=ROOT,check=True)
+    subprocess.run([sys.executable,str(ROOT/'run_meshing.py'),'--input',str(out/'orchard_row_registered.ply'),'--output-dir',str(out/'mesh'),'--ground',str(out/'mesh/ground_surface.ply'),'--include-observed','--archive',str(out/'orchard_mesh.zip'),'--voxel',str(manifest['mesh_build']['wrap_voxel_m']),'--offset',str(manifest['mesh_build']['wrap_outward_offset_m']),'--closing-radius',str(manifest['mesh_build']['wrap_closing_radius_m'])],cwd=ROOT,check=True)
     subprocess.run([sys.executable,str(ROOT/'tools/validate_mesh.py')],cwd=ROOT,check=True)
     paths.extend([out/'orchard_mesh.zip',out/'mesh/mesh_preview.png',out/'mesh/mesh_quality.json',out/'mesh/shrinkwrap_preview.png',out/'mesh/shrinkwrap_quality.json'])
     scan_dir=out/'registered_scans';scan_dir.mkdir(exist_ok=True)

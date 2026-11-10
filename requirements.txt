@@ -1,8 +1,3 @@
-numpy==2.3.5
-scipy==1.17.0
+-r requirements-meshing.txt
 h5py==3.16.0
-matplotlib==3.10.8
-scikit-learn==1.8.0
-open3d==0.20.0
 ouster-sdk==1.0.1
-scikit-image==0.26.0

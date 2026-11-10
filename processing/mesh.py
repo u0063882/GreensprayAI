@@ -55,7 +55,7 @@ def distance_check(mesh,points,rng):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input',type=Path,default=Path('output/orchard_row_registered.ply'))
-    parser.add_argument('--transforms',type=Path,default=Path('output/scan_transforms.json'))
+    parser.add_argument('--transforms',type=Path,help='Optional scanner provenance; never required or auto-discovered.')
     parser.add_argument('--output-dir',type=Path,default=Path('output/mesh'))
     parser.add_argument('--voxel',type=float,default=.02)
     parser.add_argument('--min-component-triangles',type=int,default=1,help='Retain small supported leaf patches by default.')
@@ -84,7 +84,7 @@ def main():
     print('Tree reconstruction points:',len(treepc.points),flush=True)
     treepc.estimate_normals(o3d.geometry.KDTreeSearchParamHybrid(radius=max(.06,args.voxel*3.5),max_nn=40))
     ids=read_source_ids(args.input);orientation='local tangent-plane consistency (sensor provenance unavailable)'
-    if ids is not None and len(ids)==len(p) and args.transforms.is_file():
+    if ids is not None and len(ids)==len(p) and args.transforms is not None and args.transforms.is_file():
         transforms=json.loads(args.transforms.read_text())['scans'];origins=np.array([s['sensor_to_merged'] for s in transforms])[:,:3,3]
         _,nearest=cKDTree(p).query(np.asarray(treepc.points),workers=2)
         rays=origins[ids[nearest]]-np.asarray(treepc.points);normals=np.asarray(treepc.normals)

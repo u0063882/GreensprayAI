@@ -22,12 +22,6 @@
       "url": "https://github.com/u0063882/GreensprayAI/releases/download/chandelier-v2/combined_by_recording_v2.zip",
       "bytes": 21863877,
       "sha256": "6efed7c8a76b0f988a6a66d8320b7b07a645ff038617e7f68809402f43254f2f"
-    },
-    {
-      "name": "processing_code_and_notes.zip",
-      "url": "https://github.com/u0063882/GreensprayAI/releases/download/chandelier-v2/processing_code_and_notes.zip",
-      "bytes": 26715,
-      "sha256": "6b4c833c303acf6c070e4089ff52f5c26a7cc31cfa0af1463ae9c51f7ce22a1a"
     }
   ],
   "mesh_build": {
@@ -35,9 +29,13 @@
     "input": "orchard_row_registered.ply",
     "voxel_m": 0.02,
     "mode": "closed shrink-wrap-style canopy proxy plus open observed surfaces",
-    "wrap_script": "processing/shrinkwrap.py",
+    "wrap_script": "run_meshing.py",
     "wrap_voxel_m": 0.025,
     "wrap_outward_offset_m": 0.04,
     "wrap_closing_radius_m": 0.05
+  },
+  "code_build": {
+    "asset": "processing_code_and_notes.zip",
+    "source": "git archive HEAD; current code and documentation"
   }
 }

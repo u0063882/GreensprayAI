@@ -18,7 +18,6 @@ def main():
     modes = parser.add_mutually_exclusive_group()
     modes.add_argument('--check-inputs-only', action='store_true')
     modes.add_argument('--export-only', action='store_true', help='Use existing work/decoded and work/registered/final_poses.npy.')
-    parser.add_argument('--mesh', action='store_true', help='Also reconstruct observed tree and ground surfaces.')
     args = parser.parse_args()
     (ROOT / 'work').mkdir(exist_ok=True)
     (ROOT / 'output').mkdir(exist_ok=True)
@@ -46,8 +45,6 @@ def main():
         if (ROOT / 'work/registered/final_poses.npy').exists():
             parser.error('A registration already exists. Use --export-only, or start with a fresh work directory for a full rerun.')
         stages = STAGES
-    if args.mesh:
-        stages = [*stages, 'mesh.py', 'shrinkwrap.py']
     env = os.environ.copy()
     env.setdefault('MPLCONFIGDIR', str(ROOT / 'work/mpl'))
     for stage in stages:

@@ -15,26 +15,50 @@ The archive contains two deliberately different representations in the same regi
 
 PLY preserves colour. STL has no unit metadata: its coordinates here are **metres**, as are all other files. Use the closed canopy alone when inspecting closed-solid topology; adding the ground sheet produces an open scene.
 
-## Reproduce
+## Mesh a point cloud alone
 
-Extract `orchard_row_registered.ply` and `scan_transforms.json` into `output/`:
+Registration and meshing are independent. The public interface is:
 
 ```sh
-python processing/mesh.py
-python processing/shrinkwrap.py --voxel 0.025 --offset 0.04 --closing-radius 0.05
-python tools/validate_mesh.py
-# Or include both mesh forms in a full/existing-registration pipeline:
-python run_pipeline.py --mesh
-python run_pipeline.py --export-only --mesh
+python -m pip install -r requirements-meshing.txt
+python run_meshing.py --input /path/to/cloud.ply --output-dir /path/to/mesh
 ```
 
-On minimal Ubuntu runners Open3D also needs `libegl1`, `libgl1` and `libgomp1`; the GitHub workflow installs these system libraries. Neither mesher needs raw PCAPs. GitHub Actions builds these outputs from checksummed registered clouds and publishes them in this repository's single **Current results** release.
+Run it from any working directory using an absolute path to `run_meshing.py`. It reads only the specified cloud and optional explicitly supplied files. No `work/`, cached decoded scans, poses, RTK, sensor calibration or previous mesh is needed. Registration never starts a mesher. The same entry point works with a MATLAB export or a cloud from another registration system.
+
+The input coordinates and frame are preserved. Lengths must be metres; STL has no units and uses float32 vertices, so PLY is preferable for clouds with large survey coordinates. The envelope wraps all supplied points, including any ground. There is no automatic row crop, tree identity assumption or ground-at-zero threshold. Filenames `canopy_wrap.*` are retained for compatibility but can represent any input cloud. Outputs include the mesh, a preview, a source-hashed quality report and a ZIP alongside the output directory. `--archive` changes the ZIP destination. Point formats supported by Open3D can be used; PLY is the tested interchange format.
+
+Optional metadata is passive JSON, for example:
+
+```json
+{"units":"m","coordinate_frame":"MATLAB orchard frame", "up_axis":"Z"}
+```
+
+`--metadata info.json` records this information without applying a transform. Non-metre metadata is rejected, rather than silently scaled. Normals, sensor origins and confidence may be useful for future backends; the present envelope uses XYZ only and does not interpret those fields. Colour currently illustrates input Z rather than calibrated reflectance.
+
+`--ground ground.ply` optionally excludes input points within `--ground-clearance 0.05` metres of/below a supplied Z-up terrain mesh, using nearest XY ground vertices. It then also exports the envelope with that ground mesh. This is an explicit, approximate 2.5-D terrain recipe; use it only where the terrain mesh covers the input footprint. It is not needed for the standalone mesher. To exclude ground without this approximation, supply an already segmented tree cloud.
+
+Controls: `--voxel`, `--offset`, `--closing-radius`, and `--min-volume`; all lengths are metres and the last is cubic metres. This prototype requires offset at least one voxel, and cannot yet compensate inflation with a negative offset. Dense grids are limited to 35 million voxels. See the [research and next backend design](shrinkwrap_research.md) for the controls still needed.
+
+## Reproduce the orchard demonstration
+
+Extract `orchard_row_registered.ply` and optionally `scan_transforms.json` into `output/`. The observed-surface helper remains a capture-specific Z-up orchard recipe, separate from the general meshing entry point:
+
+```sh
+python processing/mesh.py --transforms output/scan_transforms.json
+python run_meshing.py --input output/orchard_row_registered.ply --output-dir output/mesh --ground output/mesh/ground_surface.ply --include-observed --archive output/orchard_mesh.zip
+python tools/validate_mesh.py
+```
+
+Omit `--transforms` to estimate normal consistency from the cloud alone. Scanner transforms are optional provenance used only to orient observed-surface normals; they are neither required nor discovered automatically. `--include-observed` explicitly adds the known observed-surface files to the orchard ZIP. The general command never picks up those files just because they happen to be in its output folder.
+
+On minimal Ubuntu runners Open3D also needs `libegl1`, `libgl1` and `libgomp1`; the GitHub workflow installs these libraries. Meshing dependencies exclude the Ouster SDK and H5/GPS reader. The publication workflow consumes exported clouds, generates this explicit demonstration and publishes to **Current results**.
 
 ## Closed proxy: relation to Rhino 8 ShrinkWrap
 
 This is a **shrink-wrap-style approximation**, not Rhino code, a reverse-engineered proprietary implementation, or a validated numerical equivalent. It uses openly specified primitives:
 
-1. Rasterize above-ground observations on a 2.5 cm grid.
+1. Rasterize the supplied observations on a 2.5 cm grid (above-ground only when explicitly requested).
 2. Compute a Euclidean distance field and retain the 4 cm neighbourhood of the observations.
 3. Close gaps with a 5 cm-radius spherical structuring element and fill fully enclosed voids.
 4. Remove occupied components smaller than 0.0005 m³.
