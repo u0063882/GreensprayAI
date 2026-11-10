@@ -14,11 +14,11 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 | [orchard_row_result.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/orchard_row_result.zip) | Merged, ground-refined row: 1,242,944 measured points |
 | [separate_registered_scans.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/separate_registered_scans.zip) | 18 separate registered PLYs, one uniform RGB colour per recording |
 | [combined_by_recording.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/combined_by_recording.zip) | 1,746,622 points with overlaps preserved and recording colours |
-| [trunk_slice_diagnostics.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_diagnostics.zip) | Separate A/B circle fits and centres at six heights, per-candidate PNG/PDF, centre trajectories, JSON and CSV |
+| [trunk_slice_diagnostics.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_diagnostics.zip) | Separate A/B circle fits and centres at nine heights below 0.5 m, per-candidate PNG/PDF, centre trajectories, JSON and CSV |
 
 All clouds and meshes share one local metric frame. Load the separate PLYs together and enable RGB colours. The crop covers 7.1 m along the row and a 1.4 m ground strip. Current metadata lives directly in [`results/`](results/); large downloads use this repository's single active **Current results** release. Older Git/release history is retained as provenance.
 
-The [across-row check](docs/cross_row_quality.md) distinguishes opposite bark faces from fitted trunk-centre errors. [Thin-slice plots](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_fits.pdf) show independent circles/centres at six heights and centre drift with trunk lean. They flag possible residual offsets, but the current partial sections do not provide enough independent evidence for a global correction. The existing ground-refined poses are retained. The [mesh archive](docs/meshing.md) contains both supported open surface patches and a closed, voxel/SDF shrink-wrap-style canopy proxy. The proxy deliberately adds offset and fills gaps; neither output is a validated biological or CFD model.
+The [across-row check](docs/cross_row_quality.md) compares fitted trunk centres rather than opposite bark faces. [Thin-slice plots](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_fits.pdf) use nine heights wholly below 0.5 m and preserve visible trunk lean. A common sideways shift fails the held-out-candidate check, so the existing ground-refined poses are retained. The [mesh archive](docs/meshing.md) contains supported open surface patches and a closed voxel/SDF canopy proxy; the proxy adds offset and fills gaps, and is not validated as biological or CFD geometry.
 
 ![Current observed-surface mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/shrinkwrap_preview.png)
 
@@ -56,7 +56,7 @@ python run_meshing.py --input /path/to/trees.ply --output-dir /path/to/mesh
 
 Optional `--metadata metadata.json` records units and frame information without changing coordinates. Ground is included in the envelope unless explicitly excluded using an optional ground mesh; the general mesher does not assume that soil lies near Z=0. The defaults are the existing voxel/SDF prototype, not a validated Rhino equivalent.
 
-See [standalone meshing and the orchard release recipe](docs/meshing.md), and the [Rhino ShrinkWrap study, tested alternatives and proposed controls](docs/shrinkwrap_research.md). GitHub Actions separately builds the orchard demonstration from checksummed exported clouds and publishes its downloads to the same release.
+See [standalone meshing and the orchard release recipe](docs/meshing.md), the [Rhino ShrinkWrap study, tested alternatives and proposed controls](docs/shrinkwrap_research.md), and the [user's Rhino 8 reference settings](docs/rhino_reference.md). GitHub Actions separately builds the orchard demonstration from checksummed exported clouds and publishes its downloads to the same release.
 
 ## Registration and MATLAB
 

@@ -158,3 +158,7 @@ Measure both point-to-mesh coverage and mesh-to-point expansion, using spatial/a
 Validate closed boundaries, vertex manifoldness, orientation, self-intersections, connected components and genus. Track surface area and volume across nearby parameter choices and at least two spatial resolutions: a large change is evidence of model sensitivity. Record runtime and peak memory on real crops. The CGAL guarantees are valuable, but still check exported files and any subsequent remeshing, since those operations can invalidate a good backend result.
 
 The next implementation should provide **a small parameter comparison and quality report for the same point cloud**, not replace the current default because a single preview looks convincing. A user-supplied Rhino mesh with its settings would enable a true reference comparison; it is not required to continue building the independent meshing system.
+
+## Concrete Rhino baseline supplied after the study
+
+The user supplied screenshots with 15 mm target edges, −5 mm offset, one smoothing iteration, 50% optimization and point inflation enabled. A second dialog specifies a separate 75% mesh reduction. See the [reference interpretation](rhino_reference.md) and [saved settings](../presets/rhino8_reference.json). This supplies a practical target for controlled comparisons; it does not validate a mapping to the current voxel/SDF controls or establish an inflation-radius formula.

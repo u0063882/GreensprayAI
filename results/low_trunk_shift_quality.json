@@ -1,0 +1,106 @@
+{
+  "method": "Exploratory pure across-row translation of Side B; along/Z/rotations held fixed. One median per candidate, equal candidate weights. Leave-one-candidate-out validation.",
+  "proposal_policy": "Geometry gates retained. Broad acquisition-bootstrap intervals may inform the proposal but remain uncertain; acceptance also needs at least three strictly usable candidates.",
+  "alignment_ceiling_z_m": 0.5,
+  "candidates": [
+    {
+      "candidate": 1,
+      "along_m": 0.0609451922828225,
+      "median_delta_across_m": 0.04299339972865912,
+      "height_range_delta_across_m": [
+        0.02708347496938135,
+        0.0570231077066099
+      ],
+      "proposal_sections": 7,
+      "strict_usable_sections": 1,
+      "after_common_proposal_delta_m": -0.022286462297079757,
+      "held_out_delta_m": -0.029168634276252492
+    },
+    {
+      "candidate": 3,
+      "along_m": 1.6306475142800032,
+      "median_delta_across_m": 0.08321970252567179,
+      "height_range_delta_across_m": [
+        0.06363323285987033,
+        0.09377915303419182
+      ],
+      "proposal_sections": 5,
+      "strict_usable_sections": 0,
+      "after_common_proposal_delta_m": 0.017939840499932913,
+      "held_out_delta_m": 0.02482201247910565
+    },
+    {
+      "candidate": 4,
+      "along_m": 3.010392429627271,
+      "median_delta_across_m": 0.09821277222871605,
+      "height_range_delta_across_m": [
+        0.061444531412080394,
+        0.12550378222645486
+      ],
+      "proposal_sections": 9,
+      "strict_usable_sections": 2,
+      "after_common_proposal_delta_m": 0.03293291020297717,
+      "held_out_delta_m": 0.03981508218214991
+    },
+    {
+      "candidate": 5,
+      "along_m": 3.689612220059806,
+      "median_delta_across_m": 0.07216203400491161,
+      "height_range_delta_across_m": [
+        -0.010666275622176036,
+        0.08107478694385772
+      ],
+      "proposal_sections": 5,
+      "strict_usable_sections": 0,
+      "after_common_proposal_delta_m": 0.006882171979172735,
+      "held_out_delta_m": 0.01376434395834547
+    },
+    {
+      "candidate": 6,
+      "along_m": 4.545645679631107,
+      "median_delta_across_m": 0.05839769004656614,
+      "height_range_delta_across_m": [
+        0.031662294194216845,
+        0.08431994003341359
+      ],
+      "proposal_sections": 7,
+      "strict_usable_sections": 0,
+      "after_common_proposal_delta_m": -0.006882171979172735,
+      "held_out_delta_m": -0.01376434395834547
+    },
+    {
+      "candidate": 7,
+      "along_m": 5.947794759922218,
+      "median_delta_across_m": -0.005648356598543236,
+      "height_range_delta_across_m": [
+        -0.01314353160498305,
+        0.013646795365459097
+      ],
+      "proposal_sections": 7,
+      "strict_usable_sections": 0,
+      "after_common_proposal_delta_m": -0.07092821862428211,
+      "held_out_delta_m": -0.07781039060345485
+    }
+  ],
+  "proposed_side_B_dy_m": -0.06527986202573888,
+  "strict_usable_candidates": 2,
+  "validation": {
+    "before_candidate_rms_m": 0.06716801473953751,
+    "leave_one_candidate_out_rms_m": 0.0397608549398683,
+    "in_sample_rms_m": 0.03422630964826944,
+    "relative_held_out_improvement": 0.40803885459393174,
+    "worst_held_out_absolute_worsening_m": 0.07216203400491161
+  },
+  "passes_centre_diagnostics": false,
+  "automatic_correction_applied": false,
+  "limitations": [
+    "Candidate IDs are not validated tree identities. Non-circular stems and partial arcs can bias centres.",
+    "Overlapping slices and shared scans are correlated. This is transfer across candidate stems, not independent survey validation.",
+    "This diagnostic does not validate ground overlap or apply any transform. It cannot establish accuracy of a new registration."
+  ],
+  "rejection_reasons": [
+    "fewer than three distinct candidates pass the strict slice gates",
+    "at least one held-out candidate worsens by more than 1 cm"
+  ],
+  "decision": "reject common shift; retain existing registration"
+}

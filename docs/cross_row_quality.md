@@ -36,47 +36,50 @@ python processing/check_cross_row.py --scan-dir /path/to/extracted/scans
 
 A stronger correction should use several independent trunk sections at several heights, with consistent centre residuals, or common fixed targets/overlapping bark features visible from both sides. Current point-cloud transforms are retained while this remains unvalidated. Meshes inherit this registration uncertainty.
 
-## Thin slices at several heights
+## Thin slices below 0.5 m
 
-The new diagnostic fits **Side A and Side B separately in the same 6 cm-thick Z slices**, centred at Z=0.18, 0.35, 0.55, 0.75, 1.00 and 1.25 m. This avoids pooling 26 cm of a leaning stem into one section. Each side has an independent centre and radius at each height: there is no vertical-cylinder assumption, forced common centre or registration correction.
+Only low trunk sections are used for alignment diagnostics. The full extent of **every** slice must remain below Z=0.5 m; even a slice centred below that limit is rejected if its upper edge reaches it. Default centres are Z=0.14, 0.18, 0.22, 0.26, 0.30, 0.34, 0.38, 0.42 and 0.46 m, with thickness 6 cm. Thus the highest measured band ends at 0.49 m. Hanging branches above this limit cannot contribute to fits or the shift proposal.
 
-Finished plots and tables are in the same **Current results** release:
+The 2 cm overlap between adjacent slices is intentional for inspecting continuity. Slices are correlated and **never count as independent trees**. This restriction applies to alignment diagnostics only: the full-height point cloud remains available to independent meshing.
 
-- [All cross-sections: seven candidate rows × six height columns](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_fits.png).
+Each side has an independent circle centre and radius at each matched height. There is no vertical-cylinder assumption or forced common centre. Blue points/circles are Side A; orange is Side B. A **+** marks a fitted centre, and a black segment connects the two centres. Solid circles pass the diagnostic gates; dashed circles are uncertain. Uncertain comparisons have hollow markers on the height plot. All measured points in the candidate window remain visible, including clutter.
+
+Download from **Current results → Assets**:
+
+- [All low cross-sections: seven candidate rows × nine height columns](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_fits.png).
 - [Detailed candidate pages, PDF](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_fits.pdf).
-- [Example: candidate near X=3.01 m](https://github.com/u0063882/GreensprayAI/releases/download/current/candidate_04_slices.png).
-- [Centre position and B-minus-A displacement versus height](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_centres.png).
-- [Complete bundle: per-candidate PNGs, PDF, plots, JSON and CSV](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_diagnostics.zip).
+- [Example near X=3.01 m](https://github.com/u0063882/GreensprayAI/releases/download/current/candidate_04_slices.png).
+- [Centres and B-minus-A displacement versus height](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_centres.png).
+- [Trial common shift and held-out-candidate check](https://github.com/u0063882/GreensprayAI/releases/download/current/low_trunk_shift_check.png).
+- [Complete bundle: PNGs, PDF, reports and CSV](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_diagnostics.zip).
 
-Blue points/circles are Side A; orange is Side B. A **+** marks each fitted centre, and the black segment connects the two centres. Solid circles pass the diagnostic gates; dashed circles are uncertain. Uncertain centre comparisons are hollow on the height plot. The plots show all measured points in the selected candidate window, including clutter, so a poor model remains visible.
+XY positions are centimetres from each candidate's **fixed low-stem reference**. Equal XY scales and unchanged references across heights preserve visible lean. Centre-versus-height connecting lines guide the eye; they are not fitted trunk axes. Heights are absolute Z in the shared registered frame, approximately above ground, rather than independently normalized per side. Fixed windows are not validated trunk tracking; inclined/non-circular stems, root flare, weeds and support hardware can bias partial-view circular fits.
 
-XY positions are centimetres from a **fixed low-stem reference for each candidate**. The reference does not move between heights, and each candidate's cross-section panels use the same limits and equal aspect ratio. A leaning centre therefore moves across successive panels. The centre-versus-height figure separately plots the along and across positions for each side, plus the B−A across displacement and its 95% acquisition-bootstrap interval. Connecting lines only guide the eye; they are not fitted trunk axes.
+### Current low-slice result
 
-Heights are absolute Z in the shared registered frame, approximately above ground. They are not independently normalized to local ground on either side, which would accidentally compare different physical sections. The fixed candidate windows are not a validated trunk tracker: strong lean leaving the window, bifurcation, weeds and support hardware can invalidate the circle assumption. Horizontal cuts through inclined cylinders are generally elliptical, so partial-view circle fits can have model bias even with small residuals.
+Of 63 candidate-height sections, three pass all strict gates, from two distinct candidates: candidate 1 at Z=0.18 m, and candidate 4 at Z=0.18/0.26 m. Their B-minus-A across-centre differences are approximately +3.6, +8.7 and +8.4 cm respectively. Other sections remain useful to inspect but are uncertain, often because acquisition-bootstrap intervals are wide. Multiple heights on candidate 4 still represent one candidate, not multiple independent trees.
 
-### Result of the thin-slice check
+Gates include at least 30 points and two acquisitions per side, arc coverage >100°, condition <150, radial RMSE <18 mm, at least 55% radial inliers within 22 mm, no parameter at its search bound, radius agreement within 35 mm, and an across-centre bootstrap interval narrower than 40 mm. The 45-replicate bootstrap resamples acquisitions, not individual returns. Its intervals describe sensitivity conditional on the circle model; passing does not establish survey accuracy or prove that a single trunk was isolated.
 
-Of 42 candidate-height sections, three pass all gates, from only two distinct candidates:
+The [JSON](../results/trunk_slice_quality.json) and [CSV](../results/trunk_slice_centres.csv) retain absolute centres, radii, counts, conditioning, residuals, bootstrap intervals and each failure reason.
 
-| Candidate / base along X | Slice centre Z | Centre B−A along | Centre B−A across | Across bootstrap 95% interval |
-| --- | ---: | ---: | ---: | --- |
-| 1 / 0.06 m | 0.18 m | +2.5 cm | +3.6 cm | [+0.9, +4.7] cm |
-| 4 / 3.01 m | 0.18 m | −0.6 cm | +8.7 cm | [+7.3, +10.4] cm |
-| 4 / 3.01 m | 0.35 m | +0.5 cm | +11.4 cm | [+9.0, +12.7] cm |
+### Test of a common sideways correction
 
-These are fitted **centre differences**, not distances between opposite bark faces. Candidate 4 supports investigating a remaining across-row mismatch. Its two heights are still one candidate, not two independent trees. The higher circles frequently follow branches or mixed/cluttered sections and are marked uncertain. This does not establish a valid whole-row correction or a definitive lean angle.
+`assess_low_trunk_shift.py` tests a **pure across-row translation of Side B**, preserving along-row placement, height and rotation. Each candidate contributes one median across its geometry-qualified low slices. Wide bootstrap intervals can inform this exploratory proposal, but remain uncertain and cannot make it accepted. Candidates need at least two geometry-qualified slices; all geometry failures are retained as exclusions. This is not a fit of raw opposite bark surfaces onto each other.
 
-Gates include at least 30 points and two contributing acquisitions per side, arc coverage >100°, normal-equation condition <150, radial RMSE <18 mm, at least 55% radial inliers within 22 mm, no fitted parameter at the search bound, radius agreement within 35 mm, and an across-centre bootstrap interval narrower than 40 mm. The 45-replicate bootstrap resamples acquisitions, not individual correlated returns. It measures acquisition sensitivity conditional on the model; neither the interval nor passing these gates proves a single circular trunk was isolated.
+The proposal is −6.53 cm across. It reduces in-sample candidate-centre RMS from 6.72 to 3.42 cm. Leaving each candidate out of estimation gives RMS 3.98 cm, but the held-out far-end candidate worsens by 7.22 cm. For the single shared proposal, that candidate's centre difference moves from −0.56 to −7.09 cm. In addition, only two distinct candidates pass the strict slice gates. **The common shift is rejected and has not been applied.** These results describe the fitted centres, not independent physical error measurements.
 
-The [full JSON snapshot](../results/trunk_slice_quality.json) and [CSV](../results/trunk_slice_centres.csv) include absolute centres and radii, sample counts, arc coverage, conditioning, residuals and the individual uncertainty reasons. No point cloud, registration transform or mesh was modified.
+Acceptance requires at least three strictly usable candidates, at least 20% improvement in leave-one-candidate-out RMS, no held-out candidate worsening by over 1 cm, and translation within 15 cm. Passing would still require validation against the actual cloud and ground geometry before applying a correction. The present result does not pass; no points, poses or meshes have changed.
+
+[Shift report](../results/low_trunk_shift_quality.json). The variation along the row supports investigating individual recording poses with joint low-stem/ground constraints, or verifying candidate identities and circular-model bias, rather than translating an entire side from a few selected sections.
 
 ```sh
 python processing/check_cross_row.py --scan-dir /path/to/extracted/scans
 python processing/plot_trunk_slices.py --scan-dir /path/to/extracted/scans --candidate-report output/cross_row_quality.json
-# Optional different sampling:
-python processing/plot_trunk_slices.py --scan-dir /path/to/extracted/scans --candidate-report output/cross_row_quality.json --heights 0.15 0.25 0.35 0.45 0.60 --thickness 0.04
+# Custom low bands, still wholly below 0.5 m:
+python processing/plot_trunk_slices.py --scan-dir /path/to/extracted/scans --candidate-report output/cross_row_quality.json --heights 0.15 0.25 0.35 0.45 --thickness 0.04
 ```
 
-Outputs go to `output/trunk_slices/` and `output/trunk_slice_diagnostics.zip`. These diagnostics also run after the capture-specific registration/export command, and the release workflow reproduces them directly from the exported registered scans.
+Outputs go to `output/trunk_slices/` and `output/trunk_slice_diagnostics.zip`. The registration/export command and release workflow also produce these diagnostics from registered scans, independently of meshing.
 
-![Independent circles and estimated centres at six heights, candidate 4](https://github.com/u0063882/GreensprayAI/releases/download/current/candidate_04_slices.png)
+![Low-trunk common-shift test](https://github.com/u0063882/GreensprayAI/releases/download/current/low_trunk_shift_check.png)

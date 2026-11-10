@@ -22,11 +22,24 @@ from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.lines import Line2D
 try:
     from .check_cross_row import circle_fit
+    from .assess_low_trunk_shift import write_shift_report
 except ImportError:
     from check_cross_row import circle_fit
+    from assess_low_trunk_shift import write_shift_report
 
 COLOURS = {'A': '#1673b1', 'B': '#e57b1f'}
 MIN_POINTS = 30
+ALIGNMENT_CEILING_M = .5
+DEFAULT_HEIGHTS = [.14, .18, .22, .26, .30, .34, .38, .42, .46]
+
+
+def validate_alignment_slices(heights, thickness):
+    """Reject a band crossing the ceiling, even if its centre is below it."""
+    heights = np.asarray(heights, dtype=float)
+    if len(heights) < 2 or not np.isfinite(heights).all() or not np.isfinite(thickness) or thickness <= 0:
+        raise ValueError('Need at least two finite heights and positive thickness.')
+    if np.any(heights+thickness/2 >= ALIGNMENT_CEILING_M):
+        raise ValueError('Every full alignment slice must lie below Z=0.5 m; lower its centre or thickness.')
 
 
 def fit_side(points, acquisition, initial):
@@ -169,13 +182,16 @@ def main():
     parser.add_argument('--scan-dir', type=Path, required=True)
     parser.add_argument('--candidate-report', type=Path, default=Path('results/cross_row_quality.json'))
     parser.add_argument('--output-dir', type=Path, default=Path('output/trunk_slices'))
-    parser.add_argument('--heights', type=float, nargs='+', default=[.18,.35,.55,.75,1.,1.25])
+    parser.add_argument('--heights', type=float, nargs='+', default=DEFAULT_HEIGHTS)
     parser.add_argument('--thickness', type=float, default=.06)
     parser.add_argument('--bootstrap', type=int, default=45)
     args = parser.parse_args()
     heights = np.array(sorted(set(args.heights)))
-    if not np.isfinite(heights).all() or len(heights) < 2 or not np.isfinite(args.thickness) or args.thickness <= 0 or args.bootstrap < 25:
-        parser.error('Need at least two finite heights, positive slice thickness, and at least 25 bootstrap replicates.')
+    try:
+        validate_alignment_slices(heights, args.thickness)
+    except ValueError as error:
+        parser.error(str(error))
+    if args.bootstrap < 25: parser.error('Need at least 25 bootstrap replicates.')
     files = sorted(args.scan_dir.glob('scan_*_registered.ply'))
     if len(files) != 18 or not all(('sideA' if i < 9 else 'sideB') in p.name for i,p in enumerate(files)):
         parser.error('Expected 18 registered scan PLYs, nine Side A followed by nine Side B.')
@@ -201,6 +217,8 @@ def main():
     report=dict(coordinates='Input registered frame: X along row, Y across row, Z up; metres',
                 height_definition='Absolute Z in the shared frame, approximately above ground; not separately normalized per side or to local terrain.',
                 heights_z_m=heights.tolist(),slice_thickness_m=args.thickness,bootstrap_replicates=args.bootstrap,
+                alignment_ceiling_z_m=ALIGNMENT_CEILING_M,
+                height_sampling_note='Default slices overlap by 2 cm; they are correlated and are never counted as independent trunks.',
                 bootstrap_seed=321,input_scans=manifest,candidate_report_sha256=hashlib.sha256(args.candidate_report.read_bytes()).hexdigest(),
                 candidate_reference=[{k:c[k] for k in ['candidate','along_m','across_m']} for c in candidates],
                 usable_comparisons=sum(r['usable_comparison'] for r in records),total_sections=len(records),
@@ -226,8 +244,8 @@ def main():
         for dim,name in enumerate(['along','across']):
             for i,end in enumerate(['low','high']):row[name+'_ci95_'+end+'_m']=r['delta_ci95_m'][i][dim] if r['delta_ci95_m'] is not None else None
         flat.append(row)
-    with (out/'trunk_slice_centres.csv').open('w') as stream:
-        writer=csv.DictWriter(stream,fieldnames=list(flat[0]));writer.writeheader();writer.writerows(flat)
+    with (out/'trunk_slice_centres.csv').open('w',newline='') as stream:
+        writer=csv.DictWriter(stream,fieldnames=list(flat[0]),lineterminator='\n');writer.writeheader();writer.writerows(flat)
     fig,axes=plt.subplots(len(panels),len(heights),figsize=(3.3*len(heights),3.4*len(panels)),squeeze=False)
     for row,(candidate,cells) in enumerate(panels):
         seed=[candidate['along_m'],candidate['across_m']]
@@ -247,8 +265,10 @@ def main():
             fig.suptitle(f"Candidate {candidate['candidate']} · base X={candidate['along_m']:.2f}, Y={candidate['across_m']:.2f} m\nBlue: Side A; orange: Side B; +: estimated centre; dashed: uncertain",fontsize=13)
             fig.tight_layout(rect=(0,0,1,.94));fig.savefig(out/f"candidate_{candidate['candidate']:02d}_slices.png",dpi=170);pdf.savefig(fig);plt.close(fig)
     plot_centres(panels,by_candidate,out)
-    (out/'README.txt').write_text('TRUNK CROSS-SECTIONS AT MATCHED HEIGHTS\n\nBlue=Side A, orange=Side B; crosses=circle centres; connecting lines show B-minus-A displacement.\nCircles are fitted independently at every height. Dashed circles/hollow centre markers are uncertain.\nHeights are absolute Z in the common registered frame; 6 cm slices by default.\nXY plots are centimetres from each candidate\'s FIXED low-stem reference, so lean remains visible.\nSee the per-candidate PNGs or seven-page PDF for detail, and centre-versus-height PNG for trends.\nJSON/CSV record absolute coordinates, radius, quality gates and acquisition-bootstrap intervals.\nNo registration or point-cloud coordinates were changed. Candidates are not confirmed tree identities.\n')
-    names=['trunk_slice_fits.png','trunk_slice_fits.pdf','trunk_slice_centres.png','trunk_slice_quality.json','trunk_slice_centres.csv','README.txt']+[f"candidate_{c['candidate']:02d}_slices.png" for c in candidates]
+    (out/'README.txt').write_text('TRUNK CROSS-SECTIONS AT MATCHED LOW HEIGHTS\n\nBlue=Side A, orange=Side B; crosses=circle centres; connecting lines show B-minus-A displacement.\nCircles are fitted independently at every height. Dashed circles/hollow centre markers are uncertain.\nHeights are absolute Z in the common registered frame; all complete slices are below 0.5 m.\n'+f"Slice centres: {', '.join(f'{h:.2f}' for h in heights)} m; thickness {args.thickness:g} m.\n"+'Overlapping slices are correlated and do not count as independent trunks.\nXY plots are centimetres from each candidate\'s FIXED low-stem reference, so lean remains visible.\nSee per-candidate PNGs/PDF and centre-versus-height PNG.\nJSON/CSV record absolute coordinates, radius, quality gates and acquisition-bootstrap intervals.\nlow_trunk_shift_check.png and JSON: exploratory common-shift test, not an applied correction.\nNo registration or point-cloud coordinates were changed. Candidates are not confirmed tree identities.\n')
+    shift_report=write_shift_report(report,out)
+    print('Common-shift decision:',shift_report['decision'],flush=True)
+    names=['trunk_slice_fits.png','trunk_slice_fits.pdf','trunk_slice_centres.png','trunk_slice_quality.json','trunk_slice_centres.csv','low_trunk_shift_check.png','low_trunk_shift_quality.json','README.txt']+[f"candidate_{c['candidate']:02d}_slices.png" for c in candidates]
     archive=out.parent/'trunk_slice_diagnostics.zip'
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
         for name in names:z.write(out/name,name)

@@ -2,15 +2,20 @@
   "coordinates": "Input registered frame: X along row, Y across row, Z up; metres",
   "height_definition": "Absolute Z in the shared frame, approximately above ground; not separately normalized per side or to local terrain.",
   "heights_z_m": [
+    0.14,
     0.18,
-    0.35,
-    0.55,
-    0.75,
-    1.0,
-    1.25
+    0.22,
+    0.26,
+    0.3,
+    0.34,
+    0.38,
+    0.42,
+    0.46
   ],
   "slice_thickness_m": 0.06,
   "bootstrap_replicates": 45,
+  "alignment_ceiling_z_m": 0.5,
+  "height_sampling_note": "Default slices overlap by 2 cm; they are correlated and are never counted as independent trunks.",
   "bootstrap_seed": 321,
   "input_scans": [
     {
@@ -125,7 +130,7 @@
     }
   ],
   "usable_comparisons": 3,
-  "total_sections": 42,
+  "total_sections": 63,
   "usable_candidates": [
     1,
     4
@@ -151,6 +156,71 @@
   ],
   "automatic_correction_applied": false,
   "sections": [
+    {
+      "height_z_m": 0.14,
+      "z_low_m": 0.11000000000000001,
+      "z_high_m": 0.17,
+      "roi_centre_m": [
+        0.0609451922828225,
+        2.149878328737406
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          0.04819245873859041,
+          2.1572948189305556
+        ],
+        "radius_m": 0.09784029197572772,
+        "radial_rmse_m": 0.007442436808990739,
+        "arc_deg": 292.3202218299123,
+        "condition": 17.50195594218128,
+        "input_points": 222,
+        "inlier_points": 198,
+        "inlier_fraction": 0.8918918918918919,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          0.06231113283287017,
+          2.194884107261111
+        ],
+        "radius_m": 0.07766678201287514,
+        "radial_rmse_m": 0.011545296449067556,
+        "arc_deg": 293.6835265130775,
+        "condition": 7.719375385626657,
+        "input_points": 217,
+        "inlier_points": 166,
+        "inlier_fraction": 0.7649769585253456,
+        "acquisitions": 3,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 222,
+      "points_B": 217,
+      "centre_delta_along_m": 0.014118674094279755,
+      "centre_delta_across_m": 0.037589288330555526,
+      "delta_ci95_m": [
+        [
+          -0.003618176634991241,
+          -0.051897951705062215
+        ],
+        [
+          0.03773056584636202,
+          0.042393951307128926
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 1
+    },
     {
       "height_z_m": 0.18,
       "z_low_m": 0.15,
@@ -201,12 +271,12 @@
       "centre_delta_across_m": 0.03594582914848843,
       "delta_ci95_m": [
         [
-          -0.004526532513218305,
-          0.009399762267756762
+          -0.006877650207038113,
+          0.01689510357100641
         ],
         [
-          0.041114631037294964,
-          0.04683209025915977
+          0.03767982625113926,
+          0.05032630878758959
         ]
       ],
       "bootstrap_successes": 45,
@@ -215,9 +285,9 @@
       "candidate": 1
     },
     {
-      "height_z_m": 0.35,
-      "z_low_m": 0.31999999999999995,
-      "z_high_m": 0.38,
+      "height_z_m": 0.22,
+      "z_low_m": 0.19,
+      "z_high_m": 0.25,
       "roi_centre_m": [
         0.0609451922828225,
         2.149878328737406
@@ -228,48 +298,48 @@
       ],
       "side_A": {
         "centre_m": [
-          0.0850919804502915,
-          2.125348664959958
+          0.06495918430975794,
+          2.137268905697782
         ],
-        "radius_m": 0.104545789643592,
-        "radial_rmse_m": 0.011006067459253201,
-        "arc_deg": 223.40693796938672,
-        "condition": 59.01374424742954,
-        "input_points": 95,
-        "inlier_points": 72,
-        "inlier_fraction": 0.7578947368421053,
+        "radius_m": 0.08256551069474585,
+        "radial_rmse_m": 0.008836897419702557,
+        "arc_deg": 295.5554242824501,
+        "condition": 12.93560770212465,
+        "input_points": 142,
+        "inlier_points": 133,
+        "inlier_fraction": 0.9366197183098591,
         "acquisitions": 4,
         "touches_bound": false,
         "issues": []
       },
       "side_B": {
         "centre_m": [
-          0.08976430711323903,
-          2.1539833669138666
+          0.07773046653503196,
+          2.180262305426441
         ],
-        "radius_m": 0.07447182824769112,
-        "radial_rmse_m": 0.010396920345388992,
-        "arc_deg": 271.15113014821486,
-        "condition": 9.60209032594083,
-        "input_points": 174,
-        "inlier_points": 144,
-        "inlier_fraction": 0.8275862068965517,
+        "radius_m": 0.07735508164770255,
+        "radial_rmse_m": 0.01122132258094856,
+        "arc_deg": 289.8767754034496,
+        "condition": 6.6275825640313375,
+        "input_points": 185,
+        "inlier_points": 153,
+        "inlier_fraction": 0.827027027027027,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
-      "points_A": 95,
-      "points_B": 174,
-      "centre_delta_along_m": 0.004672326662947535,
-      "centre_delta_across_m": 0.028634701953908603,
+      "points_A": 142,
+      "points_B": 185,
+      "centre_delta_along_m": 0.012771282225274017,
+      "centre_delta_across_m": 0.04299339972865912,
       "delta_ci95_m": [
         [
-          -0.06153575806704602,
-          -0.04825483578689536
+          -0.022629015501019884,
+          0.013450075973394426
         ],
         [
-          0.12253041216670706,
-          0.10574187541504977
+          0.03491726684267679,
+          0.06150253479216916
         ]
       ],
       "bootstrap_successes": 45,
@@ -280,9 +350,9 @@
       "candidate": 1
     },
     {
-      "height_z_m": 0.55,
-      "z_low_m": 0.52,
-      "z_high_m": 0.5800000000000001,
+      "height_z_m": 0.26,
+      "z_low_m": 0.23,
+      "z_high_m": 0.29000000000000004,
       "roi_centre_m": [
         0.0609451922828225,
         2.149878328737406
@@ -293,65 +363,61 @@
       ],
       "side_A": {
         "centre_m": [
-          0.18051709092911028,
-          1.9607494507293342
+          0.07029039975448595,
+          2.131343393270002
         ],
-        "radius_m": 0.07660616314709039,
-        "radial_rmse_m": 0.011165364624896463,
-        "arc_deg": 305.16813314903777,
-        "condition": 3.6972100640238006,
-        "input_points": 198,
-        "inlier_points": 107,
-        "inlier_fraction": 0.5404040404040404,
+        "radius_m": 0.08552724648116089,
+        "radial_rmse_m": 0.010751852732017085,
+        "arc_deg": 298.1546452668376,
+        "condition": 6.899523503076379,
+        "input_points": 142,
+        "inlier_points": 130,
+        "inlier_fraction": 0.9154929577464789,
         "acquisitions": 4,
         "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          0.10235171852240037,
-          2.044444883331415
+          0.07486131177691357,
+          2.1819071861093
         ],
-        "radius_m": 0.14024065895093443,
-        "radial_rmse_m": 0.010738603599111543,
-        "arc_deg": 205.2872444762477,
-        "condition": 24.051065719558835,
-        "input_points": 231,
-        "inlier_points": 150,
-        "inlier_fraction": 0.6493506493506493,
+        "radius_m": 0.06930850921621207,
+        "radial_rmse_m": 0.010945134717133015,
+        "arc_deg": 262.0604004582598,
+        "condition": 9.668798573660913,
+        "input_points": 156,
+        "inlier_points": 130,
+        "inlier_fraction": 0.8333333333333334,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
-      "points_A": 198,
-      "points_B": 231,
-      "centre_delta_along_m": -0.07816537240670991,
-      "centre_delta_across_m": 0.0836954326020809,
+      "points_A": 142,
+      "points_B": 156,
+      "centre_delta_along_m": 0.004570912022427626,
+      "centre_delta_across_m": 0.05056379283929768,
       "delta_ci95_m": [
         [
-          -0.09908210073157846,
-          -0.028076915378306432
+          -0.010321325019005297,
+          0.02964365919216654
         ],
         [
-          0.03619375285548723,
-          0.09699116959571642
+          0.030238202899340587,
+          0.08310469537130352
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
-        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 1
     },
     {
-      "height_z_m": 0.75,
-      "z_low_m": 0.72,
-      "z_high_m": 0.78,
+      "height_z_m": 0.3,
+      "z_low_m": 0.27,
+      "z_high_m": 0.32999999999999996,
       "roi_centre_m": [
         0.0609451922828225,
         2.149878328737406
@@ -362,68 +428,61 @@
       ],
       "side_A": {
         "centre_m": [
-          -0.00066859651183185,
-          2.029258172921551
+          0.07751251741249222,
+          2.110936033342153
         ],
-        "radius_m": 0.13044110566512318,
-        "radial_rmse_m": 0.011180264995418819,
-        "arc_deg": 301.3277526277518,
-        "condition": 5.298393248777097,
-        "input_points": 275,
-        "inlier_points": 105,
-        "inlier_fraction": 0.38181818181818183,
+        "radius_m": 0.08229653360004584,
+        "radial_rmse_m": 0.009704128048252136,
+        "arc_deg": 220.1138631837568,
+        "condition": 10.914764900329583,
+        "input_points": 113,
+        "inlier_points": 100,
+        "inlier_fraction": 0.8849557522123894,
         "acquisitions": 4,
         "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          0.03758304840344086,
-          2.0647379761446683
+          0.08929404116735663,
+          2.1595615498831084
         ],
-        "radius_m": 0.17180002195374114,
-        "radial_rmse_m": 0.011639925600097268,
-        "arc_deg": 240.115897158266,
-        "condition": 4.5092574938512024,
-        "input_points": 693,
-        "inlier_points": 185,
-        "inlier_fraction": 0.26695526695526695,
+        "radius_m": 0.08006989718476937,
+        "radial_rmse_m": 0.009637943383549655,
+        "arc_deg": 278.9041239481909,
+        "condition": 18.321109056831435,
+        "input_points": 140,
+        "inlier_points": 114,
+        "inlier_fraction": 0.8142857142857143,
         "acquisitions": 3,
         "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
+        "issues": []
       },
-      "points_A": 275,
-      "points_B": 693,
-      "centre_delta_along_m": 0.038251644915272706,
-      "centre_delta_across_m": 0.03547980322311739,
+      "points_A": 113,
+      "points_B": 140,
+      "centre_delta_along_m": 0.01178152375486441,
+      "centre_delta_across_m": 0.04862551654095526,
       "delta_ci95_m": [
         [
-          -0.07537754185304579,
-          -0.02213951170289219
+          -0.009281633671385995,
+          0.03355350307775255
         ],
         [
-          0.09218944992320219,
-          0.12638986744664818
+          0.021524319015340746,
+          0.08249766795063164
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
-        "B: mixed/cluttered section",
-        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 1
     },
     {
-      "height_z_m": 1.0,
-      "z_low_m": 0.97,
-      "z_high_m": 1.03,
+      "height_z_m": 0.34,
+      "z_low_m": 0.31000000000000005,
+      "z_high_m": 0.37,
       "roi_centre_m": [
         0.0609451922828225,
         2.149878328737406
@@ -434,64 +493,61 @@
       ],
       "side_A": {
         "centre_m": [
-          0.10002262026234517,
-          2.0618183181692076
+          0.08626785476406484,
+          2.127150867327984
         ],
-        "radius_m": 0.16877396945874365,
-        "radial_rmse_m": 0.01022302187040591,
-        "arc_deg": 250.24439622762918,
-        "condition": 11.435871346297317,
+        "radius_m": 0.10360856591654329,
+        "radial_rmse_m": 0.01071277314637002,
+        "arc_deg": 235.45548720036982,
+        "condition": 54.343757315371995,
+        "input_points": 102,
+        "inlier_points": 81,
+        "inlier_fraction": 0.7941176470588235,
+        "acquisitions": 4,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          0.08910929894401863,
+          2.1542343422973653
+        ],
+        "radius_m": 0.07489704329831251,
+        "radial_rmse_m": 0.010638935196690812,
+        "arc_deg": 268.45926422723016,
+        "condition": 9.728784820906752,
         "input_points": 172,
-        "inlier_points": 101,
-        "inlier_fraction": 0.5872093023255814,
-        "acquisitions": 4,
+        "inlier_points": 140,
+        "inlier_fraction": 0.813953488372093,
+        "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
-      "side_B": {
-        "centre_m": [
-          0.026330540686788143,
-          2.2625690142763237
-        ],
-        "radius_m": 0.17770824011825043,
-        "radial_rmse_m": 0.010875211373137994,
-        "arc_deg": 287.370523478021,
-        "condition": 3.569384026062462,
-        "input_points": 498,
-        "inlier_points": 185,
-        "inlier_fraction": 0.3714859437751004,
-        "acquisitions": 3,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "points_A": 172,
-      "points_B": 498,
-      "centre_delta_along_m": -0.07369207957555703,
-      "centre_delta_across_m": 0.20075069610711616,
+      "points_A": 102,
+      "points_B": 172,
+      "centre_delta_along_m": 0.0028414441799537865,
+      "centre_delta_across_m": 0.02708347496938135,
       "delta_ci95_m": [
         [
-          -0.12861765084359839,
-          0.11311301984301285
+          -0.056756029001484715,
+          -0.04516897351544164
         ],
         [
-          -0.010375468571820532,
-          0.20245340488538313
+          0.11009335858440744,
+          0.08813658034120427
         ]
       ],
-      "bootstrap_successes": 42,
+      "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "B: mixed/cluttered section",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 1
     },
     {
-      "height_z_m": 1.25,
-      "z_low_m": 1.22,
-      "z_high_m": 1.28,
+      "height_z_m": 0.38,
+      "z_low_m": 0.35,
+      "z_high_m": 0.41000000000000003,
       "roi_centre_m": [
         0.0609451922828225,
         2.149878328737406
@@ -502,65 +558,271 @@
       ],
       "side_A": {
         "centre_m": [
-          0.05518219614040672,
-          2.062401791263567
+          0.0815361671226412,
+          2.090115797880982
         ],
-        "radius_m": 0.17999999999999292,
-        "radial_rmse_m": 0.010455644828281846,
-        "arc_deg": 151.63447199448584,
-        "condition": 56.07643121096462,
-        "input_points": 54,
-        "inlier_points": 27,
-        "inlier_fraction": 0.5,
+        "radius_m": 0.08370284458336051,
+        "radial_rmse_m": 0.010615616197277387,
+        "arc_deg": 231.2504379239906,
+        "condition": 22.57315591294776,
+        "input_points": 83,
+        "inlier_points": 52,
+        "inlier_fraction": 0.6265060240963856,
+        "acquisitions": 4,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          0.08968778119184201,
+          2.147138905587592
+        ],
+        "radius_m": 0.07438607632418726,
+        "radial_rmse_m": 0.010583087233036253,
+        "arc_deg": 235.27076315439243,
+        "condition": 12.371896018214207,
+        "input_points": 135,
+        "inlier_points": 116,
+        "inlier_fraction": 0.8592592592592593,
+        "acquisitions": 3,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 83,
+      "points_B": 135,
+      "centre_delta_along_m": 0.008151614069200813,
+      "centre_delta_across_m": 0.0570231077066099,
+      "delta_ci95_m": [
+        [
+          -0.1042843106555881,
+          -0.018783822842655028
+        ],
+        [
+          0.13581947468596778,
+          0.11672121369955098
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 1
+    },
+    {
+      "height_z_m": 0.42,
+      "z_low_m": 0.39,
+      "z_high_m": 0.44999999999999996,
+      "roi_centre_m": [
+        0.0609451922828225,
+        2.149878328737406
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          0.10012197067379296,
+          2.048973448556029
+        ],
+        "radius_m": 0.09430382462351328,
+        "radial_rmse_m": 0.008377893090814267,
+        "arc_deg": 267.1934246800396,
+        "condition": 24.76128803255639,
+        "input_points": 88,
+        "inlier_points": 46,
+        "inlier_fraction": 0.5227272727272727,
+        "acquisitions": 4,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "side_B": {
+        "centre_m": [
+          0.11519546572367798,
+          2.073544119564296
+        ],
+        "radius_m": 0.13518325247996835,
+        "radial_rmse_m": 0.010313152839390008,
+        "arc_deg": 210.12595771660256,
+        "condition": 16.700471425865747,
+        "input_points": 179,
+        "inlier_points": 107,
+        "inlier_fraction": 0.5977653631284916,
+        "acquisitions": 3,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 88,
+      "points_B": 179,
+      "centre_delta_along_m": 0.015073495049885019,
+      "centre_delta_across_m": 0.02457067100826693,
+      "delta_ci95_m": [
+        [
+          -0.18704603038814016,
+          -0.09833284758759606
+        ],
+        [
+          0.03796626030017603,
+          0.13877072506600927
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "A: mixed/cluttered section",
+        "side radii disagree by at least 3.5 cm",
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 1
+    },
+    {
+      "height_z_m": 0.46,
+      "z_low_m": 0.43000000000000005,
+      "z_high_m": 0.49,
+      "roi_centre_m": [
+        0.0609451922828225,
+        2.149878328737406
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          0.17408407699695805,
+          2.112592691049935
+        ],
+        "radius_m": 0.17999999999999997,
+        "radial_rmse_m": 0.011431851594871992,
+        "arc_deg": 95.92803201465665,
+        "condition": 290.79998450262525,
+        "input_points": 120,
+        "inlier_points": 59,
+        "inlier_fraction": 0.49166666666666664,
         "acquisitions": 4,
         "touches_bound": true,
         "issues": [
+          "short observed arc",
+          "ill-conditioned circle",
           "mixed/cluttered section",
           "fit reaches search bound"
         ]
       },
       "side_B": {
         "centre_m": [
-          0.1186116658891291,
-          2.1630964469468323
+          0.11236689987363808,
+          2.0594489408291734
         ],
-        "radius_m": 0.14203862001814688,
-        "radial_rmse_m": 0.012670698455923753,
-        "arc_deg": 293.1113054448527,
-        "condition": 5.821614897714917,
-        "input_points": 630,
-        "inlier_points": 233,
-        "inlier_fraction": 0.36984126984126986,
+        "radius_m": 0.1324384527435506,
+        "radial_rmse_m": 0.011900820081821084,
+        "arc_deg": 199.361164558048,
+        "condition": 19.856755774567066,
+        "input_points": 207,
+        "inlier_points": 116,
+        "inlier_fraction": 0.5603864734299517,
         "acquisitions": 3,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 120,
+      "points_B": 207,
+      "centre_delta_along_m": -0.06171717712331996,
+      "centre_delta_across_m": -0.053143750220761454,
+      "delta_ci95_m": [
+        [
+          -0.16170974941902214,
+          -0.10025001387880077
+        ],
+        [
+          -0.008025893372025797,
+          0.14405518250004273
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "A: short observed arc",
+        "A: ill-conditioned circle",
+        "A: mixed/cluttered section",
+        "A: fit reaches search bound",
+        "side radii disagree by at least 3.5 cm",
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 1
+    },
+    {
+      "height_z_m": 0.14,
+      "z_low_m": 0.11000000000000001,
+      "z_high_m": 0.17,
+      "roi_centre_m": [
+        1.0496284599859753,
+        2.0076759036864416
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          1.0292129230715839,
+          2.0486115812415417
+        ],
+        "radius_m": 0.1340751883023817,
+        "radial_rmse_m": 0.011569787190238436,
+        "arc_deg": 317.06150686798634,
+        "condition": 5.617258541141269,
+        "input_points": 587,
+        "inlier_points": 211,
+        "inlier_fraction": 0.3594548551959114,
+        "acquisitions": 6,
         "touches_bound": false,
         "issues": [
           "mixed/cluttered section"
         ]
       },
-      "points_A": 54,
-      "points_B": 630,
-      "centre_delta_along_m": 0.06342946974872238,
-      "centre_delta_across_m": 0.1006946556832653,
+      "side_B": {
+        "centre_m": [
+          1.0326038921158966,
+          1.9309759364508199
+        ],
+        "radius_m": 0.11581634035455499,
+        "radial_rmse_m": 0.012485106073999004,
+        "arc_deg": 332.9016814014634,
+        "condition": 5.193598927960018,
+        "input_points": 316,
+        "inlier_points": 156,
+        "inlier_fraction": 0.4936708860759494,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "points_A": 587,
+      "points_B": 316,
+      "centre_delta_along_m": 0.003390969044312797,
+      "centre_delta_across_m": -0.11763564479072186,
       "delta_ci95_m": [
         [
-          -0.020026627158330736,
-          0.05903232436547684
+          -0.030661053399943138,
+          -0.13652869126453168
         ],
         [
-          0.11190339605943395,
-          0.1804216103207874
+          0.049223382062028635,
+          -0.07571176739606843
         ]
       ],
-      "bootstrap_successes": 36,
+      "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
         "A: mixed/cluttered section",
-        "A: fit reaches search bound",
         "B: mixed/cluttered section",
-        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
-      "candidate": 1
+      "candidate": 2
     },
     {
       "height_z_m": 0.18,
@@ -616,12 +878,12 @@
       "centre_delta_across_m": -0.1016813675343915,
       "delta_ci95_m": [
         [
-          -0.050373967826239326,
-          -0.12123248183665569
+          -0.05047523596624233,
+          -0.11917734593491132
         ],
         [
-          0.0011873715459281174,
-          -0.07382673329023608
+          0.01007595490851802,
+          -0.045935079330783404
         ]
       ],
       "bootstrap_successes": 45,
@@ -634,9 +896,9 @@
       "candidate": 2
     },
     {
-      "height_z_m": 0.35,
-      "z_low_m": 0.31999999999999995,
-      "z_high_m": 0.38,
+      "height_z_m": 0.22,
+      "z_low_m": 0.19,
+      "z_high_m": 0.25,
       "roi_centre_m": [
         1.0496284599859753,
         2.0076759036864416
@@ -647,50 +909,336 @@
       ],
       "side_A": {
         "centre_m": [
-          1.076003687435319,
-          1.9707245090799899
+          1.0626490391153784,
+          2.0317545095115706
         ],
-        "radius_m": 0.12260873798795933,
-        "radial_rmse_m": 0.012727842220708007,
-        "arc_deg": 282.7931456944019,
-        "condition": 4.4209457358436905,
-        "input_points": 303,
-        "inlier_points": 170,
-        "inlier_fraction": 0.5610561056105611,
+        "radius_m": 0.12234414722427389,
+        "radial_rmse_m": 0.012010980488493887,
+        "arc_deg": 333.7379330079632,
+        "condition": 6.3011315721619185,
+        "input_points": 535,
+        "inlier_points": 196,
+        "inlier_fraction": 0.3663551401869159,
         "acquisitions": 6,
         "touches_bound": false,
-        "issues": []
+        "issues": [
+          "mixed/cluttered section"
+        ]
       },
       "side_B": {
         "centre_m": [
-          1.079942519073865,
-          2.0897865605117287
+          1.04485930643275,
+          1.966708164741514
         ],
-        "radius_m": 0.1247574558396808,
-        "radial_rmse_m": 0.011753376796251096,
-        "arc_deg": 259.7572122957723,
-        "condition": 4.042704418632119,
-        "input_points": 420,
-        "inlier_points": 211,
-        "inlier_fraction": 0.5023809523809524,
+        "radius_m": 0.11230787740346143,
+        "radial_rmse_m": 0.010636713312243997,
+        "arc_deg": 272.0023115170874,
+        "condition": 7.110793856151142,
+        "input_points": 346,
+        "inlier_points": 145,
+        "inlier_fraction": 0.4190751445086705,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": [
           "mixed/cluttered section"
         ]
       },
-      "points_A": 303,
-      "points_B": 420,
-      "centre_delta_along_m": 0.003938831638546025,
-      "centre_delta_across_m": 0.11906205143173887,
+      "points_A": 535,
+      "points_B": 346,
+      "centre_delta_along_m": -0.0177897326826284,
+      "centre_delta_across_m": -0.06504634477005644,
       "delta_ci95_m": [
         [
-          -0.020940618794134846,
-          0.06019471649365689
+          -0.03921820748850598,
+          -0.11555950729890727
         ],
         [
-          0.019582532915285354,
-          0.15021520520812834
+          0.015985559105544084,
+          0.00958343078546481
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "A: mixed/cluttered section",
+        "B: mixed/cluttered section",
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 2
+    },
+    {
+      "height_z_m": 0.26,
+      "z_low_m": 0.23,
+      "z_high_m": 0.29000000000000004,
+      "roi_centre_m": [
+        1.0496284599859753,
+        2.0076759036864416
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          1.069734590562828,
+          2.027578911342666
+        ],
+        "radius_m": 0.12736306965595937,
+        "radial_rmse_m": 0.011325511952528093,
+        "arc_deg": 300.4308183116328,
+        "condition": 6.815561449848427,
+        "input_points": 407,
+        "inlier_points": 140,
+        "inlier_fraction": 0.343980343980344,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "side_B": {
+        "centre_m": [
+          1.02239990640059,
+          2.0673674243888875
+        ],
+        "radius_m": 0.09018324565241397,
+        "radial_rmse_m": 0.012486314293433408,
+        "arc_deg": 321.07222144553793,
+        "condition": 3.907359679496865,
+        "input_points": 410,
+        "inlier_points": 190,
+        "inlier_fraction": 0.4634146341463415,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "points_A": 407,
+      "points_B": 410,
+      "centre_delta_along_m": -0.04733468416223796,
+      "centre_delta_across_m": 0.03978851304622166,
+      "delta_ci95_m": [
+        [
+          -0.09237555841233422,
+          -0.08688477663945182
+        ],
+        [
+          0.00875982321629471,
+          0.06110304072395367
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "A: mixed/cluttered section",
+        "B: mixed/cluttered section",
+        "side radii disagree by at least 3.5 cm",
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 2
+    },
+    {
+      "height_z_m": 0.3,
+      "z_low_m": 0.27,
+      "z_high_m": 0.32999999999999996,
+      "roi_centre_m": [
+        1.0496284599859753,
+        2.0076759036864416
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          1.0829823478969476,
+          2.0256596928657817
+        ],
+        "radius_m": 0.13389992320329988,
+        "radial_rmse_m": 0.011890345413667418,
+        "arc_deg": 273.8247632537171,
+        "condition": 6.208196272210452,
+        "input_points": 340,
+        "inlier_points": 132,
+        "inlier_fraction": 0.38823529411764707,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "side_B": {
+        "centre_m": [
+          1.0483563607018946,
+          2.078221645235718
+        ],
+        "radius_m": 0.09664818728768249,
+        "radial_rmse_m": 0.01072763821686528,
+        "arc_deg": 283.124859928749,
+        "condition": 2.9661941400983527,
+        "input_points": 383,
+        "inlier_points": 173,
+        "inlier_fraction": 0.4516971279373368,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "points_A": 340,
+      "points_B": 383,
+      "centre_delta_along_m": -0.03462598719505294,
+      "centre_delta_across_m": 0.052561952369936105,
+      "delta_ci95_m": [
+        [
+          -0.06558608993198847,
+          -0.00013767224399945186
+        ],
+        [
+          -0.011582280338071809,
+          0.11130528277755611
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "A: mixed/cluttered section",
+        "B: mixed/cluttered section",
+        "side radii disagree by at least 3.5 cm",
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 2
+    },
+    {
+      "height_z_m": 0.34,
+      "z_low_m": 0.31000000000000005,
+      "z_high_m": 0.37,
+      "roi_centre_m": [
+        1.0496284599859753,
+        2.0076759036864416
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          1.0712144271838615,
+          1.9643769862052547
+        ],
+        "radius_m": 0.12061835529195196,
+        "radial_rmse_m": 0.012400292926357057,
+        "arc_deg": 302.25321068052557,
+        "condition": 5.5078411445384186,
+        "input_points": 295,
+        "inlier_points": 153,
+        "inlier_fraction": 0.5186440677966102,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "side_B": {
+        "centre_m": [
+          1.0778882347929368,
+          2.0830371021717546
+        ],
+        "radius_m": 0.12417743089618763,
+        "radial_rmse_m": 0.012304444295537356,
+        "arc_deg": 258.22975367327814,
+        "condition": 4.600105117965435,
+        "input_points": 427,
+        "inlier_points": 211,
+        "inlier_fraction": 0.49414519906323184,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "points_A": 295,
+      "points_B": 427,
+      "centre_delta_along_m": 0.006673807609075322,
+      "centre_delta_across_m": 0.11866011596649995,
+      "delta_ci95_m": [
+        [
+          -0.024073509635812118,
+          0.06321384555336931
+        ],
+        [
+          0.02720567039670021,
+          0.15985897737534263
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "A: mixed/cluttered section",
+        "B: mixed/cluttered section",
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 2
+    },
+    {
+      "height_z_m": 0.38,
+      "z_low_m": 0.35,
+      "z_high_m": 0.41000000000000003,
+      "roi_centre_m": [
+        1.0496284599859753,
+        2.0076759036864416
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          1.087015326272346,
+          1.9281225586904993
+        ],
+        "radius_m": 0.11412487307123484,
+        "radial_rmse_m": 0.011033838423311074,
+        "arc_deg": 223.56923992948683,
+        "condition": 12.537415624831755,
+        "input_points": 292,
+        "inlier_points": 172,
+        "inlier_fraction": 0.589041095890411,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          1.085948019774988,
+          2.098844857412888
+        ],
+        "radius_m": 0.12067468476426918,
+        "radial_rmse_m": 0.011936585258841078,
+        "arc_deg": 252.23241918901772,
+        "condition": 4.374365170095264,
+        "input_points": 311,
+        "inlier_points": 160,
+        "inlier_fraction": 0.5144694533762058,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "points_A": 292,
+      "points_B": 311,
+      "centre_delta_along_m": -0.0010673064973580892,
+      "centre_delta_across_m": 0.17072229872238864,
+      "delta_ci95_m": [
+        [
+          -0.019185048916166812,
+          0.10374102164438384
+        ],
+        [
+          0.01800938279629498,
+          0.1914231248136158
         ]
       ],
       "bootstrap_successes": 45,
@@ -702,9 +1250,9 @@
       "candidate": 2
     },
     {
-      "height_z_m": 0.55,
-      "z_low_m": 0.52,
-      "z_high_m": 0.5800000000000001,
+      "height_z_m": 0.42,
+      "z_low_m": 0.39,
+      "z_high_m": 0.44999999999999996,
       "roi_centre_m": [
         1.0496284599859753,
         2.0076759036864416
@@ -715,61 +1263,65 @@
       ],
       "side_A": {
         "centre_m": [
-          1.030840854153278,
-          1.9724626521640454
+          1.1231822035338355,
+          2.084302906866247
         ],
-        "radius_m": 0.042097823987915256,
-        "radial_rmse_m": 0.008217474517408159,
-        "arc_deg": 268.9982180612896,
-        "condition": 10.341286992468609,
-        "input_points": 64,
-        "inlier_points": 55,
-        "inlier_fraction": 0.859375,
+        "radius_m": 0.1592008261954195,
+        "radial_rmse_m": 0.011432630007512549,
+        "arc_deg": 182.6408335470328,
+        "condition": 26.135579457018917,
+        "input_points": 128,
+        "inlier_points": 69,
+        "inlier_fraction": 0.5390625,
         "acquisitions": 6,
         "touches_bound": false,
-        "issues": []
+        "issues": [
+          "mixed/cluttered section"
+        ]
       },
       "side_B": {
         "centre_m": [
-          1.0093795636786624,
-          2.0261780721521645
+          1.0972182325673823,
+          2.1113720818786685
         ],
-        "radius_m": 0.036234038775013626,
-        "radial_rmse_m": 0.010832962116143683,
-        "arc_deg": 254.4604265360253,
-        "condition": 10.615123692531085,
-        "input_points": 96,
-        "inlier_points": 83,
-        "inlier_fraction": 0.8645833333333334,
-        "acquisitions": 4,
+        "radius_m": 0.11947130585362735,
+        "radial_rmse_m": 0.012167692044003243,
+        "arc_deg": 213.01108456190565,
+        "condition": 11.660776447017671,
+        "input_points": 199,
+        "inlier_points": 113,
+        "inlier_fraction": 0.5678391959798995,
+        "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
-      "points_A": 64,
-      "points_B": 96,
-      "centre_delta_along_m": -0.021461290474615646,
-      "centre_delta_across_m": 0.05371541998811913,
+      "points_A": 128,
+      "points_B": 199,
+      "centre_delta_along_m": -0.025963970966453198,
+      "centre_delta_across_m": 0.027069175012421454,
       "delta_ci95_m": [
         [
-          -0.03467786907470763,
-          -0.03646291804853594
+          -0.11225660729608825,
+          -0.0017850623601241898
         ],
         [
-          0.08762805315454063,
-          0.10810422752809509
+          0.00734650079293295,
+          0.07705237895253697
         ]
       ],
-      "bootstrap_successes": 44,
+      "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
+        "A: mixed/cluttered section",
+        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 2
     },
     {
-      "height_z_m": 0.75,
-      "z_low_m": 0.72,
-      "z_high_m": 0.78,
+      "height_z_m": 0.46,
+      "z_low_m": 0.43000000000000005,
+      "z_high_m": 0.49,
       "roi_centre_m": [
         1.0496284599859753,
         2.0076759036864416
@@ -780,17 +1332,17 @@
       ],
       "side_A": {
         "centre_m": [
-          0.9857125145220446,
-          1.9427765646615756
+          1.1383266640255083,
+          2.0384180032810293
         ],
-        "radius_m": 0.17999999999999985,
-        "radial_rmse_m": 0.011913684169610712,
-        "arc_deg": 92.80117587185784,
-        "condition": 358.3884344967287,
-        "input_points": 293,
-        "inlier_points": 110,
-        "inlier_fraction": 0.37542662116040953,
-        "acquisitions": 6,
+        "radius_m": 0.17999997461940065,
+        "radial_rmse_m": 0.009784642423007821,
+        "arc_deg": 76.74344354624608,
+        "condition": 2332.9574175333155,
+        "input_points": 74,
+        "inlier_points": 30,
+        "inlier_fraction": 0.40540540540540543,
+        "acquisitions": 5,
         "touches_bound": true,
         "issues": [
           "short observed arc",
@@ -801,34 +1353,34 @@
       },
       "side_B": {
         "centre_m": [
-          1.0508913677726517,
-          1.9144317426425617
+          0.9962837327244802,
+          2.1118002775107496
         ],
-        "radius_m": 0.17762662105600038,
-        "radial_rmse_m": 0.010808866353788193,
-        "arc_deg": 279.8576048740031,
-        "condition": 9.379214067468977,
-        "input_points": 373,
-        "inlier_points": 152,
-        "inlier_fraction": 0.4075067024128686,
-        "acquisitions": 4,
-        "touches_bound": false,
+        "radius_m": 0.09322646789624259,
+        "radial_rmse_m": 0.012557906852313828,
+        "arc_deg": 244.41324037547002,
+        "condition": 9.126879204389338,
+        "input_points": 189,
+        "inlier_points": 115,
+        "inlier_fraction": 0.6084656084656085,
+        "acquisitions": 5,
+        "touches_bound": true,
         "issues": [
-          "mixed/cluttered section"
+          "fit reaches search bound"
         ]
       },
-      "points_A": 293,
-      "points_B": 373,
-      "centre_delta_along_m": 0.06517885325060713,
-      "centre_delta_across_m": -0.028344822019013893,
+      "points_A": 74,
+      "points_B": 189,
+      "centre_delta_along_m": -0.14204293130102807,
+      "centre_delta_across_m": 0.07338227422972032,
       "delta_ci95_m": [
         [
-          0.0108937556978993,
-          -0.04014893579264143
+          -0.15038903535330833,
+          0.035426337073420376
         ],
         [
-          0.1306015662934744,
-          0.06552640949454573
+          0.03340388248144399,
+          0.18303307003831626
         ]
       ],
       "bootstrap_successes": 45,
@@ -838,93 +1390,19 @@
         "A: ill-conditioned circle",
         "A: mixed/cluttered section",
         "A: fit reaches search bound",
-        "B: mixed/cluttered section",
-        "across-centre interval at least 4 cm wide"
-      ],
-      "candidate": 2
-    },
-    {
-      "height_z_m": 1.0,
-      "z_low_m": 0.97,
-      "z_high_m": 1.03,
-      "roi_centre_m": [
-        1.0496284599859753,
-        2.0076759036864416
-      ],
-      "roi_halfwidth_m": [
-        0.22,
-        0.26
-      ],
-      "side_A": {
-        "centre_m": [
-          1.036394635417474,
-          1.9914328780989148
-        ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.010282366630206893,
-        "arc_deg": 198.21516722512686,
-        "condition": 54.28509490347886,
-        "input_points": 185,
-        "inlier_points": 68,
-        "inlier_fraction": 0.3675675675675676,
-        "acquisitions": 4,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
-      },
-      "side_B": {
-        "centre_m": [
-          1.0406421549065275,
-          2.1652256308354905
-        ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.011951926402851814,
-        "arc_deg": 227.18614194588338,
-        "condition": 5.467579813808154,
-        "input_points": 446,
-        "inlier_points": 150,
-        "inlier_fraction": 0.336322869955157,
-        "acquisitions": 4,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
-      },
-      "points_A": 185,
-      "points_B": 446,
-      "centre_delta_along_m": 0.004247519489053442,
-      "centre_delta_across_m": 0.17379275273657568,
-      "delta_ci95_m": [
-        [
-          -0.08559700136164167,
-          0.15990182626172
-        ],
-        [
-          0.14791776851573554,
-          0.24832613871935608
-        ]
-      ],
-      "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "A: mixed/cluttered section",
-        "A: fit reaches search bound",
-        "B: mixed/cluttered section",
         "B: fit reaches search bound",
+        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 2
     },
     {
-      "height_z_m": 1.25,
-      "z_low_m": 1.22,
-      "z_high_m": 1.28,
+      "height_z_m": 0.14,
+      "z_low_m": 0.11000000000000001,
+      "z_high_m": 0.17,
       "roi_centre_m": [
-        1.0496284599859753,
-        2.0076759036864416
+        1.6306475142800032,
+        2.0643900531953827
       ],
       "roi_halfwidth_m": [
         0.22,
@@ -932,64 +1410,59 @@
       ],
       "side_A": {
         "centre_m": [
-          1.0165797041573896,
-          1.9859024243141008
+          1.5317616838630344,
+          2.123425466745591
         ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.012849865391466708,
-        "arc_deg": 248.4988529480765,
-        "condition": 10.80136748828729,
-        "input_points": 351,
-        "inlier_points": 154,
-        "inlier_fraction": 0.43874643874643876,
-        "acquisitions": 5,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
+        "radius_m": 0.16762234905988257,
+        "radial_rmse_m": 0.011403336547217043,
+        "arc_deg": 274.7169621222057,
+        "condition": 10.124661120003873,
+        "input_points": 501,
+        "inlier_points": 285,
+        "inlier_fraction": 0.5688622754491018,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          1.0430554019901364,
-          2.0938704685797864
+          1.6073124254934712,
+          2.130414333845271
         ],
-        "radius_m": 0.16400538660032232,
-        "radial_rmse_m": 0.011979572757711667,
-        "arc_deg": 329.09892594368097,
-        "condition": 3.673950506310668,
-        "input_points": 1601,
-        "inlier_points": 484,
-        "inlier_fraction": 0.3023110555902561,
-        "acquisitions": 4,
+        "radius_m": 0.13687988346375463,
+        "radial_rmse_m": 0.01140736146135156,
+        "arc_deg": 294.18978572565294,
+        "condition": 24.994251918196433,
+        "input_points": 811,
+        "inlier_points": 244,
+        "inlier_fraction": 0.3008631319358816,
+        "acquisitions": 5,
         "touches_bound": false,
         "issues": [
           "mixed/cluttered section"
         ]
       },
-      "points_A": 351,
-      "points_B": 1601,
-      "centre_delta_along_m": 0.026475697832746725,
-      "centre_delta_across_m": 0.10796804426568563,
+      "points_A": 501,
+      "points_B": 811,
+      "centre_delta_along_m": 0.07555074163043685,
+      "centre_delta_across_m": 0.00698886709967983,
       "delta_ci95_m": [
         [
-          -0.04284908028722998,
-          0.0842863851816236
+          0.05250937863871328,
+          -0.054817540568371514
         ],
         [
-          0.05232885843566424,
-          0.13349041753691873
+          0.1140743483868966,
+          0.08070069535531368
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
-        "A: fit reaches search bound",
         "B: mixed/cluttered section",
         "across-centre interval at least 4 cm wide"
       ],
-      "candidate": 2
+      "candidate": 3
     },
     {
       "height_z_m": 0.18,
@@ -1043,12 +1516,12 @@
       "centre_delta_across_m": -0.042554585780306464,
       "delta_ci95_m": [
         [
-          -0.018255071495876816,
-          -0.05824556360259732
+          0.024777469628352367,
+          -0.06770528763055421
         ],
         [
-          0.09569351398442198,
-          0.05245325978686827
+          0.10855813482368566,
+          0.04873963200032334
         ]
       ],
       "bootstrap_successes": 45,
@@ -1060,9 +1533,9 @@
       "candidate": 3
     },
     {
-      "height_z_m": 0.35,
-      "z_low_m": 0.31999999999999995,
-      "z_high_m": 0.38,
+      "height_z_m": 0.22,
+      "z_low_m": 0.19,
+      "z_high_m": 0.25,
       "roi_centre_m": [
         1.6306475142800032,
         2.0643900531953827
@@ -1073,61 +1546,64 @@
       ],
       "side_A": {
         "centre_m": [
-          1.5578971408279785,
-          1.9692944162504806
+          1.5711466689541416,
+          2.0968975191112853
         ],
-        "radius_m": 0.06697594951486467,
-        "radial_rmse_m": 0.009883508074843792,
-        "arc_deg": 273.79537742475014,
-        "condition": 8.264802095376293,
-        "input_points": 198,
-        "inlier_points": 172,
-        "inlier_fraction": 0.8686868686868687,
-        "acquisitions": 5,
+        "radius_m": 0.1533979869336616,
+        "radial_rmse_m": 0.012403966603389556,
+        "arc_deg": 278.31803442124067,
+        "condition": 9.700248021303933,
+        "input_points": 327,
+        "inlier_points": 199,
+        "inlier_fraction": 0.6085626911314985,
+        "acquisitions": 7,
         "touches_bound": false,
         "issues": []
       },
       "side_B": {
         "centre_m": [
-          1.5498347291137413,
-          2.064592135254733
+          1.6414372538330906,
+          2.036618116751622
         ],
-        "radius_m": 0.0627648812312096,
-        "radial_rmse_m": 0.009891068275323444,
-        "arc_deg": 284.44306816346113,
-        "condition": 10.458896578456867,
-        "input_points": 227,
-        "inlier_points": 210,
-        "inlier_fraction": 0.9251101321585903,
+        "radius_m": 0.1688642688268651,
+        "radial_rmse_m": 0.01091574923815352,
+        "arc_deg": 176.1349575756508,
+        "condition": 57.799510923550905,
+        "input_points": 445,
+        "inlier_points": 242,
+        "inlier_fraction": 0.5438202247191011,
         "acquisitions": 5,
         "touches_bound": false,
-        "issues": []
+        "issues": [
+          "mixed/cluttered section"
+        ]
       },
-      "points_A": 198,
-      "points_B": 227,
-      "centre_delta_along_m": -0.008062411714237161,
-      "centre_delta_across_m": 0.09529771900425232,
+      "points_A": 327,
+      "points_B": 445,
+      "centre_delta_along_m": 0.07029058487894901,
+      "centre_delta_across_m": -0.06027940235966334,
       "delta_ci95_m": [
         [
-          -0.06584627593689762,
-          0.04867158152869435
+          0.020510633224202678,
+          -0.0792621132443196
         ],
         [
-          0.00012826896376931776,
-          0.11927227298628286
+          0.12267719313802579,
+          0.013781997863120132
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
+        "B: mixed/cluttered section",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 3
     },
     {
-      "height_z_m": 0.55,
-      "z_low_m": 0.52,
-      "z_high_m": 0.5800000000000001,
+      "height_z_m": 0.26,
+      "z_low_m": 0.23,
+      "z_high_m": 0.29000000000000004,
       "roi_centre_m": [
         1.6306475142800032,
         2.0643900531953827
@@ -1138,67 +1614,62 @@
       ],
       "side_A": {
         "centre_m": [
-          1.5959243129333849,
-          2.0396936832343497
+          1.5583175869400285,
+          2.086843862680278
         ],
-        "radius_m": 0.173809200323456,
-        "radial_rmse_m": 0.010253685341550578,
-        "arc_deg": 83.49566151811797,
-        "condition": 974.832442523419,
-        "input_points": 166,
-        "inlier_points": 105,
-        "inlier_fraction": 0.6325301204819277,
-        "acquisitions": 6,
+        "radius_m": 0.14966569345598457,
+        "radial_rmse_m": 0.0103106884714206,
+        "arc_deg": 252.86842816018958,
+        "condition": 17.90248320207578,
+        "input_points": 261,
+        "inlier_points": 182,
+        "inlier_fraction": 0.6973180076628352,
+        "acquisitions": 7,
         "touches_bound": false,
-        "issues": [
-          "short observed arc",
-          "ill-conditioned circle"
-        ]
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          1.5618076910779517,
-          2.013568284076937
+          1.5463659678984996,
+          2.067697650793493
         ],
-        "radius_m": 0.09561170280923902,
-        "radial_rmse_m": 0.00942971742583667,
-        "arc_deg": 220.4001935298158,
-        "condition": 10.202153779161966,
-        "input_points": 167,
-        "inlier_points": 115,
-        "inlier_fraction": 0.688622754491018,
+        "radius_m": 0.07367047016900853,
+        "radial_rmse_m": 0.01058557696313675,
+        "arc_deg": 312.0718953137097,
+        "condition": 11.836417155679925,
+        "input_points": 289,
+        "inlier_points": 216,
+        "inlier_fraction": 0.7474048442906575,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
-      "points_A": 166,
-      "points_B": 167,
-      "centre_delta_along_m": -0.03411662185543318,
-      "centre_delta_across_m": -0.026125399157412854,
+      "points_A": 261,
+      "points_B": 289,
+      "centre_delta_along_m": -0.011951619041528971,
+      "centre_delta_across_m": -0.01914621188678467,
       "delta_ci95_m": [
         [
-          -0.09889386312193497,
-          -0.03878954957555849
+          -0.05897101611530655,
+          -0.0605417708935803
         ],
         [
-          -0.005193639157799544,
-          0.08216106489527565
+          0.12663862490944594,
+          0.04735130164512417
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: short observed arc",
-        "A: ill-conditioned circle",
         "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 3
     },
     {
-      "height_z_m": 0.75,
-      "z_low_m": 0.72,
-      "z_high_m": 0.78,
+      "height_z_m": 0.3,
+      "z_low_m": 0.27,
+      "z_high_m": 0.32999999999999996,
       "roi_centre_m": [
         1.6306475142800032,
         2.0643900531953827
@@ -1209,68 +1680,61 @@
       ],
       "side_A": {
         "centre_m": [
-          1.625335151971068,
-          1.95702441568267
+          1.551880586658017,
+          1.9854033156967326
         ],
-        "radius_m": 0.10692359078268751,
-        "radial_rmse_m": 0.010205696659180823,
-        "arc_deg": 241.48154914303757,
-        "condition": 5.002137278679194,
-        "input_points": 180,
-        "inlier_points": 83,
-        "inlier_fraction": 0.46111111111111114,
-        "acquisitions": 5,
+        "radius_m": 0.06773827049615164,
+        "radial_rmse_m": 0.009433295068726352,
+        "arc_deg": 280.0873649921968,
+        "condition": 7.787879136649975,
+        "input_points": 212,
+        "inlier_points": 183,
+        "inlier_fraction": 0.8632075471698113,
+        "acquisitions": 6,
         "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          1.5974561383285117,
-          2.107816988064382
+          1.5514206575605318,
+          2.049036548556603
         ],
-        "radius_m": 0.144500348584862,
-        "radial_rmse_m": 0.01256194412754286,
-        "arc_deg": 335.28462723204944,
-        "condition": 4.188285303103078,
-        "input_points": 1363,
-        "inlier_points": 427,
-        "inlier_fraction": 0.3132795304475422,
+        "radius_m": 0.08051998682528914,
+        "radial_rmse_m": 0.00968970425756937,
+        "arc_deg": 302.4828694162028,
+        "condition": 15.058811973356304,
+        "input_points": 242,
+        "inlier_points": 198,
+        "inlier_fraction": 0.8181818181818182,
         "acquisitions": 5,
         "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
+        "issues": []
       },
-      "points_A": 180,
-      "points_B": 1363,
-      "centre_delta_along_m": -0.027879013642556183,
-      "centre_delta_across_m": 0.15079257238171206,
+      "points_A": 212,
+      "points_B": 242,
+      "centre_delta_along_m": -0.00045992909748515665,
+      "centre_delta_across_m": 0.06363323285987033,
       "delta_ci95_m": [
         [
-          -0.07489558007141348,
-          0.13183919877704303
+          -0.012994879598245367,
+          0.024720722454861076
         ],
         [
-          0.05905392244577409,
-          0.18267442023976574
+          0.0280946848232727,
+          0.10743067801340887
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
-        "B: mixed/cluttered section",
-        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 3
     },
     {
-      "height_z_m": 1.0,
-      "z_low_m": 0.97,
-      "z_high_m": 1.03,
+      "height_z_m": 0.34,
+      "z_low_m": 0.31000000000000005,
+      "z_high_m": 0.37,
       "roi_centre_m": [
         1.6306475142800032,
         2.0643900531953827
@@ -1281,72 +1745,61 @@
       ],
       "side_A": {
         "centre_m": [
-          1.711898303096127,
-          2.0180219472839642
+          1.557040543799199,
+          1.9720355310467994
         ],
-        "radius_m": 0.1799999999999999,
-        "radial_rmse_m": 0.011601982160804013,
-        "arc_deg": 230.65904694356584,
-        "condition": 277.4161434989652,
-        "input_points": 287,
-        "inlier_points": 87,
-        "inlier_fraction": 0.30313588850174217,
+        "radius_m": 0.06705973944280783,
+        "radial_rmse_m": 0.009201536801028724,
+        "arc_deg": 274.039154689083,
+        "condition": 9.023152417598842,
+        "input_points": 211,
+        "inlier_points": 183,
+        "inlier_fraction": 0.8672985781990521,
         "acquisitions": 6,
-        "touches_bound": true,
-        "issues": [
-          "ill-conditioned circle",
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
+        "touches_bound": false,
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          1.6084068622817862,
-          2.0992949720432397
+          1.5488537555782478,
+          2.058364471343885
         ],
-        "radius_m": 0.13874536387763042,
-        "radial_rmse_m": 0.012362482492219596,
-        "arc_deg": 344.70981924148896,
-        "condition": 2.7293782005668303,
-        "input_points": 1255,
-        "inlier_points": 327,
-        "inlier_fraction": 0.26055776892430277,
+        "radius_m": 0.06815611722599044,
+        "radial_rmse_m": 0.0101757965644287,
+        "arc_deg": 277.9875990257084,
+        "condition": 14.933540061774668,
+        "input_points": 231,
+        "inlier_points": 207,
+        "inlier_fraction": 0.8961038961038961,
         "acquisitions": 5,
         "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
+        "issues": []
       },
-      "points_A": 287,
-      "points_B": 1255,
-      "centre_delta_along_m": -0.10349144081434081,
-      "centre_delta_across_m": 0.08127302475927545,
+      "points_A": 211,
+      "points_B": 231,
+      "centre_delta_along_m": -0.008186788220951202,
+      "centre_delta_across_m": 0.08632894029708549,
       "delta_ci95_m": [
         [
-          -0.16263151578445265,
-          0.023108765194686232
+          -0.012858946716237284,
+          0.02686713194154713
         ],
         [
-          -0.06484441691341755,
-          0.19523077393385746
+          0.026110644948278444,
+          0.11486395691716993
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: ill-conditioned circle",
-        "A: mixed/cluttered section",
-        "A: fit reaches search bound",
-        "B: mixed/cluttered section",
-        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 3
     },
     {
-      "height_z_m": 1.25,
-      "z_low_m": 1.22,
-      "z_high_m": 1.28,
+      "height_z_m": 0.38,
+      "z_low_m": 0.35,
+      "z_high_m": 0.41000000000000003,
       "roi_centre_m": [
         1.6306475142800032,
         2.0643900531953827
@@ -1357,64 +1810,251 @@
       ],
       "side_A": {
         "centre_m": [
-          1.68111790004527,
-          2.0104474736716336
+          1.5609467835460729,
+          1.960922078964123
         ],
-        "radius_m": 0.1799999999999995,
-        "radial_rmse_m": 0.01169127170122546,
-        "arc_deg": 189.38418316935972,
-        "condition": 126.08570915448865,
-        "input_points": 275,
-        "inlier_points": 132,
-        "inlier_fraction": 0.48,
+        "radius_m": 0.0703271814494788,
+        "radial_rmse_m": 0.00903561839543032,
+        "arc_deg": 276.1315731534169,
+        "condition": 6.5710930656796975,
+        "input_points": 208,
+        "inlier_points": 187,
+        "inlier_fraction": 0.8990384615384616,
         "acquisitions": 6,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
+        "touches_bound": false,
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          1.6171504025001273,
-          2.078329069009004
+          1.5549224073274417,
+          2.054701231998315
         ],
-        "radius_m": 0.15672665332173588,
-        "radial_rmse_m": 0.012462500781175435,
-        "arc_deg": 336.0545149706461,
-        "condition": 2.5629387452204155,
-        "input_points": 991,
-        "inlier_points": 324,
-        "inlier_fraction": 0.32694248234106965,
+        "radius_m": 0.06668658799363826,
+        "radial_rmse_m": 0.010180570295930325,
+        "arc_deg": 278.5802143641053,
+        "condition": 10.660894517014267,
+        "input_points": 221,
+        "inlier_points": 208,
+        "inlier_fraction": 0.9411764705882353,
         "acquisitions": 5,
         "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
+        "issues": []
       },
-      "points_A": 275,
-      "points_B": 991,
-      "centre_delta_along_m": -0.06396749754514275,
-      "centre_delta_across_m": 0.06788159533737037,
+      "points_A": 208,
+      "points_B": 221,
+      "centre_delta_along_m": -0.006024376218631167,
+      "centre_delta_across_m": 0.09377915303419182,
       "delta_ci95_m": [
         [
-          -0.10525291651020016,
-          0.05214510933329919
+          -0.04564177849757851,
+          0.062192933870067614
         ],
         [
-          -0.013263734384454549,
-          0.10739449121153173
+          0.01990547783736642,
+          0.11697150918671086
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
-        "A: fit reaches search bound",
-        "B: mixed/cluttered section",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 3
+    },
+    {
+      "height_z_m": 0.42,
+      "z_low_m": 0.39,
+      "z_high_m": 0.44999999999999996,
+      "roi_centre_m": [
+        1.6306475142800032,
+        2.0643900531953827
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          1.565999136430838,
+          1.9583461287358543
+        ],
+        "radius_m": 0.07199287753549921,
+        "radial_rmse_m": 0.00854636090569699,
+        "arc_deg": 280.9126794552652,
+        "condition": 9.573509551215585,
+        "input_points": 212,
+        "inlier_points": 201,
+        "inlier_fraction": 0.9481132075471698,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          1.564019217553309,
+          2.041565831261526
+        ],
+        "radius_m": 0.06823385113635401,
+        "radial_rmse_m": 0.010502394582335308,
+        "arc_deg": 300.3371448600117,
+        "condition": 7.239961392269736,
+        "input_points": 234,
+        "inlier_points": 212,
+        "inlier_fraction": 0.905982905982906,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 212,
+      "points_B": 234,
+      "centre_delta_along_m": -0.00197991887752913,
+      "centre_delta_across_m": 0.08321970252567179,
+      "delta_ci95_m": [
+        [
+          -0.016271291638889386,
+          0.05580530658450047
+        ],
+        [
+          0.013047121273232879,
+          0.10531270411028516
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 3
+    },
+    {
+      "height_z_m": 0.46,
+      "z_low_m": 0.43000000000000005,
+      "z_high_m": 0.49,
+      "roi_centre_m": [
+        1.6306475142800032,
+        2.0643900531953827
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          1.575612952281944,
+          1.9536396766009998
+        ],
+        "radius_m": 0.0745509236096363,
+        "radial_rmse_m": 0.008521216506299074,
+        "arc_deg": 240.08507544479372,
+        "condition": 15.51456121460779,
+        "input_points": 163,
+        "inlier_points": 148,
+        "inlier_fraction": 0.9079754601226994,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          1.5699766278326717,
+          2.0367874346067327
+        ],
+        "radius_m": 0.06584276485959917,
+        "radial_rmse_m": 0.009794428621400432,
+        "arc_deg": 262.395023976251,
+        "condition": 9.839094378819311,
+        "input_points": 195,
+        "inlier_points": 169,
+        "inlier_fraction": 0.8666666666666667,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 163,
+      "points_B": 195,
+      "centre_delta_along_m": -0.005636324449272312,
+      "centre_delta_across_m": 0.08314775800573293,
+      "delta_ci95_m": [
+        [
+          -0.031327504574857376,
+          0.043611468822564524
+        ],
+        [
+          0.004186703204184216,
+          0.10799481971413735
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 3
+    },
+    {
+      "height_z_m": 0.14,
+      "z_low_m": 0.11000000000000001,
+      "z_high_m": 0.17,
+      "roi_centre_m": [
+        3.010392429627271,
+        1.967455568366283
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          2.991309033162505,
+          1.9470524465829597
+        ],
+        "radius_m": 0.08626037944672722,
+        "radial_rmse_m": 0.009225427819017992,
+        "arc_deg": 259.1287770169234,
+        "condition": 11.764635909891616,
+        "input_points": 384,
+        "inlier_points": 301,
+        "inlier_fraction": 0.7838541666666666,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          2.9900536259768358,
+          2.00849697799504
+        ],
+        "radius_m": 0.08950847427235903,
+        "radial_rmse_m": 0.010225344316028992,
+        "arc_deg": 268.7502713833132,
+        "condition": 9.412370419352673,
+        "input_points": 371,
+        "inlier_points": 302,
+        "inlier_fraction": 0.8140161725067385,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 384,
+      "points_B": 371,
+      "centre_delta_along_m": -0.0012554071856691884,
+      "centre_delta_across_m": 0.061444531412080394,
+      "delta_ci95_m": [
+        [
+          -0.005982528764397976,
+          0.04716932094717587
+        ],
+        [
+          0.0207957831511149,
+          0.09155558663321095
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 4
     },
     {
       "height_z_m": 0.18,
@@ -1466,12 +2106,12 @@
       "centre_delta_across_m": 0.08713956989997063,
       "delta_ci95_m": [
         [
-          -0.013295170136695011,
-          0.07292879483464787
+          -0.009475259678033865,
+          0.07292301735658699
         ],
         [
-          0.003632316236809929,
-          0.10394991858369662
+          0.005123712205714125,
+          0.10536392980851263
         ]
       ],
       "bootstrap_successes": 45,
@@ -1480,9 +2120,9 @@
       "candidate": 4
     },
     {
-      "height_z_m": 0.35,
-      "z_low_m": 0.31999999999999995,
-      "z_high_m": 0.38,
+      "height_z_m": 0.22,
+      "z_low_m": 0.19,
+      "z_high_m": 0.25,
       "roi_centre_m": [
         3.010392429627271,
         1.967455568366283
@@ -1493,48 +2133,113 @@
       ],
       "side_A": {
         "centre_m": [
-          3.013085348117813,
-          1.9032643817163035
+          3.0058186554925195,
+          1.9308970581843254
         ],
-        "radius_m": 0.06141584507145735,
-        "radial_rmse_m": 0.008900227875517336,
-        "arc_deg": 279.4621673223285,
-        "condition": 11.25406601842143,
-        "input_points": 264,
-        "inlier_points": 220,
-        "inlier_fraction": 0.8333333333333334,
+        "radius_m": 0.06994737650809374,
+        "radial_rmse_m": 0.008795541866219954,
+        "arc_deg": 266.774173772165,
+        "condition": 8.474885104125885,
+        "input_points": 314,
+        "inlier_points": 256,
+        "inlier_fraction": 0.8152866242038217,
         "acquisitions": 7,
         "touches_bound": false,
         "issues": []
       },
       "side_B": {
         "centre_m": [
-          3.0176647981283904,
-          2.0171998725232556
+          2.998775488036929,
+          2.0266641894873416
         ],
-        "radius_m": 0.05804643455446885,
-        "radial_rmse_m": 0.009025752449114587,
-        "arc_deg": 257.6843158199936,
-        "condition": 6.380522625377719,
-        "input_points": 246,
-        "inlier_points": 214,
-        "inlier_fraction": 0.8699186991869918,
+        "radius_m": 0.06834799571597562,
+        "radial_rmse_m": 0.010317618958123947,
+        "arc_deg": 281.22275538189086,
+        "condition": 5.443649371461208,
+        "input_points": 356,
+        "inlier_points": 281,
+        "inlier_fraction": 0.7893258426966292,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 314,
+      "points_B": 356,
+      "centre_delta_along_m": -0.007043167455590638,
+      "centre_delta_across_m": 0.09576713130301617,
+      "delta_ci95_m": [
+        [
+          -0.017382395673115437,
+          0.06584722776592997
+        ],
+        [
+          0.018680484362032863,
+          0.12600939783578494
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 4
+    },
+    {
+      "height_z_m": 0.26,
+      "z_low_m": 0.23,
+      "z_high_m": 0.29000000000000004,
+      "roi_centre_m": [
+        3.010392429627271,
+        1.967455568366283
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          3.0128163053711643,
+          1.9313011696572926
+        ],
+        "radius_m": 0.07236999344291574,
+        "radial_rmse_m": 0.009214184086071855,
+        "arc_deg": 294.77260186241074,
+        "condition": 9.542990566956108,
+        "input_points": 317,
+        "inlier_points": 257,
+        "inlier_fraction": 0.8107255520504731,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          3.011056431879981,
+          2.0152211379801144
+        ],
+        "radius_m": 0.06713732692946564,
+        "radial_rmse_m": 0.010308020457517624,
+        "arc_deg": 334.8077716523437,
+        "condition": 9.072036784458254,
+        "input_points": 323,
+        "inlier_points": 277,
+        "inlier_fraction": 0.8575851393188855,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
-      "points_A": 264,
-      "points_B": 246,
-      "centre_delta_along_m": 0.004579450010577357,
-      "centre_delta_across_m": 0.11393549080695209,
+      "points_A": 317,
+      "points_B": 323,
+      "centre_delta_along_m": -0.0017598734911832281,
+      "centre_delta_across_m": 0.08391996832282178,
       "delta_ci95_m": [
         [
-          -0.0034872971893224135,
-          0.09005271520183997
+          -0.010827187539612027,
+          0.071055776971686
         ],
         [
-          0.01972446311601312,
-          0.12736737347685315
+          0.018017420851532323,
+          0.10790209686415438
         ]
       ],
       "bootstrap_successes": 45,
@@ -1543,9 +2248,9 @@
       "candidate": 4
     },
     {
-      "height_z_m": 0.55,
-      "z_low_m": 0.52,
-      "z_high_m": 0.5800000000000001,
+      "height_z_m": 0.3,
+      "z_low_m": 0.27,
+      "z_high_m": 0.32999999999999996,
       "roi_centre_m": [
         3.010392429627271,
         1.967455568366283
@@ -1556,68 +2261,324 @@
       ],
       "side_A": {
         "centre_m": [
-          3.0473413919077754,
-          1.8635724730590066
+          3.0162738756643876,
+          1.9196202753448113
         ],
-        "radius_m": 0.08493720081932866,
-        "radial_rmse_m": 0.011879407805802556,
-        "arc_deg": 246.59872966364978,
-        "condition": 4.944406992419677,
-        "input_points": 201,
-        "inlier_points": 110,
-        "inlier_fraction": 0.5472636815920398,
+        "radius_m": 0.06992179186490567,
+        "radial_rmse_m": 0.009465122820143876,
+        "arc_deg": 281.3268216089326,
+        "condition": 6.461641611029274,
+        "input_points": 297,
+        "inlier_points": 239,
+        "inlier_fraction": 0.8047138047138047,
         "acquisitions": 7,
         "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          3.078835307894616,
-          1.898205665337604
+          3.017427677143854,
+          2.0178330475735273
         ],
-        "radius_m": 0.14542968367634104,
-        "radial_rmse_m": 0.01094585532935101,
-        "arc_deg": 205.34972891090572,
-        "condition": 37.31466207194497,
-        "input_points": 185,
-        "inlier_points": 147,
-        "inlier_fraction": 0.7945945945945946,
+        "radius_m": 0.06120833118706909,
+        "radial_rmse_m": 0.008472090725501017,
+        "arc_deg": 312.04681253691035,
+        "condition": 5.95975787161936,
+        "input_points": 281,
+        "inlier_points": 252,
+        "inlier_fraction": 0.896797153024911,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 297,
+      "points_B": 281,
+      "centre_delta_along_m": 0.0011538014794663098,
+      "centre_delta_across_m": 0.09821277222871605,
+      "delta_ci95_m": [
+        [
+          -0.004428193843111527,
+          0.09186119963979697
+        ],
+        [
+          0.02478258521376419,
+          0.1322724742466281
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 4
+    },
+    {
+      "height_z_m": 0.34,
+      "z_low_m": 0.31000000000000005,
+      "z_high_m": 0.37,
+      "roi_centre_m": [
+        3.010392429627271,
+        1.967455568366283
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          3.013423641672679,
+          1.904875614834971
+        ],
+        "radius_m": 0.06225854649881892,
+        "radial_rmse_m": 0.009371483578234745,
+        "arc_deg": 227.51736351678113,
+        "condition": 13.002940667965301,
+        "input_points": 263,
+        "inlier_points": 220,
+        "inlier_fraction": 0.8365019011406845,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          3.016926001517564,
+          2.018111826389642
+        ],
+        "radius_m": 0.0577283359140175,
+        "radial_rmse_m": 0.008553096481950387,
+        "arc_deg": 270.33099745425346,
+        "condition": 8.25737061107596,
+        "input_points": 244,
+        "inlier_points": 212,
+        "inlier_fraction": 0.8688524590163934,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 263,
+      "points_B": 244,
+      "centre_delta_along_m": 0.0035023598448851168,
+      "centre_delta_across_m": 0.11323621155467078,
+      "delta_ci95_m": [
+        [
+          -0.0054023205266022336,
+          0.08372421798827345
+        ],
+        [
+          0.01759779821742029,
+          0.1251076722828127
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 4
+    },
+    {
+      "height_z_m": 0.38,
+      "z_low_m": 0.35,
+      "z_high_m": 0.41000000000000003,
+      "roi_centre_m": [
+        3.010392429627271,
+        1.967455568366283
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          3.0141723547121417,
+          1.8990964876135228
+        ],
+        "radius_m": 0.062055758268879754,
+        "radial_rmse_m": 0.009767701749735121,
+        "arc_deg": 279.7797719576796,
+        "condition": 16.870464601860768,
+        "input_points": 249,
+        "inlier_points": 201,
+        "inlier_fraction": 0.8072289156626506,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          3.01719130087181,
+          2.0102665831850977
+        ],
+        "radius_m": 0.0600006532435805,
+        "radial_rmse_m": 0.010481576026281558,
+        "arc_deg": 276.58817077114674,
+        "condition": 5.128156973808594,
+        "input_points": 292,
+        "inlier_points": 244,
+        "inlier_fraction": 0.8356164383561644,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 249,
+      "points_B": 292,
+      "centre_delta_along_m": 0.0030189461596683564,
+      "centre_delta_across_m": 0.11117009557157487,
+      "delta_ci95_m": [
+        [
+          -0.023220426867113807,
+          0.08490075906918548
+        ],
+        [
+          0.03128976907814906,
+          0.1315969894547116
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 4
+    },
+    {
+      "height_z_m": 0.42,
+      "z_low_m": 0.39,
+      "z_high_m": 0.44999999999999996,
+      "roi_centre_m": [
+        3.010392429627271,
+        1.967455568366283
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          3.018074575239536,
+          1.8691346331068075
+        ],
+        "radius_m": 0.05951358497096244,
+        "radial_rmse_m": 0.011238291772828,
+        "arc_deg": 317.62632635470084,
+        "condition": 18.84444540799495,
+        "input_points": 197,
+        "inlier_points": 142,
+        "inlier_fraction": 0.7208121827411168,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          3.026487008731591,
+          1.9946384153332624
+        ],
+        "radius_m": 0.06759979297669005,
+        "radial_rmse_m": 0.011237537974891184,
+        "arc_deg": 249.56908989795582,
+        "condition": 16.455070292603878,
+        "input_points": 252,
+        "inlier_points": 201,
+        "inlier_fraction": 0.7976190476190477,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 197,
+      "points_B": 252,
+      "centre_delta_along_m": 0.008412433492055005,
+      "centre_delta_across_m": 0.12550378222645486,
+      "delta_ci95_m": [
+        [
+          -0.019369683336052067,
+          0.026402158539785517
+        ],
+        [
+          0.07989396930488699,
+          0.1563930369840981
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 4
+    },
+    {
+      "height_z_m": 0.46,
+      "z_low_m": 0.43000000000000005,
+      "z_high_m": 0.49,
+      "roi_centre_m": [
+        3.010392429627271,
+        1.967455568366283
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          3.014655529329451,
+          1.867787545083972
+        ],
+        "radius_m": 0.06039351550464853,
+        "radial_rmse_m": 0.010422135877613896,
+        "arc_deg": 308.02174781924697,
+        "condition": 11.608611233487915,
+        "input_points": 201,
+        "inlier_points": 152,
+        "inlier_fraction": 0.7562189054726368,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          3.0477383115372256,
+          1.9702785456354277
+        ],
+        "radius_m": 0.0878342247000198,
+        "radial_rmse_m": 0.01061528898561165,
+        "arc_deg": 173.4750451515266,
+        "condition": 53.59542706128936,
+        "input_points": 218,
+        "inlier_points": 154,
+        "inlier_fraction": 0.7064220183486238,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 201,
-      "points_B": 185,
-      "centre_delta_along_m": 0.03149391598684037,
-      "centre_delta_across_m": 0.0346331922785974,
+      "points_B": 218,
+      "centre_delta_along_m": 0.03308278220777483,
+      "centre_delta_across_m": 0.10249100055145566,
       "delta_ci95_m": [
         [
-          -0.051388974846498583,
-          -0.09386058478275103
+          -0.06626091088586161,
+          -0.020136060194186324
         ],
         [
-          0.12553199298470646,
-          0.08521388720609299
+          0.1297026518170453,
+          0.15745345415110557
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
-        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 4
     },
     {
-      "height_z_m": 0.75,
-      "z_low_m": 0.72,
-      "z_high_m": 0.78,
+      "height_z_m": 0.14,
+      "z_low_m": 0.11000000000000001,
+      "z_high_m": 0.17,
       "roi_centre_m": [
-        3.010392429627271,
-        1.967455568366283
+        3.689612220059806,
+        1.8664323125400144
       ],
       "roi_halfwidth_m": [
         0.22,
@@ -1625,214 +2586,56 @@
       ],
       "side_A": {
         "centre_m": [
-          2.946785089452328,
-          1.886250872505984
+          3.6852515882786427,
+          1.8697767971491037
         ],
-        "radius_m": 0.151085610263662,
-        "radial_rmse_m": 0.011191994576730036,
-        "arc_deg": 241.413268222603,
-        "condition": 83.501657629143,
-        "input_points": 240,
-        "inlier_points": 63,
-        "inlier_fraction": 0.2625,
-        "acquisitions": 6,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "side_B": {
-        "centre_m": [
-          2.997370092135238,
-          1.8676729256866311
-        ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.01217119904665473,
-        "arc_deg": 200.3636190565116,
-        "condition": 25.752555537845602,
-        "input_points": 395,
-        "inlier_points": 192,
-        "inlier_fraction": 0.4860759493670886,
-        "acquisitions": 6,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
-      },
-      "points_A": 240,
-      "points_B": 395,
-      "centre_delta_along_m": 0.05058500268291022,
-      "centre_delta_across_m": -0.018577946819352986,
-      "delta_ci95_m": [
-        [
-          -0.08425920422018085,
-          -0.08859879281487563
-        ],
-        [
-          0.07067334656619936,
-          0.03558679525579193
-        ]
-      ],
-      "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "A: mixed/cluttered section",
-        "B: mixed/cluttered section",
-        "B: fit reaches search bound",
-        "across-centre interval at least 4 cm wide"
-      ],
-      "candidate": 4
-    },
-    {
-      "height_z_m": 1.0,
-      "z_low_m": 0.97,
-      "z_high_m": 1.03,
-      "roi_centre_m": [
-        3.010392429627271,
-        1.967455568366283
-      ],
-      "roi_halfwidth_m": [
-        0.22,
-        0.26
-      ],
-      "side_A": {
-        "centre_m": [
-          3.0316350959420126,
-          1.9483394346917997
-        ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.01341177017958154,
-        "arc_deg": 303.5635877982776,
-        "condition": 4.126632565066107,
-        "input_points": 245,
-        "inlier_points": 74,
-        "inlier_fraction": 0.3020408163265306,
+        "radius_m": 0.06152476100229742,
+        "radial_rmse_m": 0.010179354113310684,
+        "arc_deg": 288.1881717175455,
+        "condition": 18.217722914228,
+        "input_points": 200,
+        "inlier_points": 140,
+        "inlier_fraction": 0.7,
         "acquisitions": 7,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
+        "touches_bound": false,
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          3.058172925725271,
-          2.023751396355301
+          3.6802899152246087,
+          1.9047216453909603
         ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.012325555434047425,
-        "arc_deg": 305.335722114361,
-        "condition": 7.3864782352075,
-        "input_points": 424,
-        "inlier_points": 110,
-        "inlier_fraction": 0.25943396226415094,
-        "acquisitions": 6,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
+        "radius_m": 0.04897607036888182,
+        "radial_rmse_m": 0.010294539021445495,
+        "arc_deg": 329.64657603810303,
+        "condition": 5.11186746444646,
+        "input_points": 210,
+        "inlier_points": 172,
+        "inlier_fraction": 0.819047619047619,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
       },
-      "points_A": 245,
-      "points_B": 424,
-      "centre_delta_along_m": 0.02653782978325836,
-      "centre_delta_across_m": 0.07541196166350117,
+      "points_A": 200,
+      "points_B": 210,
+      "centre_delta_along_m": -0.004961673054034055,
+      "centre_delta_across_m": 0.03494484824185662,
       "delta_ci95_m": [
         [
-          -0.02186386275917749,
-          0.05121608254928176
+          -0.044782227060530214,
+          -0.07152126924323936
         ],
         [
-          0.07518773998651727,
-          0.12403535502234941
+          0.07446192071025148,
+          0.058889281044178364
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
-        "A: fit reaches search bound",
-        "B: mixed/cluttered section",
-        "B: fit reaches search bound",
         "across-centre interval at least 4 cm wide"
       ],
-      "candidate": 4
-    },
-    {
-      "height_z_m": 1.25,
-      "z_low_m": 1.22,
-      "z_high_m": 1.28,
-      "roi_centre_m": [
-        3.010392429627271,
-        1.967455568366283
-      ],
-      "roi_halfwidth_m": [
-        0.22,
-        0.26
-      ],
-      "side_A": {
-        "centre_m": [
-          3.040613716359169,
-          1.9204864293244284
-        ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.013600460899330678,
-        "arc_deg": 269.94760794690984,
-        "condition": 25.400065883545842,
-        "input_points": 504,
-        "inlier_points": 135,
-        "inlier_fraction": 0.26785714285714285,
-        "acquisitions": 6,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
-      },
-      "side_B": {
-        "centre_m": [
-          3.038024925429647,
-          2.0264170727900934
-        ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.01259331212507983,
-        "arc_deg": 248.15893576321838,
-        "condition": 14.723362818821833,
-        "input_points": 1055,
-        "inlier_points": 327,
-        "inlier_fraction": 0.30995260663507107,
-        "acquisitions": 6,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
-      },
-      "points_A": 504,
-      "points_B": 1055,
-      "centre_delta_along_m": -0.0025887909295216893,
-      "centre_delta_across_m": 0.10593064346566505,
-      "delta_ci95_m": [
-        [
-          -0.06366024221976478,
-          0.08224101601762515
-        ],
-        [
-          0.033299666270001936,
-          0.15308067739863324
-        ]
-      ],
-      "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "A: mixed/cluttered section",
-        "A: fit reaches search bound",
-        "B: mixed/cluttered section",
-        "B: fit reaches search bound",
-        "across-centre interval at least 4 cm wide"
-      ],
-      "candidate": 4
+      "candidate": 5
     },
     {
       "height_z_m": 0.18,
@@ -1884,12 +2687,12 @@
       "centre_delta_across_m": -0.010666275622176036,
       "delta_ci95_m": [
         [
-          -0.04108175564734595,
-          -0.0879292375490647
+          -0.04985875630368346,
+          -0.07409661039409862
         ],
         [
-          0.07182043434428129,
-          0.053121979778366434
+          0.08141548168160233,
+          0.052596307383468405
         ]
       ],
       "bootstrap_successes": 45,
@@ -1900,9 +2703,9 @@
       "candidate": 5
     },
     {
-      "height_z_m": 0.35,
-      "z_low_m": 0.31999999999999995,
-      "z_high_m": 0.38,
+      "height_z_m": 0.22,
+      "z_low_m": 0.19,
+      "z_high_m": 0.25,
       "roi_centre_m": [
         3.689612220059806,
         1.8664323125400144
@@ -1913,48 +2716,243 @@
       ],
       "side_A": {
         "centre_m": [
-          3.6793002405578985,
-          1.8041709133699995
+          3.6819955816812637,
+          1.8294219069971307
         ],
-        "radius_m": 0.03396417956239279,
-        "radial_rmse_m": 0.009562579627572556,
-        "arc_deg": 289.53771140876137,
-        "condition": 5.598411725646506,
-        "input_points": 166,
-        "inlier_points": 141,
-        "inlier_fraction": 0.8493975903614458,
+        "radius_m": 0.04128442882092515,
+        "radial_rmse_m": 0.009426534742017725,
+        "arc_deg": 288.09659222683473,
+        "condition": 6.198432727123812,
+        "input_points": 185,
+        "inlier_points": 124,
+        "inlier_fraction": 0.6702702702702703,
         "acquisitions": 7,
         "touches_bound": false,
         "issues": []
       },
       "side_B": {
         "centre_m": [
-          3.7007596970445946,
-          1.8569828205725756
+          3.6796509428475845,
+          1.9104966939409884
         ],
-        "radius_m": 0.08682471173076084,
-        "radial_rmse_m": 0.008856036852452459,
-        "arc_deg": 212.254312629684,
-        "condition": 14.108651981330055,
-        "input_points": 71,
-        "inlier_points": 49,
-        "inlier_fraction": 0.6901408450704225,
+        "radius_m": 0.04246949865622188,
+        "radial_rmse_m": 0.009989915937827928,
+        "arc_deg": 314.4771039530458,
+        "condition": 8.481691433453719,
+        "input_points": 145,
+        "inlier_points": 128,
+        "inlier_fraction": 0.8827586206896552,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 185,
+      "points_B": 145,
+      "centre_delta_along_m": -0.0023446388336791912,
+      "centre_delta_across_m": 0.08107478694385772,
+      "delta_ci95_m": [
+        [
+          -0.02947121062236917,
+          0.01935746949805548
+        ],
+        [
+          0.09846847967272314,
+          0.10312673796595803
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 5
+    },
+    {
+      "height_z_m": 0.26,
+      "z_low_m": 0.23,
+      "z_high_m": 0.29000000000000004,
+      "roi_centre_m": [
+        3.689612220059806,
+        1.8664323125400144
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          3.6830713730424662,
+          1.8223672893843657
+        ],
+        "radius_m": 0.03771290456187898,
+        "radial_rmse_m": 0.007786217163921566,
+        "arc_deg": 288.194689435538,
+        "condition": 5.278435924450763,
+        "input_points": 166,
+        "inlier_points": 130,
+        "inlier_fraction": 0.7831325301204819,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          3.6778503711626973,
+          1.8945293233892773
+        ],
+        "radius_m": 0.048219112999569796,
+        "radial_rmse_m": 0.009989714128379658,
+        "arc_deg": 334.17712627293554,
+        "condition": 7.311137388333513,
+        "input_points": 161,
+        "inlier_points": 144,
+        "inlier_fraction": 0.8944099378881988,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
       "points_A": 166,
-      "points_B": 71,
-      "centre_delta_along_m": 0.021459456486696116,
-      "centre_delta_across_m": 0.052811907202576114,
+      "points_B": 161,
+      "centre_delta_along_m": -0.005221001879768927,
+      "centre_delta_across_m": 0.07216203400491161,
       "delta_ci95_m": [
         [
-          -0.043678190361328764,
-          -0.04841571276097976
+          -0.07407277660633187,
+          -0.05034118573358735
         ],
         [
-          0.0681014274950928,
-          0.17637472692155037
+          0.09821970141402224,
+          0.08436978737530727
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 5
+    },
+    {
+      "height_z_m": 0.3,
+      "z_low_m": 0.27,
+      "z_high_m": 0.32999999999999996,
+      "roi_centre_m": [
+        3.689612220059806,
+        1.8664323125400144
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          3.683970938459429,
+          1.816721511051331
+        ],
+        "radius_m": 0.03700888523732137,
+        "radial_rmse_m": 0.007681078795105999,
+        "arc_deg": 323.27518930710386,
+        "condition": 11.190358276169547,
+        "input_points": 159,
+        "inlier_points": 126,
+        "inlier_fraction": 0.7924528301886793,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          3.671825082537774,
+          1.8926355352328115
+        ],
+        "radius_m": 0.044601062333529035,
+        "radial_rmse_m": 0.010178488906125481,
+        "arc_deg": 308.58256470121387,
+        "condition": 12.963726590814835,
+        "input_points": 114,
+        "inlier_points": 99,
+        "inlier_fraction": 0.868421052631579,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 159,
+      "points_B": 114,
+      "centre_delta_along_m": -0.012145855921654736,
+      "centre_delta_across_m": 0.07591402418148041,
+      "delta_ci95_m": [
+        [
+          -0.034106722231794825,
+          -0.021993462757770407
+        ],
+        [
+          0.06768093276449301,
+          0.11400022688358387
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 5
+    },
+    {
+      "height_z_m": 0.34,
+      "z_low_m": 0.31000000000000005,
+      "z_high_m": 0.37,
+      "roi_centre_m": [
+        3.689612220059806,
+        1.8664323125400144
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          3.68066628320478,
+          1.8073467017502047
+        ],
+        "radius_m": 0.03462327798365013,
+        "radial_rmse_m": 0.009655231278418764,
+        "arc_deg": 307.78149430232514,
+        "condition": 6.893843303044062,
+        "input_points": 162,
+        "inlier_points": 135,
+        "inlier_fraction": 0.8333333333333334,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          3.7005208820208253,
+          1.8487486837617861
+        ],
+        "radius_m": 0.09314512604442482,
+        "radial_rmse_m": 0.008468977864055307,
+        "arc_deg": 199.81577500523645,
+        "condition": 59.63583392643231,
+        "input_points": 77,
+        "inlier_points": 50,
+        "inlier_fraction": 0.6493506493506493,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 162,
+      "points_B": 77,
+      "centre_delta_along_m": 0.019854598816045232,
+      "centre_delta_across_m": 0.041401982011581406,
+      "delta_ci95_m": [
+        [
+          -0.03955695532093166,
+          -0.05684779674587499
+        ],
+        [
+          0.07691117655216835,
+          0.19052261450514385
         ]
       ],
       "bootstrap_successes": 45,
@@ -1966,9 +2964,9 @@
       "candidate": 5
     },
     {
-      "height_z_m": 0.55,
-      "z_low_m": 0.52,
-      "z_high_m": 0.5800000000000001,
+      "height_z_m": 0.38,
+      "z_low_m": 0.35,
+      "z_high_m": 0.41000000000000003,
       "roi_centre_m": [
         3.689612220059806,
         1.8664323125400144
@@ -1979,61 +2977,196 @@
       ],
       "side_A": {
         "centre_m": [
-          3.6610983863129354,
-          1.9265829130493843
+          3.67996271624049,
+          1.797858096801247
         ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.009683524728621997,
-        "arc_deg": 235.18040875041987,
-        "condition": 13.912755850801835,
-        "input_points": 309,
-        "inlier_points": 146,
-        "inlier_fraction": 0.47249190938511326,
+        "radius_m": 0.03238794073240586,
+        "radial_rmse_m": 0.008403584724622527,
+        "arc_deg": 316.9973526033299,
+        "condition": 3.7173940999837987,
+        "input_points": 156,
+        "inlier_points": 139,
+        "inlier_fraction": 0.8910256410256411,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          3.70795489122932,
+          1.8633303323696535
+        ],
+        "radius_m": 0.08797626421848752,
+        "radial_rmse_m": 0.009052218528314402,
+        "arc_deg": 229.3410862970609,
+        "condition": 6.1172639120647645,
+        "input_points": 76,
+        "inlier_points": 39,
+        "inlier_fraction": 0.5131578947368421,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "points_A": 156,
+      "points_B": 76,
+      "centre_delta_along_m": 0.027992174988829888,
+      "centre_delta_across_m": 0.06547223556840653,
+      "delta_ci95_m": [
+        [
+          -0.03303889099338266,
+          -0.07005710805373586
+        ],
+        [
+          0.1730145691530788,
+          0.2043921406896675
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "B: mixed/cluttered section",
+        "side radii disagree by at least 3.5 cm",
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 5
+    },
+    {
+      "height_z_m": 0.42,
+      "z_low_m": 0.39,
+      "z_high_m": 0.44999999999999996,
+      "roi_centre_m": [
+        3.689612220059806,
+        1.8664323125400144
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          3.679078020730472,
+          1.7962515388965026
+        ],
+        "radius_m": 0.03299555273330315,
+        "radial_rmse_m": 0.008390908717780194,
+        "arc_deg": 284.1476989982255,
+        "condition": 4.823191136466378,
+        "input_points": 151,
+        "inlier_points": 132,
+        "inlier_fraction": 0.8741721854304636,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          3.6519807037987393,
+          1.9747316817180138
+        ],
+        "radius_m": 0.09506855973658061,
+        "radial_rmse_m": 0.012372895377235587,
+        "arc_deg": 166.3151519139244,
+        "condition": 44.33532109521754,
+        "input_points": 119,
+        "inlier_points": 80,
+        "inlier_fraction": 0.6722689075630253,
+        "acquisitions": 7,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 151,
+      "points_B": 119,
+      "centre_delta_along_m": -0.027097316931732784,
+      "centre_delta_across_m": 0.17848014282151126,
+      "delta_ci95_m": [
+        [
+          -0.04840028241140866,
+          0.00012000117488719729
+        ],
+        [
+          0.12680675967533878,
+          0.19506112204857684
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "side radii disagree by at least 3.5 cm",
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 5
+    },
+    {
+      "height_z_m": 0.46,
+      "z_low_m": 0.43000000000000005,
+      "z_high_m": 0.49,
+      "roi_centre_m": [
+        3.689612220059806,
+        1.8664323125400144
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          3.7118781417443607,
+          1.9404441659005536
+        ],
+        "radius_m": 0.17994261669064224,
+        "radial_rmse_m": 0.012306510392894253,
+        "arc_deg": 189.4693652933956,
+        "condition": 133.81463193558486,
+        "input_points": 136,
+        "inlier_points": 90,
+        "inlier_fraction": 0.6617647058823529,
         "acquisitions": 7,
         "touches_bound": true,
         "issues": [
-          "mixed/cluttered section",
           "fit reaches search bound"
         ]
       },
       "side_B": {
         "centre_m": [
-          3.65596998162751,
-          2.0483109813183873
+          3.8639248878102475,
+          1.8934429960947048
         ],
-        "radius_m": 0.17999999999996896,
-        "radial_rmse_m": 0.010148547022650634,
-        "arc_deg": 216.09908189703881,
-        "condition": 14.64913566644229,
-        "input_points": 200,
-        "inlier_points": 77,
-        "inlier_fraction": 0.385,
-        "acquisitions": 6,
+        "radius_m": 0.17999999999944086,
+        "radial_rmse_m": 0.011790365114927037,
+        "arc_deg": 112.55251176338966,
+        "condition": 484.6488948465532,
+        "input_points": 147,
+        "inlier_points": 61,
+        "inlier_fraction": 0.41496598639455784,
+        "acquisitions": 5,
         "touches_bound": true,
         "issues": [
+          "ill-conditioned circle",
           "mixed/cluttered section",
           "fit reaches search bound"
         ]
       },
-      "points_A": 309,
-      "points_B": 200,
-      "centre_delta_along_m": -0.005128404685425192,
-      "centre_delta_across_m": 0.12172806826900295,
+      "points_A": 136,
+      "points_B": 147,
+      "centre_delta_along_m": 0.15204674606588675,
+      "centre_delta_across_m": -0.047001169805848786,
       "delta_ci95_m": [
         [
-          -0.07579116451783449,
-          0.06486453080003081
+          -0.088105963993541,
+          -0.13313868716625576
         ],
         [
-          0.10208003804955944,
-          0.14191378170848198
+          0.1887850128495888,
+          0.17947165395484524
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
         "A: fit reaches search bound",
+        "B: ill-conditioned circle",
         "B: mixed/cluttered section",
         "B: fit reaches search bound",
         "across-centre interval at least 4 cm wide"
@@ -2041,12 +3174,12 @@
       "candidate": 5
     },
     {
-      "height_z_m": 0.75,
-      "z_low_m": 0.72,
-      "z_high_m": 0.78,
+      "height_z_m": 0.14,
+      "z_low_m": 0.11000000000000001,
+      "z_high_m": 0.17,
       "roi_centre_m": [
-        3.689612220059806,
-        1.8664323125400144
+        4.545645679631107,
+        1.926885425199541
       ],
       "roi_halfwidth_m": [
         0.22,
@@ -2054,211 +3187,56 @@
       ],
       "side_A": {
         "centre_m": [
-          3.755974432571384,
-          1.8507745699637828
+          4.496072511242147,
+          1.8962766233360782
         ],
-        "radius_m": 0.1763566460887553,
-        "radial_rmse_m": 0.01369206184812244,
-        "arc_deg": 212.26841827341624,
-        "condition": 8.741911094777803,
-        "input_points": 334,
-        "inlier_points": 130,
-        "inlier_fraction": 0.38922155688622756,
-        "acquisitions": 6,
+        "radius_m": 0.0693281486677079,
+        "radial_rmse_m": 0.011016711584509837,
+        "arc_deg": 288.32920421834405,
+        "condition": 7.502702810413814,
+        "input_points": 248,
+        "inlier_points": 172,
+        "inlier_fraction": 0.6935483870967742,
+        "acquisitions": 5,
         "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          3.767539892378718,
-          2.00949943808174
+          4.523078163467963,
+          1.9805965633694917
         ],
-        "radius_m": 0.1329407502841393,
-        "radial_rmse_m": 0.009000813877489428,
-        "arc_deg": 220.53812815087812,
-        "condition": 24.795710690988045,
-        "input_points": 91,
-        "inlier_points": 39,
-        "inlier_fraction": 0.42857142857142855,
+        "radius_m": 0.0766232676902893,
+        "radial_rmse_m": 0.00999797370555164,
+        "arc_deg": 289.64724324710124,
+        "condition": 5.363527935697164,
+        "input_points": 383,
+        "inlier_points": 320,
+        "inlier_fraction": 0.835509138381201,
         "acquisitions": 6,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
+        "touches_bound": false,
+        "issues": []
       },
-      "points_A": 334,
-      "points_B": 91,
-      "centre_delta_along_m": 0.011565459807333589,
-      "centre_delta_across_m": 0.15872486811795739,
+      "points_A": 248,
+      "points_B": 383,
+      "centre_delta_along_m": 0.027005652225815524,
+      "centre_delta_across_m": 0.08431994003341359,
       "delta_ci95_m": [
         [
-          -0.08899631668294421,
-          0.07723313621575134
+          -0.019304664179843202,
+          0.05577696614776919
         ],
         [
-          0.16005076359246848,
-          0.22204446856298174
+          0.04538375990655012,
+          0.09650682587430393
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
-        "B: mixed/cluttered section",
-        "B: fit reaches search bound",
-        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
-      "candidate": 5
-    },
-    {
-      "height_z_m": 1.0,
-      "z_low_m": 0.97,
-      "z_high_m": 1.03,
-      "roi_centre_m": [
-        3.689612220059806,
-        1.8664323125400144
-      ],
-      "roi_halfwidth_m": [
-        0.22,
-        0.26
-      ],
-      "side_A": {
-        "centre_m": [
-          3.726617620589654,
-          1.8306879567807905
-        ],
-        "radius_m": 0.17999999997250438,
-        "radial_rmse_m": 0.012600608197926902,
-        "arc_deg": 296.962923052634,
-        "condition": 13.78189774256032,
-        "input_points": 707,
-        "inlier_points": 204,
-        "inlier_fraction": 0.28854314002828857,
-        "acquisitions": 5,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
-      },
-      "side_B": {
-        "centre_m": [
-          3.6894944677425876,
-          1.9733215418202554
-        ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.014995486679728583,
-        "arc_deg": 176.0242846224525,
-        "condition": 31.9617702884943,
-        "input_points": 73,
-        "inlier_points": 21,
-        "inlier_fraction": 0.2876712328767123,
-        "acquisitions": 5,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
-      },
-      "points_A": 707,
-      "points_B": 73,
-      "centre_delta_along_m": -0.037123152847066354,
-      "centre_delta_across_m": 0.14263358503946488,
-      "delta_ci95_m": [
-        [
-          -0.10560701759421183,
-          -0.10454672392049294
-        ],
-        [
-          0.15661628169587194,
-          0.16518706034342925
-        ]
-      ],
-      "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "A: mixed/cluttered section",
-        "A: fit reaches search bound",
-        "B: mixed/cluttered section",
-        "B: fit reaches search bound",
-        "across-centre interval at least 4 cm wide"
-      ],
-      "candidate": 5
-    },
-    {
-      "height_z_m": 1.25,
-      "z_low_m": 1.22,
-      "z_high_m": 1.28,
-      "roi_centre_m": [
-        3.689612220059806,
-        1.8664323125400144
-      ],
-      "roi_halfwidth_m": [
-        0.22,
-        0.26
-      ],
-      "side_A": {
-        "centre_m": [
-          3.7127771471803337,
-          1.79534039295125
-        ],
-        "radius_m": 0.151532776967863,
-        "radial_rmse_m": 0.01164399416607739,
-        "arc_deg": 328.6953062012892,
-        "condition": 3.80656648219636,
-        "input_points": 693,
-        "inlier_points": 240,
-        "inlier_fraction": 0.3463203463203463,
-        "acquisitions": 6,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "side_B": {
-        "centre_m": [
-          3.6615829505049797,
-          1.9668032872682728
-        ],
-        "radius_m": 0.15113605414418338,
-        "radial_rmse_m": 0.01144628843449071,
-        "arc_deg": 308.4192435106356,
-        "condition": 3.6574941563381524,
-        "input_points": 717,
-        "inlier_points": 220,
-        "inlier_fraction": 0.3068340306834031,
-        "acquisitions": 5,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "points_A": 693,
-      "points_B": 717,
-      "centre_delta_along_m": -0.051194196675353965,
-      "centre_delta_across_m": 0.17146289431702288,
-      "delta_ci95_m": [
-        [
-          -0.08360383687049433,
-          0.1354635222103099
-        ],
-        [
-          -0.030083798495502027,
-          0.2132884763116487
-        ]
-      ],
-      "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "A: mixed/cluttered section",
-        "B: mixed/cluttered section",
-        "across-centre interval at least 4 cm wide"
-      ],
-      "candidate": 5
+      "candidate": 6
     },
     {
       "height_z_m": 0.18,
@@ -2310,12 +3288,12 @@
       "centre_delta_across_m": 0.07769423035112233,
       "delta_ci95_m": [
         [
-          -0.03987937513434847,
-          0.04203032275178098
+          -0.02479932496232058,
+          0.03871264779844259
         ],
         [
-          0.053282092449360795,
-          0.09019801989196703
+          0.049841077473311735,
+          0.09176527613595742
         ]
       ],
       "bootstrap_successes": 45,
@@ -2326,9 +3304,9 @@
       "candidate": 6
     },
     {
-      "height_z_m": 0.35,
-      "z_low_m": 0.31999999999999995,
-      "z_high_m": 0.38,
+      "height_z_m": 0.22,
+      "z_low_m": 0.19,
+      "z_high_m": 0.25,
       "roi_centre_m": [
         4.545645679631107,
         1.926885425199541
@@ -2339,48 +3317,48 @@
       ],
       "side_A": {
         "centre_m": [
-          4.569532182866579,
-          1.8822484424120027
+          4.517863303605226,
+          1.8877848530945847
         ],
-        "radius_m": 0.08894484022496371,
-        "radial_rmse_m": 0.010723237482058862,
-        "arc_deg": 254.50193921746887,
-        "condition": 7.192811211985308,
-        "input_points": 104,
-        "inlier_points": 60,
-        "inlier_fraction": 0.5769230769230769,
+        "radius_m": 0.05653704139091602,
+        "radial_rmse_m": 0.011584708160003069,
+        "arc_deg": 296.5012051712969,
+        "condition": 9.735484295395645,
+        "input_points": 206,
+        "inlier_points": 154,
+        "inlier_fraction": 0.7475728155339806,
         "acquisitions": 5,
         "touches_bound": false,
         "issues": []
       },
       "side_B": {
         "centre_m": [
-          4.577029930968535,
-          1.9176832274572324
+          4.53586276732708,
+          1.9461825431411508
         ],
-        "radius_m": 0.10275457617924008,
-        "radial_rmse_m": 0.009516659621012884,
-        "arc_deg": 205.8790343223022,
-        "condition": 20.102291320716738,
-        "input_points": 360,
-        "inlier_points": 225,
-        "inlier_fraction": 0.625,
+        "radius_m": 0.08132086973844668,
+        "radial_rmse_m": 0.010235593851812332,
+        "arc_deg": 326.90964494093555,
+        "condition": 14.491567271960324,
+        "input_points": 269,
+        "inlier_points": 203,
+        "inlier_fraction": 0.7546468401486989,
         "acquisitions": 6,
         "touches_bound": false,
         "issues": []
       },
-      "points_A": 104,
-      "points_B": 360,
-      "centre_delta_along_m": 0.007497748101955359,
-      "centre_delta_across_m": 0.03543478504522968,
+      "points_A": 206,
+      "points_B": 269,
+      "centre_delta_along_m": 0.017999463721854347,
+      "centre_delta_across_m": 0.05839769004656614,
       "delta_ci95_m": [
         [
-          -0.03749708745103177,
-          -0.001965010917263154
+          -0.02116957022670558,
+          -0.07227686988243123
         ],
         [
-          0.04740103495147565,
-          0.12506207349847925
+          0.05972482896063837,
+          0.09471866699065395
         ]
       ],
       "bootstrap_successes": 45,
@@ -2391,9 +3369,9 @@
       "candidate": 6
     },
     {
-      "height_z_m": 0.55,
-      "z_low_m": 0.52,
-      "z_high_m": 0.5800000000000001,
+      "height_z_m": 0.26,
+      "z_low_m": 0.23,
+      "z_high_m": 0.29000000000000004,
       "roi_centre_m": [
         4.545645679631107,
         1.926885425199541
@@ -2404,17 +3382,277 @@
       ],
       "side_A": {
         "centre_m": [
-          4.493949852664442,
-          1.8715478633622282
+          4.526046588605067,
+          1.9262589953616254
         ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.01177156126704689,
-        "arc_deg": 272.86008468344306,
-        "condition": 33.624788778232144,
-        "input_points": 125,
-        "inlier_points": 63,
-        "inlier_fraction": 0.504,
+        "radius_m": 0.09481108965881314,
+        "radial_rmse_m": 0.01017403908467098,
+        "arc_deg": 202.85784438842194,
+        "condition": 37.15178480420935,
+        "input_points": 173,
+        "inlier_points": 127,
+        "inlier_fraction": 0.7341040462427746,
         "acquisitions": 5,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          4.542635863240328,
+          1.9579212895558422
+        ],
+        "radius_m": 0.06670249636145423,
+        "radial_rmse_m": 0.009508639843793226,
+        "arc_deg": 311.1038516408632,
+        "condition": 8.032838235972855,
+        "input_points": 279,
+        "inlier_points": 233,
+        "inlier_fraction": 0.8351254480286738,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 173,
+      "points_B": 279,
+      "centre_delta_along_m": 0.016589274635260942,
+      "centre_delta_across_m": 0.031662294194216845,
+      "delta_ci95_m": [
+        [
+          -0.014271530100606621,
+          0.004791104709670169
+        ],
+        [
+          0.05662628091046214,
+          0.08900543705950244
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 6
+    },
+    {
+      "height_z_m": 0.3,
+      "z_low_m": 0.27,
+      "z_high_m": 0.32999999999999996,
+      "roi_centre_m": [
+        4.545645679631107,
+        1.926885425199541
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          4.552270130153126,
+          1.8914545178907698
+        ],
+        "radius_m": 0.07214712938538784,
+        "radial_rmse_m": 0.009334053531759966,
+        "arc_deg": 269.1449542011867,
+        "condition": 22.655453981479038,
+        "input_points": 154,
+        "inlier_points": 97,
+        "inlier_fraction": 0.6298701298701299,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          4.5532914242124924,
+          1.9400773278651315
+        ],
+        "radius_m": 0.07819847227737917,
+        "radial_rmse_m": 0.009981211054678397,
+        "arc_deg": 298.9053975042708,
+        "condition": 17.389622915296997,
+        "input_points": 289,
+        "inlier_points": 205,
+        "inlier_fraction": 0.7093425605536332,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 154,
+      "points_B": 289,
+      "centre_delta_along_m": 0.0010212940593667952,
+      "centre_delta_across_m": 0.04862280997436175,
+      "delta_ci95_m": [
+        [
+          -0.03671888672845265,
+          0.001381992080665251
+        ],
+        [
+          0.060231692982315885,
+          0.0710849005890198
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 6
+    },
+    {
+      "height_z_m": 0.34,
+      "z_low_m": 0.31000000000000005,
+      "z_high_m": 0.37,
+      "roi_centre_m": [
+        4.545645679631107,
+        1.926885425199541
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          4.571699857535549,
+          1.8872308886856672
+        ],
+        "radius_m": 0.09057358183289964,
+        "radial_rmse_m": 0.010988337141330856,
+        "arc_deg": 254.94385538083782,
+        "condition": 7.107271775124716,
+        "input_points": 113,
+        "inlier_points": 69,
+        "inlier_fraction": 0.6106194690265486,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          4.581265331611255,
+          1.9201793972389856
+        ],
+        "radius_m": 0.1056565537992054,
+        "radial_rmse_m": 0.01035626155057643,
+        "arc_deg": 212.59736550037636,
+        "condition": 19.961541597563443,
+        "input_points": 364,
+        "inlier_points": 242,
+        "inlier_fraction": 0.6648351648351648,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 113,
+      "points_B": 364,
+      "centre_delta_along_m": 0.00956547407570607,
+      "centre_delta_across_m": 0.03294850855331832,
+      "delta_ci95_m": [
+        [
+          -0.019028824093518713,
+          0.008619546990714167
+        ],
+        [
+          0.06333752234099278,
+          0.09873546810748327
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 6
+    },
+    {
+      "height_z_m": 0.38,
+      "z_low_m": 0.35,
+      "z_high_m": 0.41000000000000003,
+      "roi_centre_m": [
+        4.545645679631107,
+        1.926885425199541
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          4.56056075114182,
+          1.867302986176079
+        ],
+        "radius_m": 0.07263716382485352,
+        "radial_rmse_m": 0.010067033283754823,
+        "arc_deg": 255.3044205969771,
+        "condition": 9.869148652299128,
+        "input_points": 81,
+        "inlier_points": 52,
+        "inlier_fraction": 0.6419753086419753,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          4.546024130330233,
+          1.9458113607060326
+        ],
+        "radius_m": 0.06517155147004929,
+        "radial_rmse_m": 0.00858661085940871,
+        "arc_deg": 258.73652151457213,
+        "condition": 7.95642689639376,
+        "input_points": 337,
+        "inlier_points": 280,
+        "inlier_fraction": 0.8308605341246291,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 81,
+      "points_B": 337,
+      "centre_delta_along_m": -0.014536620811586687,
+      "centre_delta_across_m": 0.07850837452995352,
+      "delta_ci95_m": [
+        [
+          -0.07553887596913186,
+          0.0432265822922608
+        ],
+        [
+          0.02129949573640439,
+          0.14056947327056354
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 6
+    },
+    {
+      "height_z_m": 0.42,
+      "z_low_m": 0.39,
+      "z_high_m": 0.44999999999999996,
+      "roi_centre_m": [
+        4.545645679631107,
+        1.926885425199541
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          4.490215343606878,
+          1.755554562921982
+        ],
+        "radius_m": 0.06730760005481772,
+        "radial_rmse_m": 0.008376892069444976,
+        "arc_deg": 272.4483217523515,
+        "condition": 16.839938842431426,
+        "input_points": 60,
+        "inlier_points": 30,
+        "inlier_fraction": 0.5,
+        "acquisitions": 4,
         "touches_bound": true,
         "issues": [
           "mixed/cluttered section",
@@ -2423,52 +3661,47 @@
       },
       "side_B": {
         "centre_m": [
-          4.566015084390604,
-          1.863594282707758
+          4.54310944729975,
+          1.9419425934931125
         ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.010672584747075348,
-        "arc_deg": 162.67602714172335,
-        "condition": 61.0941473480328,
-        "input_points": 403,
-        "inlier_points": 133,
-        "inlier_fraction": 0.33002481389578164,
+        "radius_m": 0.06550562897893196,
+        "radial_rmse_m": 0.00921288487140984,
+        "arc_deg": 265.17304617399077,
+        "condition": 8.319863783404537,
+        "input_points": 270,
+        "inlier_points": 257,
+        "inlier_fraction": 0.9518518518518518,
         "acquisitions": 6,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
+        "touches_bound": false,
+        "issues": []
       },
-      "points_A": 125,
-      "points_B": 403,
-      "centre_delta_along_m": 0.07206523172616208,
-      "centre_delta_across_m": -0.00795358065447016,
+      "points_A": 60,
+      "points_B": 270,
+      "centre_delta_along_m": 0.052894103692872285,
+      "centre_delta_across_m": 0.18638803057113051,
       "delta_ci95_m": [
         [
-          0.026795545648384423,
-          -0.03404384456584717
+          -0.15575805344006177,
+          0.06278345440476518
         ],
         [
-          0.14324714320029405,
-          0.03595412333882144
+          0.0532153664041779,
+          0.19015220226154472
         ]
       ],
-      "bootstrap_successes": 45,
+      "bootstrap_successes": 41,
       "usable_comparison": false,
       "issues": [
         "A: mixed/cluttered section",
         "A: fit reaches search bound",
-        "B: mixed/cluttered section",
-        "B: fit reaches search bound",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 6
     },
     {
-      "height_z_m": 0.75,
-      "z_low_m": 0.72,
-      "z_high_m": 0.78,
+      "height_z_m": 0.46,
+      "z_low_m": 0.43000000000000005,
+      "z_high_m": 0.49,
       "roi_centre_m": [
         4.545645679631107,
         1.926885425199541
@@ -2479,76 +3712,67 @@
       ],
       "side_A": {
         "centre_m": [
-          4.480289233480797,
-          1.9054316256528059
+          4.502890702034565,
+          1.7623575840614871
         ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.011202420753501285,
-        "arc_deg": 99.2104929697352,
-        "condition": 432.10940586047116,
-        "input_points": 207,
-        "inlier_points": 84,
-        "inlier_fraction": 0.4057971014492754,
-        "acquisitions": 5,
-        "touches_bound": true,
-        "issues": [
-          "short observed arc",
-          "ill-conditioned circle",
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
-      },
-      "side_B": {
-        "centre_m": [
-          4.547244760907763,
-          1.8506650137173641
-        ],
-        "radius_m": 0.1767971433728462,
-        "radial_rmse_m": 0.013229229063195732,
-        "arc_deg": 305.35188058624715,
-        "condition": 5.051448854854116,
-        "input_points": 705,
-        "inlier_points": 170,
-        "inlier_fraction": 0.24113475177304963,
-        "acquisitions": 6,
+        "radius_m": 0.06035998591152847,
+        "radial_rmse_m": 0.012743553730390099,
+        "arc_deg": 282.34967269806816,
+        "condition": 9.069915861320688,
+        "input_points": 53,
+        "inlier_points": 28,
+        "inlier_fraction": 0.5283018867924528,
+        "acquisitions": 4,
         "touches_bound": false,
         "issues": [
           "mixed/cluttered section"
         ]
       },
-      "points_A": 207,
-      "points_B": 705,
-      "centre_delta_along_m": 0.06695552742696531,
-      "centre_delta_across_m": -0.054766611935441745,
+      "side_B": {
+        "centre_m": [
+          4.543104561531536,
+          1.9370147041733137
+        ],
+        "radius_m": 0.06641929358232261,
+        "radial_rmse_m": 0.010550997529240689,
+        "arc_deg": 259.3156927758101,
+        "condition": 9.293365823591396,
+        "input_points": 262,
+        "inlier_points": 213,
+        "inlier_fraction": 0.8129770992366412,
+        "acquisitions": 6,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 53,
+      "points_B": 262,
+      "centre_delta_along_m": 0.04021385949697098,
+      "centre_delta_across_m": 0.17465712011182655,
       "delta_ci95_m": [
         [
-          -0.032656710558912214,
-          -0.07176216569763468
+          -0.1496191640109185,
+          -0.0300273970551131
         ],
         [
-          0.1466884176470178,
-          0.017200698855644257
+          0.16337855773675905,
+          0.1879481905545542
         ]
       ],
-      "bootstrap_successes": 45,
+      "bootstrap_successes": 44,
       "usable_comparison": false,
       "issues": [
-        "A: short observed arc",
-        "A: ill-conditioned circle",
         "A: mixed/cluttered section",
-        "A: fit reaches search bound",
-        "B: mixed/cluttered section",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 6
     },
     {
-      "height_z_m": 1.0,
-      "z_low_m": 0.97,
-      "z_high_m": 1.03,
+      "height_z_m": 0.14,
+      "z_low_m": 0.11000000000000001,
+      "z_high_m": 0.17,
       "roi_centre_m": [
-        4.545645679631107,
-        1.926885425199541
+        5.947794759922218,
+        1.818058681544578
       ],
       "roi_halfwidth_m": [
         0.22,
@@ -2556,135 +3780,56 @@
       ],
       "side_A": {
         "centre_m": [
-          4.543698696238687,
-          1.8467323148886399
+          5.91375758875281,
+          1.8291849071528155
         ],
-        "radius_m": 0.1764518104310697,
-        "radial_rmse_m": 0.011313643806801221,
-        "arc_deg": 293.21795816016726,
-        "condition": 8.197453907204853,
-        "input_points": 292,
-        "inlier_points": 108,
-        "inlier_fraction": 0.3698630136986301,
-        "acquisitions": 5,
+        "radius_m": 0.07945358679607656,
+        "radial_rmse_m": 0.011617257908231803,
+        "arc_deg": 250.2163492037564,
+        "condition": 8.411740093396483,
+        "input_points": 164,
+        "inlier_points": 136,
+        "inlier_fraction": 0.8292682926829268,
+        "acquisitions": 3,
         "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
+        "issues": []
       },
       "side_B": {
         "centre_m": [
-          4.556029397995105,
-          1.9959128267848607
+          5.962201597668808,
+          1.8194196179976045
         ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.012008608494838124,
-        "arc_deg": 308.45223604527956,
-        "condition": 4.074080247099924,
-        "input_points": 450,
-        "inlier_points": 132,
-        "inlier_fraction": 0.29333333333333333,
-        "acquisitions": 6,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
+        "radius_m": 0.08758636155677506,
+        "radial_rmse_m": 0.011070733058964909,
+        "arc_deg": 233.06422682632132,
+        "condition": 31.104959435152132,
+        "input_points": 217,
+        "inlier_points": 186,
+        "inlier_fraction": 0.8571428571428571,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": []
       },
-      "points_A": 292,
-      "points_B": 450,
-      "centre_delta_along_m": 0.012330701756417817,
-      "centre_delta_across_m": 0.14918051189622084,
+      "points_A": 164,
+      "points_B": 217,
+      "centre_delta_along_m": 0.04844400891599765,
+      "centre_delta_across_m": -0.00976528915521091,
       "delta_ci95_m": [
         [
-          -0.02191070091685763,
-          0.13548429434703005
+          0.026924002955508362,
+          -0.03932501612953112
         ],
         [
-          0.06365961613966725,
-          0.20200672103512798
+          0.08599246385391926,
+          0.016549544002628504
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
-        "B: mixed/cluttered section",
-        "B: fit reaches search bound",
         "across-centre interval at least 4 cm wide"
       ],
-      "candidate": 6
-    },
-    {
-      "height_z_m": 1.25,
-      "z_low_m": 1.22,
-      "z_high_m": 1.28,
-      "roi_centre_m": [
-        4.545645679631107,
-        1.926885425199541
-      ],
-      "roi_halfwidth_m": [
-        0.22,
-        0.26
-      ],
-      "side_A": {
-        "centre_m": [
-          4.473271383321613,
-          1.8255903857320002
-        ],
-        "radius_m": 0.1395607187099345,
-        "radial_rmse_m": 0.01142145087900717,
-        "arc_deg": 298.6379449482586,
-        "condition": 10.328107237110833,
-        "input_points": 412,
-        "inlier_points": 176,
-        "inlier_fraction": 0.42718446601941745,
-        "acquisitions": 5,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "side_B": {
-        "centre_m": [
-          4.5281061261654285,
-          2.0106183910947633
-        ],
-        "radius_m": 0.14938708326821248,
-        "radial_rmse_m": 0.011956306337023178,
-        "arc_deg": 315.622096282619,
-        "condition": 2.820091845724916,
-        "input_points": 1554,
-        "inlier_points": 497,
-        "inlier_fraction": 0.31981981981981983,
-        "acquisitions": 6,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "points_A": 412,
-      "points_B": 1554,
-      "centre_delta_along_m": 0.0548347428438154,
-      "centre_delta_across_m": 0.1850280053627631,
-      "delta_ci95_m": [
-        [
-          0.028910800473028252,
-          0.17277883504208885
-        ],
-        [
-          0.08370159402544353,
-          0.22635067086774216
-        ]
-      ],
-      "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "A: mixed/cluttered section",
-        "B: mixed/cluttered section",
-        "across-centre interval at least 4 cm wide"
-      ],
-      "candidate": 6
+      "candidate": 7
     },
     {
       "height_z_m": 0.18,
@@ -2736,12 +3881,12 @@
       "centre_delta_across_m": -0.004244640883257933,
       "delta_ci95_m": [
         [
-          0.021279247305736337,
-          -0.08203090711968983
+          0.023511797800992974,
+          -0.0831866653824516
         ],
         [
-          0.116711700633709,
-          0.00699681308001081
+          0.12818764459321358,
+          0.008037794729020262
         ]
       ],
       "bootstrap_successes": 45,
@@ -2752,9 +3897,9 @@
       "candidate": 7
     },
     {
-      "height_z_m": 0.35,
-      "z_low_m": 0.31999999999999995,
-      "z_high_m": 0.38,
+      "height_z_m": 0.22,
+      "z_low_m": 0.19,
+      "z_high_m": 0.25,
       "roi_centre_m": [
         5.947794759922218,
         1.818058681544578
@@ -2765,343 +3910,451 @@
       ],
       "side_A": {
         "centre_m": [
-          5.926823489377253,
-          1.7962867961684288
+          5.91915323749533,
+          1.8015557098689514
         ],
-        "radius_m": 0.057706160854169325,
-        "radial_rmse_m": 0.011357141523171821,
-        "arc_deg": 257.18408978203473,
-        "condition": 4.8298644182571335,
-        "input_points": 139,
-        "inlier_points": 122,
-        "inlier_fraction": 0.8776978417266187,
+        "radius_m": 0.05216859023999005,
+        "radial_rmse_m": 0.009723685712577961,
+        "arc_deg": 245.20689626084365,
+        "condition": 12.49266234880365,
+        "input_points": 136,
+        "inlier_points": 108,
+        "inlier_fraction": 0.7941176470588235,
         "acquisitions": 3,
         "touches_bound": false,
         "issues": []
       },
       "side_B": {
         "centre_m": [
-          5.969877116407392,
-          1.8048246748244177
+          5.974134246021577,
+          1.7884121782639684
         ],
-        "radius_m": 0.06851956465074453,
-        "radial_rmse_m": 0.009812603608413531,
-        "arc_deg": 218.1364049090532,
-        "condition": 15.735926495486963,
-        "input_points": 148,
-        "inlier_points": 109,
-        "inlier_fraction": 0.7364864864864865,
-        "acquisitions": 4,
-        "touches_bound": false,
-        "issues": []
-      },
-      "points_A": 139,
-      "points_B": 148,
-      "centre_delta_along_m": 0.043053627030138486,
-      "centre_delta_across_m": 0.008537878655988873,
-      "delta_ci95_m": [
-        [
-          -0.024676993388308952,
-          -0.10710881070712605
-        ],
-        [
-          0.060077533957255104,
-          0.04340752192990826
-        ]
-      ],
-      "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "across-centre interval at least 4 cm wide"
-      ],
-      "candidate": 7
-    },
-    {
-      "height_z_m": 0.55,
-      "z_low_m": 0.52,
-      "z_high_m": 0.5800000000000001,
-      "roi_centre_m": [
-        5.947794759922218,
-        1.818058681544578
-      ],
-      "roi_halfwidth_m": [
-        0.22,
-        0.26
-      ],
-      "side_A": {
-        "centre_m": [
-          5.964526252689733,
-          1.7902723930376838
-        ],
-        "radius_m": 0.11143741334640506,
-        "radial_rmse_m": 0.011224445740082816,
-        "arc_deg": 218.95574992956844,
-        "condition": 13.823190641109308,
-        "input_points": 216,
-        "inlier_points": 75,
-        "inlier_fraction": 0.3472222222222222,
-        "acquisitions": 3,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "side_B": {
-        "centre_m": [
-          5.982251123706602,
-          1.8740960385672403
-        ],
-        "radius_m": 0.10426286243621413,
-        "radial_rmse_m": 0.011590825743440593,
-        "arc_deg": 298.4904061830483,
-        "condition": 2.510486562540338,
-        "input_points": 371,
-        "inlier_points": 140,
-        "inlier_fraction": 0.37735849056603776,
-        "acquisitions": 4,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "points_A": 216,
-      "points_B": 371,
-      "centre_delta_along_m": 0.017724871016868704,
-      "centre_delta_across_m": 0.08382364552955646,
-      "delta_ci95_m": [
-        [
-          -0.09134725388798878,
-          0.004746959893568081
-        ],
-        [
-          0.03499982575730032,
-          0.1455094352813483
-        ]
-      ],
-      "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "A: mixed/cluttered section",
-        "B: mixed/cluttered section",
-        "across-centre interval at least 4 cm wide"
-      ],
-      "candidate": 7
-    },
-    {
-      "height_z_m": 0.75,
-      "z_low_m": 0.72,
-      "z_high_m": 0.78,
-      "roi_centre_m": [
-        5.947794759922218,
-        1.818058681544578
-      ],
-      "roi_halfwidth_m": [
-        0.22,
-        0.26
-      ],
-      "side_A": {
-        "centre_m": [
-          5.990940272947294,
-          1.7964679876986316
-        ],
-        "radius_m": 0.17160191577688647,
-        "radial_rmse_m": 0.01236212297348242,
-        "arc_deg": 267.22363909469095,
-        "condition": 7.508091510931487,
-        "input_points": 298,
-        "inlier_points": 61,
-        "inlier_fraction": 0.20469798657718122,
-        "acquisitions": 3,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "side_B": {
-        "centre_m": [
-          5.888723728263922,
-          1.8864716798264283
-        ],
-        "radius_m": 0.17542642828302815,
-        "radial_rmse_m": 0.012558664516962378,
-        "arc_deg": 309.9594913931248,
-        "condition": 6.218465957610553,
-        "input_points": 378,
-        "inlier_points": 141,
-        "inlier_fraction": 0.373015873015873,
-        "acquisitions": 4,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "points_A": 298,
-      "points_B": 378,
-      "centre_delta_along_m": -0.10221654468337249,
-      "centre_delta_across_m": 0.09000369212779669,
-      "delta_ci95_m": [
-        [
-          -0.18842970987441054,
-          0.010894321708071298
-        ],
-        [
-          0.0506433345188154,
-          0.1405413674022907
-        ]
-      ],
-      "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "A: mixed/cluttered section",
-        "B: mixed/cluttered section",
-        "across-centre interval at least 4 cm wide"
-      ],
-      "candidate": 7
-    },
-    {
-      "height_z_m": 1.0,
-      "z_low_m": 0.97,
-      "z_high_m": 1.03,
-      "roi_centre_m": [
-        5.947794759922218,
-        1.818058681544578
-      ],
-      "roi_halfwidth_m": [
-        0.22,
-        0.26
-      ],
-      "side_A": {
-        "centre_m": [
-          6.020862192934086,
-          1.784619253701709
-        ],
-        "radius_m": 0.1799999999999999,
-        "radial_rmse_m": 0.012112515088179648,
-        "arc_deg": 193.78318208623392,
-        "condition": 13.400665447430194,
-        "input_points": 118,
-        "inlier_points": 58,
-        "inlier_fraction": 0.4915254237288136,
-        "acquisitions": 3,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
-      },
-      "side_B": {
-        "centre_m": [
-          5.967280842863915,
-          1.9066012766625917
-        ],
-        "radius_m": 0.1685311972857751,
-        "radial_rmse_m": 0.011536980024476149,
-        "arc_deg": 326.33007229859015,
-        "condition": 9.429936101687458,
-        "input_points": 459,
-        "inlier_points": 164,
-        "inlier_fraction": 0.3572984749455338,
-        "acquisitions": 4,
-        "touches_bound": false,
-        "issues": [
-          "mixed/cluttered section"
-        ]
-      },
-      "points_A": 118,
-      "points_B": 459,
-      "centre_delta_along_m": -0.05358135007017051,
-      "centre_delta_across_m": 0.12198202296088279,
-      "delta_ci95_m": [
-        [
-          -0.10845659733207222,
-          0.09147044311391198
-        ],
-        [
-          -0.0283497240575894,
-          0.16433589080024377
-        ]
-      ],
-      "bootstrap_successes": 45,
-      "usable_comparison": false,
-      "issues": [
-        "A: mixed/cluttered section",
-        "A: fit reaches search bound",
-        "B: mixed/cluttered section",
-        "across-centre interval at least 4 cm wide"
-      ],
-      "candidate": 7
-    },
-    {
-      "height_z_m": 1.25,
-      "z_low_m": 1.22,
-      "z_high_m": 1.28,
-      "roi_centre_m": [
-        5.947794759922218,
-        1.818058681544578
-      ],
-      "roi_halfwidth_m": [
-        0.22,
-        0.26
-      ],
-      "side_A": {
-        "centre_m": [
-          5.9463980112688475,
-          1.7642958947279306
-        ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.011594089810471622,
-        "arc_deg": 224.46589549326188,
-        "condition": 19.14449404831534,
-        "input_points": 319,
+        "radius_m": 0.08391527193924268,
+        "radial_rmse_m": 0.008858527320294782,
+        "arc_deg": 281.50662884390977,
+        "condition": 8.31345578629734,
+        "input_points": 108,
         "inlier_points": 98,
-        "inlier_fraction": 0.3072100313479624,
-        "acquisitions": 3,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
+        "inlier_fraction": 0.9074074074074074,
+        "acquisitions": 5,
+        "touches_bound": false,
+        "issues": []
       },
-      "side_B": {
-        "centre_m": [
-          5.9207894987148615,
-          1.8243836930589457
-        ],
-        "radius_m": 0.17999999999999997,
-        "radial_rmse_m": 0.011608885366007602,
-        "arc_deg": 317.62886838590674,
-        "condition": 4.8646491671467365,
-        "input_points": 799,
-        "inlier_points": 230,
-        "inlier_fraction": 0.2878598247809762,
-        "acquisitions": 4,
-        "touches_bound": true,
-        "issues": [
-          "mixed/cluttered section",
-          "fit reaches search bound"
-        ]
-      },
-      "points_A": 319,
-      "points_B": 799,
-      "centre_delta_along_m": -0.025608512553985996,
-      "centre_delta_across_m": 0.060087798331015074,
+      "points_A": 136,
+      "points_B": 108,
+      "centre_delta_along_m": 0.05498100852624699,
+      "centre_delta_across_m": -0.01314353160498305,
       "delta_ci95_m": [
         [
-          -0.05821307650074807,
-          0.036660813389990984
+          0.02801953997502036,
+          -0.09110255843020203
         ],
         [
-          0.027558517943305973,
-          0.11973407881476908
+          0.0754525214373026,
+          0.01254037044567393
         ]
       ],
       "bootstrap_successes": 45,
       "usable_comparison": false,
       "issues": [
-        "A: mixed/cluttered section",
-        "A: fit reaches search bound",
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 7
+    },
+    {
+      "height_z_m": 0.26,
+      "z_low_m": 0.23,
+      "z_high_m": 0.29000000000000004,
+      "roi_centre_m": [
+        5.947794759922218,
+        1.818058681544578
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          5.931033359722202,
+          1.8030400781080607
+        ],
+        "radius_m": 0.060431234882699206,
+        "radial_rmse_m": 0.01033635060429134,
+        "arc_deg": 267.52351861632377,
+        "condition": 11.283814061972064,
+        "input_points": 134,
+        "inlier_points": 113,
+        "inlier_fraction": 0.8432835820895522,
+        "acquisitions": 3,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          5.974762939226311,
+          1.7973917215095174
+        ],
+        "radius_m": 0.07395582473108518,
+        "radial_rmse_m": 0.007786775910656158,
+        "arc_deg": 226.4547206344921,
+        "condition": 11.54155870490573,
+        "input_points": 110,
+        "inlier_points": 98,
+        "inlier_fraction": 0.8909090909090909,
+        "acquisitions": 4,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 134,
+      "points_B": 110,
+      "centre_delta_along_m": 0.043729579504109495,
+      "centre_delta_across_m": -0.005648356598543236,
+      "delta_ci95_m": [
+        [
+          0.017400543598146533,
+          -0.03605038762738444
+        ],
+        [
+          0.06481966131284925,
+          0.014756076264479655
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 7
+    },
+    {
+      "height_z_m": 0.3,
+      "z_low_m": 0.27,
+      "z_high_m": 0.32999999999999996,
+      "roi_centre_m": [
+        5.947794759922218,
+        1.818058681544578
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          5.932040200989985,
+          1.801262521199971
+        ],
+        "radius_m": 0.05976951827653895,
+        "radial_rmse_m": 0.00983573547937685,
+        "arc_deg": 250.2891146311928,
+        "condition": 10.62718966659619,
+        "input_points": 149,
+        "inlier_points": 126,
+        "inlier_fraction": 0.8456375838926175,
+        "acquisitions": 3,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          5.973567925963151,
+          1.7946198033376417
+        ],
+        "radius_m": 0.0722127004243693,
+        "radial_rmse_m": 0.007003313157789488,
+        "arc_deg": 220.2880213507582,
+        "condition": 24.053242687498255,
+        "input_points": 123,
+        "inlier_points": 98,
+        "inlier_fraction": 0.7967479674796748,
+        "acquisitions": 4,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 149,
+      "points_B": 123,
+      "centre_delta_along_m": 0.04152772497316537,
+      "centre_delta_across_m": -0.006642717862329395,
+      "delta_ci95_m": [
+        [
+          -0.00767881477042458,
+          -0.05245707531849127
+        ],
+        [
+          0.06151327376791853,
+          0.027078153008755934
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 7
+    },
+    {
+      "height_z_m": 0.34,
+      "z_low_m": 0.31000000000000005,
+      "z_high_m": 0.37,
+      "roi_centre_m": [
+        5.947794759922218,
+        1.818058681544578
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          5.928168528613763,
+          1.79820413137896
+        ],
+        "radius_m": 0.05756026108888488,
+        "radial_rmse_m": 0.010144810016064819,
+        "arc_deg": 272.5349787108138,
+        "condition": 5.580690795414229,
+        "input_points": 138,
+        "inlier_points": 119,
+        "inlier_fraction": 0.8623188405797102,
+        "acquisitions": 3,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          5.966573522782603,
+          1.8118509267444192
+        ],
+        "radius_m": 0.06508723226804874,
+        "radial_rmse_m": 0.010026012717480205,
+        "arc_deg": 216.14218624788563,
+        "condition": 13.91636063036968,
+        "input_points": 141,
+        "inlier_points": 101,
+        "inlier_fraction": 0.7163120567375887,
+        "acquisitions": 4,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 138,
+      "points_B": 141,
+      "centre_delta_along_m": 0.03840499416884047,
+      "centre_delta_across_m": 0.013646795365459097,
+      "delta_ci95_m": [
+        [
+          0.0074217218310193905,
+          -0.07237346820917626
+        ],
+        [
+          0.05386551811324018,
+          0.04338587451362481
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 7
+    },
+    {
+      "height_z_m": 0.38,
+      "z_low_m": 0.35,
+      "z_high_m": 0.41000000000000003,
+      "roi_centre_m": [
+        5.947794759922218,
+        1.818058681544578
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          5.946879872742148,
+          1.7908360991287144
+        ],
+        "radius_m": 0.06672727241491376,
+        "radial_rmse_m": 0.009877833060632994,
+        "arc_deg": 207.3048474890898,
+        "condition": 27.606739973363737,
+        "input_points": 120,
+        "inlier_points": 88,
+        "inlier_fraction": 0.7333333333333333,
+        "acquisitions": 3,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          5.974690217572694,
+          1.803118380013213
+        ],
+        "radius_m": 0.07202198507887765,
+        "radial_rmse_m": 0.010447517795881127,
+        "arc_deg": 220.49945108202832,
+        "condition": 6.840711632390468,
+        "input_points": 140,
+        "inlier_points": 90,
+        "inlier_fraction": 0.6428571428571429,
+        "acquisitions": 4,
+        "touches_bound": false,
+        "issues": []
+      },
+      "points_A": 120,
+      "points_B": 140,
+      "centre_delta_along_m": 0.027810344830546008,
+      "centre_delta_across_m": 0.012282280884498453,
+      "delta_ci95_m": [
+        [
+          -0.015838303917689343,
+          -0.13096295111586975
+        ],
+        [
+          0.054383829854148934,
+          0.07085772559180116
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 7
+    },
+    {
+      "height_z_m": 0.42,
+      "z_low_m": 0.39,
+      "z_high_m": 0.44999999999999996,
+      "roi_centre_m": [
+        5.947794759922218,
+        1.818058681544578
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          5.981319312124762,
+          1.8656115528212847
+        ],
+        "radius_m": 0.14590042358605376,
+        "radial_rmse_m": 0.010474814525449579,
+        "arc_deg": 158.6639745912614,
+        "condition": 53.77509867140455,
+        "input_points": 141,
+        "inlier_points": 110,
+        "inlier_fraction": 0.7801418439716312,
+        "acquisitions": 3,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          5.8853076766552235,
+          1.9032138241376755
+        ],
+        "radius_m": 0.08673728443735879,
+        "radial_rmse_m": 0.011610059320975431,
+        "arc_deg": 238.92682384666577,
+        "condition": 6.263775482814878,
+        "input_points": 166,
+        "inlier_points": 87,
+        "inlier_fraction": 0.5240963855421686,
+        "acquisitions": 4,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "points_A": 141,
+      "points_B": 166,
+      "centre_delta_along_m": -0.09601163546953817,
+      "centre_delta_across_m": 0.03760227131639082,
+      "delta_ci95_m": [
+        [
+          -0.14595249888502176,
+          -0.07887940739778479
+        ],
+        [
+          0.15554171458974494,
+          0.10325153466221305
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
         "B: mixed/cluttered section",
-        "B: fit reaches search bound",
+        "side radii disagree by at least 3.5 cm",
+        "across-centre interval at least 4 cm wide"
+      ],
+      "candidate": 7
+    },
+    {
+      "height_z_m": 0.46,
+      "z_low_m": 0.43000000000000005,
+      "z_high_m": 0.49,
+      "roi_centre_m": [
+        5.947794759922218,
+        1.818058681544578
+      ],
+      "roi_halfwidth_m": [
+        0.22,
+        0.26
+      ],
+      "side_A": {
+        "centre_m": [
+          5.9572694146259515,
+          1.8560260202681491
+        ],
+        "radius_m": 0.13493994529140801,
+        "radial_rmse_m": 0.009412922034131235,
+        "arc_deg": 182.08735386294435,
+        "condition": 41.475666119570974,
+        "input_points": 130,
+        "inlier_points": 89,
+        "inlier_fraction": 0.6846153846153846,
+        "acquisitions": 3,
+        "touches_bound": false,
+        "issues": []
+      },
+      "side_B": {
+        "centre_m": [
+          5.908558557703761,
+          1.9024987409025815
+        ],
+        "radius_m": 0.07974553150573398,
+        "radial_rmse_m": 0.011028077865081254,
+        "arc_deg": 326.16515012200375,
+        "condition": 3.360430388748786,
+        "input_points": 179,
+        "inlier_points": 93,
+        "inlier_fraction": 0.5195530726256983,
+        "acquisitions": 4,
+        "touches_bound": false,
+        "issues": [
+          "mixed/cluttered section"
+        ]
+      },
+      "points_A": 130,
+      "points_B": 179,
+      "centre_delta_along_m": -0.04871085692219079,
+      "centre_delta_across_m": 0.04647272063443242,
+      "delta_ci95_m": [
+        [
+          -0.09729129605878147,
+          -0.034251234517136256
+        ],
+        [
+          0.048155572845820234,
+          0.1307138373488648
+        ]
+      ],
+      "bootstrap_successes": 45,
+      "usable_comparison": false,
+      "issues": [
+        "B: mixed/cluttered section",
+        "side radii disagree by at least 3.5 cm",
         "across-centre interval at least 4 cm wide"
       ],
       "candidate": 7

@@ -11,6 +11,7 @@ on:
       - tests/**
       - processing/check_cross_row.py
       - processing/plot_trunk_slices.py
+      - processing/assess_low_trunk_shift.py
       - tools/publish_result_release.py
       - .github/workflows/publish-results.yml
   workflow_dispatch:

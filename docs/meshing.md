@@ -88,3 +88,7 @@ The local observed-surface run has approximately 140,000 tree and 12,000 ground 
 The release carries reports from its own build; repository report snapshots are under [`results/`](../results/). Reconstruction does not change the point-cloud poses or resolve the [cross-row QA](cross_row_quality.md).
 
 ![Closed canopy proxy](https://github.com/u0063882/GreensprayAI/releases/download/current/shrinkwrap_preview.png)
+
+## User's Rhino baseline
+
+The [reference settings](rhino_reference.md) are now recorded: 15 mm target edges, −5 mm offset, smoothing 1, optimization 50%, point inflation enabled, with a separate Reduce Mesh by 75% operation. These are not interchangeable with the voxel prototype's parameters. The 0.5 m ceiling in the trunk alignment diagnostics does **not** crop meshing input; the standalone mesher still receives the full supplied tree cloud.
