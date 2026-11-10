@@ -1,0 +1,17 @@
+# Local measurements, processing caches and generated outputs
+work/
+output/
+data/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pcap
+*.h5
+*.ply
+*.npz
+*.npy
+*.zip
+.env
+.env.*
+.DS_Store

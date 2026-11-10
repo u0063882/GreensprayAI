@@ -1,0 +1,24 @@
+name: Publish chandelier result downloads
+on:
+  push:
+    branches: [main]
+    paths:
+      - results/chandelier-v2/**
+      - tools/publish_result_release.py
+      - .github/workflows/publish-results.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-chandelier-v2
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify and publish the existing result archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/publish_result_release.py

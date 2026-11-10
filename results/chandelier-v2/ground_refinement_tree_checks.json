@@ -1,0 +1,90 @@
+{
+  "before": {
+    "lower_trunks": [
+      {
+        "median_distance_m": 0.036973039865992874,
+        "fraction_within_7cm": 0.7704301075268817,
+        "matched_rmse_m": 0.03568216520291254,
+        "capped_rmse_10cm_m": 0.05427177920579138
+      },
+      {
+        "median_distance_m": 0.02865598331344235,
+        "fraction_within_7cm": 0.8984806629834254,
+        "matched_rmse_m": 0.03290457232789779,
+        "capped_rmse_10cm_m": 0.0424085320063976
+      }
+    ],
+    "branches": [
+      {
+        "median_distance_m": 0.041982656229086646,
+        "fraction_within_7cm": 0.7260049891628839,
+        "matched_rmse_m": 0.03757539264410027,
+        "capped_rmse_10cm_m": 0.05801747019913689
+      },
+      {
+        "median_distance_m": 0.04640386506999218,
+        "fraction_within_7cm": 0.6799352459753575,
+        "matched_rmse_m": 0.03838773027333253,
+        "capped_rmse_10cm_m": 0.061428686723796345
+      }
+    ],
+    "upper_canopy": [
+      {
+        "median_distance_m": 0.03498368459152024,
+        "fraction_within_7cm": 0.7958947333087174,
+        "matched_rmse_m": 0.03531201578725971,
+        "capped_rmse_10cm_m": 0.051837229509984914
+      },
+      {
+        "median_distance_m": 0.038284675100291106,
+        "fraction_within_7cm": 0.7675910118580722,
+        "matched_rmse_m": 0.03643882338245714,
+        "capped_rmse_10cm_m": 0.054521399225587006
+      }
+    ]
+  },
+  "after": {
+    "lower_trunks": [
+      {
+        "median_distance_m": 0.032000641478155935,
+        "fraction_within_7cm": 0.8261919130959565,
+        "matched_rmse_m": 0.03453888842150112,
+        "capped_rmse_10cm_m": 0.049555871567869995
+      },
+      {
+        "median_distance_m": 0.02982650573683575,
+        "fraction_within_7cm": 0.89272030651341,
+        "matched_rmse_m": 0.03413855381920267,
+        "capped_rmse_10cm_m": 0.044060141848586316
+      }
+    ],
+    "branches": [
+      {
+        "median_distance_m": 0.0397942481623634,
+        "fraction_within_7cm": 0.7442726060388926,
+        "matched_rmse_m": 0.03676057634698541,
+        "capped_rmse_10cm_m": 0.05641385734043102
+      },
+      {
+        "median_distance_m": 0.041684637369279805,
+        "fraction_within_7cm": 0.7391862405339494,
+        "matched_rmse_m": 0.03779319799419941,
+        "capped_rmse_10cm_m": 0.05705423679985704
+      }
+    ],
+    "upper_canopy": [
+      {
+        "median_distance_m": 0.026786521040033134,
+        "fraction_within_7cm": 0.9042501300728408,
+        "matched_rmse_m": 0.03215058867131806,
+        "capped_rmse_10cm_m": 0.04101815726667731
+      },
+      {
+        "median_distance_m": 0.029414131774178516,
+        "fraction_within_7cm": 0.8623608482482155,
+        "matched_rmse_m": 0.03336182073121588,
+        "capped_rmse_10cm_m": 0.0455555718089961
+      }
+    ]
+  }
+}

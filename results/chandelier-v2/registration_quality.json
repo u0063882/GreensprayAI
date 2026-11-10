@@ -1,0 +1,29 @@
+{
+  "A_to_B": {
+    "point_count": 2711,
+    "fraction_within_7cm": 0.8701586130579122,
+    "matched_rmse_m": 0.032606922956249965,
+    "median_distance_m": 0.028418752069972388
+  },
+  "B_to_A": {
+    "point_count": 2790,
+    "fraction_within_7cm": 0.9290322580645162,
+    "matched_rmse_m": 0.03289283686002512,
+    "median_distance_m": 0.02741405530662419
+  },
+  "export": {
+    "points": 1242944,
+    "bounds_min": [
+      -0.49997857213020325,
+      1.287501573562622,
+      -0.09608133137226105
+    ],
+    "bounds_max": [
+      6.599998474121094,
+      2.6874938011169434,
+      4.084774017333984
+    ],
+    "source_scans": 18
+  },
+  "caveat": "Nearest-neighbour residuals on the fitted trunk band quantify agreement, not independent survey accuracy. Opposite sides observe different stem surfaces."
+}
