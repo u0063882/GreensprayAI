@@ -35,10 +35,11 @@
     "wrap_closing_radius_m": 0.05
   },
   "code_build": {
-    "asset": "processing_code_and_notes.zip",
-    "source": "git archive HEAD; current code and documentation"
+    "asset": "90_QC.zip",
+    "source": "git archive HEAD; current code and documentation",
+    "member": "QC/provenance/current_code_and_notes.zip"
   },
-  "asset_role": "The assets list contains historical seed inputs, not current output checksums. Current output checksums are in the release SHA256SUMS.txt.",
+  "asset_role": "The assets list contains historical seed inputs, not current output checksums. Current primary-file checksums are in 90_QC.zip/QC/SHA256SUMS.txt; all five download hashes are in the release notes.",
   "registration_build": {
     "script": "processing/register_anchored.py",
     "anchor": "East / Side A",

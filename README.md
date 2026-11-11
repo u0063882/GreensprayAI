@@ -2,25 +2,34 @@
 
 Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surface / closed shrink-wrap-style meshing. One repository contains the active code, MATLAB-format description and current result metadata.
 
-**[Current downloads](https://github.com/u0063882/GreensprayAI/releases/tag/current)** · [Mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/orchard_mesh.zip) · [Cross-row QA](docs/cross_row_quality.md) · [Registration in MATLAB terms](docs/registration_matlab.md)
+**[Current downloads](https://github.com/u0063882/GreensprayAI/releases/tag/current)** · [Mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) · [Cross-row QA](docs/cross_row_quality.md) · [Registration in MATLAB terms](docs/registration_matlab.md)
 
 ## Current results
 
 **Finished data is under [Releases → Current results → Assets](https://github.com/u0063882/GreensprayAI/releases/tag/current).** Open that page and expand **Assets** if needed. The repository file list contains code and small report snapshots; the large point clouds and meshes are release downloads.
 
-| Download | Purpose |
+| Main download | Contents |
 | --- | --- |
-| [orchard_mesh.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/orchard_mesh.zip) | Closed canopy PLY/OBJ/STL, open observed surfaces, separate ground, previews and quality reports |
-| [orchard_row_result.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/orchard_row_result.zip) | Merged, east-anchored row: 1,219,008 measured points |
-| [separate_registered_scans.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/separate_registered_scans.zip) | 18 separate registered PLYs, one uniform RGB colour per recording |
-| [combined_by_recording.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/combined_by_recording.zip) | 1,739,386 points with overlaps preserved and recording colours |
-| [trunk_slice_diagnostics.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_diagnostics.zip) | Separate A/B circle fits and centres at nine heights below 0.5 m, per-candidate PNG/PDF, centre trajectories, JSON and CSV |
+| [01_final_aligned_pointcloud.ply](https://github.com/u0063882/GreensprayAI/releases/download/current/01_final_aligned_pointcloud.ply) | Final merged aligned row; 1,219,008 measured samples, coordinates in metres |
+| [02_final_mesh.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) | Final canopy in PLY/OBJ/STL, separate ground, and canopy-plus-ground scene |
+| [03_transformations.json](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.json) | Final transformation matrices for all 18 recordings |
+
+<details>
+<summary>Quality checks, individual scan contributions and code</summary>
+
+- [90_QC.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip): figures, reports, tables, observed-surface alternatives and code snapshots, grouped in folders. Extract and open **QC/index.html** to browse the figures.
+- [91_registered_contributions.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/91_registered_contributions.zip): **separate_scans/** contains the 18 coloured PLYs; **combined/** contains their combined coloured cloud with overlaps retained.
+- Code is also available directly in this repository. `git pull` updates code/docs; release downloads are separate.
+
+</details>
+
+All final PLYs are already aligned. The JSON is for interpreting/applying poses to raw or levelled sensor data; **do not apply it again to the final PLY**. See the [download guide](docs/downloads.md).
 
 All clouds and meshes share one local metric frame. Load the separate PLYs together and enable RGB colours. The crop covers 7.1 m along the row and a 1.4 m ground strip. Current metadata lives directly in [`results/`](results/); large downloads use this repository's single active **Current results** release. Older Git/release history is retained as provenance.
 
-The current [east-anchored registration](docs/anchored_registration.md) holds all nine east/Side A files fixed and fits a separate bounded rigid pose for each west/Side B recording. Low stem observations stay below 0.5 m; ground and west-overlap constraints preserve scene consistency. [Before/after circles](https://github.com/u0063882/GreensprayAI/releases/download/current/anchored_trunk_sections.png) show the improvement and remaining model uncertainty. The [mesh archive](docs/meshing.md) is rebuilt from this refined cloud using the existing independent voxel/SDF mesher.
+The current [east-anchored registration](docs/anchored_registration.md) holds all nine east/Side A files fixed and fits a separate bounded rigid pose for each west/Side B recording. Low stem observations stay below 0.5 m; ground and west-overlap constraints preserve scene consistency. [Before/after circles — `QC/registration/anchored_trunk_sections.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip) show the improvement and remaining model uncertainty. The [mesh archive](docs/meshing.md) is rebuilt from this refined cloud using the existing independent voxel/SDF mesher.
 
-![Current observed-surface mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/shrinkwrap_preview.png)
+[Current canopy envelope preview — inside QC bundle: `QC/meshing/shrinkwrap_preview.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)
 
 ## Reproduce registration
 

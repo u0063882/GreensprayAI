@@ -32,11 +32,11 @@ The earlier trial common sideways shift was inadequate because residuals varied 
 
 ## View and download
 
-- [Before/after low circles](https://github.com/u0063882/GreensprayAI/releases/download/current/anchored_trunk_sections.png).
-- [Per-recording corrections and stem comparison](https://github.com/u0063882/GreensprayAI/releases/download/current/anchored_registration_comparison.png).
-- [All current low sections](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_fits.png) and [detailed PDF](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_fits.pdf).
-- [Centre trajectories versus height](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_centres.png).
-- [Complete low-slice bundle](https://github.com/u0063882/GreensprayAI/releases/download/current/trunk_slice_diagnostics.zip).
+- [Before/after low circles — `QC/registration/anchored_trunk_sections.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip).
+- [Per-recording corrections and stem comparison — `QC/registration/anchored_registration_comparison.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip).
+- [All current low sections — `QC/trunk_slices/trunk_slice_fits.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip) and [detailed PDF — `QC/trunk_slices/trunk_slice_fits.pdf`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip).
+- [Centre trajectories versus height — `QC/trunk_slices/trunk_slice_centres.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip).
+- [Complete low-slice bundle — `QC/trunk_slices/`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip).
 - [Current JSON](../results/trunk_slice_quality.json), [CSV](../results/trunk_slice_centres.csv), and [coarse pooled-band check](../results/cross_row_quality.json).
 
 ```sh
@@ -48,4 +48,4 @@ python processing/plot_trunk_slices.py --scan-dir /path/to/current/scans --candi
 
 Positive deltas mean west/B minus east/A in the Python frame, X along and Y across. The MATLAB toolbox has along=+Y and across=−X, so the across sign reverses. No canopy points above 0.5 m contribute to this final alignment or these low-slice diagnostics; the full-height cloud remains the independent meshing input.
 
-![Before and after bounded per-recording registration](https://github.com/u0063882/GreensprayAI/releases/download/current/anchored_trunk_sections.png)
+[Before and after bounded per-recording registration — inside QC bundle: `QC/registration/anchored_trunk_sections.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)

@@ -1,19 +1,16 @@
 # Meshing and a shrink-wrap-style canopy proxy
 
-[Download the current mesh archive](https://github.com/u0063882/GreensprayAI/releases/download/current/orchard_mesh.zip)
+[Download the current mesh archive](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip)
 
-The archive contains two deliberately different representations in the same registered metric frame, X along / Y across / Z up:
+The main mesh ZIP contains only the final representations in the registered metric frame:
 
-| File | Representation |
+| File inside `final_mesh/` | Representation |
 | --- | --- |
-| `canopy_wrap.ply`, `.obj`, `.stl` | Closed voxel/SDF canopy proxy, topology validated before publication |
-| `canopy_wrap_with_ground.ply` | Closed canopy plus the separate open observed ground sheet |
-| `orchard_mesh.ply`, `.obj` | Open observed tree patches plus ground |
-| `tree_observed_surface.ply`, `ground_surface.ply` | Separate observed components |
-| `shrinkwrap_quality.json`, `mesh_quality.json` | Parameters, topology and coverage/proxy statistics |
-| `shrinkwrap_preview.png`, `mesh_preview.png` | Display-only simplified previews |
+| `canopy_wrap.ply`, `.obj`, `.stl` | Closed canopy envelope |
+| `ground_surface.ply` | Separate open ground sheet |
+| `canopy_wrap_with_ground.ply` | Canopy plus ground, an open combined scene |
 
-PLY preserves colour. STL has no unit metadata: its coordinates here are **metres**, as are all other files. Use the closed canopy alone when inspecting closed-solid topology; adding the ground sheet produces an open scene.
+PLY preserves colour. All coordinates are metres; STL has no unit metadata. The QC ZIP holds previews, mesh reports and the open observed-surface alternatives under **QC/meshing/**. It is separate from the main mesh download to keep that download focused.
 
 ## Mesh a point cloud alone
 
@@ -42,7 +39,7 @@ Controls: `--voxel`, `--offset`, `--closing-radius`, and `--min-volume`; all len
 
 ## Reproduce the orchard demonstration
 
-Extract `orchard_row_registered.ply` and optionally `scan_transforms.json` into `output/`. The observed-surface helper remains a capture-specific Z-up orchard recipe, separate from the general meshing entry point:
+Download the final PLY and transformation JSON. To use the commands below, save them in `output/` as `orchard_row_registered.ply` and `scan_transforms.json` respectively. The observed-surface helper remains a capture-specific Z-up orchard recipe, separate from the general meshing entry point:
 
 ```sh
 python processing/mesh.py --transforms output/scan_transforms.json
@@ -85,9 +82,9 @@ Ground uses 4 cm XY cells and robust local low-return heights, followed by Delau
 
 The local observed-surface run has approximately 140,000 tree and 12,000 ground triangles. About 57% of 60,000 sampled tree returns are within 3 cm of that mesh (median 2.6 cm; 95th percentile 6.3 cm). Ground median distance is about 7 mm. The observed tree mesh is open, fragmented and not vertex-manifold/watertight. These statistics expose incomplete coverage rather than imply a complete leaf/branch model.
 
-The release carries reports from its own build; repository report snapshots are under [`results/`](../results/). Reconstruction does not change the point-cloud poses or resolve the [cross-row QA](cross_row_quality.md).
+The QC download carries reports from the data build; repository report snapshots are under [`results/`](../results/). Reconstruction does not change the point-cloud poses or resolve the [cross-row QA](cross_row_quality.md).
 
-![Closed canopy proxy](https://github.com/u0063882/GreensprayAI/releases/download/current/shrinkwrap_preview.png)
+[Closed canopy proxy — inside QC bundle: `QC/meshing/shrinkwrap_preview.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)
 
 ## User's Rhino baseline
 

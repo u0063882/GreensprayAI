@@ -3,6 +3,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Auto reuses validated geometry unless processing inputs changed
+        type: choice
+        options: [auto, rebuild, repackage]
+        default: auto
 permissions:
   contents: write
 concurrency:
@@ -14,6 +20,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -24,9 +32,10 @@ jobs:
           sudo apt-get install -y libegl1 libgl1 libgomp1
       - name: Install meshing dependencies
         run: python -m pip install -r requirements-meshing.txt
-      - name: Test cross-section geometry
+      - name: Test geometry and release packaging
         run: python -m unittest discover -s tests -v
-      - name: Verify point clouds, construct mesh, and publish current downloads
+      - name: Build or repackage and publish the compact downloads
         env:
           GH_TOKEN: ${{ github.token }}
+          PUBLISH_MODE: ${{ inputs.mode || 'auto' }}
         run: python tools/publish_result_release.py
