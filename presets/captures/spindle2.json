@@ -1,0 +1,67 @@
+{
+  "dataset": "spindle2",
+  "crop": {
+    "along_m": [
+      -0.35,
+      7.1
+    ],
+    "centre_intercept_m": 2.12,
+    "centre_slope": -0.04,
+    "half_width_m": 1.0,
+    "height_m": [
+      -0.12,
+      4.6
+    ]
+  },
+  "stem_candidates": [
+    {
+      "id": 0,
+      "seed_m": [
+        0.5,
+        2.06
+      ]
+    },
+    {
+      "id": 1,
+      "seed_m": [
+        1.97,
+        2.06
+      ]
+    },
+    {
+      "id": 2,
+      "seed_m": [
+        3.55,
+        1.93
+      ]
+    },
+    {
+      "id": 3,
+      "seed_m": [
+        5.1,
+        1.86
+      ]
+    },
+    {
+      "id": 4,
+      "seed_m": [
+        6.52,
+        1.85
+      ]
+    }
+  ],
+  "held_out_stem": -1,
+  "bounds": {
+    "rotation_deg": [
+      0.7,
+      0.7,
+      3.0
+    ],
+    "translation_m": [
+      0.1,
+      0.2,
+      0.035
+    ]
+  },
+  "stem_capture_radius_m": 0.15
+}

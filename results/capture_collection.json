@@ -82,7 +82,7 @@
     },
     {
       "id": "vhedge",
-      "kind": "raw_capture",
+      "kind": "frozen",
       "config": "presets/captures/vhedge.json",
       "inputs": [
         {
@@ -146,6 +146,57 @@
             "b4556bf6c2690761d84526115230fd421f30e8a5",
             "cdc361a14a2801830b0e27100d581b8be6e276d0",
             "81135bfce4fb336deaa6d9953ad45304ef7baf34"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spindle2",
+      "kind": "raw_capture",
+      "config": "presets/captures/spindle2.json",
+      "inputs": [
+        {
+          "side": "sideA",
+          "name": "spindle2_sideA.zip",
+          "bytes": 21985125,
+          "sha256": "c95ffe9c2cd2281aa485822caf884533e5ac36987f5a7c0047e11c61fa1d7050",
+          "bootstrap_blobs": [
+            "e7761bc62c1d62392e1dd42f94477025e2400399",
+            "305db7c74d49339ac033493795d46d888d1ca693",
+            "a3ec5f24976ff8499b166003f5810068be605386",
+            "9d9d5fb6fee31f6c62176c19787e54dfd28e28e2",
+            "3bf4a1058c50db217282d7158582993a64db0d57",
+            "32ae4ab9c0230205bd61a38dc60b3fbef5864c3c",
+            "6b3a29b61aebbaae7f8de6b91451b60fbccecbbe",
+            "6343a8cad33f054a595a73e965bc573ffc3cf5e0",
+            "5c8370737100c7e14a11a6611b0fa21a07b54689",
+            "23478f82658d9d5db36c9bad5a02baa2beb4db0b",
+            "7cdab268c830f1e01c28ffd64875cd73b0bde1e6",
+            "8baadaf9e4c6816744bbab9b51fd164212cfd300",
+            "b4410a36695e812416dc1138f37931929f6944f0",
+            "12446aec879117cc5aca406c39c27953e216b520",
+            "e8f23862993e58362d1db67176516e9c040e90dc",
+            "b89929675a8b13d453bd89738ffd611399cdb108",
+            "8b51e44c7de5b3edbf0a2fca01247e71cf0177f2"
+          ]
+        },
+        {
+          "side": "sideB",
+          "name": "spindle2_sideB.zip",
+          "bytes": 22983989,
+          "sha256": "ab2b1f9b3a28c9fcb17a72f7c5cafb4ea924f5c563e5256a56c0389612cff40c",
+          "bootstrap_blobs": [
+            "cab2bd1004d51286bad97892e99684b961d23088",
+            "e40d7021725926005821fb66a9a53d0a874cd9d6",
+            "5f7a484002a6c888cd6c784dd6494fb4c577b51f",
+            "3bb5372243955dcc743eea0737f84c3d96779159",
+            "713d68a3c2cc84ddec204b65181ad68db9be3287",
+            "705fa24ca2eb507d0a435d1cb3467ec050cd15a4",
+            "c8a206142211b0680f7ba4ecd4b8c29783793abe",
+            "769a36762f20890d13177184407662c847b610bb",
+            "0233e2c8ee8d9b7e756369755eb33895d0b7eb83",
+            "f07d51d505d68ffe581da114fa1670dfab74fe50",
+            "95c74183ee6554b77b554e29fc9caa72d3614d6f"
           ]
         }
       ]

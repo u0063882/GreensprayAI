@@ -10,7 +10,7 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 
 | Main download | Contents |
 | --- | --- |
-| [01_final_aligned_pointclouds.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/01_final_aligned_pointclouds.zip) | One final PLY per dataset: `chandelier/`, `spindle1/`, `vhedge/` |
+| [01_final_aligned_pointclouds.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/01_final_aligned_pointclouds.zip) | One final PLY per dataset: `chandelier/`, `spindle1/`, `spindle2/`, `vhedge/` |
 | [02_final_mesh.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) | Existing chandelier canopy PLY/OBJ/STL, ground and combined scene, under `chandelier/` |
 | [03_transformations.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.zip) | One matching `transformations.json` per dataset folder |
 
@@ -20,18 +20,19 @@ Each dataset has its **own local frame, in metres**. Its final PLYs already have
 | --- | --- |
 | Chandelier | Existing validated point cloud, transforms and mesh preserved byte for byte; folder paths changed |
 | Spindle1 | Existing 18-recording point cloud, transforms and scan contributions preserved |
-| Vhedge | 13 usable recordings registered; final point cloud, transforms, scan contributions and QC; no mesh generated yet |
+| Spindle2 | 18 complete recordings registered; final point cloud, transforms, scan contributions and QC; no mesh generated yet |
+| Vhedge | Existing 13-recording point cloud, transforms and scan contributions preserved |
 
 <details>
 <summary>Quality checks, individual scan contributions and code</summary>
 
-- [90_QC.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip): extract and open **QC/index.html**, then choose a dataset. Figures/reports are grouped under `QC/chandelier/`, `QC/spindle1/` and `QC/vhedge/`. Source inputs needed for rebuilding are tucked under provenance folders.
+- [90_QC.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip): extract and open **QC/index.html**, then choose a dataset. Figures/reports are grouped under `QC/chandelier/`, `QC/spindle1/`, `QC/spindle2/` and `QC/vhedge/`. Source inputs needed for rebuilding are tucked under provenance folders.
 - [91_registered_contributions.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/91_registered_contributions.zip): each dataset has `separate_scans/` with recording-coloured PLYs, plus `combined/` with all contributions and overlaps retained.
 - Current code is in this repository and in `QC/provenance/current_code_and_notes.zip`. `git pull` updates code/docs; release downloads are separate.
 
 </details>
 
-See the [download guide](docs/downloads.md) and [named capture registration](docs/capture_registration.md). A/B names are labels; the new capture pipeline infers inward headings from the RTK tracks. Spindle1 uses a 7.1 m row section and a 1.8 m ground strip. Vhedge uses a 5.1 m section and a 3.1 m strip to preserve both V arms. Previous dataset crops are unchanged. Supports and attached clutter may remain, and some short-arc trunk centre fits remain uncertain.
+See the [download guide](docs/downloads.md) and [named capture registration](docs/capture_registration.md). A/B names are labels; the new capture pipeline infers inward headings from the RTK tracks. Spindle1 uses a 7.1 m row section and a 1.8 m ground strip. Spindle2 uses a 7.45 m section and 2.0 m ground strip. Vhedge uses a 5.1 m section and a 3.1 m strip to preserve both V arms. Previous dataset crops are unchanged. Supports and attached clutter may remain, and some short-arc trunk centre fits remain uncertain.
 
 The following existing east-anchored description and historical report numbers refer to **chandelier**:
 
@@ -48,7 +49,7 @@ python -m pip install -r requirements-captures.txt
 python run_capture.py --config presets/captures/spindle1.json --workspace /path/to/spindle1
 ```
 
-Outputs go to that workspace's `final/`, with `final_registered.ply`, `transformations.json`, registered scan contributions and QC figures. Vhedge has its own preset at `presets/captures/vhedge.json`. That preset excludes one identical cross-archive duplicate and one single-packet capture without IMU; both original ZIPs remain in QC provenance. A fresh capture needs its own reviewed crop and low-stem windows, rather than copying chandelier coordinates. Cached stages are tied to source hashes, configuration and algorithm code. Registration does not import or run a mesher.
+Outputs go to that workspace's `final/`, with `final_registered.ply`, `transformations.json`, registered scan contributions and QC figures. Spindle2 has its own preset at `presets/captures/spindle2.json`. All 18 recordings are retained. Vhedge has its own preset at `presets/captures/vhedge.json`. That preset excludes one identical cross-archive duplicate and one single-packet capture without IMU; both original ZIPs remain in QC provenance. A fresh capture needs its own reviewed crop and low-stem windows, rather than copying chandelier coordinates. Cached stages are tied to source hashes, configuration and algorithm code. Registration does not import or run a mesher.
 
 ## Reproduce chandelier registration
 

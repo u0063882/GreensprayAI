@@ -2,15 +2,15 @@
 
 Open [Current results → Assets](https://github.com/u0063882/GreensprayAI/releases/tag/current). There is one active release and five custom downloads:
 
-1. **01_final_aligned_pointclouds.zip** — `final_registered.ply` under each of `chandelier/`, `spindle1/` and `vhedge/`.
-2. **02_final_mesh.zip** — chandelier mesh formats and ground under `chandelier/`. Spindle1 and vhedge have not been meshed.
+1. **01_final_aligned_pointclouds.zip** — `final_registered.ply` under each of `chandelier/`, `spindle1/`, `spindle2/` and `vhedge/`.
+2. **02_final_mesh.zip** — chandelier mesh formats and ground under `chandelier/`. Spindle1, spindle2 and vhedge have not been meshed.
 3. **03_transformations.zip** — each dataset has its own `transformations.json`.
 4. **90_QC.zip** — extract and open **QC/index.html** to choose a dataset and browse figures/reports.
 5. **91_registered_contributions.zip** — each dataset has `separate_scans/` and `combined/` folders, in recording colours, with overlap retained.
 
-Every dataset uses its own independent local metric frame. All PLY coordinates and matrix translations are metres. A final PLY is already registered; do not apply its matrices again. Previously published chandelier and spindle1 geometry, matrices and scan contributions retain their original bytes.
+Every dataset uses its own independent local metric frame. All PLY coordinates and matrix translations are metres. A final PLY is already registered; do not apply its matrices again. Previously published chandelier, spindle1 and vhedge geometry, matrices and scan contributions retain their original bytes.
 
-QC is grouped under `QC/chandelier/`, `QC/spindle1/` and `QC/vhedge/`. Each has figures and reports. Required chandelier rebuild seeds are under `QC/chandelier/provenance/registration_seed/`; each named capture's original archives are under its `provenance/raw_inputs/` folder. Vhedge's duplicate and incomplete-file exclusions are recorded in its configuration and reports. The current source snapshot and collection metadata are under `QC/provenance/`. These internal inputs are not the final outputs.
+QC is grouped under `QC/chandelier/`, `QC/spindle1/`, `QC/spindle2/` and `QC/vhedge/`. Each has figures and reports. Required chandelier rebuild seeds are under `QC/chandelier/provenance/registration_seed/`; each named capture's original archives are under its `provenance/raw_inputs/` folder. Vhedge's duplicate and incomplete-file exclusions are recorded in its configuration and reports. The current source snapshot and collection metadata are under `QC/provenance/`. These internal inputs are not the final outputs.
 
 GitHub adds its automatic source ZIP/tar links below these five custom files. The obsolete v2 release and tag have been removed. Previous flat download names were replaced by the shared ZIPs with dataset folders.
 

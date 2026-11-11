@@ -42,3 +42,7 @@ The original archives and all input hashes are preserved. Exclusions appear in t
 The V canopy requires a wider crop than spindle1: a 5.1 m along-row section and 3.1 m strip, with its ground beneath. Six reviewed low-stem windows support the final bounded stage. Some opposing circle fits remain uncertain because supports, branches and partial bark arcs can mix even below 0.5 m. The across-row profile in QC shows the retained V geometry. These conditional model checks are not independent survey accuracy.
 
 Published datasets can be marked `frozen` in the collection manifest. Their component hashes are checked, their original processing snapshot is retained, and their geometry is preserved while later datasets are added. Each new raw-capture build records its source commit and retains its own processing-code snapshot.
+
+## Spindle2
+
+Both archives contain nine complete, distinct PCAP/JSON/H5 recordings with IMU observations. All 18 are selected; no duplicate or incomplete-file exclusion was necessary. Its inward headings are inferred from its own RTK tracks. The reviewed preset uses a 7.45 m section, a 2.0 m strip, and five low-stem reference windows, rather than reusing spindle1 or vhedge coordinates. The same bounded per-recording stage and withheld height/ground/overlap checks apply. Published earlier datasets are frozen while spindle2 is added.
