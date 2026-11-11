@@ -1,0 +1,45 @@
+{
+  "purpose": "Coverage audit; unchanged primary outputs; not a claim of survey accuracy or orientation correctness",
+  "datasets": [
+    {
+      "dataset": "chandelier",
+      "coverage": {
+        "cross_side_points": 196,
+        "cross_side_height_span_m": 2.8930020332336426,
+        "supported_height_bands": 2
+      },
+      "observable": false,
+      "maximum_delivered_imu_up_tilt_deg": 1.7223510593088993
+    },
+    {
+      "dataset": "spindle1",
+      "coverage": {
+        "cross_side_points": 53,
+        "cross_side_height_span_m": 2.9250797629356384,
+        "supported_height_bands": 0
+      },
+      "observable": false,
+      "maximum_delivered_imu_up_tilt_deg": 2.1261458243601874
+    },
+    {
+      "dataset": "spindle2",
+      "coverage": {
+        "cross_side_points": 123,
+        "cross_side_height_span_m": 3.0230613946914673,
+        "supported_height_bands": 1
+      },
+      "observable": false,
+      "maximum_delivered_imu_up_tilt_deg": 1.3131318432388777
+    },
+    {
+      "dataset": "vhedge",
+      "coverage": {
+        "cross_side_points": 144,
+        "cross_side_height_span_m": 2.7739505767822266,
+        "supported_height_bands": 2
+      },
+      "observable": false,
+      "maximum_delivered_imu_up_tilt_deg": 1.67146160755064
+    }
+  ]
+}

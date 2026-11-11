@@ -123,3 +123,5 @@ python -m unittest discover -s tests -v
 ```
 
 No repository license has been imposed; the owner can choose one.
+
+Full-height pose coverage and the unresolved V-hedge profile are documented in [the structural alignment report](docs/structural_alignment.md). The audit uses shared measured surfaces and gravity; no tree-shape symmetry is imposed, and it does not change final geometry.
