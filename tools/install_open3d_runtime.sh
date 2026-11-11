@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Use Ubuntu's signed HTTPS repositories rather than the runner's Azure mirror.
+# Provision the headless EGL loader without depending on Ubuntu package mirrors.
 set -euo pipefail
 if python3 - <<'PY'
 import ctypes,sys
@@ -11,28 +11,13 @@ then
     echo 'Open3D runtime libraries already available.'
     exit 0
 fi
-. /etc/os-release
-if [[ "${ID:-}" != ubuntu || -z "${VERSION_CODENAME:-}" ]]; then
-    echo 'This runtime installer requires Ubuntu.' >&2
-    exit 1
+runtime_directory=$(python3 tools/prepare_open3d_runtime.py --output-dir "${RUNNER_TEMP:-/tmp}/greenspray-runtime")
+export LD_LIBRARY_PATH="$runtime_directory:${LD_LIBRARY_PATH:-}"
+python3 - <<'PY'
+import ctypes
+for library in ['libEGL.so.1','libGL.so.1','libgomp.so.1']:ctypes.CDLL(library)
+print('Verified job-local Open3D runtime libraries.')
+PY
+if [[ -n "${GITHUB_ENV:-}" ]]; then
+    printf 'LD_LIBRARY_PATH=%s\n' "$LD_LIBRARY_PATH" >> "$GITHUB_ENV"
 fi
-apt_work=$(mktemp -d "${RUNNER_TEMP:-/tmp}/greenspray-apt.XXXXXX")
-trap 'rm -rf "$apt_work"' EXIT
-chmod 755 "$apt_work"
-cat > "$apt_work/ubuntu.sources" <<EOF
-Types: deb
-URIs: https://archive.ubuntu.com/ubuntu
-Suites: ${VERSION_CODENAME} ${VERSION_CODENAME}-updates
-Components: main universe
-Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-
-Types: deb
-URIs: https://security.ubuntu.com/ubuntu
-Suites: ${VERSION_CODENAME}-security
-Components: main universe
-Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-EOF
-apt_options=(-o "Dir::Etc::sourcelist=$apt_work/ubuntu.sources" -o 'Dir::Etc::sourceparts=-'
-             -o 'Acquire::Retries=2' -o 'Acquire::http::Timeout=15' -o 'Acquire::https::Timeout=15')
-sudo apt-get "${apt_options[@]}" update
-sudo apt-get "${apt_options[@]}" install --no-install-recommends -y libegl1 libgl1 libgomp1
