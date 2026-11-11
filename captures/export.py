@@ -94,6 +94,7 @@ def export_capture(workspace,config,scans,raw,poses,seed_poses,reports):
     colours=(plt.get_cmap('turbo')(np.clip(points[:,2]/4.,0,1))[:,:3]*255).astype('u1');colours[points[:,2]<.12]=[110,125,136]
     records=write_ply(out/'final_registered.ply',points,reflectivity,scan_ids,colours)
     metadata=dict(dataset=config['dataset'],units='metres',coordinates='X along configured row axis, Y across row, Z up; local ground datum, not surveyed altitude',matrix_convention='Column vectors: [x,y,z,1]_merged = sensor_to_merged @ [x,y,z,1]_Ouster_XYZLut_sensor_frame; final PLYs already have these poses applied',frame=reports['initial']['frame'],registration_frame_to_final=frame.tolist(),crop_in_registration_frame=config['crop'],antenna_offset='Uncalibrated; RTK used as coarse prior, opposite-side corrections estimated from scene geometry',scans=entries)
+    if reports.get('excluded_recordings'):metadata['excluded_recordings']=reports['excluded_recordings']
     save_json(out/'transformations.json',metadata);save_json(contributions/'scan_manifest.json',dict(dataset=config['dataset'],units='metres',total_points=sum(len(p) for p in clouds),scans=entries))
     # Check exported float coordinates and attributes against original measured returns.
     assert len(points)>100000 and np.isfinite(points).all()
@@ -110,6 +111,9 @@ def export_capture(workspace,config,scans,raw,poses,seed_poses,reports):
     order=np.argsort(q[:,2]);axes[1].scatter(q[order,0],q[order,1],c=color[order],s=.5,linewidths=0);axes[1].set(xlabel='Along row (m)',ylabel='Across row (m)',title='Tree row and ground directly beneath it')
     for ax in axes:ax.set_aspect('equal');ax.grid(alpha=.15)
     fig.suptitle(f'{len(scans)} stationary recordings · {len(points):,} points · metres');fig.tight_layout();fig.savefig(qc/'final_pointcloud.png',dpi=160);plt.close(fig)
+    fig,ax=plt.subplots(figsize=(7,8));ax.scatter(q[:,1],q[:,2],c=color,s=.6,linewidths=0)
+    ax.set(xlabel='Across row (m)',ylabel='Height (m)',title=config['dataset']+' · final across-row profile');ax.set_aspect('equal');ax.grid(alpha=.15)
+    fig.tight_layout();fig.savefig(qc/'across_row_profile.png',dpi=160);plt.close(fig)
     plot_slices(before,scans,config,frame,qc/'trunk_slices_before.png','Before ground and bounded refinement')
     plot_slices(clouds,scans,config,frame,qc/'trunk_slices_final.png','Final alignment: independent low-height circle diagnostics')
     fig,axes=plt.subplots(2,1,figsize=(14,6),sharex=True)

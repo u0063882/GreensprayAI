@@ -6,7 +6,7 @@ A/B names do not encode east/west or scanner heading. The pipeline projects RTK 
 
 The stages are:
 
-1. Decode Ouster PCAPs using their matching calibration JSON. Median IMU acceleration defines up. The existing decoder retains measured first-return samples within its sensor-forward row window and 12 m range, with 10 mm cell deduplication. H5 RTK supplies a coarse position, not surveyed lidar coordinates or altitude.
+1. Decode Ouster PCAPs using their matching calibration JSON. Median IMU acceleration defines up. The capture decoder retains measured first-return samples within its sensor-forward row window and 12 m range, with 10 mm cell deduplication. H5 RTK supplies a coarse position, not surveyed lidar coordinates or altitude.
 2. Register overlapping recordings within each side with robust multiscale point-to-plane ICP and a pose graph regularized by RTK/gravity. This initialization can use above-ground tree geometry.
 3. Find a low-return SE(2) coarse match between the sides using multistart initialization. This is an initializer, not a final common-offset restriction.
 4. Refine relative rigid roll/pitch/height from overlapping 15 cm ground patches. Every fourth spatial cell is withheld. The terrain is retained rather than flattened.
@@ -29,6 +29,16 @@ T_sensor_to_final = F_row * T_registered_levelled * R_gravity;
 % The final exported PLY already contains p_final: do not transform it again.
 ```
 
-Each capture has independent caches and input hashes. A changed input manifest requires a fresh workspace. Changes to registration code/configuration invalidate the pose caches. Export checks confirm rigid matrices, original reflectivity and transformed float coordinates. The cloud and matrices use metres and a local ground datum; the antenna lever arm and absolute elevation remain uncalibrated.
+Each capture has independent caches and input hashes. Decoder caches also include the PCAP/JSON/H5 hashes, decoder source hash and SDK version, so changed decoding code cannot silently reuse old samples. A changed input manifest requires a fresh workspace. Changes to registration code/configuration invalidate the pose caches. Export checks confirm rigid matrices, original reflectivity and transformed float coordinates. The cloud and matrices use metres and a local ground datum; the antenna lever arm and absolute elevation remain uncalibrated.
 
 For the collection release, original spindle1 archives are archived inside QC provenance. Small bootstrap Git blob IDs only transfer the first copy into the release; subsequent builds prefer the verified archived inputs. Raw files and point-cloud binaries are not added to the main branch's file tree. Chandelier remains a frozen validated dataset during this migration.
+
+## Vhedge inputs and wider canopy
+
+The two vhedge ZIPs contain 15 PCAP/JSON/H5 entries but 14 unique recordings. `084742` is byte-identical in both archives and belongs to the B track by RTK; only its B copy is selected. B `084751` contains one lidar packet, no IMU and zero elapsed recording time, so it cannot supply a stationary full-view cloud or its own gravity direction. The vhedge preset explicitly excludes those two archive entries, leaving seven A and six B recordings. Repeated captures at the same RTK station have different measured packets and are retained.
+
+The original archives and all input hashes are preserved. Exclusions appear in the capture configuration, QC report and final transformation JSON. The decoder checks that excluded paths exist and requires at least three usable recordings on each side. It refuses to invent a gravity vector for missing IMU data.
+
+The V canopy requires a wider crop than spindle1: a 5.1 m along-row section and 3.1 m strip, with its ground beneath. Six reviewed low-stem windows support the final bounded stage. Some opposing circle fits remain uncertain because supports, branches and partial bark arcs can mix even below 0.5 m. The across-row profile in QC shows the retained V geometry. These conditional model checks are not independent survey accuracy.
+
+Published datasets can be marked `frozen` in the collection manifest. Their component hashes are checked, their original processing snapshot is retained, and their geometry is preserved while later datasets are added. Each new raw-capture build records its source commit and retains its own processing-code snapshot.

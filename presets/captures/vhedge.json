@@ -1,0 +1,84 @@
+{
+  "dataset": "vhedge",
+  "crop": {
+    "along_m": [
+      -0.4,
+      4.7
+    ],
+    "centre_intercept_m": 2.05,
+    "centre_slope": -0.04,
+    "half_width_m": 1.55,
+    "height_m": [
+      -0.12,
+      4.2
+    ]
+  },
+  "stem_candidates": [
+    {
+      "id": 0,
+      "seed_m": [
+        0.22,
+        2.17
+      ]
+    },
+    {
+      "id": 1,
+      "seed_m": [
+        1.12,
+        2.13
+      ]
+    },
+    {
+      "id": 2,
+      "seed_m": [
+        1.66,
+        2.0
+      ]
+    },
+    {
+      "id": 3,
+      "seed_m": [
+        2.3,
+        2.05
+      ]
+    },
+    {
+      "id": 4,
+      "seed_m": [
+        3.1,
+        1.98
+      ]
+    },
+    {
+      "id": 5,
+      "seed_m": [
+        4.25,
+        1.95
+      ]
+    }
+  ],
+  "held_out_stem": -1,
+  "bounds": {
+    "rotation_deg": [
+      0.7,
+      0.7,
+      3.0
+    ],
+    "translation_m": [
+      0.1,
+      0.2,
+      0.035
+    ]
+  },
+  "stem_capture_radius_m": 0.15,
+  "excluded_recordings": [
+    {
+      "path": "sideA/OS-0-128_122412001905_1024x10_20260806_084742.pcap",
+      "reason": "Byte-identical duplicate of sideB recording 084742; GPS places it on the B track"
+    },
+    {
+      "path": "sideB/OS-0-128_122412001905_1024x10_20260806_084751.pcap",
+      "reason": "Incomplete capture: one lidar packet, zero duration and no IMU packets"
+    }
+  ]
+}

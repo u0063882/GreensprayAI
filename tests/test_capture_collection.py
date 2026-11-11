@@ -24,4 +24,22 @@ class CollectionPackagingTests(unittest.TestCase):
             (second/'pointclouds/chandelier/final_registered.ply').write_bytes(b'CHANGED')
             with self.assertRaises(RuntimeError):assert_frozen(second,before)
 
+
+class FrozenCaptureTests(unittest.TestCase):
+    def test_existing_named_dataset_is_verified_and_not_rebuilt_after_code_changes(self):
+        import json
+        from unittest.mock import patch
+        from tools.capture_collection import add_capture,digest
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);stage=root/'stage';target=stage/'pointclouds/spindle1/final_registered.ply';target.parent.mkdir(parents=True);target.write_bytes(b'EXACT EXISTING POINTS')
+            qc=stage/'QC/spindle1/provenance';qc.mkdir(parents=True)
+            old=dict(dataset='spindle1',pipeline={'old':'algorithm'},points=123,output_hashes={'pointclouds/spindle1/final_registered.ply':digest(target)})
+            (qc/'build.json').write_text(json.dumps(old));global_qc=stage/'QC/provenance';global_qc.mkdir()
+            (global_qc/'collection.json').write_text(json.dumps({'packaging_commit':'original-data-commit'}));(global_qc/'current_code_and_notes.zip').write_bytes(b'ORIGINAL CODE SNAPSHOT')
+            dataset=dict(id='spindle1',kind='frozen',config='presets/captures/spindle1.json',inputs=[])
+            with patch('tools.capture_collection.pipeline_identity',return_value={'new':'algorithm'}),patch('tools.capture_collection.subprocess.run',side_effect=AssertionError('Frozen data must not be recomputed')):
+                result=add_capture(dataset,stage,root/'work','owner/repo',mode='rebuild')
+            self.assertEqual(result['points'],123);self.assertEqual(target.read_bytes(),b'EXACT EXISTING POINTS');self.assertEqual(result['data_source_commit'],'original-data-commit')
+            self.assertEqual((qc/'data_pipeline_code.zip').read_bytes(),b'ORIGINAL CODE SNAPSHOT')
+
 if __name__=='__main__':unittest.main()

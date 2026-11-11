@@ -9,7 +9,7 @@
     },
     {
       "id": "spindle1",
-      "kind": "raw_capture",
+      "kind": "frozen",
       "config": "presets/captures/spindle1.json",
       "inputs": [
         {
@@ -76,6 +76,76 @@
             "53ac04885e59ba4c76a5f82615799baf71406ed8",
             "ba2eedb14b236584ad813bbe7b31112be82cd961",
             "04eba827da667e7836e8fa5dd5cfd646f5ed7eae"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vhedge",
+      "kind": "raw_capture",
+      "config": "presets/captures/vhedge.json",
+      "inputs": [
+        {
+          "name": "vhedge_sideA.zip",
+          "bytes": 19457101,
+          "sha256": "49e4f322a8e11e677f8af8ad8b644276fe67614212cb0bd9a66eb64355e19554",
+          "side": "sideA",
+          "bootstrap_blobs": [
+            "7ba9217b2bd1bb91dd7a5f49fe79659bc620437b",
+            "a6444913a2ce9cf773a9aa3d0c86182add89aa95",
+            "be9437c5bf77bc59b75e7508a9c91767500a439d",
+            "1dd5a8fab90b00aa072a9e982418ad4280b8fb1d",
+            "972dfa1bf7a6a443b4184abdeac3938ec0444571",
+            "5b644e220669028d58165b9a31ed2a83c0cec6b4",
+            "06d28185137d0e61004d174ee32a350ac7e6fc1e",
+            "fc9d7261ab7935b8fcf816dd80f0ec1756ec057f",
+            "6d10d7a85d923dce1b4d93dd299aad176bf65449",
+            "b5cf15b3718bbda43a2c0f176c6591d974131dc0",
+            "b96a6ea899d4919e1b7eeab1172e45ec131aa6a7",
+            "976e99ed154701cfaa700476de9e19cf6f81b05a",
+            "39094dfee4bbc544c3d2653f70bcd70e00d274e3",
+            "4ccb3ed64943b0b2b14d14c347cb5363a6dd25e9",
+            "8ceed83116a232451a442b326a54c7c09fc40416",
+            "269e8faa55b1e9726e43348dc2be4e1cfe26d250",
+            "6fe52e72f9d6ad6548e63d18270b91c424621e2c",
+            "5b16864c2091aad5b768927d7968a615bf8312bf",
+            "ac2f13d2a5ce43095a65d080bfc50c20f3328920",
+            "b751c9eaa03c6056341f3b98115306e28189801d",
+            "54765a7ac12ae479aa00070049304065857458d9",
+            "45a70b7823f97868ad7800ff7a84e95db255c858",
+            "2126103bbeb7a7b208a742f4abdf5ef40e0966b9",
+            "ef4bd6dc29b808e74786163ed9eb21d55fd5ed7d",
+            "971ff4748c6a6908cccff779b409a5ed28938a57",
+            "32a4960014b2b4805b3266ec426e98532afa80f2"
+          ]
+        },
+        {
+          "name": "vhedge_sideB.zip",
+          "bytes": 15472669,
+          "sha256": "9406abd1b883cbe4fa8dcc491684def96e1236eb56ff1b3f9b0762ea4a9c069e",
+          "side": "sideB",
+          "bootstrap_blobs": [
+            "473a88fa675f7c3a34dc28b15a24c2cf161fe917",
+            "19c3552224f7fdfec7d3b9f913d096ba91b91ca3",
+            "66b6e80bd873aa8bb81f4ee5843dd357c7acfa9d",
+            "e06c47d1ffdb95f46efc931260c93d80e683a69b",
+            "be35e021278eb9d80dc849568612f178dcdfea74",
+            "112419211e703a80f9a2fca25b754dff44fd3a35",
+            "294c4af1e8f747f1328a33a4f665843c467edddf",
+            "01418482711db10a3e6d9de6c68bee52a56db5d9",
+            "19bde9253ea4df3c6d116695d1b2ba81acffbbdf",
+            "9c667d666b3df2cafa59f7be3a633a805ed19969",
+            "fc9f3ad35c73d9befc8513835b0ce8e737d9bd7d",
+            "4dd9ed8fce7f405de5bdf5d73def08739437fd9d",
+            "17820ae0d413789cacc255b78470616045730d33",
+            "0e1f5d34bb16701fdae47308bf8f93477f02809c",
+            "485445d5b1604ff1d2fc2a43fef3ab8333780ae7",
+            "72409df651de06ae43834df1c6b35d2f2f8bd471",
+            "72837231c78c68f2d8203adda6a09a094e73f483",
+            "179fe3d546a07ab353f1c4ea199c182a6f1b233a",
+            "b4556bf6c2690761d84526115230fd421f30e8a5",
+            "cdc361a14a2801830b0e27100d581b8be6e276d0",
+            "81135bfce4fb336deaa6d9953ad45304ef7baf34"
           ]
         }
       ]

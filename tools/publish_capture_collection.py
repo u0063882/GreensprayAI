@@ -32,18 +32,19 @@ def main():
         if not item.get('digest') or item['digest']!='sha256:'+digest(p) or item['size']!=p.stat().st_size:raise RuntimeError('Current asset verification failed: '+p.name)
     commit=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     with tempfile.TemporaryDirectory(prefix='collection-',dir=args.asset_dir) as temporary:
-        work=Path(temporary);stage=work/'stage';layout=import_current(source,stage);before=frozen_hashes(stage)
+        work=Path(temporary);stage=work/'stage';layout=import_current(source,stage)
+        frozen_ids=tuple(d['id'] for d in config['datasets'] if d.get('kind')=='frozen');before=frozen_hashes(stage,frozen_ids)
         # Keep the old geometry bytes frozen while introducing named captures.
         datasets=[dict(dataset='chandelier',points=1219008,mesh_available=True,geometry_policy='Frozen validated outputs; only ZIP paths changed')]
         for dataset in config['datasets']:
             if dataset['id']=='chandelier':continue
             if not dataset['id'].replace('_','').isalnum() or dataset['id']!=json.loads((ROOT/dataset['config']).read_text())['dataset']:raise ValueError('Invalid or inconsistent dataset identifier')
             datasets.append(add_capture(dataset,stage,args.asset_dir/'captures',repo,args.mode))
-        assert_frozen(stage,before)
+        assert_frozen(stage,before,frozen_ids)
         provenance=stage/'QC/provenance';provenance.mkdir(parents=True,exist_ok=True)
-        (provenance/'collection.json').write_text(json.dumps(dict(packaging_commit=commit,datasets=datasets,frozen_chandelier_sha256=before),indent=2)+'\n')
+        (provenance/'collection.json').write_text(json.dumps(dict(packaging_commit=commit,datasets=datasets,frozen_dataset_sha256=before),indent=2)+'\n')
         code=work/'code.zip';subprocess.run(['git','archive','--format=zip','--output',str(code),'HEAD'],cwd=ROOT,check=True)
-        paths=package_collection(stage,args.asset_dir/'downloads',code);assert_frozen(stage,before)
+        paths=package_collection(stage,args.asset_dir/'downloads',code);assert_frozen(stage,before,frozen_ids)
         notes=work/'notes.md';notes.write_text(release_notes(datasets,paths))
         subprocess.run(['gh','release','upload',tag,'--repo',repo,*map(str,paths),'--clobber'],check=True)
         uploaded=api(repo,'releases/tags/'+tag);assets={a['name']:a for a in uploaded['assets']}

@@ -1,10 +1,11 @@
 """Capture provenance, isolated caches and promotion after geometry checks."""
 from pathlib import Path
-import inspect,json,os,subprocess,sys,hashlib
+import json,hashlib
 import numpy as np
 from captures.orchard import (sha256,save_json,gps_frame,initial_registration,
     coarse_stems,refine_ground,refine_moving)
 from captures.export import export_capture
+from captures.decode import decode_capture,selected_recordings
 ROOT=Path(__file__).resolve().parent.parent
 
 
@@ -23,12 +24,11 @@ def run_capture(workspace,config_path):
     if provenance.exists() and json.loads(provenance.read_text())!=identity:raise RuntimeError('Capture inputs changed. Use a fresh workspace to avoid mixing cached data.')
     if not provenance.exists() and (workspace/'work/decoded/scans.json').exists():raise RuntimeError('Untracked decoded cache exists; use a fresh workspace.')
     save_json(provenance,identity)
-    env=os.environ.copy();env.setdefault('MPLCONFIGDIR',str(workspace/'work/mpl'))
-    subprocess.run([sys.executable,str(ROOT/'processing/decode.py')],cwd=workspace,env=env,check=True)
+    decode_capture(data,workspace/'work/decoded',config.get('excluded_recordings',[]))
     scans=json.loads((workspace/'work/decoded/scans.json').read_text());raw=[np.load(workspace/'work/decoded'/(s['tag']+'.npz'))['xyz'] for s in scans]
-    if len(scans)!=len([x for x in inputs if x['path'].endswith('.pcap')]):raise RuntimeError('Decoded recording count disagrees with inputs')
+    if len(scans)!=len(selected_recordings(data,config.get('excluded_recordings',[]))):raise RuntimeError('Decoded recording count disagrees with inputs')
     _,_,a,b,_=gps_frame(scans);reports={}
-    source=''.join(p.read_text() for p in [ROOT/'captures/orchard.py',ROOT/'captures/bounded.py'])
+    source=''.join(p.read_text() for p in [ROOT/'captures/orchard.py',ROOT/'captures/bounded.py',ROOT/'captures/decode.py'])
     base=json.dumps(identity,sort_keys=True)+source+json.dumps(config,sort_keys=True)
     def stage(name,function,parent=None):
         key=hashlib.sha256((base+name).encode()+(parent.tobytes() if parent is not None else b'')).hexdigest();meta=cache/(name+'.json');poses_file=cache/(name+'.npy')
@@ -44,6 +44,7 @@ def run_capture(workspace,config_path):
         reports[name]=report;return poses
     initial=stage('initial',initial_registration);coarse=stage('coarse',coarse_stems,initial);ground=stage('ground',refine_ground,coarse);final=stage('bounded',refine_moving,ground)
     reports['input_manifest']=identity
+    reports['excluded_recordings']=config.get('excluded_recordings',[])
     save_json(workspace/'registration_quality_candidate.json',reports)
     if not reports['bounded']['validation_passed']:raise RuntimeError('Candidate not promoted: '+str(reports['bounded']['rejection_reasons']))
     # Confirm the assembled anchor is exactly fixed by the bounded stage.

@@ -39,16 +39,17 @@ def directory_hashes(directory):
     return {p.relative_to(directory).as_posix():digest(p) for p in sorted(Path(directory).rglob('*')) if p.is_file()}
 
 
-def frozen_hashes(stage):
-    """Byte protection for all pre-existing chandelier geometry and matrices."""
+def frozen_hashes(stage,identifiers=('chandelier',)):
+    """Byte protection for all pre-existing frozen geometry, matrices and contributions."""
     root=Path(stage);result={}
     for folder in ['pointclouds','meshes','transformations','contributions']:
-        for relative,sha in directory_hashes(root/folder/'chandelier').items():result[folder+'/chandelier/'+relative]=sha
+        for identifier in identifiers:
+            for relative,sha in directory_hashes(root/folder/identifier).items():result[folder+'/'+identifier+'/'+relative]=sha
     return result
 
 
-def assert_frozen(stage,expected):
-    actual=frozen_hashes(stage)
+def assert_frozen(stage,expected,identifiers=('chandelier',)):
+    actual=frozen_hashes(stage,identifiers)
     if actual!=expected:raise RuntimeError('Pre-existing chandelier outputs changed')
 
 
@@ -92,20 +93,28 @@ def extract_inputs(archives,workspace):
 
 
 def pipeline_identity(config):
-    files=['run_capture.py','captures/orchard.py','captures/bounded.py','captures/pipeline.py','captures/export.py','processing/decode.py','processing/register_anchored.py','requirements-captures.txt','requirements.txt','requirements-meshing.txt','processing/export_anchored.py']
+    files=['run_capture.py','captures/orchard.py','captures/bounded.py','captures/pipeline.py','captures/decode.py','captures/export.py','processing/decode.py','processing/register_anchored.py','requirements-captures.txt','requirements.txt','requirements-meshing.txt','processing/export_anchored.py']
     return dict(config_sha256=digest(config),code_sha256=hashlib.sha256(''.join(name+digest(ROOT/name) for name in files).encode()).hexdigest())
 
 
 def add_capture(dataset,stage,work,repo,mode='auto'):
     config=ROOT/dataset['config'];identity=pipeline_identity(config);identifier=dataset['id'];qc=stage/'QC'/identifier
     marker=qc/'provenance/build.json'
-    if marker.exists() and mode!='rebuild':
+    if marker.exists() and (mode!='rebuild' or dataset.get('kind')=='frozen'):
         old=json.loads(marker.read_text())
-        if old.get('pipeline')==identity and old.get('input_sha256')==[a['sha256'] for a in dataset['inputs']]:
+        if dataset.get('kind')=='frozen' or (old.get('pipeline')==identity and old.get('input_sha256')==[a['sha256'] for a in dataset['inputs']]):
             for relative,sha in old['output_hashes'].items():
                 path=stage/relative
                 if not path.is_file() or digest(path)!=sha:raise RuntimeError('Archived capture output mismatch: '+relative)
+            # Retain the exact original code snapshot when freezing an older build.
+            snapshot=qc/'provenance/data_pipeline_code.zip';previous=stage/'QC/provenance/current_code_and_notes.zip'
+            if not snapshot.exists() and previous.exists():copy(previous,snapshot)
+            if 'data_source_commit' not in old:
+                previous_meta=stage/'QC/provenance/collection.json'
+                if previous_meta.exists():old['data_source_commit']=json.loads(previous_meta.read_text())['packaging_commit']
+                marker.write_text(json.dumps(old,indent=2)+'\n')
             print('Reusing verified capture:',identifier,flush=True);return old
+    if dataset.get('kind')=='frozen':raise RuntimeError('Frozen dataset is missing its verified output metadata: '+identifier)
     if mode=='repackage':raise RuntimeError('Capture needs processing; repackage mode cannot create it: '+identifier)
     workspace=work/identifier;workspace.mkdir(parents=True,exist_ok=True);archives=input_archives(dataset,qc,workspace,repo);extract_inputs(archives,workspace)
     subprocess.run([sys.executable,str(ROOT/'run_capture.py'),'--config',str(config),'--workspace',str(workspace)],cwd=ROOT,check=True)
@@ -120,7 +129,9 @@ def add_capture(dataset,stage,work,repo,mode='auto'):
     hashes={}
     for folder in ['pointclouds','transformations','contributions']:
         for relative,sha in directory_hashes(stage/folder/identifier).items():hashes[folder+'/'+identifier+'/'+relative]=sha
-    build=dict(dataset=identifier,pipeline=identity,input_sha256=[a['sha256'] for a in dataset['inputs']],output_hashes=hashes,points=report['export']['merged_points'],mesh_available=False)
+    snapshot=qc/'provenance/data_pipeline_code.zip';subprocess.run(['git','archive','--format=zip','--output',str(snapshot),'HEAD'],cwd=ROOT,check=True)
+    source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+    build=dict(dataset=identifier,data_source_commit=source_commit,pipeline=identity,input_sha256=[a['sha256'] for a in dataset['inputs']],output_hashes=hashes,points=report['export']['merged_points'],mesh_available=False)
     marker.parent.mkdir(parents=True,exist_ok=True);marker.write_text(json.dumps(build,indent=2)+'\n');return build
 
 
@@ -130,7 +141,7 @@ def package_collection(stage,output,code_archive):
     datasets=sorted(p.name for p in (stage/'pointclouds').iterdir() if p.is_dir())
     (stage/'QC/index.html').write_text('<!doctype html><meta charset="utf-8"><title>Orchard QC datasets</title><h1>Quality checks by dataset</h1><ul>'+''.join('<li><a href="'+name+'/index.html">'+name+'</a></li>' for name in datasets)+'</ul><p>Each capture uses its own local metric frame. Final cloud/matrix ZIPs contain matching dataset folders.</p>')
     for folder in ['pointclouds','transformations','meshes','contributions']:
-        (stage/folder/'README.txt').write_text('FINAL ORCHARD DATASETS\n\nEach dataset has its own folder and independent local frame, in metres.\nFinal PLY coordinates already have their matching transformation matrices applied.\nMeshes are included only for datasets that have been meshed; spindle1 is point-cloud-only.\nQC/index.html in 90_QC.zip opens the figures by dataset.\n')
+        (stage/folder/'README.txt').write_text('FINAL ORCHARD DATASETS\n\nEach dataset has its own folder and independent local frame, in metres.\nFinal PLY coordinates already have their matching transformation matrices applied.\nMeshes are included only for datasets that have been meshed; availability is listed on the release page.\nQC/index.html in 90_QC.zip opens the figures by dataset.\n')
     for index in [0,1,2,4]:make_zip(output/NAMES[index],stage/FOLDERS[index])
     (stage/'QC/SHA256SUMS.txt').write_text(''.join(digest(output/NAMES[index])+'  '+NAMES[index]+'\n' for index in [0,1,2,4]))
     make_zip(output/NAMES[3],stage/'QC','QC')
