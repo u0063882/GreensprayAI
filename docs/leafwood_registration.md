@@ -1,5 +1,11 @@
 # Optional leaf/wood registration and sensor attributes
 
+This documents the earlier colour-only comparison on the pre-refinement
+baseline. Spindle 1 and Spindle 2 now receive a separate accepted
+[final trunk/post refinement](trunk_refinement.md). Their original baselines and
+this historical experiment remain preserved in QC; the shared Lab colour model
+and raw sensor fields are unchanged by the final geometric step.
+
 The original geometry-only registration is retained. The independent function
 [`register_leafwood`](../captures/register_leafwood.py) accepts already registered
 point arrays, per-point wood scores, scanner origins, side labels and low-stem

@@ -6,13 +6,15 @@ One release, with a folder per dataset inside the five downloads:
 2. **[Final meshes](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip)** — chandelier mesh/ground formats under `chandelier/`; spindle1, spindle2 and vhedge have no mesh yet.
 3. **[Transformation matrices](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.zip)** — matching JSONs in each dataset folder.
 
-Coordinates are metres. Each dataset uses an independent local frame. Final PLYs are already aligned; do not apply the matrices again. All four primary clouds keep their baseline float coordinates and sample order. Matrices and existing mesh bytes are unchanged.
+Coordinates are metres. Each dataset uses an independent local frame. Final PLYs are already aligned; do not apply the matrices again. **Spindle 1 and Spindle 2 now include a validated final trunk/post across/yaw refinement**, with matching matrices and contributions. Chandelier and V-hedge retain their previous primary registrations because their proposed refinements trigger checks. The existing chandelier mesh is unchanged and still matches its retained primary cloud.
+
+**[Final refinement report](https://github.com/u0063882/GreensprayAI/blob/main/docs/trunk_refinement_report.md):** uses the user's representative workbook size ranges as soft priors, not exact tree identities. The geometric 26–34 cm band is withheld. Before/after slices at 18/30/40 cm and full reports are under `QC/<dataset>/trunk_refinement/`. Original primary PLYs, matrices and per-recording XYZ are archived under each dataset's `provenance/trunk_refinement_baseline.zip`. Samples, ordering, Z values, raw channels, RGB and scan IDs are retained exactly.
 
 **Sensor attributes added:** original raw `intensity`/`signal`, ambient `near_ir`, calibrated `reflectivity`, derived shared leafWoodSignal RGB and unsigned 32-bit original `scan_id` (plus sensor frame/pixel indices). `source_scans.json` beside each PLY maps indices to original files/hashes. Display the `scan_id` scalar field to colour by recording. RGB is derived leaf/wood colour, not camera RGB.
 
 **Shared Toolbox-style colour model:** one fitted Lab a*/b* classifier across all 67 recordings now retains the original scheme-13 feature mapping. It replaces the earlier raw-NIR threshold, which labelled too much foliage as wood. Raw sensor channels and primary point coordinates are unchanged.
 
-**[Leaf/wood registration comparison](https://github.com/u0063882/GreensprayAI/blob/main/docs/leafwood_comparison_report.md):** independent optional refinement and geometry-only control evaluated on all four datasets with the corrected shared model. Candidates remain under QC and the existing registration remains primary. Spindle 1/2 also include `trunk_slices_dimensioned.png/.pdf/.json`: 2 cm raw slices at 18/28/40 cm height, with dimensions in centimetres. Circle fits are provisional diagnostics, not verified trunk sizes.
+**[Earlier leaf/wood comparison](https://github.com/u0063882/GreensprayAI/blob/main/docs/leafwood_comparison_report.md):** historical comparison on the pre-refinement baseline. Its candidates remain under QC; the final trunk/post step is a separate function and comparison. Historical circle fits are provisional diagnostics, not verified trunk sizes.
 
 <details>
 <summary>QC and individual scan contributions</summary>

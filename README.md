@@ -4,7 +4,7 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 
 **[Current downloads](https://github.com/u0063882/GreensprayAI/releases/tag/current)** · [Mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) · [Cross-row QA](docs/cross_row_quality.md) · [Registration in MATLAB terms](docs/registration_matlab.md)
 
-**[Leaf/wood comparison report](docs/leafwood_comparison_report.md)** · [Independent optional method and PLY fields](docs/leafwood_registration.md). Primary PLYs retain the delivered baseline coordinates and point order, with raw intensity/SIGNAL, NIR, reflectivity, derived leaf/wood RGB and original `scan_id`. Colours and experimental weights use one shared Toolbox-style Lab model across all 67 recordings, replacing the earlier NIR-only split. Experimental registration remains under QC and has not replaced the baseline. Both spindle datasets include dimensioned raw low-trunk slices; fitted diameters remain provisional.
+**[Final trunk refinement report](docs/trunk_refinement_report.md)** · [Independent method and manual references](docs/trunk_refinement.md). Spindle 1 and Spindle 2 now use accepted final across/yaw refinements of their existing registrations. Chandelier and V-hedge retain their baselines because their candidates trigger checks. Original baselines are preserved inside QC. Every measured sample, height, raw sensor attribute, shared Lab leafWoodSignal colour and source `scan_id` is retained.
 
 ## Current results
 
@@ -21,8 +21,8 @@ Each dataset has its **own local frame, in metres**. Its final PLYs already have
 | Dataset | Status |
 | --- | --- |
 | Chandelier | Existing baseline coordinates, point order, transforms and mesh retained; PLY sensor attributes enriched |
-| Spindle1 | Existing 18-recording baseline geometry retained; PLY sensor attributes enriched |
-| Spindle2 | Existing 18-recording baseline geometry retained; PLY sensor attributes enriched; no mesh yet |
+| Spindle1 | Final independent trunk-based refinement applied to the 18 registered recordings; no mesh yet |
+| Spindle2 | Final independent trunk-based refinement applied to the 18 registered recordings; no mesh yet |
 | Vhedge | Existing 13-recording baseline geometry retained; PLY sensor attributes enriched |
 
 <details>
@@ -35,6 +35,8 @@ Each dataset has its **own local frame, in metres**. Its final PLYs already have
 </details>
 
 See the [download guide](docs/downloads.md) and [named capture registration](docs/capture_registration.md). A/B names are labels; the new capture pipeline infers inward headings from the RTK tracks. Spindle1 uses a 7.1 m row section and a 1.8 m ground strip. Spindle2 uses a 7.45 m section and 2.0 m ground strip. Vhedge uses a 5.1 m section and a 3.1 m strip to preserve both V arms. Previous dataset crops are unchanged. Supports and attached clutter may remain, and some short-arc trunk centre fits remain uncertain.
+
+The [earlier colour-only experiment](docs/leafwood_comparison_report.md) remains a historical comparison on the pre-refinement baseline. Its candidate never became the primary result. The accepted final step is the independent trunk/post refinement linked above; before/after slices include all configured windows and identify weak held-out evidence.
 
 The following existing east-anchored description and historical report numbers refer to **chandelier**:
 

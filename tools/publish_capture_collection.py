@@ -12,8 +12,8 @@ def api(repo,path):return json.loads(subprocess.check_output(['gh','api',f'repos
 
 def release_notes(datasets,paths):
     base=(ROOT/'results/RELEASE_NOTES.md').read_text()
-    table='\n\n| Dataset | Final measured points | Mesh |\n| --- | ---: | --- |\n'
-    for item in datasets:table+='| '+item['dataset']+' | '+f"{item['points']:,}"+' | '+('Available' if item['mesh_available'] else 'Not generated')+' |\n'
+    table='\n\n| Dataset | Final measured points | Mesh | Final trunk refinement |\n| --- | ---: | --- | --- |\n'
+    for item in datasets:table+='| '+item['dataset']+' | '+f"{item['points']:,}"+' | '+('Available' if item['mesh_available'] else 'Not generated')+' | '+('Applied' if item.get('trunk_refinement',{}).get('promoted') else 'Baseline retained')+' |\n'
     sums='\n<details><summary>SHA-256 checksums</summary>\n\n```text\n'+''.join(digest(p)+'  '+p.name+'\n' for p in paths)+'```\n</details>\n'
     return base+table+sums
 
@@ -50,6 +50,15 @@ def main():
             after=frozen_hashes(stage,frozen_ids)
             if any(after.get(k)!=v for k,v in protected.items()):raise RuntimeError('Leaf/wood upgrade changed a baseline mesh or transformation')
             before=after
+        if (ROOT/'presets/manual_measurements.json').exists():
+            from tools.refine_trunk_collection import refine_collection
+            refinement=refine_collection(stage,config)
+            for item in datasets:
+                result=next((r for r in refinement if r['dataset']==item['dataset']),None)
+                if result:item['trunk_refinement']=dict(promoted=result['promoted'],validation_passed=result['validation_passed'])
+            # These are now verified, explicitly authorised final corrections.
+            # Their original geometry is retained in per-dataset baseline ZIPs.
+            before=frozen_hashes(stage,frozen_ids)
         if (ROOT/'presets/spindle_trunk_reference.json').exists():
             from tools.trunk_reference_qc import add_reference_checks
             add_reference_checks(stage)

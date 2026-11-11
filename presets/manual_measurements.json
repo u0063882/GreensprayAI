@@ -1,0 +1,389 @@
+{
+  "version": 1,
+  "source_filename": "RefManualMeasurements.xlsx",
+  "source_sha256": "040a5a8752e2c59c077457ef7a18cf6a648a6be44a451b0275a7ce55c6eae0fd",
+  "tree_mapping": "User confirmed representative sizes; no exact mapping to uploaded scan sections or stem-window numbers",
+  "measurement_height_m": 0.3,
+  "net_caveat": "Trunk circumference can include loose netting; measurements are soft population references, not exact bark radii",
+  "post_caveat": "C/pi gives circular-equivalent size; wooden posts may not be circular",
+  "families": {
+    "spindle": {
+      "sheet": "Spindle",
+      "units": "cm circumference",
+      "row_note": "7 not row 6 as usually due to netting !",
+      "definitions": {
+        "A": "cicrumference trunk 30 cm above ground, can contain net that is not thight",
+        "B": "cicrumference of supporting pole at 30 cm above ground",
+        "C": "Looking at east side of tree, cicrumference of left branch 10 cm from trunk",
+        "D": "as C but middle branch",
+        "E": "as C but right branch",
+        "F": "cicrumference of central branch at height of 1.6 m"
+      },
+      "observations": [
+        {
+          "measurement_tree_number": 1,
+          "circumferences_cm": {
+            "A": 41.0,
+            "B": 22.6,
+            "C": 19.8,
+            "D": 22.6,
+            "E": 18.2,
+            "F": 22.1
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 2,
+          "circumferences_cm": {
+            "A": 44.8,
+            "B": 22.9,
+            "C": 19.0,
+            "D": 16.4,
+            "E": 14.2,
+            "F": 21.7
+          },
+          "remark": "Net"
+        },
+        {
+          "measurement_tree_number": 3,
+          "circumferences_cm": {
+            "A": 45.0,
+            "B": 21.7,
+            "C": 17.1,
+            "D": 14.0,
+            "E": 14.9,
+            "F": 20.3
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 4,
+          "circumferences_cm": {
+            "A": 47.6,
+            "B": 21.6,
+            "C": 12.9,
+            "D": 20.4,
+            "E": 15.6,
+            "F": 22.8
+          },
+          "remark": "Net"
+        },
+        {
+          "measurement_tree_number": 5,
+          "circumferences_cm": {
+            "A": 46.2,
+            "B": 22.6,
+            "C": 21.2,
+            "D": 15.5,
+            "E": 22.8,
+            "F": 27.6
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 6,
+          "circumferences_cm": {
+            "A": 46.5,
+            "B": 24.1,
+            "C": 16.0,
+            "D": 17.9,
+            "E": 21.0,
+            "F": 31.8
+          },
+          "remark": ""
+        }
+      ],
+      "additional_supports": [],
+      "trunk": {
+        "circumferences_cm": [
+          41.0,
+          44.8,
+          45.0,
+          47.6,
+          46.2,
+          46.5
+        ],
+        "diameters_cm": [
+          13.050705333535419,
+          14.260282901033822,
+          14.32394487827058,
+          15.151550582348436,
+          14.70591674169113,
+          14.801409707546267
+        ],
+        "mean_diameter_cm": 14.382301690737611,
+        "minimum_diameter_cm": 13.050705333535419,
+        "maximum_diameter_cm": 15.151550582348436
+      },
+      "support": {
+        "circumferences_cm": [
+          22.6,
+          22.9,
+          21.7,
+          21.6,
+          22.6,
+          24.1
+        ],
+        "diameters_cm": [
+          7.19380342775367,
+          7.289296393608806,
+          6.907324530188258,
+          6.875493541569879,
+          7.19380342775367,
+          7.6712682570293556
+        ],
+        "mean_diameter_cm": 7.18849826298394,
+        "minimum_diameter_cm": 6.875493541569879,
+        "maximum_diameter_cm": 7.6712682570293556
+      }
+    },
+    "chandelier": {
+      "sheet": "Chandelier",
+      "units": "cm circumference",
+      "row_note": "6 (doublecheck, same row as always)",
+      "definitions": {
+        "A": "cicrumference trunk 30 cm above ground, can contain net that is not thight",
+        "B": "Looking at east side of tree, cicrumference of left branch 10 cm from trunk (horizontal)",
+        "C": "Looking at east side of tree, cicrumference of left branch at height of 1.6 m",
+        "D": "circumference of guidance pole of left branch, looking at east side of the tree",
+        "E": "circumference of big supporting poles"
+      },
+      "observations": [
+        {
+          "measurement_tree_number": 1,
+          "circumferences_cm": {
+            "A": 46.2,
+            "B": 24.1,
+            "C": 12.9,
+            "D": 9.4
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 2,
+          "circumferences_cm": {
+            "A": 44.3,
+            "B": 22.4,
+            "C": 13.2,
+            "D": 9.3
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 3,
+          "circumferences_cm": {
+            "A": 45.2,
+            "B": 21.8,
+            "C": 10.9,
+            "D": 9.1
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 4,
+          "circumferences_cm": {
+            "A": 44.1,
+            "B": 28.7,
+            "C": 13.2,
+            "D": 9.3
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 5,
+          "circumferences_cm": {
+            "A": 45.2,
+            "B": 18.6,
+            "C": 12.6,
+            "D": 9.3
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 6,
+          "circumferences_cm": {
+            "A": 46.3,
+            "B": 23.5,
+            "C": 13.6,
+            "D": 9.4
+          },
+          "remark": ""
+        }
+      ],
+      "additional_supports": [
+        {
+          "label": "pole 1",
+          "circumference_cm": 28.3
+        },
+        {
+          "label": "pole 5",
+          "circumference_cm": 26.5
+        }
+      ],
+      "trunk": {
+        "circumferences_cm": [
+          46.2,
+          44.3,
+          45.2,
+          44.1,
+          45.2,
+          46.3
+        ],
+        "diameters_cm": [
+          14.70591674169113,
+          14.101127957941927,
+          14.38760685550734,
+          14.03746598070517,
+          14.38760685550734,
+          14.737747730309508
+        ],
+        "mean_diameter_cm": 14.39291202027707,
+        "minimum_diameter_cm": 14.03746598070517,
+        "maximum_diameter_cm": 14.737747730309508
+      },
+      "support": {
+        "circumferences_cm": [
+          28.3,
+          26.5
+        ],
+        "diameters_cm": [
+          9.008169779001276,
+          8.435211983870452
+        ],
+        "mean_diameter_cm": 8.721690881435864,
+        "minimum_diameter_cm": 8.435211983870452,
+        "maximum_diameter_cm": 9.008169779001276
+      }
+    },
+    "vhedge": {
+      "sheet": "Vhedge",
+      "units": "cm circumference",
+      "row_note": "11",
+      "definitions": {
+        "A": "cicrumference trunk 30 cm above ground, can contain net that is not thight",
+        "B": "Looking at east side of tree, cicrumference of left branch 10 cm from trunk (horizontal)",
+        "C": "Looking at east side of tree, cicrumference of left branch at height of 1.6 m",
+        "D": "circumference of guidance pole of left branch, looking at east side of the tree",
+        "E": "circumference of big supporting poles"
+      },
+      "observations": [
+        {
+          "measurement_tree_number": 1,
+          "circumferences_cm": {
+            "A": 46.1,
+            "B": 17.6,
+            "C": 16.9,
+            "D": 9.0
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 2,
+          "circumferences_cm": {
+            "A": 45.0,
+            "B": 12.3,
+            "C": 10.0,
+            "D": 9.8
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 3,
+          "circumferences_cm": {
+            "A": 54.0,
+            "B": 15.0,
+            "C": 10.0,
+            "D": 9.0
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 4,
+          "circumferences_cm": {
+            "A": 54.0,
+            "B": 12.3,
+            "C": 9.4,
+            "D": 9.3
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 5,
+          "circumferences_cm": {
+            "A": 45.2,
+            "B": 12.3,
+            "C": 11.0,
+            "D": 9.2
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 6,
+          "circumferences_cm": {
+            "A": 45.4,
+            "B": 17.0,
+            "C": 15.6,
+            "D": 9.2
+          },
+          "remark": ""
+        },
+        {
+          "measurement_tree_number": 7,
+          "circumferences_cm": {
+            "A": 45.7,
+            "B": 13.6,
+            "C": 10.2,
+            "D": 9.3
+          },
+          "remark": ""
+        }
+      ],
+      "additional_supports": [
+        {
+          "label": "pole 1",
+          "circumference_cm": 25.9
+        },
+        {
+          "label": "pole 7",
+          "circumference_cm": 21.0
+        }
+      ],
+      "trunk": {
+        "circumferences_cm": [
+          46.1,
+          45.0,
+          54.0,
+          54.0,
+          45.2,
+          45.4,
+          45.7
+        ],
+        "diameters_cm": [
+          14.67408575307275,
+          14.32394487827058,
+          17.188733853924695,
+          17.188733853924695,
+          14.38760685550734,
+          14.451268832744097,
+          14.546761798599235
+        ],
+        "mean_diameter_cm": 15.251590832291912,
+        "minimum_diameter_cm": 14.32394487827058,
+        "maximum_diameter_cm": 17.188733853924695
+      },
+      "support": {
+        "circumferences_cm": [
+          25.9,
+          21.0
+        ],
+        "diameters_cm": [
+          8.244226052160178,
+          6.684507609859605
+        ],
+        "mean_diameter_cm": 7.464366831009891,
+        "minimum_diameter_cm": 6.684507609859605,
+        "maximum_diameter_cm": 8.244226052160178
+      }
+    }
+  }
+}

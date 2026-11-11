@@ -60,8 +60,9 @@ def add_reference_checks(stage,reference_path=ROOT/'presets/spindle_trunk_refere
                 diameter=200*model['parameters'][2]
                 existing_models.append(dict(stem_window=model['candidate'],baseline_model_diameter_cm=diameter,within_user_typical_trunk_range=bool(trunk_cm[0]<=diameter<=trunk_cm[1]),note='Comparison to typical user measurement, not a surveyed identity or a new fitting constraint'))
         save_json(meta,dict(cache_key=key,dataset=dataset,reference=reference,trunk_equivalent_diameter_cm=trunk_cm.tolist(),post_equivalent_diameter_cm=float(post_cm),slice_height_m=height,slice_thickness_m=thickness,inputs=inputs,slices=counts,existing_baseline_model_comparison=existing_models,geometry_policy='Unmodified final baseline measured returns; no fits, clustering, object labels or corrections applied'))
-        gallery=stage/'QC'/dataset/'index.html';base=gallery.read_text().split('<!-- trunk-reference-30cm -->')[0]
-        gallery.write_text(base+'<!-- trunk-reference-30cm --><h2>30 cm slices and measured size references</h2><p><a href="trunk_reference_30cm/raw_slices.pdf">PDF</a> · <a href="trunk_reference_30cm/reference.json">Measurements and provenance</a></p><img style="max-width:100%" src="trunk_reference_30cm/raw_slices.png">')
+        gallery=stage/'QC'/dataset/'index.html';content=gallery.read_text();base=content.split('<!-- trunk-reference-30cm -->')[0];tail=content[len(base):];suffix=''
+        if '<!-- final-trunk-refinement -->' in tail:suffix='<!-- final-trunk-refinement -->'+tail.split('<!-- final-trunk-refinement -->',1)[1]
+        gallery.write_text(base+'<!-- trunk-reference-30cm --><h2>30 cm slices and measured size references</h2><p><a href="trunk_reference_30cm/raw_slices.pdf">PDF</a> · <a href="trunk_reference_30cm/reference.json">Measurements and provenance</a></p><img style="max-width:100%" src="trunk_reference_30cm/raw_slices.png">'+suffix)
         outputs.append(output/'raw_slices.png')
     return outputs
 
