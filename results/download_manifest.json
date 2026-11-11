@@ -7,21 +7,21 @@
   "assets": [
     {
       "name": "orchard_row_result.zip",
-      "url": "https://github.com/u0063882/GreensprayAI/releases/download/chandelier-v2/orchard_row_result.zip",
       "bytes": 20710586,
-      "sha256": "2124a040f4018129a7435f4096fb9c54d69220ef215830c81f4133aab8193bf6"
+      "sha256": "2124a040f4018129a7435f4096fb9c54d69220ef215830c81f4133aab8193bf6",
+      "member": "QC/provenance/registration_seed/orchard_row_result.zip"
     },
     {
       "name": "separate_registered_scans.zip",
-      "url": "https://github.com/u0063882/GreensprayAI/releases/download/chandelier-v2/separate_registered_scans_v2.zip",
       "bytes": 21872039,
-      "sha256": "8c0b6c64669d4a8a000ccfe191695895feb7b7efdd73d90b56a499e79556b5fc"
+      "sha256": "8c0b6c64669d4a8a000ccfe191695895feb7b7efdd73d90b56a499e79556b5fc",
+      "member": "QC/provenance/registration_seed/separate_registered_scans.zip"
     },
     {
       "name": "combined_by_recording.zip",
-      "url": "https://github.com/u0063882/GreensprayAI/releases/download/chandelier-v2/combined_by_recording_v2.zip",
       "bytes": 21863877,
-      "sha256": "6efed7c8a76b0f988a6a66d8320b7b07a645ff038617e7f68809402f43254f2f"
+      "sha256": "6efed7c8a76b0f988a6a66d8320b7b07a645ff038617e7f68809402f43254f2f",
+      "member": "QC/provenance/registration_seed/combined_by_recording.zip"
     }
   ],
   "mesh_build": {
@@ -39,12 +39,21 @@
     "source": "git archive HEAD; current code and documentation",
     "member": "QC/provenance/current_code_and_notes.zip"
   },
-  "asset_role": "The assets list contains historical seed inputs, not current output checksums. Current primary-file checksums are in 90_QC.zip/QC/SHA256SUMS.txt; all five download hashes are in the release notes.",
+  "asset_role": "The assets list contains archived rebuild inputs inside the QC bundle, not current output checksums. Current primary-file checksums are in QC/SHA256SUMS.txt; all five download hashes are in the release notes.",
   "registration_build": {
     "script": "processing/register_anchored.py",
     "anchor": "East / Side A",
     "moving": "West / Side B, nine independent bounded rigid poses",
     "candidate_windows": "presets/orchard_stem_candidates.json",
     "requires_validation": true
+  },
+  "seed_bundle_url": "https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip",
+  "legacy_seed_release": {
+    "tag": "chandelier-v2",
+    "asset_names": {
+      "orchard_row_result.zip": "orchard_row_result.zip",
+      "separate_registered_scans.zip": "separate_registered_scans_v2.zip",
+      "combined_by_recording.zip": "combined_by_recording_v2.zip"
+    }
   }
 }

@@ -137,6 +137,13 @@ def package_release(source_dir,output_dir,code_archive,*,data_commit,packaging_c
             if (source/'processing_code_and_notes.zip').exists():add_file(source/'processing_code_and_notes.zip',qc/'provenance/data_pipeline_code.zip')
             for p in source.iterdir():
                 if p.is_file() and p.name not in LEGACY_PACKAGES:add_file(p,qc/qc_location(p.name))
+        seeds=source/'registration_seed'
+        if seeds.is_dir():
+            for seed in sorted(seeds.iterdir()):
+                if seed.is_file():add_file(seed,qc/'provenance/registration_seed'/seed.name)
+        archived_seeds=qc/'provenance/registration_seed'
+        if archived_seeds.is_dir():
+            (archived_seeds/'README.txt').write_text('INTERNAL REBUILD INPUTS\n\nThese intermediate inputs are retained only to reproduce the processing pipeline.\nUse the separate 01, 02 and 03 downloads for final point clouds, mesh and transformations.\n')
         # A geometry-source snapshot and the current packaging code may differ.
         add_file(code_archive,qc/'provenance/current_code_and_notes.zip')
         # Do not accumulate an old current-code copy on each future repackaging.

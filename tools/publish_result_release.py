@@ -41,14 +41,54 @@ def choose_mode(requested):
     if changed.strip(): return 'rebuild'
     old=json.loads(subprocess.check_output(['git','show','current:results/download_manifest.json'],cwd=ROOT,text=True))
     new=json.loads((ROOT/'results/download_manifest.json').read_text())
-    if any(old.get(k)!=new.get(k) for k in ['assets','mesh_build','registration_build']): return 'rebuild'
+    # A seed relocation alone must not recompute validated geometry.
+    identity=lambda m:[{k:a[k] for k in ['name','bytes','sha256']} for a in m['assets']]
+    if identity(old)!=identity(new) or any(old.get(k)!=new.get(k) for k in ['mesh_build','registration_build']): return 'rebuild'
     return 'repackage'
+
+
+def prepare_seed_inputs(manifest, destination, bundle=None, allow_legacy=False):
+    """Read checksummed rebuild inputs from QC; migrate the old release once."""
+    destination=Path(destination);destination.mkdir(parents=True,exist_ok=True)
+    if bundle is None:
+        bundle=destination/'seed_source_QC.zip'
+        subprocess.run(['curl','--fail','--location','--retry','3','--max-time','180','--output',str(bundle),manifest['seed_bundle_url']],check=True)
+    with zipfile.ZipFile(bundle) as archive:
+        for asset in manifest['assets']:
+            name=asset['name'];member=asset['member']
+            if Path(name).name!=name or member!='QC/provenance/registration_seed/'+name:raise RuntimeError('Invalid seed manifest')
+            target=destination/name
+            if member in archive.namelist():
+                with archive.open(member) as source,target.open('wb') as sink:shutil.copyfileobj(source,sink)
+            elif allow_legacy:
+                legacy=manifest['legacy_seed_release'];repo=os.environ.get('GITHUB_REPOSITORY','u0063882/GreensprayAI')
+                metadata=release_metadata(repo,legacy['tag'])
+                item=next(a for a in metadata['assets'] if a['name']==legacy['asset_names'][name])
+                subprocess.run(['curl','--fail','--location','--retry','3','--max-time','180','--output',str(target),item['browser_download_url']],check=True)
+            else:raise RuntimeError('Archived rebuild input is missing: '+member)
+            verify(target,asset)
+    return destination
+
+
+def retire_legacy_release(manifest):
+    legacy=manifest.get('legacy_seed_release')
+    if not legacy:return
+    tag=legacy['tag']
+    if tag!='chandelier-v2' or tag==manifest['tag']:raise RuntimeError('Refusing unexpected legacy release deletion')
+    repo=os.environ.get('GITHUB_REPOSITORY','u0063882/GreensprayAI')
+    exists=subprocess.run(['gh','release','view',tag,'--repo',repo],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode==0
+    if exists:
+        subprocess.run(['gh','release','delete',tag,'--repo',repo,'--cleanup-tag','--yes'],check=True)
+        print('Retired old release and tag:',tag,flush=True)
 
 
 def publish_packages(source_dir, code, asset_dir, manifest, data_commit, preserved_names):
     repo=os.environ.get('GITHUB_REPOSITORY','u0063882/GreensprayAI');tag=manifest['tag']
     commit=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     paths=package_release(source_dir,asset_dir/'compact',code,data_commit=data_commit,packaging_commit=commit)
+    # Check archived seeds before uploading or retiring their former release.
+    with tempfile.TemporaryDirectory(dir=asset_dir) as folder:
+        prepare_seed_inputs(manifest,folder,bundle=paths[3])
     hashes={p.name:digest(p) for p in paths}
     notes=asset_dir/'current_release_notes.md'
     checksums='\n\n<details><summary>SHA-256 checksums</summary>\n\n```text\n'+''.join(f'{hashes[p.name]}  {p.name}\n' for p in paths)+'```\n</details>\n'
@@ -77,6 +117,7 @@ def publish_packages(source_dir, code, asset_dir, manifest, data_commit, preserv
     actual={a['name'] for a in release_metadata(repo,tag)['assets']}
     if not set(ASSET_NAMES).issubset(actual):raise RuntimeError('A final download is missing')
     print('Published compact release:',', '.join(sorted(actual)),flush=True)
+    retire_legacy_release(manifest)
 
 
 def repackage_current(args, manifest):
@@ -90,6 +131,7 @@ def repackage_current(args, manifest):
             path=source/asset['name']
             if Path(asset['name']).name!=asset['name'] or not path.is_file() or path.stat().st_size!=asset['size']:raise RuntimeError('Invalid/missing source asset')
             if not asset.get('digest') or asset['digest']!='sha256:'+digest(path):raise RuntimeError('Source asset checksum unavailable or mismatched: '+path.name)
+        prepare_seed_inputs(manifest,source/'registration_seed',bundle=source/'90_QC.zip',allow_legacy=True)
         code=args.asset_dir/'processing_code_and_notes.zip'
         subprocess.run(['git','archive','--format=zip','--output',str(code),'HEAD'],cwd=ROOT,check=True)
         publish_packages(source,code,args.asset_dir,manifest,data_commit,{a['name'] for a in original['assets']})
@@ -107,13 +149,10 @@ def main():
     if mode=='repackage':
         repackage_current(args,manifest)
         return
+    if not args.verify_only:prepare_seed_inputs(manifest,args.asset_dir)
     for asset in manifest['assets']:
-        name=asset['name']
-        if Path(name).name!=name or not asset['url'].startswith('https://'):raise RuntimeError('Invalid asset manifest')
-        path=args.asset_dir/name
-        if not args.verify_only:
-            subprocess.run(['curl','--fail','--location','--retry','3','--max-time','180','--output',str(path),asset['url']],check=True)
-        verify(path,asset);paths.append(path);print(f'Verified {name}',flush=True)
+        path=args.asset_dir/asset['name']
+        verify(path,asset);paths.append(path);print(f'Verified {path.name}',flush=True)
     if args.verify_only:return
     # Publish the checked-out code/docs, not an obsolete historical snapshot.
     code=args.asset_dir/'processing_code_and_notes.zip'
@@ -162,6 +201,8 @@ def main():
     with tempfile.TemporaryDirectory(prefix='generated-assets-',dir=args.asset_dir) as folder:
         source=Path(folder)
         for path in paths:shutil.copy2(path,source/path.name)
+        seeds=source/'registration_seed';seeds.mkdir()
+        for asset in manifest['assets']:shutil.copy2(args.asset_dir/asset['name'],seeds/asset['name'])
         repo=os.environ.get('GITHUB_REPOSITORY','u0063882/GreensprayAI')
         try:
             previous=release_metadata(repo,manifest['tag'])['assets']

@@ -25,7 +25,7 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 
 All final PLYs are already aligned. The JSON is for interpreting/applying poses to raw or levelled sensor data; **do not apply it again to the final PLY**. See the [download guide](docs/downloads.md).
 
-All clouds and meshes share one local metric frame. Load the separate PLYs together and enable RGB colours. The crop covers 7.1 m along the row and a 1.4 m ground strip. Current metadata lives directly in [`results/`](results/); large downloads use this repository's single active **Current results** release. Older Git/release history is retained as provenance.
+All clouds and meshes share one local metric frame. Load the separate PLYs together and enable RGB colours. The crop covers 7.1 m along the row and a 1.4 m ground strip. Current metadata lives directly in [`results/`](results/); large downloads use this repository's single active **Current results** release. Required rebuild inputs are archived inside the QC ZIP; the obsolete v2 release has been retired.
 
 The current [east-anchored registration](docs/anchored_registration.md) holds all nine east/Side A files fixed and fits a separate bounded rigid pose for each west/Side B recording. Low stem observations stay below 0.5 m; ground and west-overlap constraints preserve scene consistency. [Before/after circles — `QC/registration/anchored_trunk_sections.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip) show the improvement and remaining model uncertainty. The [mesh archive](docs/meshing.md) is rebuilt from this refined cloud using the existing independent voxel/SDF mesher.
 

@@ -5,6 +5,7 @@ import tempfile
 import unittest
 import zipfile
 from tools.package_release import ASSET_NAMES,FINAL_MESH_MEMBERS,package_release,digest
+from tools.publish_result_release import prepare_seed_inputs
 
 
 def archive(path,entries):
@@ -60,5 +61,27 @@ class PackagingTests(unittest.TestCase):
             with zipfile.ZipFile(source/'orchard_mesh.zip','a') as z:z.writestr('../escape.txt','bad')
             with self.assertRaises(ValueError):package_release(source,root/'new',code,data_commit='a',packaging_commit='b')
             self.assertFalse((root/'escape.txt').exists())
+
+    def test_rebuild_inputs_survive_release_retirement_and_repackaging(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);source=root/'old';self.fixture(source)
+            seeds=source/'registration_seed';seeds.mkdir()
+            archive(seeds/'seed.zip',{'scan.ply':b'ORIGINAL REBUILD INPUT'})
+            manifest={'assets':[dict(name='seed.zip',member='QC/provenance/registration_seed/seed.zip',
+                bytes=(seeds/'seed.zip').stat().st_size,sha256=digest(seeds/'seed.zip'))]}
+            code=root/'code.zip';archive(code,{'source.py':b'current code'})
+            first=root/'first';package_release(source,first,code,data_commit='data',packaging_commit='migration')
+            second=root/'second';package_release(first,second,code,data_commit='migration',packaging_commit='later')
+            extracted=prepare_seed_inputs(manifest,root/'rebuild',bundle=second/ASSET_NAMES[3])
+            self.assertEqual((extracted/'seed.zip').read_bytes(),(seeds/'seed.zip').read_bytes())
+            manifest['assets'][0]['sha256']='0'*64
+            with self.assertRaises(RuntimeError):prepare_seed_inputs(manifest,root/'bad',bundle=second/ASSET_NAMES[3])
+
+    def test_missing_archived_seed_fails_without_using_retired_release(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);bundle=root/'qc.zip';archive(bundle,{})
+            manifest={'assets':[dict(name='missing.zip',member='QC/provenance/registration_seed/missing.zip',bytes=1,sha256='0'*64)]}
+            with self.assertRaisesRegex(RuntimeError,'Archived rebuild input is missing'):
+                prepare_seed_inputs(manifest,root/'seeds',bundle=bundle)
 
 if __name__=='__main__':unittest.main()

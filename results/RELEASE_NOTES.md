@@ -16,6 +16,6 @@ Registration holds east/Side A fixed and gives each west/Side B recording its ow
 
 Meshing is independent and uses the existing voxel/SDF envelope prototype, not native Rhino ShrinkWrap. The user's Rhino reference remains recorded separately.
 
-This reorganization preserves the validated point, mesh and matrix data. Packaging-only updates reuse those bytes; processing changes run the full build and validation. Original data and packaging commits are recorded in QC/provenance/data_origin.json. Historical seed releases are unchanged.
+This reorganization preserves the validated point, mesh and matrix data. Packaging-only updates reuse those bytes; processing changes run the full build and validation. Original data and packaging commits are recorded in QC/provenance/data_origin.json. Required rebuild inputs are archived inside the QC bundle; the obsolete v2 release and tag are retired.
 
 </details>
