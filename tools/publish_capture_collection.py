@@ -50,6 +50,9 @@ def main():
             after=frozen_hashes(stage,frozen_ids)
             if any(after.get(k)!=v for k,v in protected.items()):raise RuntimeError('Leaf/wood upgrade changed a baseline mesh or transformation')
             before=after
+        if (ROOT/'presets/spindle_trunk_reference.json').exists():
+            from tools.trunk_reference_qc import add_reference_checks
+            add_reference_checks(stage)
         provenance=stage/'QC/provenance';provenance.mkdir(parents=True,exist_ok=True)
         (provenance/'collection.json').write_text(json.dumps(dict(packaging_commit=commit,datasets=datasets,frozen_dataset_sha256=before),indent=2)+'\n')
         code=work/'code.zip';subprocess.run(['git','archive','--format=zip','--output',str(code),'HEAD'],cwd=ROOT,check=True)

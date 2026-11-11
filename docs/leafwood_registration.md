@@ -62,6 +62,18 @@ is a diagnostic model, not a verified physical trunk diameter: mixed returns,
 short arcs, supports, basal branches and residual registration can bias it.
 No foliage filter removes inconvenient points from these figures.
 
+The user subsequently supplied field measurements at **30 cm** above ground:
+trunk circumference **40–45 cm**, equivalent circular diameter **12.7–14.3 cm**;
+adjacent support post circumference **22 cm**, circular-equivalent diameter
+**7.0 cm**. The post need not have a circular section. Both objects are woody,
+so leaf/wood colour alone does not distinguish them. A single-circle fit can
+combine trunk, guard and post returns, in addition to residual scan disagreement.
+The new `QC/<dataset>/trunk_reference_30cm/raw_slices.png/.pdf` compares unfiltered
+2 cm slices at the measured height against separate size-reference diagrams.
+Reference circle positions are arbitrary, not inferred trunk/post locations.
+These dimensions are recorded in `presets/spindle_trunk_reference.json` and do
+not force radii, alter cloud scale or trigger new registration.
+
 ## PLY fields
 
 | Field | Meaning |

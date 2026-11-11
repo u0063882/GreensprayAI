@@ -1,0 +1,10 @@
+{
+  "source": "User field measurements supplied with a photograph",
+  "scope": "Typical spindle trees; not individual surveyed stem identities",
+  "measurement_height_m": 0.3,
+  "trunk_circumference_m": [0.4, 0.45],
+  "support_post_circumference_m": 0.22,
+  "interpretation": "C/pi is a circular-equivalent diameter. The post cross-section may be noncircular. Use dimensions as physical references, not forced radii or point-cloud scaling.",
+  "photo_observations": "A tree guard and adjacent wooden support post are visible; their returns can both occur in a low slice.",
+  "registration_policy": "No registration correction or point deformation follows from this reference alone. Separate trunk and post before interpreting any single-circle fit."
+}
