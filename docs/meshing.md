@@ -4,13 +4,13 @@
 
 The main mesh ZIP contains only the final representations in the registered metric frame:
 
-| File inside `final_mesh/` | Representation |
+| File inside `chandelier/` | Representation |
 | --- | --- |
 | `canopy_wrap.ply`, `.obj`, `.stl` | Closed canopy envelope |
 | `ground_surface.ply` | Separate open ground sheet |
 | `canopy_wrap_with_ground.ply` | Canopy plus ground, an open combined scene |
 
-PLY preserves colour. All coordinates are metres; STL has no unit metadata. The QC ZIP holds previews, mesh reports and the open observed-surface alternatives under **QC/meshing/**. It is separate from the main mesh download to keep that download focused.
+PLY preserves colour. All coordinates are metres; STL has no unit metadata. The QC ZIP holds previews, mesh reports and the open observed-surface alternatives under **QC/chandelier/meshing/**. It is separate from the main mesh download to keep that download focused.
 
 ## Mesh a point cloud alone
 
@@ -39,7 +39,7 @@ Controls: `--voxel`, `--offset`, `--closing-radius`, and `--min-volume`; all len
 
 ## Reproduce the orchard demonstration
 
-Download the final PLY and transformation JSON. To use the commands below, save them in `output/` as `orchard_row_registered.ply` and `scan_transforms.json` respectively. The observed-surface helper remains a capture-specific Z-up orchard recipe, separate from the general meshing entry point:
+Extract the final PLY and matching JSON from the point-cloud and transformation ZIPs (choose the same dataset folder). To use the commands below, save them in `output/` as `orchard_row_registered.ply` and `scan_transforms.json` respectively. The observed-surface helper remains a capture-specific Z-up orchard recipe, separate from the general meshing entry point:
 
 ```sh
 python processing/mesh.py --transforms output/scan_transforms.json
@@ -84,7 +84,7 @@ The local observed-surface run has approximately 140,000 tree and 12,000 ground 
 
 The QC download carries reports from the data build; repository report snapshots are under [`results/`](../results/). Reconstruction does not change the point-cloud poses or resolve the [cross-row QA](cross_row_quality.md).
 
-[Closed canopy proxy — inside QC bundle: `QC/meshing/shrinkwrap_preview.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)
+[Closed canopy proxy — inside QC bundle: `QC/chandelier/meshing/shrinkwrap_preview.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)
 
 ## User's Rhino baseline
 

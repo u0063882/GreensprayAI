@@ -12,6 +12,7 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0,str(ROOT))
 try:
     from .package_release import ASSET_NAMES, package_release
 except ImportError:
@@ -56,7 +57,7 @@ def prepare_seed_inputs(manifest, destination, bundle=None, allow_legacy=False):
     with zipfile.ZipFile(bundle) as archive:
         for asset in manifest['assets']:
             name=asset['name'];member=asset['member']
-            if Path(name).name!=name or member!='QC/provenance/registration_seed/'+name:raise RuntimeError('Invalid seed manifest')
+            if Path(name).name!=name or member not in ['QC/provenance/registration_seed/'+name,'QC/chandelier/provenance/registration_seed/'+name]:raise RuntimeError('Invalid seed manifest')
             target=destination/name
             if member in archive.namelist():
                 with archive.open(member) as source,target.open('wb') as sink:shutil.copyfileobj(source,sink)
@@ -138,6 +139,9 @@ def repackage_current(args, manifest):
 
 
 def main():
+    if (ROOT/'results/capture_collection.json').exists() and '--verify-only' not in sys.argv:
+        from tools.publish_capture_collection import main as publish_collection
+        return publish_collection()
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--asset-dir',type=Path,default=ROOT/'work/release-assets')
     parser.add_argument('--verify-only',action='store_true')

@@ -9,19 +9,19 @@
       "name": "orchard_row_result.zip",
       "bytes": 20710586,
       "sha256": "2124a040f4018129a7435f4096fb9c54d69220ef215830c81f4133aab8193bf6",
-      "member": "QC/provenance/registration_seed/orchard_row_result.zip"
+      "member": "QC/chandelier/provenance/registration_seed/orchard_row_result.zip"
     },
     {
       "name": "separate_registered_scans.zip",
       "bytes": 21872039,
       "sha256": "8c0b6c64669d4a8a000ccfe191695895feb7b7efdd73d90b56a499e79556b5fc",
-      "member": "QC/provenance/registration_seed/separate_registered_scans.zip"
+      "member": "QC/chandelier/provenance/registration_seed/separate_registered_scans.zip"
     },
     {
       "name": "combined_by_recording.zip",
       "bytes": 21863877,
       "sha256": "6efed7c8a76b0f988a6a66d8320b7b07a645ff038617e7f68809402f43254f2f",
-      "member": "QC/provenance/registration_seed/combined_by_recording.zip"
+      "member": "QC/chandelier/provenance/registration_seed/combined_by_recording.zip"
     }
   ],
   "mesh_build": {
@@ -39,7 +39,7 @@
     "source": "git archive HEAD; current code and documentation",
     "member": "QC/provenance/current_code_and_notes.zip"
   },
-  "asset_role": "The assets list contains archived rebuild inputs inside the QC bundle, not current output checksums. Current primary-file checksums are in QC/SHA256SUMS.txt; all five download hashes are in the release notes.",
+  "asset_role": "Legacy chandelier rebuild seeds, archived under QC/chandelier/provenance/registration_seed/. The active multi-dataset publisher uses results/capture_collection.json; current download hashes are in the release notes and QC/SHA256SUMS.txt.",
   "registration_build": {
     "script": "processing/register_anchored.py",
     "anchor": "East / Side A",

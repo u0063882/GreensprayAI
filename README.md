@@ -10,28 +10,46 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 
 | Main download | Contents |
 | --- | --- |
-| [01_final_aligned_pointcloud.ply](https://github.com/u0063882/GreensprayAI/releases/download/current/01_final_aligned_pointcloud.ply) | Final merged aligned row; 1,219,008 measured samples, coordinates in metres |
-| [02_final_mesh.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) | Final canopy in PLY/OBJ/STL, separate ground, and canopy-plus-ground scene |
-| [03_transformations.json](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.json) | Final transformation matrices for all 18 recordings |
+| [01_final_aligned_pointclouds.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/01_final_aligned_pointclouds.zip) | `chandelier/final_registered.ply` and `spindle1/final_registered.ply` |
+| [02_final_mesh.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) | Existing chandelier canopy PLY/OBJ/STL, ground and combined scene, under `chandelier/` |
+| [03_transformations.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.zip) | Matching `chandelier/transformations.json` and `spindle1/transformations.json` |
+
+Each dataset has its **own local frame, in metres**. Its final PLYs already have its matrices applied; do not apply them again. The dataset folders are separate capture results, not a common field-wide georeferenced scene.
+
+| Dataset | Status |
+| --- | --- |
+| Chandelier | Existing validated point cloud, transforms and mesh preserved byte for byte; folder paths changed |
+| Spindle1 | 18 recordings registered; final measured point cloud, transforms and scan contributions; no mesh generated yet |
 
 <details>
 <summary>Quality checks, individual scan contributions and code</summary>
 
-- [90_QC.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip): figures, reports, tables, observed-surface alternatives and code snapshots, grouped in folders. Extract and open **QC/index.html** to browse the figures.
-- [91_registered_contributions.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/91_registered_contributions.zip): **separate_scans/** contains the 18 coloured PLYs; **combined/** contains their combined coloured cloud with overlaps retained.
-- Code is also available directly in this repository. `git pull` updates code/docs; release downloads are separate.
+- [90_QC.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip): extract and open **QC/index.html**, then choose a dataset. Figures/reports are grouped under `QC/chandelier/` and `QC/spindle1/`. Source inputs needed for rebuilding are tucked under provenance folders.
+- [91_registered_contributions.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/91_registered_contributions.zip): each dataset has `separate_scans/` with recording-coloured PLYs, plus `combined/` with all contributions and overlaps retained.
+- Current code is in this repository and in `QC/provenance/current_code_and_notes.zip`. `git pull` updates code/docs; release downloads are separate.
 
 </details>
 
-All final PLYs are already aligned. The JSON is for interpreting/applying poses to raw or levelled sensor data; **do not apply it again to the final PLY**. See the [download guide](docs/downloads.md).
+See the [download guide](docs/downloads.md) and [named capture registration](docs/capture_registration.md). A/B names are labels; the new capture pipeline infers inward headings from the RTK tracks. Spindle1 uses a 7.1 m row section and a 1.8 m ground strip. The original chandelier crop is unchanged. Supports and attached clutter may remain, and some short-arc trunk centre fits remain uncertain.
 
-All clouds and meshes share one local metric frame. Load the separate PLYs together and enable RGB colours. The crop covers 7.1 m along the row and a 1.4 m ground strip. Current metadata lives directly in [`results/`](results/); large downloads use this repository's single active **Current results** release. Required rebuild inputs are archived inside the QC ZIP; the obsolete v2 release has been retired.
+The following existing east-anchored description and historical report numbers refer to **chandelier**:
 
-The current [east-anchored registration](docs/anchored_registration.md) holds all nine east/Side A files fixed and fits a separate bounded rigid pose for each west/Side B recording. Low stem observations stay below 0.5 m; ground and west-overlap constraints preserve scene consistency. [Before/after circles — `QC/registration/anchored_trunk_sections.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip) show the improvement and remaining model uncertainty. The [mesh archive](docs/meshing.md) is rebuilt from this refined cloud using the existing independent voxel/SDF mesher.
+The current [east-anchored registration](docs/anchored_registration.md) holds all nine east/Side A files fixed and fits a separate bounded rigid pose for each west/Side B recording. Low stem observations stay below 0.5 m; ground and west-overlap constraints preserve scene consistency. [Before/after circles — `QC/chandelier/registration/anchored_trunk_sections.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip) show the improvement and remaining model uncertainty. The [mesh archive](docs/meshing.md) was computed from this refined cloud using the existing independent voxel/SDF mesher.
 
-[Current canopy envelope preview — inside QC bundle: `QC/meshing/shrinkwrap_preview.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)
+[Current canopy envelope preview — inside QC bundle: `QC/chandelier/meshing/shrinkwrap_preview.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)
 
-## Reproduce registration
+## Register spindle1 or another named capture
+
+Extract that capture's files into its own `/path/to/spindle1/work/data/sideA/` and `sideB/` folders. Do not reuse another capture's workspace.
+
+```sh
+python -m pip install -r requirements-captures.txt
+python run_capture.py --config presets/captures/spindle1.json --workspace /path/to/spindle1
+```
+
+Outputs go to that workspace's `final/`, with `final_registered.ply`, `transformations.json`, registered scan contributions and QC figures. A fresh capture needs its own reviewed crop and low-stem windows, rather than copying chandelier coordinates. Cached stages are tied to source hashes, configuration and algorithm code. Registration does not import or run a mesher.
+
+## Reproduce chandelier registration
 
 Tested with Python 3.12:
 
@@ -65,7 +83,7 @@ python run_meshing.py --input /path/to/trees.ply --output-dir /path/to/mesh
 
 Optional `--metadata metadata.json` records units and frame information without changing coordinates. Ground is included in the envelope unless explicitly excluded using an optional ground mesh; the general mesher does not assume that soil lies near Z=0. The defaults are the existing voxel/SDF prototype, not a validated Rhino equivalent.
 
-See [standalone meshing and the orchard release recipe](docs/meshing.md), the [Rhino ShrinkWrap study, tested alternatives and proposed controls](docs/shrinkwrap_research.md), and the [user's Rhino 8 reference settings](docs/rhino_reference.md). GitHub Actions separately builds the orchard demonstration from checksummed exported clouds and publishes its downloads to the same release.
+See [standalone meshing and the orchard release recipe](docs/meshing.md), the [Rhino ShrinkWrap study, tested alternatives and proposed controls](docs/shrinkwrap_research.md), and the [user's Rhino 8 reference settings](docs/rhino_reference.md). The collection workflow preserves the validated chandelier mesh while new captures are registered independently.
 
 ## Registration and MATLAB
 
@@ -83,7 +101,8 @@ The seed ground stage reduced held-out patch RMSE from 3.98 cm to 0.76 cm. The f
 
 ## Repository layout
 
-- `run_pipeline.py`: capture-specific registration and point-cloud export.
+- `run_capture.py`, `captures/`: isolated named captures, label-independent RTK heading inference and per-recording refinement.
+- `run_pipeline.py`: original chandelier-specific registration and point-cloud export.
 - `run_meshing.py`: standalone point-cloud-to-envelope interface.
 - `processing/register_anchored.py`, `export_anchored.py`: final bounded pose refinement and measured-point export.
 - `processing/`: acquisition and geometry implementations; the mesher imports no registration modules.
@@ -91,7 +110,7 @@ The seed ground stage reduced held-out patch RMSE from 3.98 cm to 0.76 cm. The f
 - `results/`: current transforms, scan mapping, diagnostic tables and report snapshots.
 - `tools/`: mesh validation and current-release publishing.
 - `.github/workflows/`: reproducible release generation, with GitHub's built-in token.
-- `tests/`: analytic cross-section checks that distinguish trunk diameter from centre error.
+- `tests/`: analytic geometry, heading inference, per-recording pose and dataset packaging checks.
 
 ```sh
 python -m unittest discover -s tests -v

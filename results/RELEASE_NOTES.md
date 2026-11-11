@@ -1,21 +1,21 @@
-## Main downloads
+## Final datasets
 
-1. **[Final aligned point cloud — PLY](https://github.com/u0063882/GreensprayAI/releases/download/current/01_final_aligned_pointcloud.ply)**
-2. **[Final mesh — ZIP](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip)**
-3. **[Transformation matrices — JSON](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.json)**
+One release, with a folder per dataset inside the five downloads:
 
-Coordinates and translations are **metres**. The final point cloud is already aligned; do not apply the matrices to it again. The mesh ZIP includes the closed canopy in PLY/OBJ/STL, the separate open ground sheet, and their combined scene.
+1. **[Final aligned point clouds](https://github.com/u0063882/GreensprayAI/releases/download/current/01_final_aligned_pointclouds.zip)** — open `spindle1/final_registered.ply` or `chandelier/final_registered.ply`.
+2. **[Final meshes](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip)** — chandelier mesh/ground formats under `chandelier/`; spindle1 has no mesh yet.
+3. **[Transformation matrices](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.zip)** — matching JSONs in each dataset folder.
+
+Coordinates are metres. Each dataset uses an independent local frame. Final PLYs are already aligned; do not apply the matrices again. Chandelier geometry and matrix data are unchanged.
 
 <details>
-<summary>Quality checks and supporting files</summary>
+<summary>QC and individual scan contributions</summary>
 
-- **[90_QC.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)** — figures, reports, tables, observed-surface alternatives and code snapshots in folders. Extract and open **QC/index.html** for the figure gallery.
-- **[91_registered_contributions.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/91_registered_contributions.zip)** — all 18 separate registered PLYs and the combined recording-coloured cloud, with manifests and notes.
+- **[90_QC.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)** — extract and open `QC/index.html`, then choose a dataset. Includes low-height circle figures, ground checks, reports, code and internal rebuild inputs.
+- **[91_registered_contributions.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/91_registered_contributions.zip)** — each dataset has `separate_scans/` and `combined/`, coloured by recording, with overlap retained.
 
-Registration holds east/Side A fixed and gives each west/Side B recording its own bounded rigid correction. Fitting uses stems below 0.5 m, scanner-facing consistency, ground and same-face overlap. Held-out checks are internal model/correspondence diagnostics, not independently surveyed accuracy. Uncertain circle fits remain marked.
+Spindle1 was registered from 18 recordings using measured RTK track directions, gravity levelling, within-side ICP, relative ground refinement and bounded per-recording opposite-side poses. Low-stem fitting stays below 0.5 m. Validation uses unused height bands and spatial patches; entire-stem omission leaves some end recordings unsupported and is not used in the final configuration. Circle fits affected by clutter/short arcs remain marked uncertain. These checks are internal model diagnostics, not surveyed accuracy.
 
-Meshing is independent and uses the existing voxel/SDF envelope prototype, not native Rhino ShrinkWrap. The user's Rhino reference remains recorded separately.
-
-This reorganization preserves the validated point, mesh and matrix data. Packaging-only updates reuse those bytes; processing changes run the full build and validation. Original data and packaging commits are recorded in QC/provenance/data_origin.json. Required rebuild inputs are archived inside the QC bundle; the obsolete v2 release and tag are retired.
+Registration and meshing remain independent. The existing chandelier mesh is a voxel/SDF envelope prototype, not native Rhino ShrinkWrap. Only the `current` release is active.
 
 </details>
