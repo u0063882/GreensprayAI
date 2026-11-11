@@ -1,25 +1,31 @@
 {
   "baseline_source_commit": "5205efc0db51106f0d14a1c14be6f8abf040217b",
+  "supersedes_classifier": "Raw-NIR threshold aafdae641b9672aad4adab34fca5ca3c44db019642b279dc29fe65c3feb244a3",
   "model": {
     "version": 1,
-    "method": "Shared fixed-log-scale two-centre ambient NIR threshold; higher NIR provisionally leaf",
-    "log_centres": [
-      0.41685648825937427,
-      0.58384869563631
+    "method": "Toolbox scheme-13 displayed Lab a*/b* k-means; higher mean raw NIR cluster provisionally leaf",
+    "scope": "shared collection",
+    "lab_centres": [
+      [
+        -30.623305711579352,
+        20.584797570185703
+      ],
+      [
+        -17.252437933583895,
+        21.60412159083876
+      ]
     ],
-    "log_threshold": 0.5003525919478422,
-    "raw_nir_threshold": 7168.9807642677915,
+    "leaf_cluster": 0,
+    "mean_raw_nir_by_cluster": [
+      8749.290006580602,
+      3142.459465944538
+    ],
     "scans": 67,
     "training_samples": 274432,
     "maximum_samples_per_scan": 4096,
-    "confidence_note": "Distance from shared threshold relative to centre separation; heuristic, not calibrated probability",
-    "rgb_note": "Green/brown HSV hues and saturation from GreenSprayToolbox leafWoodSignal; brightness from fixed-scaled raw SignalPhoton. Global NIR classes replace per-scan k-means.",
-    "class_codes": {
-      "0": "unknown / missing NIR",
-      "1": "provisional wood",
-      "2": "provisional leaf"
-    },
-    "model_sha256": "aafdae641b9672aad4adab34fca5ca3c44db019642b279dc29fe65c3feb244a3"
+    "source": "GreenSprayToolbox utility/readOS0.m sbfn_ousterColors",
+    "note": "Feature-equivalent port, not bit-identical MATLAB output; no botanically labelled validation",
+    "model_sha256": "a3ebf12ce41a409d87ea894fec6057b024af6dc8f761b04c0c38fe0f8f004bad"
   },
   "datasets": {
     "chandelier": {
@@ -33,9 +39,9 @@
           },
           "leafwood": {
             "points": 2694,
-            "median_absolute_m": 0.012898120582821415,
-            "rmse_m": 0.01782970543868991,
-            "capped_rmse_5cm_m": 0.01781998876749356
+            "median_absolute_m": 0.012982409947054404,
+            "rmse_m": 0.017860176944255794,
+            "capped_rmse_5cm_m": 0.01785071278244744
           }
         },
         "withheld_ground": {
@@ -47,9 +53,9 @@
           },
           "leafwood": {
             "points": 1094,
-            "median_absolute_m": 0.008165095748666546,
-            "rmse_m": 0.01879782026408063,
-            "capped_rmse_5cm_m": 0.014780232003076228
+            "median_absolute_m": 0.008167841051332447,
+            "rmse_m": 0.018793437713009502,
+            "capped_rmse_5cm_m": 0.01477628300298414
           }
         },
         "withheld_same_face_overlap": {
@@ -61,9 +67,9 @@
           },
           "leafwood": {
             "points": 1605,
-            "median_absolute_m": 0.006554709615604479,
-            "rmse_m": 0.009791428692420783,
-            "capped_rmse_5cm_m": 0.009791428692420783
+            "median_absolute_m": 0.0066089855927935716,
+            "rmse_m": 0.009836582810906833,
+            "capped_rmse_5cm_m": 0.009836582810906833
           }
         }
       },
@@ -71,43 +77,43 @@
         {
           "stem": 1,
           "baseline_width_m": 0.21944451332092285,
-          "leafwood_width_m": 0.21188772074760642,
-          "change_m": -0.007556792573316429,
+          "leafwood_width_m": 0.2116509850568966,
+          "change_m": -0.007793528264026239,
           "fixed_model_diameter_m": 0.16231163473659194
         },
         {
           "stem": 3,
           "baseline_width_m": 0.21372150897979747,
-          "leafwood_width_m": 0.2045634261739644,
-          "change_m": -0.009158082805833079,
+          "leafwood_width_m": 0.2044420496549484,
+          "change_m": -0.009279459324849082,
           "fixed_model_diameter_m": 0.14973421673772055
         },
         {
           "stem": 4,
           "baseline_width_m": 0.18462590694427483,
-          "leafwood_width_m": 0.1770507706457567,
-          "change_m": -0.007575136298518137,
+          "leafwood_width_m": 0.17718049746417797,
+          "change_m": -0.007445409480096865,
           "fixed_model_diameter_m": 0.14429843466698375
         },
         {
           "stem": 5,
           "baseline_width_m": 0.1264211559295656,
-          "leafwood_width_m": 0.11840291402400238,
-          "change_m": -0.008018241905563217,
+          "leafwood_width_m": 0.11849641800841715,
+          "change_m": -0.00792473792114845,
           "fixed_model_diameter_m": 0.07724153331069415
         },
         {
           "stem": 6,
           "baseline_width_m": 0.13750009059906,
-          "leafwood_width_m": 0.13355266200206417,
-          "change_m": -0.003947428596995817,
+          "leafwood_width_m": 0.13368863060352165,
+          "change_m": -0.0038114599955383355,
           "fixed_model_diameter_m": 0.11092617836384383
         },
         {
           "stem": 7,
           "baseline_width_m": 0.1534954261779784,
-          "leafwood_width_m": 0.15594716016708565,
-          "change_m": 0.002451733989107252,
+          "leafwood_width_m": 0.15625926620049047,
+          "change_m": 0.002763840022512065,
           "fixed_model_diameter_m": 0.14801750844730707
         }
       ],
@@ -229,9 +235,9 @@
           },
           "leafwood": {
             "points": 1714,
-            "median_absolute_m": 0.019317157212092845,
-            "rmse_m": 0.024147590421398933,
-            "capped_rmse_5cm_m": 0.02410281168066331
+            "median_absolute_m": 0.019326182573152655,
+            "rmse_m": 0.024126890622831867,
+            "capped_rmse_5cm_m": 0.02407960651404696
           }
         },
         "withheld_ground": {
@@ -243,9 +249,9 @@
           },
           "leafwood": {
             "points": 927,
-            "median_absolute_m": 0.009340424373233411,
-            "rmse_m": 0.01786541847855904,
-            "capped_rmse_5cm_m": 0.015909713127120875
+            "median_absolute_m": 0.009334980374315252,
+            "rmse_m": 0.017843609095651015,
+            "capped_rmse_5cm_m": 0.015871546400687615
           }
         },
         "withheld_same_face_overlap": {
@@ -257,9 +263,9 @@
           },
           "leafwood": {
             "points": 766,
-            "median_absolute_m": 0.006086280523928985,
-            "rmse_m": 0.009834781980469567,
-            "capped_rmse_5cm_m": 0.009834781980469567
+            "median_absolute_m": 0.006213946568031916,
+            "rmse_m": 0.009846363212390942,
+            "capped_rmse_5cm_m": 0.009846363212390942
           }
         }
       },
@@ -267,36 +273,36 @@
         {
           "stem": 0,
           "baseline_width_m": 0.21016271442174914,
-          "leafwood_width_m": 0.20985161031233396,
-          "change_m": -0.00031110410941517785,
+          "leafwood_width_m": 0.2097514416650489,
+          "change_m": -0.0004112727567002483,
           "fixed_model_diameter_m": 0.19484995648024242
         },
         {
           "stem": 1,
           "baseline_width_m": 0.26313882991671556,
-          "leafwood_width_m": 0.2647372610609504,
-          "change_m": 0.0015984311442348575,
+          "leafwood_width_m": 0.2655187215344973,
+          "change_m": 0.0023798916177817375,
           "fixed_model_diameter_m": 0.2748081934594776
         },
         {
           "stem": 2,
           "baseline_width_m": 0.2602472847700119,
-          "leafwood_width_m": 0.25194650224224435,
-          "change_m": -0.008300782527767558,
+          "leafwood_width_m": 0.25257621638577,
+          "change_m": -0.007671068384241919,
           "fixed_model_diameter_m": 0.20437019730900358
         },
         {
           "stem": 3,
           "baseline_width_m": 0.27459834203124045,
-          "leafwood_width_m": 0.25778782848609383,
-          "change_m": -0.01681051354514662,
+          "leafwood_width_m": 0.25721610645075327,
+          "change_m": -0.017382235580487182,
           "fixed_model_diameter_m": 0.3274641998721213
         },
         {
           "stem": 4,
           "baseline_width_m": 0.23912046462297437,
-          "leafwood_width_m": 0.22608962112736192,
-          "change_m": -0.013030843495612454,
+          "leafwood_width_m": 0.22577207845618946,
+          "change_m": -0.013348386166784909,
           "fixed_model_diameter_m": 0.21291576009937715
         }
       ],
@@ -407,9 +413,9 @@
           },
           "leafwood": {
             "points": 1794,
-            "median_absolute_m": 0.017048387273648997,
-            "rmse_m": 0.022602706855451758,
-            "capped_rmse_5cm_m": 0.022419836573793917
+            "median_absolute_m": 0.016872881233696582,
+            "rmse_m": 0.02257171403912389,
+            "capped_rmse_5cm_m": 0.022386518434218163
           }
         },
         "withheld_ground": {
@@ -421,9 +427,9 @@
           },
           "leafwood": {
             "points": 662,
-            "median_absolute_m": 0.008480289122330476,
-            "rmse_m": 0.019891870149440057,
-            "capped_rmse_5cm_m": 0.016092808008883467
+            "median_absolute_m": 0.008546493060123572,
+            "rmse_m": 0.01988710676530427,
+            "capped_rmse_5cm_m": 0.01608813034074677
           }
         },
         "withheld_same_face_overlap": {
@@ -435,9 +441,9 @@
           },
           "leafwood": {
             "points": 1016,
-            "median_absolute_m": 0.006342980942039816,
-            "rmse_m": 0.009533555943469538,
-            "capped_rmse_5cm_m": 0.009533555943469538
+            "median_absolute_m": 0.0063625511553496075,
+            "rmse_m": 0.00959721020763892,
+            "capped_rmse_5cm_m": 0.00959721020763892
           }
         }
       },
@@ -445,15 +451,15 @@
         {
           "stem": 0,
           "baseline_width_m": 0.16873759999871257,
-          "leafwood_width_m": 0.1593224988810384,
-          "change_m": -0.009415101117674185,
+          "leafwood_width_m": 0.1594183373204058,
+          "change_m": -0.009319262678306767,
           "fixed_model_diameter_m": 0.12932148386663023
         },
         {
           "stem": 1,
           "baseline_width_m": 0.19958169803023335,
-          "leafwood_width_m": 0.18965829939813175,
-          "change_m": -0.009923398632101593,
+          "leafwood_width_m": 0.19059508219980179,
+          "change_m": -0.00898661583043156,
           "fixed_model_diameter_m": 0.17199958447331443
         },
         {
@@ -466,8 +472,8 @@
         {
           "stem": 3,
           "baseline_width_m": 0.15924587577581403,
-          "leafwood_width_m": 0.15445379612031426,
-          "change_m": -0.00479207965549977,
+          "leafwood_width_m": 0.1545687227112788,
+          "change_m": -0.004677153064535228,
           "fixed_model_diameter_m": 0.1444231533892049
         },
         {
@@ -602,9 +608,9 @@
           },
           "leafwood": {
             "points": 1351,
-            "median_absolute_m": 0.021727490768483224,
-            "rmse_m": 0.02570749854561504,
-            "capped_rmse_5cm_m": 0.02560527064230613
+            "median_absolute_m": 0.021416462921958798,
+            "rmse_m": 0.025689949928973,
+            "capped_rmse_5cm_m": 0.02556954972792279
           }
         },
         "withheld_ground": {
@@ -616,9 +622,9 @@
           },
           "leafwood": {
             "points": 929,
-            "median_absolute_m": 0.011990705961610539,
-            "rmse_m": 0.023716241070546255,
-            "capped_rmse_5cm_m": 0.0196371300477569
+            "median_absolute_m": 0.011962279428759597,
+            "rmse_m": 0.023720257679527224,
+            "capped_rmse_5cm_m": 0.019638336231114873
           }
         },
         "withheld_same_face_overlap": {
@@ -630,9 +636,9 @@
           },
           "leafwood": {
             "points": 663,
-            "median_absolute_m": 0.007533878810513922,
-            "rmse_m": 0.010288654262605732,
-            "capped_rmse_5cm_m": 0.010288654262605732
+            "median_absolute_m": 0.007784471371431609,
+            "rmse_m": 0.010581030100603244,
+            "capped_rmse_5cm_m": 0.010581030100603244
           }
         }
       },
@@ -640,29 +646,29 @@
         {
           "stem": 1,
           "baseline_width_m": 0.22716073125600816,
-          "leafwood_width_m": 0.2284043381019556,
-          "change_m": 0.0012436068459474314,
+          "leafwood_width_m": 0.2286062803116131,
+          "change_m": 0.0014455490556049277,
           "fixed_model_diameter_m": 0.18995822548893992
         },
         {
           "stem": 2,
           "baseline_width_m": 0.23020413964986802,
-          "leafwood_width_m": 0.22175478386926395,
-          "change_m": -0.008449355780604073,
+          "leafwood_width_m": 0.22212453053689984,
+          "change_m": -0.008079609112968178,
           "fixed_model_diameter_m": 0.2585073401174967
         },
         {
           "stem": 3,
           "baseline_width_m": 0.17132192410528657,
-          "leafwood_width_m": 0.16177117489807938,
-          "change_m": -0.009550749207207193,
+          "leafwood_width_m": 0.16184269107273447,
+          "change_m": -0.009479233032552103,
           "fixed_model_diameter_m": 0.14593794073728017
         },
         {
           "stem": 4,
           "baseline_width_m": 0.14518472522497175,
-          "leafwood_width_m": 0.14552512313150634,
-          "change_m": 0.0003403979065345897,
+          "leafwood_width_m": 0.14548304037563337,
+          "change_m": 0.0002983151506616155,
           "fixed_model_diameter_m": 0.13723703263359321
         }
       ],
@@ -749,6 +755,7 @@
       "validation_passed": false,
       "rejection_reasons": [
         "A rigid correction reaches its bound",
+        "withheld_same_face_overlap: worsens by more than 1 mm",
         "Low-stem measured across width shrinks by over 3 mm: 2",
         "Low-stem measured across width shrinks by over 3 mm: 3"
       ],

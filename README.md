@@ -4,7 +4,7 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 
 **[Current downloads](https://github.com/u0063882/GreensprayAI/releases/tag/current)** · [Mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) · [Cross-row QA](docs/cross_row_quality.md) · [Registration in MATLAB terms](docs/registration_matlab.md)
 
-**[Leaf/wood comparison report](docs/leafwood_comparison_report.md)** · [Independent optional method and PLY fields](docs/leafwood_registration.md). Primary PLYs retain the delivered baseline coordinates and point order, now with raw intensity/SIGNAL, NIR, reflectivity, derived leaf/wood RGB and original `scan_id`. Experimental registration remains under QC; its conservative shape/bound checks flag all four candidates, so it has not replaced the baseline.
+**[Leaf/wood comparison report](docs/leafwood_comparison_report.md)** · [Independent optional method and PLY fields](docs/leafwood_registration.md). Primary PLYs retain the delivered baseline coordinates and point order, with raw intensity/SIGNAL, NIR, reflectivity, derived leaf/wood RGB and original `scan_id`. Colours and experimental weights use one shared Toolbox-style Lab model across all 67 recordings, replacing the earlier NIR-only split. Experimental registration remains under QC and has not replaced the baseline. Both spindle datasets include dimensioned raw low-trunk slices; fitted diameters remain provisional.
 
 ## Current results
 

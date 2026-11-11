@@ -84,7 +84,7 @@ def export_capture(workspace,config,scans,raw,poses,seed_poses,reports):
     c=config['crop'];frame=np.eye(4);frame[:3,:3]=Rotation.from_euler('z',-np.arctan(c['centre_slope'])).as_matrix();frame[:3,3]=-frame[:3,:3]@np.array([0,c['centre_intercept_m'],0.])
     final=frame@poses;clouds=[];before=[];parts=[];refs=[];sources=[];entries=[];palette=(plt.get_cmap('tab20')(np.arange(len(scans))%20)[:,:3]*255).astype('u1')
     decoded=[np.load(root/'work/decoded'/(s['tag']+'.npz')) for s in scans]
-    model=fit_leafwood_model([d['near_ir'] for d in decoded]);attribute_parts=[]
+    model=fit_leafwood_model([(d['signal'],d['near_ir']) for d in decoded]);attribute_parts=[]
     save_json(qc/'leafwood_model.json',model)
     for i,(s,p,T) in enumerate(zip(scans,raw,poses)):
         d=decoded[i];q=transform(p,T);keep=row_mask(q,config);q=transform(q[keep],frame);r=d['reflectivity'][keep];sid=np.full(len(q),i,dtype='<u4');clouds.append(q)

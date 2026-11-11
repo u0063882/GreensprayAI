@@ -2,7 +2,7 @@
 from pathlib import Path
 import tempfile,unittest
 import numpy as np
-from captures.leafwood import fit_leafwood_model,classify_leafwood,enriched_records,write_records,coordinate_digest
+from captures.leafwood import fit_leafwood_model,fit_nir_reference,classify_leafwood,enriched_records,write_records,coordinate_digest
 from captures.register_leafwood import semantic_weights,make_pairs,DEFAULTS,register_leafwood
 from processing.export_anchored import read_records,xyz
 from scipy.spatial.transform import Rotation
@@ -10,15 +10,17 @@ from scipy.spatial.transform import Rotation
 
 class LeafwoodAttributeTests(unittest.TestCase):
     def test_shared_model_is_scan_independent_and_fixed_signal_brightness(self):
-        model=fit_leafwood_model([np.tile([100,200,15000,18000],100),np.tile([120,220,16000,19000],100)])
+        pairs=[(np.full(400,3000),np.tile([100,200,15000,18000],100)),(np.full(400,3000),np.tile([120,220,16000,19000],100))]
+        model=fit_leafwood_model(pairs)
         a=classify_leafwood(np.array([1000,2000,3000,4000]),np.array([100,200,18000,19000]),model)
         b=classify_leafwood(np.array([1000]),np.array([100]),model)
         self.assertEqual(a['leafwood_class'].tolist(),[1,1,2,2]);np.testing.assert_array_equal(a['rgb'][:1],b['rgb'])
         self.assertGreater(a['wood_score'][0],a['wood_score'][-1])
-        self.assertEqual(model['model_sha256'],fit_leafwood_model([np.tile([100,200,15000,18000],100),np.tile([120,220,16000,19000],100)])['model_sha256'])
+        self.assertIn('lab_centres',model);self.assertNotIn('raw_nir_threshold',model)
+        self.assertEqual(model['model_sha256'],fit_leafwood_model(pairs)['model_sha256'])
 
     def test_ply_roundtrip_preserves_raw_channels_colour_and_large_source_index(self):
-        model=fit_leafwood_model([np.array([100,150,16000,18000])]);signal=np.array([0,65535,12345,500],dtype='u2');nir=np.array([100,150,16000,18000],dtype='u2')
+        signal=np.array([0,65535,12345,500],dtype='u2');nir=np.array([100,150,16000,18000],dtype='u2');model=fit_leafwood_model([(signal,nir)])
         original=np.zeros(4,dtype=[('x','<f4'),('y','<f4'),('z','<f4'),('red','u1'),('green','u1'),('blue','u1'),('reflectivity','u1')]);original['x']=[.01,2,3,4];original['reflectivity']=[0,255,33,17]
         attrs=dict(signal=signal,near_ir=nir,frame_id=np.arange(4,dtype='u4'),pixel_index=np.array([0,131071,200,4096],dtype='u4'),**classify_leafwood(signal,nir,model))
         records=enriched_records(original,attrs,np.array([0,256,1000,70000],dtype='u4'))
@@ -32,7 +34,18 @@ class LeafwoodAttributeTests(unittest.TestCase):
         np.testing.assert_array_equal(saved['pixel_index'],attrs['pixel_index'])
 
     def test_missing_class_separation_is_reported(self):
-        with self.assertRaisesRegex(ValueError,'distinct'):fit_leafwood_model([np.ones(100)])
+        with self.assertRaisesRegex(ValueError,'distinct'):fit_leafwood_model([(np.ones(100),np.ones(100))])
+
+    def test_original_feature_mapping_retains_intermediate_nir_foliage(self):
+        # A fixed NIR value in the nonlinear green region of Toolbox scheme 13
+        # should not be forced into the old, high raw-NIR split's wood class.
+        signal=np.full(1000,4000);nir=np.r_[np.full(500,200),np.full(500,5000)]
+        lab=fit_leafwood_model([(signal,nir)])
+        self.assertEqual(int(classify_leafwood([4000],[5000],lab)['leafwood_class'][0]),2)
+        # Archived NIR-only model remains readable for reproducing the earlier
+        # experiment; it is no longer the default fitter.
+        old=fit_nir_reference([np.r_[np.full(500,3000),np.full(500,16000)]])
+        self.assertEqual(int(classify_leafwood([4000],[5000],old)['leafwood_class'][0]),1)
 
 
 class SemanticRegistrationTests(unittest.TestCase):

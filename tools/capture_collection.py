@@ -93,7 +93,7 @@ def extract_inputs(archives,workspace):
 
 
 def pipeline_identity(config):
-    files=['run_capture.py','captures/orchard.py','captures/bounded.py','captures/pipeline.py','captures/decode.py','captures/export.py','captures/leafwood.py','processing/decode.py','processing/register_anchored.py','requirements-captures.txt','requirements.txt','requirements-meshing.txt','processing/export_anchored.py']
+    files=['run_capture.py','captures/orchard.py','captures/bounded.py','captures/pipeline.py','captures/decode.py','captures/export.py','captures/leafwood.py','captures/leafwood_lab.py','processing/decode.py','processing/register_anchored.py','requirements-captures.txt','requirements.txt','requirements-meshing.txt','processing/export_anchored.py']
     return dict(config_sha256=digest(config),code_sha256=hashlib.sha256(''.join(name+digest(ROOT/name) for name in files).encode()).hexdigest())
 
 

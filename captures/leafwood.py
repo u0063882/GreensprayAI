@@ -15,6 +15,15 @@ def normalise_channel(values):
 
 
 def fit_leafwood_model(samples, maximum_per_scan=4096):
+    """Fit one Toolbox-style Lab model to paired (SIGNAL, NEAR_IR) arrays.
+
+    The same saved model classifies every scan. No per-scan threshold fitting.
+    """
+    from captures.leafwood_lab import fit_lab_model
+    return fit_lab_model(samples,maximum_per_scan=maximum_per_scan)
+
+
+def fit_nir_reference(samples, maximum_per_scan=4096):
     """Equal scan contributions, fixed scaling, deterministic two-class NIR fit.
 
     Call once for the collection (or supply an already saved model). No fitting
@@ -49,6 +58,9 @@ def fit_leafwood_model(samples, maximum_per_scan=4096):
 
 
 def classify_leafwood(signal,near_ir,model):
+    if 'lab_centres' in model:
+        from captures.leafwood_lab import classify_lab
+        return classify_lab(signal,near_ir,model)
     n=normalise_channel(near_ir);centres=np.asarray(model['log_centres']);threshold=model['log_threshold']
     leaf=n>threshold
     confidence=np.clip(2*abs(n-threshold)/max(centres[1]-centres[0],1e-9),0,1)
@@ -74,7 +86,9 @@ def decode_attributes(path,rotation,cache=None):
     path=Path(path);rotation=np.asarray(rotation)
     def digest(p):
         with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
-    signature=hashlib.sha256((digest(path)+digest(path.with_suffix('.json'))+digest(Path(__file__))+importlib.metadata.version('ouster-sdk')).encode()+rotation.tobytes()).hexdigest()
+    import inspect
+    decoder_identity=hashlib.sha256(inspect.getsource(decode_attributes).encode()).hexdigest()
+    signature=hashlib.sha256((digest(path)+digest(path.with_suffix('.json'))+decoder_identity+importlib.metadata.version('ouster-sdk')).encode()+rotation.tobytes()).hexdigest()
     if cache and Path(cache).exists():
         with np.load(cache) as z:
             if str(z['signature'])==signature:return {k:z[k] for k in z.files if k!='signature'}

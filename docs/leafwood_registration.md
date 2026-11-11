@@ -28,14 +28,16 @@ There is no scale, per-point adjustment or deformation. Measured low-stem widths
 are checked conservatively; a width decrease can indicate either a corrected gap
 or unwanted narrowing, so flagged candidates remain experimental.
 
-One deterministic ambient NIR threshold is fitted to balanced samples from all
-67 original recordings in the four datasets. Raw channels use fixed logarithmic
-scaling. This replaces per-scan Lab clustering and is deliberately simple and
-inspectable. Higher ambient NIR is provisionally leaf; low NIR is provisionally
-wood. No botanical ground truth establishes those labels. Confidence is a score,
-not a calibrated probability. The learned threshold is not a universal OS0
-calibration: different illumination, season or sensor settings warrant review.
-The saved model can be reused with `classify_leafwood` without fitting any scans.
+One Toolbox-style Lab model is fitted to balanced paired SIGNAL/NEAR_IR samples
+from all 67 original recordings in the four datasets. Its scheme-13 feature
+definition retains the original fixed logarithmic channel scaling, nonlinear NIR
+hue mapping, SignalPhoton lightness, gamut clipping and displayed Lab a*/b*
+features. One pair of k-means centres is shared across all scans. The cluster with
+higher mean raw NIR is provisionally leaf. This replaces the earlier NIR-only
+threshold, which mislabelled substantial foliage as wood. No botanical ground
+truth establishes either method's labels. Confidence is a heuristic score.
+Different illumination, season or sensor settings warrant review. The saved
+model is reused by `classify_leafwood` without fitting individual scans.
 
 Display RGB follows Toolbox `leafWoodSignal` green/brown hue and saturation, with
 brightness from fixed-scaled raw `SIGNAL`. OS0 does not supply camera RGB. The
@@ -49,6 +51,16 @@ refinement with semantics disabled, and the NIR-guided candidate. The same fixed
 geometry-only validation matches and measured samples evaluate all three.
 Residuals measure internal consistency, not absolute accuracy against a survey.
 Neither improved fitting loss nor a passed gate automatically promotes a candidate.
+
+Spindle 1 and Spindle 2 include dimensioned raw slices at 18, 28 and 40 cm above
+the local ground datum, each 2 cm thick, in
+`QC/<dataset>/leafwood_comparison/trunk_slices_dimensioned.png` and `.pdf`.
+They show final **baseline** geometry, not experimental corrections. Axes and
+diameters are centimetres; A is blue, B orange. Fits are independent per side.
+Dashed circles indicate uncertain support/agreement. Even a supported circle
+is a diagnostic model, not a verified physical trunk diameter: mixed returns,
+short arcs, supports, basal branches and residual registration can bias it.
+No foliage filter removes inconvenient points from these figures.
 
 ## PLY fields
 

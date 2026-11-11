@@ -10,7 +10,9 @@ Coordinates are metres. Each dataset uses an independent local frame. Final PLYs
 
 **Sensor attributes added:** original raw `intensity`/`signal`, ambient `near_ir`, calibrated `reflectivity`, derived shared leafWoodSignal RGB and unsigned 32-bit original `scan_id` (plus sensor frame/pixel indices). `source_scans.json` beside each PLY maps indices to original files/hashes. Display the `scan_id` scalar field to colour by recording. RGB is derived leaf/wood colour, not camera RGB.
 
-**[Leaf/wood registration comparison](https://github.com/u0063882/GreensprayAI/blob/main/docs/leafwood_comparison_report.md):** independent optional refinement and geometry-only control evaluated on all four datasets. All experimental candidates trigger conservative shape/bound warnings and remain under QC. The existing registration remains primary.
+**Shared Toolbox-style colour model:** one fitted Lab a*/b* classifier across all 67 recordings now retains the original scheme-13 feature mapping. It replaces the earlier raw-NIR threshold, which labelled too much foliage as wood. Raw sensor channels and primary point coordinates are unchanged.
+
+**[Leaf/wood registration comparison](https://github.com/u0063882/GreensprayAI/blob/main/docs/leafwood_comparison_report.md):** independent optional refinement and geometry-only control evaluated on all four datasets with the corrected shared model. Candidates remain under QC and the existing registration remains primary. Spindle 1/2 also include `trunk_slices_dimensioned.png/.pdf/.json`: 2 cm raw slices at 18/28/40 cm height, with dimensions in centimetres. Circle fits are provisional diagnostics, not verified trunk sizes.
 
 <details>
 <summary>QC and individual scan contributions</summary>

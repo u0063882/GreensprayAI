@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parent.parent
 
 
 def fingerprint(config):
-    source=['captures/leafwood.py','captures/register_leafwood.py','tools/compare_leafwood.py','tools/leafwood_collection.py','presets/orchard_stem_candidates.json']
+    source=['captures/leafwood.py','captures/leafwood_lab.py','captures/trunk_diagnostics.py','captures/register_leafwood.py','tools/compare_leafwood.py','tools/leafwood_collection.py','presets/orchard_stem_candidates.json']
     source += [d['config'] for d in config['datasets'] if d.get('config')]
     h=hashlib.sha256(json.dumps(config,sort_keys=True).encode())
     for name in source:h.update(name.encode());h.update((ROOT/name).read_bytes())

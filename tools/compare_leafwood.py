@@ -14,6 +14,7 @@ from captures.orchard import transform,sha256,save_json
 from captures.leafwood import (decode_attributes,fit_leafwood_model,classify_leafwood,
     enriched_records,write_records,coordinate_digest)
 from captures.register_leafwood import register_leafwood
+from captures.trunk_diagnostics import plot_dimensioned_slices
 from processing.export_anchored import read_records,xyz
 
 
@@ -74,8 +75,8 @@ def summarise(reports,model,path):
     lines=['# Leaf/wood registration comparison — draft report','',
         'The delivered geometry-only registration remains the primary result. The alternative is an independent optional function that refines that baseline using shared NIR classes. Both methods retain exactly the same measured samples. No mesh is used or regenerated.','',
         '## Shared classification','',
-        f"One deterministic model was fitted to balanced samples from all {model['scans']} recordings. The ambient NIR threshold is {model['raw_nir_threshold']:.1f} raw units (fixed logarithmic scaling). Higher NIR is provisionally leaf; lower NIR is provisionally wood. Confidence is heuristic. SignalPhoton controls display brightness using the same fixed green/brown hues and saturation as Toolbox leafWoodSignal. No per-scan fitting or brightness rescaling is used.",'',
-        'This is an alternative to Toolbox’s per-scan Lab k-means, not a bit-identical reconstruction of its stochastic labels. OS0 records NIR/signal/reflectivity, not camera RGB. Export RGB is derived once and then preserved unchanged through registration. Ground/grass can fall into either provisional class; the model has no botanically labelled validation set.','',
+        f"One deterministic model was fitted to balanced paired SIGNAL/NEAR_IR samples from all {model['scans']} recordings. It uses Toolbox scheme-13 displayed Lab a*/b* features with the original fixed S/N normalization, nonlinear NIR hue mapping and SignalPhoton lightness. One pair of k-means centres is shared by every recording. The cluster with higher mean raw NIR is provisionally leaf. SignalPhoton controls final green/brown display brightness; no per-scan fitting or brightness rescaling is used.",'',
+        'This supersedes the earlier raw-NIR-only threshold, which labelled too much foliage as wood. It preserves the Toolbox feature definition while sharing a single model; it is not bit-identical to MATLAB’s per-scan stochastic labels. OS0 records NIR/signal/reflectivity, not camera RGB. Export RGB is derived once and then preserved unchanged through registration. Ground/grass can fall into either provisional class; confidence is heuristic and there is no botanically labelled validation set.','',
         '## Registration and safeguards','',
         'The first assembled side is fixed. Each opposite-side acquisition gets one tightly bounded rigid pose. Same-side overlaps below 0.5 m use distance/normal-gated point-to-plane correspondences with soft class compatibility and wood priority. Cross-side tree correspondences are never nearest-neighbour matches: fixed-radius leaning stem surfaces and scanner-facing constraints retain distinct bark hemispheres. Ground is constrained to local terrain. There is no scale, per-point displacement or deformation.','',
         'Unused low-height bands and spatial patches are withheld from the added refinement. Metrics use fixed, geometry-selected validation correspondences and identical measured samples; no rematching or label-dependent filtering improves the reported score. Reference stem models use fixed-side training heights. These are conditional internal consistency checks; the baseline already used the same acquisitions, so this is not independent survey accuracy or a from-scratch algorithm comparison.','',
@@ -122,8 +123,8 @@ def upgrade_collection(stage,data_directories,work,identifiers=None):
             decoded=decode_attributes(path,rotation,work/'decoded'/identifier/(entry['scan']+'.npz'))
             _,records=read_records(folder/entry['filename']);attrs,proof=match_attributes(records,decoded,np.array(pose['gravity_levelled_to_merged']))
             proof.update(scan_id=i,pcap=path.name,pcap_sha256=sha256(path));source_proofs[identifier].append(proof)
-            q=xyz(records);sample=attrs['near_ir'][(q[:,2]>.12)&(q[:,2]<4.)]
-            samples.append(sample[np.linspace(0,len(sample)-1,min(len(sample),4096),dtype=int)] if len(sample) else sample)
+            ix=np.linspace(0,len(records)-1,min(len(records),4096),dtype=int)
+            samples.append((attrs['signal'][ix],attrs['near_ir'][ix]))
             target=work/'attributes'/identifier/(entry['scan']+'.npz');target.parent.mkdir(parents=True,exist_ok=True);np.savez_compressed(target,**attrs)
             prepared[identifier].append((entry,pose,target))
             print('Recovered exact sensor attributes:',identifier,entry['scan'],len(records),flush=True)
@@ -150,6 +151,11 @@ def upgrade_collection(stage,data_directories,work,identifiers=None):
         report['geometry_only_control']=dict(checks=control['checks'],shape_checks=control['shape_checks'],validation_passed=control['validation_passed'],rejection_reasons=control['rejection_reasons'])
         report['shared_classifier_sha256']=model['model_sha256'];report['source_attribute_verification']=source_proofs[identifier]
         reports[identifier]=report;qc=stage/'QC'/identifier/'leafwood_comparison';qc.mkdir(parents=True,exist_ok=True)
+        previous=qc/'comparison.json'
+        if previous.exists():
+            old_report=json.loads(previous.read_text())
+            if old_report.get('shared_classifier_sha256')!=model['model_sha256']:
+                save_json(stage/'QC'/identifier/'provenance/previous_classifier_comparison.json',old_report)
         save_json(qc/'comparison.json',report);save_json(qc/'leafwood_model.json',model)
         attribute_manifest=dict(scans=mapping,scan_id_type='uint32',index_scope='Original PCAP recording within this dataset, not lidar rotation frame',intensity_source='raw SIGNAL / MATLAB SignalPhoton',rgb_source='Derived shared NIR leaf/wood class, fixed SignalPhoton brightness',sensor_return='First return, matching delivered baseline; not MATLAB strongest-return selection')
         save_json(qc/'scan_manifest.json',attribute_manifest)
@@ -191,11 +197,13 @@ def upgrade_collection(stage,data_directories,work,identifiers=None):
         for row,original_source in zip(old['scans'],mapping):row.update(original_source)
         save_json(directory/'scan_manifest.json',old)
         plot_comparison(clouds,features,corrections,seeds,qc/'low_stem_comparison.png',identifier)
+        if identifier in ['spindle1','spindle2']:
+            plot_dimensioned_slices(clouds,sides,seeds,qc/'trunk_slices_dimensioned.png',identifier)
         report['baseline_primary_coordinate_sha256']=primary_digest;save_json(qc/'comparison.json',report)
         all_proofs[identifier]=dict(primary_coordinate_sha256=primary_digest,point_count=len(original),separate_scans=proof)
         gallery=stage/'QC'/identifier/'index.html'
         base=gallery.read_text().split('<!-- leafwood-comparison -->')[0].split('<h2>Leaf/wood experiment</h2>')[0]
-        gallery.write_text(base+'<!-- leafwood-comparison --><h2>Leaf/wood experiment</h2><p>Baseline remains primary. <a href="leafwood_comparison/comparison.json">Comparison JSON</a></p><img style="max-width:100%" src="leafwood_comparison/leafwood_and_scan_index.png"><img style="max-width:100%" src="leafwood_comparison/low_stem_comparison.png">')
+        gallery.write_text(base+'<!-- leafwood-comparison --><h2>Leaf/wood experiment</h2><p>Baseline remains primary. <a href="leafwood_comparison/comparison.json">Comparison JSON</a></p><img style="max-width:100%" src="leafwood_comparison/leafwood_and_scan_index.png"><img style="max-width:100%" src="leafwood_comparison/low_stem_comparison.png">'+('<h2>Dimensioned raw trunk slices</h2><img style="max-width:100%" src="leafwood_comparison/trunk_slices_dimensioned.png">' if identifier in ['spindle1','spindle2'] else ''))
         (stage/'contributions'/identifier/'README.txt').write_text('REGISTERED CONTRIBUTIONS\n\nSeparate scans: original measured points in the baseline frame, derived shared leafWoodSignal RGB, raw sensor channels and original scan_id.\nCombined: same overlaps retained, RGB by recording, with derived leaf/wood RGB preserved separately in leaf_red/leaf_green/leaf_blue.\nscan_colours.csv (where present) is the recording-display palette; use scan_manifest.json for original PCAP names and hashes.\n')
         (stage/'pointclouds'/identifier/'README.txt').write_text('FINAL BASELINE POINT CLOUD\n\nOriginal baseline geometry and sample order, enriched with raw intensity/SIGNAL, NEAR_IR, reflectivity, derived shared leafWoodSignal RGB, and uint32 scan_id.\nAlready registered, metres. Do not apply the matrices again. Mesh (if available) still matches this geometry.\nExperimental registration and comparison are under QC/'+identifier+'/leafwood_comparison, not the primary result.\n')
         marker=stage/'QC'/identifier/'provenance/build.json'
