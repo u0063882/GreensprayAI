@@ -93,7 +93,7 @@ def extract_inputs(archives,workspace):
 
 
 def pipeline_identity(config):
-    files=['run_capture.py','captures/orchard.py','captures/bounded.py','captures/pipeline.py','captures/decode.py','captures/export.py','processing/decode.py','processing/register_anchored.py','requirements-captures.txt','requirements.txt','requirements-meshing.txt','processing/export_anchored.py']
+    files=['run_capture.py','captures/orchard.py','captures/bounded.py','captures/pipeline.py','captures/decode.py','captures/export.py','captures/leafwood.py','processing/decode.py','processing/register_anchored.py','requirements-captures.txt','requirements.txt','requirements-meshing.txt','processing/export_anchored.py']
     return dict(config_sha256=digest(config),code_sha256=hashlib.sha256(''.join(name+digest(ROOT/name) for name in files).encode()).hexdigest())
 
 
@@ -139,7 +139,7 @@ def package_collection(stage,output,code_archive):
     stage=Path(stage);output=Path(output);output.mkdir(parents=True,exist_ok=True)
     copy(code_archive,stage/'QC/provenance/current_code_and_notes.zip')
     datasets=sorted(p.name for p in (stage/'pointclouds').iterdir() if p.is_dir())
-    (stage/'QC/index.html').write_text('<!doctype html><meta charset="utf-8"><title>Orchard QC datasets</title><h1>Quality checks by dataset</h1><ul>'+''.join('<li><a href="'+name+'/index.html">'+name+'</a></li>' for name in datasets)+'</ul><p>Each capture uses its own local metric frame. Final cloud/matrix ZIPs contain matching dataset folders.</p>')
+    (stage/'QC/index.html').write_text('<!doctype html><meta charset="utf-8"><title>Orchard QC datasets</title><h1>Quality checks by dataset</h1><ul>'+''.join('<li><a href="'+name+'/index.html">'+name+'</a></li>' for name in datasets)+'</ul><p>Each capture uses its own local metric frame. Final cloud/matrix ZIPs contain matching dataset folders.</p>'+('<p><a href="leafwood_comparison_report.md">Leaf/wood registration comparison report</a> — primary geometry remains the baseline.</p>' if (stage/'QC/leafwood_comparison_report.md').exists() else ''))
     for folder in ['pointclouds','transformations','meshes','contributions']:
         (stage/folder/'README.txt').write_text('FINAL ORCHARD DATASETS\n\nEach dataset has its own folder and independent local frame, in metres.\nFinal PLY coordinates already have their matching transformation matrices applied.\nMeshes are included only for datasets that have been meshed; availability is listed on the release page.\nQC/index.html in 90_QC.zip opens the figures by dataset.\n')
     for index in [0,1,2,4]:make_zip(output/NAMES[index],stage/FOLDERS[index])

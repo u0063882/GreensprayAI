@@ -9,8 +9,9 @@ import matplotlib.pyplot as plt
 from scipy.spatial.transform import Rotation
 from scipy.optimize import least_squares
 from captures.orchard import transform,row_mask,save_json,sha256
+from captures.leafwood import fit_leafwood_model,classify_leafwood,enriched_records,write_records
 
-DTYPE=np.dtype([('x','<f4'),('y','<f4'),('z','<f4'),('red','u1'),('green','u1'),('blue','u1'),('reflectivity','u1'),('scan_id','u1'),('classification','u1')])
+DTYPE=np.dtype([('x','<f4'),('y','<f4'),('z','<f4'),('red','u1'),('green','u1'),('blue','u1'),('reflectivity','u1'),('scan_id','<u4'),('classification','u1')])
 
 
 def diagnostic_circle(points,seed,rng):
@@ -38,13 +39,16 @@ def diagnostic_circle(points,seed,rng):
     return v,reliable,dict(radial_rmse_m=rmse,arc_deg=float(np.rad2deg(coverage)),condition=condition,inlier_fraction=float(inlier.mean()))
 
 
-def write_ply(path,points,reflectivity,scan_ids,colors):
+def write_ply(path,points,reflectivity,scan_ids,colors,attributes=None,by_scan=False):
     data=np.empty(len(points),dtype=DTYPE)
     for k,name in enumerate(['x','y','z']):data[name]=points[:,k]
     for k,name in enumerate(['red','green','blue']):data[name]=colors[:,k]
     data['reflectivity']=reflectivity;data['scan_id']=scan_ids;data['classification']=np.where(points[:,2]<.12,2,5)
+    if attributes is not None:
+        data=enriched_records(data,attributes,scan_ids,by_scan=by_scan)
+        write_records(path,data);return data
     header='ply\nformat binary_little_endian 1.0\ncomment Measured orchard returns; metres; local ground datum\ncomment Classification is a height band, not semantic ground truth\nelement vertex '+str(len(data))+'\n'
-    header+=''.join('property '+('float' if name in ['x','y','z'] else 'uchar')+' '+name+'\n' for name in DTYPE.names)+'end_header\n'
+    header+=''.join('property '+('float' if name in ['x','y','z'] else 'uint' if name=='scan_id' else 'uchar')+' '+name+'\n' for name in DTYPE.names)+'end_header\n'
     with Path(path).open('wb') as f:f.write(header.encode());data.tofile(f)
     return data
 
@@ -79,20 +83,27 @@ def export_capture(workspace,config,scans,raw,poses,seed_poses,reports):
     # Put the configured row axis along final X and its centre at Y=0.
     c=config['crop'];frame=np.eye(4);frame[:3,:3]=Rotation.from_euler('z',-np.arctan(c['centre_slope'])).as_matrix();frame[:3,3]=-frame[:3,:3]@np.array([0,c['centre_intercept_m'],0.])
     final=frame@poses;clouds=[];before=[];parts=[];refs=[];sources=[];entries=[];palette=(plt.get_cmap('tab20')(np.arange(len(scans))%20)[:,:3]*255).astype('u1')
+    decoded=[np.load(root/'work/decoded'/(s['tag']+'.npz')) for s in scans]
+    model=fit_leafwood_model([d['near_ir'] for d in decoded]);attribute_parts=[]
+    save_json(qc/'leafwood_model.json',model)
     for i,(s,p,T) in enumerate(zip(scans,raw,poses)):
-        d=np.load(root/'work/decoded'/(s['tag']+'.npz'));q=transform(p,T);keep=row_mask(q,config);q=transform(q[keep],frame);r=d['reflectivity'][keep];sid=np.full(len(q),i,dtype='u1');clouds.append(q)
+        d=decoded[i];q=transform(p,T);keep=row_mask(q,config);q=transform(q[keep],frame);r=d['reflectivity'][keep];sid=np.full(len(q),i,dtype='<u4');clouds.append(q)
+        attributes={k:d[k][keep] for k in ['signal','near_ir','frame_id','pixel_index']};attributes.update(classify_leafwood(attributes['signal'],attributes['near_ir'],model));attribute_parts.append(attributes)
         first=transform(p,seed_poses[i]);before.append(transform(first[row_mask(first,config)],frame))
-        name=f'scan_{i:02d}_{s["tag"]}_registered.ply';write_ply(contributions/name,q,r,sid,np.tile(palette[i],(len(q),1)))
+        name=f'scan_{i:02d}_{s["tag"]}_registered.ply';write_ply(contributions/name,q,r,sid,np.tile(palette[i],(len(q),1)),attributes)
         rotation=np.eye(4);rotation[:3,:3]=d['rotation']
         source=next(row for row in reports['input_manifest']['files'] if row['path'].startswith(s['tag'].split('_')[0]+'/') and row['path'].endswith(s['tag'].split('_')[1]+'.pcap'))
         entry=dict(source_pcap=source['path'],source_pcap_sha256=source['sha256'],scan_id=i,scan=s['tag'],side=s['tag'].split('_')[0],filename=name,point_count=len(q),sensor_to_merged=(final[i]@rotation).tolist(),gravity_levelled_to_merged=final[i].tolist(),gps_latitude=s['lat'],gps_longitude=s['lon']);entries.append(entry)
         parts.append(q);refs.append(r);sources.append(sid)
     points=np.concatenate(parts);reflectivity=np.concatenate(refs);scan_ids=np.concatenate(sources)
-    write_ply(out/'combined_by_recording.ply',points,reflectivity,scan_ids,palette[scan_ids])
+    all_attributes={k:np.concatenate([a[k] for a in attribute_parts]) for k in attribute_parts[0]}
+    write_ply(out/'combined_by_recording.ply',points,reflectivity,scan_ids,palette[scan_ids],all_attributes,by_scan=True)
     _,indices=np.unique(np.floor(points/.012).astype(np.int64),axis=0,return_index=True);points=points[indices];reflectivity=reflectivity[indices];scan_ids=scan_ids[indices]
+    all_attributes={k:v[indices] for k,v in all_attributes.items()}
     pc=o3d.geometry.PointCloud(o3d.utility.Vector3dVector(points));_,keep=pc.remove_radius_outlier(nb_points=5,radius=.06);points=points[keep];reflectivity=reflectivity[keep];scan_ids=scan_ids[keep]
+    all_attributes={k:v[keep] for k,v in all_attributes.items()}
     colours=(plt.get_cmap('turbo')(np.clip(points[:,2]/4.,0,1))[:,:3]*255).astype('u1');colours[points[:,2]<.12]=[110,125,136]
-    records=write_ply(out/'final_registered.ply',points,reflectivity,scan_ids,colours)
+    records=write_ply(out/'final_registered.ply',points,reflectivity,scan_ids,colours,all_attributes)
     metadata=dict(dataset=config['dataset'],units='metres',coordinates='X along configured row axis, Y across row, Z up; local ground datum, not surveyed altitude',matrix_convention='Column vectors: [x,y,z,1]_merged = sensor_to_merged @ [x,y,z,1]_Ouster_XYZLut_sensor_frame; final PLYs already have these poses applied',frame=reports['initial']['frame'],registration_frame_to_final=frame.tolist(),crop_in_registration_frame=config['crop'],antenna_offset='Uncalibrated; RTK used as coarse prior, opposite-side corrections estimated from scene geometry',scans=entries)
     if reports.get('excluded_recordings'):metadata['excluded_recordings']=reports['excluded_recordings']
     save_json(out/'transformations.json',metadata);save_json(contributions/'scan_manifest.json',dict(dataset=config['dataset'],units='metres',total_points=sum(len(p) for p in clouds),scans=entries))
@@ -103,8 +114,10 @@ def export_capture(workspace,config,scans,raw,poses,seed_poses,reports):
     for i,entry in enumerate(entries):
         _,saved=read_records(contributions/entry['filename']);np.testing.assert_allclose(xyz(saved),clouds[i],rtol=0,atol=1e-6)
         d=np.load(root/'work/decoded'/(scans[i]['tag']+'.npz'));q=transform(raw[i],poses[i]);mask=row_mask(q,config);np.testing.assert_array_equal(saved['reflectivity'],d['reflectivity'][mask])
+        for key in ['signal','near_ir','frame_id','pixel_index']:np.testing.assert_array_equal(saved[key],d[key][mask])
+        np.testing.assert_array_equal(saved['intensity'],d['signal'][mask])
         np.testing.assert_allclose(np.array(entry['sensor_to_merged']),final[i]@np.block([[d['rotation'],np.zeros((3,1))],[np.zeros((1,3)),np.ones((1,1))]]),rtol=0,atol=1e-12)
-    reports.update(export=dict(merged_points=len(points),separate_scan_points=sum(len(p) for p in clouds),measurement_policy='First measured sample per 12mm cell, then radius-outlier removal; no averaging, interpolation or per-point warping',verification='Rigid matrices, original reflectivity, measured float coordinates and contribution counts verified',merged_ply_sha256=sha256(out/'final_registered.ply'),transformations_sha256=sha256(out/'transformations.json')))
+    reports.update(export=dict(merged_points=len(points),separate_scan_points=sum(len(p) for p in clouds),measurement_policy='First measured sample per 12mm cell, then radius-outlier removal; no averaging, interpolation or per-point warping',verification='Rigid matrices, original SIGNAL/NEAR_IR/reflectivity, source frame/pixel indices, measured float coordinates and contribution counts verified',merged_ply_sha256=sha256(out/'final_registered.ply'),transformations_sha256=sha256(out/'transformations.json')))
     save_json(qc/'registration_quality.json',reports);save_json(qc/'capture_config.json',config)
     fig,axes=plt.subplots(2,1,figsize=(14,8),gridspec_kw={'height_ratios':[3,1.4]});q=points[::4];color=colours[::4]/255
     axes[0].scatter(q[:,0],q[:,2],c=color,s=.5,linewidths=0);axes[0].set(xlabel='Along row (m)',ylabel='Height (m)',title=f'{config["dataset"]} · final registered measured points')

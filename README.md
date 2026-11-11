@@ -4,6 +4,8 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 
 **[Current downloads](https://github.com/u0063882/GreensprayAI/releases/tag/current)** · [Mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) · [Cross-row QA](docs/cross_row_quality.md) · [Registration in MATLAB terms](docs/registration_matlab.md)
 
+**[Leaf/wood comparison report](docs/leafwood_comparison_report.md)** · [Independent optional method and PLY fields](docs/leafwood_registration.md). Primary PLYs retain the delivered baseline coordinates and point order, now with raw intensity/SIGNAL, NIR, reflectivity, derived leaf/wood RGB and original `scan_id`. Experimental registration remains under QC; its conservative shape/bound checks flag all four candidates, so it has not replaced the baseline.
+
 ## Current results
 
 **Finished data is under [Releases → Current results → Assets](https://github.com/u0063882/GreensprayAI/releases/tag/current).** Open that page and expand **Assets** if needed. The repository file list contains code and small report snapshots; the large point clouds and meshes are release downloads.
@@ -18,16 +20,16 @@ Each dataset has its **own local frame, in metres**. Its final PLYs already have
 
 | Dataset | Status |
 | --- | --- |
-| Chandelier | Existing validated point cloud, transforms and mesh preserved byte for byte; folder paths changed |
-| Spindle1 | Existing 18-recording point cloud, transforms and scan contributions preserved |
-| Spindle2 | 18 complete recordings registered; final point cloud, transforms, scan contributions and QC; no mesh generated yet |
-| Vhedge | Existing 13-recording point cloud, transforms and scan contributions preserved |
+| Chandelier | Existing baseline coordinates, point order, transforms and mesh retained; PLY sensor attributes enriched |
+| Spindle1 | Existing 18-recording baseline geometry retained; PLY sensor attributes enriched |
+| Spindle2 | Existing 18-recording baseline geometry retained; PLY sensor attributes enriched; no mesh yet |
+| Vhedge | Existing 13-recording baseline geometry retained; PLY sensor attributes enriched |
 
 <details>
 <summary>Quality checks, individual scan contributions and code</summary>
 
 - [90_QC.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip): extract and open **QC/index.html**, then choose a dataset. Figures/reports are grouped under `QC/chandelier/`, `QC/spindle1/`, `QC/spindle2/` and `QC/vhedge/`. Source inputs needed for rebuilding are tucked under provenance folders.
-- [91_registered_contributions.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/91_registered_contributions.zip): each dataset has `separate_scans/` with recording-coloured PLYs, plus `combined/` with all contributions and overlaps retained.
+- [91_registered_contributions.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/91_registered_contributions.zip): each dataset has `separate_scans/` with leaf/wood-coloured PLYs, plus `combined/` with recording colours and all overlaps retained. Both retain raw sensor channels, `scan_id` and separate leaf/wood RGB fields.
 - Current code is in this repository and in `QC/provenance/current_code_and_notes.zip`. `git pull` updates code/docs; release downloads are separate.
 
 </details>

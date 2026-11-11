@@ -41,6 +41,15 @@ def main():
             if not dataset['id'].replace('_','').isalnum() or dataset['id']!=json.loads((ROOT/dataset['config']).read_text())['dataset']:raise ValueError('Invalid or inconsistent dataset identifier')
             datasets.append(add_capture(dataset,stage,args.asset_dir/'captures',repo,args.mode))
         assert_frozen(stage,before,frozen_ids)
+        if config.get('leafwood_comparison',False):
+            from tools.leafwood_collection import enrich_collection
+            # This changes attributes only in the primary outputs. The new
+            # registration is isolated under QC and cannot replace their poses.
+            protected={k:v for k,v in before.items() if k.startswith(('meshes/','transformations/'))}
+            enrich_collection(stage,args.asset_dir/'leafwood',config,repo)
+            after=frozen_hashes(stage,frozen_ids)
+            if any(after.get(k)!=v for k,v in protected.items()):raise RuntimeError('Leaf/wood upgrade changed a baseline mesh or transformation')
+            before=after
         provenance=stage/'QC/provenance';provenance.mkdir(parents=True,exist_ok=True)
         (provenance/'collection.json').write_text(json.dumps(dict(packaging_commit=commit,datasets=datasets,frozen_dataset_sha256=before),indent=2)+'\n')
         code=work/'code.zip';subprocess.run(['git','archive','--format=zip','--output',str(code),'HEAD'],cwd=ROOT,check=True)

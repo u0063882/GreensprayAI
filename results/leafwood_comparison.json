@@ -1,0 +1,758 @@
+{
+  "baseline_source_commit": "5205efc0db51106f0d14a1c14be6f8abf040217b",
+  "model": {
+    "version": 1,
+    "method": "Shared fixed-log-scale two-centre ambient NIR threshold; higher NIR provisionally leaf",
+    "log_centres": [
+      0.41685648825937427,
+      0.58384869563631
+    ],
+    "log_threshold": 0.5003525919478422,
+    "raw_nir_threshold": 7168.9807642677915,
+    "scans": 67,
+    "training_samples": 274432,
+    "maximum_samples_per_scan": 4096,
+    "confidence_note": "Distance from shared threshold relative to centre separation; heuristic, not calibrated probability",
+    "rgb_note": "Green/brown HSV hues and saturation from GreenSprayToolbox leafWoodSignal; brightness from fixed-scaled raw SignalPhoton. Global NIR classes replace per-scan k-means.",
+    "class_codes": {
+      "0": "unknown / missing NIR",
+      "1": "provisional wood",
+      "2": "provisional leaf"
+    },
+    "model_sha256": "aafdae641b9672aad4adab34fca5ca3c44db019642b279dc29fe65c3feb244a3"
+  },
+  "datasets": {
+    "chandelier": {
+      "checks": {
+        "withheld_stem_surface": {
+          "baseline": {
+            "points": 2694,
+            "median_absolute_m": 0.014445939832211714,
+            "rmse_m": 0.020167501352968173,
+            "capped_rmse_5cm_m": 0.020167501352968173
+          },
+          "leafwood": {
+            "points": 2694,
+            "median_absolute_m": 0.012898120582821415,
+            "rmse_m": 0.01782970543868991,
+            "capped_rmse_5cm_m": 0.01781998876749356
+          }
+        },
+        "withheld_ground": {
+          "baseline": {
+            "points": 1094,
+            "median_absolute_m": 0.008036167286068705,
+            "rmse_m": 0.018793223003245752,
+            "capped_rmse_5cm_m": 0.014731746332052768
+          },
+          "leafwood": {
+            "points": 1094,
+            "median_absolute_m": 0.008165095748666546,
+            "rmse_m": 0.01879782026408063,
+            "capped_rmse_5cm_m": 0.014780232003076228
+          }
+        },
+        "withheld_same_face_overlap": {
+          "baseline": {
+            "points": 1605,
+            "median_absolute_m": 0.007335870841800066,
+            "rmse_m": 0.010510383763831286,
+            "capped_rmse_5cm_m": 0.010510383763831286
+          },
+          "leafwood": {
+            "points": 1605,
+            "median_absolute_m": 0.006554709615604479,
+            "rmse_m": 0.009791428692420783,
+            "capped_rmse_5cm_m": 0.009791428692420783
+          }
+        }
+      },
+      "shape_checks": [
+        {
+          "stem": 1,
+          "baseline_width_m": 0.21944451332092285,
+          "leafwood_width_m": 0.21188772074760642,
+          "change_m": -0.007556792573316429,
+          "fixed_model_diameter_m": 0.16231163473659194
+        },
+        {
+          "stem": 3,
+          "baseline_width_m": 0.21372150897979747,
+          "leafwood_width_m": 0.2045634261739644,
+          "change_m": -0.009158082805833079,
+          "fixed_model_diameter_m": 0.14973421673772055
+        },
+        {
+          "stem": 4,
+          "baseline_width_m": 0.18462590694427483,
+          "leafwood_width_m": 0.1770507706457567,
+          "change_m": -0.007575136298518137,
+          "fixed_model_diameter_m": 0.14429843466698375
+        },
+        {
+          "stem": 5,
+          "baseline_width_m": 0.1264211559295656,
+          "leafwood_width_m": 0.11840291402400238,
+          "change_m": -0.008018241905563217,
+          "fixed_model_diameter_m": 0.07724153331069415
+        },
+        {
+          "stem": 6,
+          "baseline_width_m": 0.13750009059906,
+          "leafwood_width_m": 0.13355266200206417,
+          "change_m": -0.003947428596995817,
+          "fixed_model_diameter_m": 0.11092617836384383
+        },
+        {
+          "stem": 7,
+          "baseline_width_m": 0.1534954261779784,
+          "leafwood_width_m": 0.15594716016708565,
+          "change_m": 0.002451733989107252,
+          "fixed_model_diameter_m": 0.14801750844730707
+        }
+      ],
+      "geometry_only_control": {
+        "checks": {
+          "withheld_stem_surface": {
+            "baseline": {
+              "points": 2694,
+              "median_absolute_m": 0.014445939832211714,
+              "rmse_m": 0.020167501352968173,
+              "capped_rmse_5cm_m": 0.020167501352968173
+            },
+            "leafwood": {
+              "points": 2694,
+              "median_absolute_m": 0.013392155145941189,
+              "rmse_m": 0.018817457723161242,
+              "capped_rmse_5cm_m": 0.018816836056523557
+            }
+          },
+          "withheld_ground": {
+            "baseline": {
+              "points": 1094,
+              "median_absolute_m": 0.008036167286068705,
+              "rmse_m": 0.018793223003245752,
+              "capped_rmse_5cm_m": 0.014731746332052768
+            },
+            "leafwood": {
+              "points": 1094,
+              "median_absolute_m": 0.008096402881240247,
+              "rmse_m": 0.018779784428871266,
+              "capped_rmse_5cm_m": 0.014747842313988698
+            }
+          },
+          "withheld_same_face_overlap": {
+            "baseline": {
+              "points": 1605,
+              "median_absolute_m": 0.007335870841800066,
+              "rmse_m": 0.010510383763831286,
+              "capped_rmse_5cm_m": 0.010510383763831286
+            },
+            "leafwood": {
+              "points": 1605,
+              "median_absolute_m": 0.006594126417758692,
+              "rmse_m": 0.009749270946088627,
+              "capped_rmse_5cm_m": 0.009749270946088627
+            }
+          }
+        },
+        "shape_checks": [
+          {
+            "stem": 1,
+            "baseline_width_m": 0.21944451332092285,
+            "leafwood_width_m": 0.21405449532409948,
+            "change_m": -0.005390017996823371,
+            "fixed_model_diameter_m": 0.16231163473659194
+          },
+          {
+            "stem": 3,
+            "baseline_width_m": 0.21372150897979747,
+            "leafwood_width_m": 0.20792316104520703,
+            "change_m": -0.005798347934590442,
+            "fixed_model_diameter_m": 0.14973421673772055
+          },
+          {
+            "stem": 4,
+            "baseline_width_m": 0.18462590694427483,
+            "leafwood_width_m": 0.17970038562657997,
+            "change_m": -0.004925521317694859,
+            "fixed_model_diameter_m": 0.14429843466698375
+          },
+          {
+            "stem": 5,
+            "baseline_width_m": 0.1264211559295656,
+            "leafwood_width_m": 0.12425908975922773,
+            "change_m": -0.002162066170337873,
+            "fixed_model_diameter_m": 0.07724153331069415
+          },
+          {
+            "stem": 6,
+            "baseline_width_m": 0.13750009059906,
+            "leafwood_width_m": 0.13648464044674036,
+            "change_m": -0.0010154501523196302,
+            "fixed_model_diameter_m": 0.11092617836384383
+          },
+          {
+            "stem": 7,
+            "baseline_width_m": 0.1534954261779784,
+            "leafwood_width_m": 0.15516469993707327,
+            "change_m": 0.0016692737590948692,
+            "fixed_model_diameter_m": 0.14801750844730707
+          }
+        ],
+        "validation_passed": false,
+        "rejection_reasons": [
+          "Low-stem measured across width shrinks by over 3 mm: 1",
+          "Low-stem measured across width shrinks by over 3 mm: 3",
+          "Low-stem measured across width shrinks by over 3 mm: 4"
+        ]
+      },
+      "validation_passed": false,
+      "rejection_reasons": [
+        "A rigid correction reaches its bound",
+        "Low-stem measured across width shrinks by over 3 mm: 1",
+        "Low-stem measured across width shrinks by over 3 mm: 3",
+        "Low-stem measured across width shrinks by over 3 mm: 4",
+        "Low-stem measured across width shrinks by over 3 mm: 5",
+        "Low-stem measured across width shrinks by over 3 mm: 6"
+      ],
+      "baseline_primary_coordinate_sha256": "d9b6cf72d210622604d6a0fa089e1740496934f8a600823ca56d5077ae3c4019"
+    },
+    "spindle2": {
+      "checks": {
+        "withheld_stem_surface": {
+          "baseline": {
+            "points": 1714,
+            "median_absolute_m": 0.022229423772218863,
+            "rmse_m": 0.02589841245539822,
+            "capped_rmse_5cm_m": 0.02589841245539822
+          },
+          "leafwood": {
+            "points": 1714,
+            "median_absolute_m": 0.019317157212092845,
+            "rmse_m": 0.024147590421398933,
+            "capped_rmse_5cm_m": 0.02410281168066331
+          }
+        },
+        "withheld_ground": {
+          "baseline": {
+            "points": 927,
+            "median_absolute_m": 0.009647962963179086,
+            "rmse_m": 0.018151465777541603,
+            "capped_rmse_5cm_m": 0.016094899587369416
+          },
+          "leafwood": {
+            "points": 927,
+            "median_absolute_m": 0.009340424373233411,
+            "rmse_m": 0.01786541847855904,
+            "capped_rmse_5cm_m": 0.015909713127120875
+          }
+        },
+        "withheld_same_face_overlap": {
+          "baseline": {
+            "points": 766,
+            "median_absolute_m": 0.00672672305730415,
+            "rmse_m": 0.010332792412576421,
+            "capped_rmse_5cm_m": 0.010332792412576421
+          },
+          "leafwood": {
+            "points": 766,
+            "median_absolute_m": 0.006086280523928985,
+            "rmse_m": 0.009834781980469567,
+            "capped_rmse_5cm_m": 0.009834781980469567
+          }
+        }
+      },
+      "shape_checks": [
+        {
+          "stem": 0,
+          "baseline_width_m": 0.21016271442174914,
+          "leafwood_width_m": 0.20985161031233396,
+          "change_m": -0.00031110410941517785,
+          "fixed_model_diameter_m": 0.19484995648024242
+        },
+        {
+          "stem": 1,
+          "baseline_width_m": 0.26313882991671556,
+          "leafwood_width_m": 0.2647372610609504,
+          "change_m": 0.0015984311442348575,
+          "fixed_model_diameter_m": 0.2748081934594776
+        },
+        {
+          "stem": 2,
+          "baseline_width_m": 0.2602472847700119,
+          "leafwood_width_m": 0.25194650224224435,
+          "change_m": -0.008300782527767558,
+          "fixed_model_diameter_m": 0.20437019730900358
+        },
+        {
+          "stem": 3,
+          "baseline_width_m": 0.27459834203124045,
+          "leafwood_width_m": 0.25778782848609383,
+          "change_m": -0.01681051354514662,
+          "fixed_model_diameter_m": 0.3274641998721213
+        },
+        {
+          "stem": 4,
+          "baseline_width_m": 0.23912046462297437,
+          "leafwood_width_m": 0.22608962112736192,
+          "change_m": -0.013030843495612454,
+          "fixed_model_diameter_m": 0.21291576009937715
+        }
+      ],
+      "geometry_only_control": {
+        "checks": {
+          "withheld_stem_surface": {
+            "baseline": {
+              "points": 1714,
+              "median_absolute_m": 0.022229423772218863,
+              "rmse_m": 0.02589841245539822,
+              "capped_rmse_5cm_m": 0.02589841245539822
+            },
+            "leafwood": {
+              "points": 1714,
+              "median_absolute_m": 0.020761758795532992,
+              "rmse_m": 0.02484842233615815,
+              "capped_rmse_5cm_m": 0.02484430309427914
+            }
+          },
+          "withheld_ground": {
+            "baseline": {
+              "points": 927,
+              "median_absolute_m": 0.009647962963179086,
+              "rmse_m": 0.018151465777541603,
+              "capped_rmse_5cm_m": 0.016094899587369416
+            },
+            "leafwood": {
+              "points": 927,
+              "median_absolute_m": 0.009594682333484272,
+              "rmse_m": 0.017975490170677615,
+              "capped_rmse_5cm_m": 0.015949779384111233
+            }
+          },
+          "withheld_same_face_overlap": {
+            "baseline": {
+              "points": 766,
+              "median_absolute_m": 0.00672672305730415,
+              "rmse_m": 0.010332792412576421,
+              "capped_rmse_5cm_m": 0.010332792412576421
+            },
+            "leafwood": {
+              "points": 766,
+              "median_absolute_m": 0.006530897971774789,
+              "rmse_m": 0.010339452037023607,
+              "capped_rmse_5cm_m": 0.010339452037023607
+            }
+          }
+        },
+        "shape_checks": [
+          {
+            "stem": 0,
+            "baseline_width_m": 0.21016271442174914,
+            "leafwood_width_m": 0.21218425085904313,
+            "change_m": 0.002021536437293997,
+            "fixed_model_diameter_m": 0.19484995648024242
+          },
+          {
+            "stem": 1,
+            "baseline_width_m": 0.26313882991671556,
+            "leafwood_width_m": 0.2651638388050093,
+            "change_m": 0.0020250088882937667,
+            "fixed_model_diameter_m": 0.2748081934594776
+          },
+          {
+            "stem": 2,
+            "baseline_width_m": 0.2602472847700119,
+            "leafwood_width_m": 0.2574023014727229,
+            "change_m": -0.0028449832972889944,
+            "fixed_model_diameter_m": 0.20437019730900358
+          },
+          {
+            "stem": 3,
+            "baseline_width_m": 0.27459834203124045,
+            "leafwood_width_m": 0.2656922906481198,
+            "change_m": -0.008906051383120672,
+            "fixed_model_diameter_m": 0.3274641998721213
+          },
+          {
+            "stem": 4,
+            "baseline_width_m": 0.23912046462297437,
+            "leafwood_width_m": 0.2320255663800208,
+            "change_m": -0.007094898242953562,
+            "fixed_model_diameter_m": 0.21291576009937715
+          }
+        ],
+        "validation_passed": false,
+        "rejection_reasons": [
+          "Low-stem measured across width shrinks by over 3 mm: 3",
+          "Low-stem measured across width shrinks by over 3 mm: 4"
+        ]
+      },
+      "validation_passed": false,
+      "rejection_reasons": [
+        "Low-stem measured across width shrinks by over 3 mm: 2",
+        "Low-stem measured across width shrinks by over 3 mm: 3",
+        "Low-stem measured across width shrinks by over 3 mm: 4"
+      ],
+      "baseline_primary_coordinate_sha256": "697beb6d806f44811565c884fe6d66f8f56bf068c9707b4bbbd10864c9f61b7f"
+    },
+    "vhedge": {
+      "checks": {
+        "withheld_stem_surface": {
+          "baseline": {
+            "points": 1794,
+            "median_absolute_m": 0.019847814989282217,
+            "rmse_m": 0.023607351884551035,
+            "capped_rmse_5cm_m": 0.023607351884551035
+          },
+          "leafwood": {
+            "points": 1794,
+            "median_absolute_m": 0.017048387273648997,
+            "rmse_m": 0.022602706855451758,
+            "capped_rmse_5cm_m": 0.022419836573793917
+          }
+        },
+        "withheld_ground": {
+          "baseline": {
+            "points": 662,
+            "median_absolute_m": 0.008177449129064894,
+            "rmse_m": 0.020057367521936445,
+            "capped_rmse_5cm_m": 0.01612126059911556
+          },
+          "leafwood": {
+            "points": 662,
+            "median_absolute_m": 0.008480289122330476,
+            "rmse_m": 0.019891870149440057,
+            "capped_rmse_5cm_m": 0.016092808008883467
+          }
+        },
+        "withheld_same_face_overlap": {
+          "baseline": {
+            "points": 1016,
+            "median_absolute_m": 0.007211107510528708,
+            "rmse_m": 0.010502952414060547,
+            "capped_rmse_5cm_m": 0.010502952414060547
+          },
+          "leafwood": {
+            "points": 1016,
+            "median_absolute_m": 0.006342980942039816,
+            "rmse_m": 0.009533555943469538,
+            "capped_rmse_5cm_m": 0.009533555943469538
+          }
+        }
+      },
+      "shape_checks": [
+        {
+          "stem": 0,
+          "baseline_width_m": 0.16873759999871257,
+          "leafwood_width_m": 0.1593224988810384,
+          "change_m": -0.009415101117674185,
+          "fixed_model_diameter_m": 0.12932148386663023
+        },
+        {
+          "stem": 1,
+          "baseline_width_m": 0.19958169803023335,
+          "leafwood_width_m": 0.18965829939813175,
+          "change_m": -0.009923398632101593,
+          "fixed_model_diameter_m": 0.17199958447331443
+        },
+        {
+          "stem": 2,
+          "baseline_width_m": 0.2123975120484829,
+          "leafwood_width_m": 0.2123975120484829,
+          "change_m": 0.0,
+          "fixed_model_diameter_m": 0.25035665990299505
+        },
+        {
+          "stem": 3,
+          "baseline_width_m": 0.15924587577581403,
+          "leafwood_width_m": 0.15445379612031426,
+          "change_m": -0.00479207965549977,
+          "fixed_model_diameter_m": 0.1444231533892049
+        },
+        {
+          "stem": 4,
+          "baseline_width_m": 0.14635132640600204,
+          "leafwood_width_m": 0.14635132640600204,
+          "change_m": 0.0,
+          "fixed_model_diameter_m": 0.15271487016279695
+        },
+        {
+          "stem": 5,
+          "baseline_width_m": 0.20078920409083367,
+          "leafwood_width_m": 0.20078920409083367,
+          "change_m": 0.0,
+          "fixed_model_diameter_m": 0.2600657811720113
+        }
+      ],
+      "geometry_only_control": {
+        "checks": {
+          "withheld_stem_surface": {
+            "baseline": {
+              "points": 1794,
+              "median_absolute_m": 0.019847814989282217,
+              "rmse_m": 0.023607351884551035,
+              "capped_rmse_5cm_m": 0.023607351884551035
+            },
+            "leafwood": {
+              "points": 1794,
+              "median_absolute_m": 0.01683441830918505,
+              "rmse_m": 0.022730649889589023,
+              "capped_rmse_5cm_m": 0.022541527709834638
+            }
+          },
+          "withheld_ground": {
+            "baseline": {
+              "points": 662,
+              "median_absolute_m": 0.008177449129064894,
+              "rmse_m": 0.020057367521936445,
+              "capped_rmse_5cm_m": 0.01612126059911556
+            },
+            "leafwood": {
+              "points": 662,
+              "median_absolute_m": 0.008455691891563605,
+              "rmse_m": 0.020040613674635836,
+              "capped_rmse_5cm_m": 0.016211245017765587
+            }
+          },
+          "withheld_same_face_overlap": {
+            "baseline": {
+              "points": 1016,
+              "median_absolute_m": 0.007211107510528708,
+              "rmse_m": 0.010502952414060547,
+              "capped_rmse_5cm_m": 0.010502952414060547
+            },
+            "leafwood": {
+              "points": 1016,
+              "median_absolute_m": 0.006805763331112632,
+              "rmse_m": 0.01059007340701336,
+              "capped_rmse_5cm_m": 0.01059007340701336
+            }
+          }
+        },
+        "shape_checks": [
+          {
+            "stem": 0,
+            "baseline_width_m": 0.16873759999871257,
+            "leafwood_width_m": 0.16081463952349345,
+            "change_m": -0.00792296047521912,
+            "fixed_model_diameter_m": 0.12932148386663023
+          },
+          {
+            "stem": 1,
+            "baseline_width_m": 0.19958169803023335,
+            "leafwood_width_m": 0.19244133069312025,
+            "change_m": -0.007140367337113096,
+            "fixed_model_diameter_m": 0.17199958447331443
+          },
+          {
+            "stem": 2,
+            "baseline_width_m": 0.2123975120484829,
+            "leafwood_width_m": 0.2123975120484829,
+            "change_m": 0.0,
+            "fixed_model_diameter_m": 0.25035665990299505
+          },
+          {
+            "stem": 3,
+            "baseline_width_m": 0.15924587577581403,
+            "leafwood_width_m": 0.15423355121692026,
+            "change_m": -0.005012324558893777,
+            "fixed_model_diameter_m": 0.1444231533892049
+          },
+          {
+            "stem": 4,
+            "baseline_width_m": 0.14635132640600204,
+            "leafwood_width_m": 0.14635132640600204,
+            "change_m": 0.0,
+            "fixed_model_diameter_m": 0.15271487016279695
+          },
+          {
+            "stem": 5,
+            "baseline_width_m": 0.20078920409083367,
+            "leafwood_width_m": 0.20078920409083367,
+            "change_m": 0.0,
+            "fixed_model_diameter_m": 0.2600657811720113
+          }
+        ],
+        "validation_passed": false,
+        "rejection_reasons": [
+          "A rigid correction reaches its bound",
+          "Low-stem measured across width shrinks by over 3 mm: 0",
+          "Low-stem measured across width shrinks by over 3 mm: 1",
+          "Low-stem measured across width shrinks by over 3 mm: 3"
+        ]
+      },
+      "validation_passed": false,
+      "rejection_reasons": [
+        "A rigid correction reaches its bound",
+        "Low-stem measured across width shrinks by over 3 mm: 0",
+        "Low-stem measured across width shrinks by over 3 mm: 1",
+        "Low-stem measured across width shrinks by over 3 mm: 3"
+      ],
+      "baseline_primary_coordinate_sha256": "be46a3aee2f4a1660f1543d8234c010d06d4c491d7fa58dd29ef39a2007e8f88"
+    },
+    "spindle1": {
+      "checks": {
+        "withheld_stem_surface": {
+          "baseline": {
+            "points": 1351,
+            "median_absolute_m": 0.023911784698900873,
+            "rmse_m": 0.02618541973482091,
+            "capped_rmse_5cm_m": 0.02618541973482091
+          },
+          "leafwood": {
+            "points": 1351,
+            "median_absolute_m": 0.021727490768483224,
+            "rmse_m": 0.02570749854561504,
+            "capped_rmse_5cm_m": 0.02560527064230613
+          }
+        },
+        "withheld_ground": {
+          "baseline": {
+            "points": 929,
+            "median_absolute_m": 0.012529556668163525,
+            "rmse_m": 0.023828485056117576,
+            "capped_rmse_5cm_m": 0.01975785500374671
+          },
+          "leafwood": {
+            "points": 929,
+            "median_absolute_m": 0.011990705961610539,
+            "rmse_m": 0.023716241070546255,
+            "capped_rmse_5cm_m": 0.0196371300477569
+          }
+        },
+        "withheld_same_face_overlap": {
+          "baseline": {
+            "points": 663,
+            "median_absolute_m": 0.006779588392803713,
+            "rmse_m": 0.010443059061794008,
+            "capped_rmse_5cm_m": 0.010443059061794008
+          },
+          "leafwood": {
+            "points": 663,
+            "median_absolute_m": 0.007533878810513922,
+            "rmse_m": 0.010288654262605732,
+            "capped_rmse_5cm_m": 0.010288654262605732
+          }
+        }
+      },
+      "shape_checks": [
+        {
+          "stem": 1,
+          "baseline_width_m": 0.22716073125600816,
+          "leafwood_width_m": 0.2284043381019556,
+          "change_m": 0.0012436068459474314,
+          "fixed_model_diameter_m": 0.18995822548893992
+        },
+        {
+          "stem": 2,
+          "baseline_width_m": 0.23020413964986802,
+          "leafwood_width_m": 0.22175478386926395,
+          "change_m": -0.008449355780604073,
+          "fixed_model_diameter_m": 0.2585073401174967
+        },
+        {
+          "stem": 3,
+          "baseline_width_m": 0.17132192410528657,
+          "leafwood_width_m": 0.16177117489807938,
+          "change_m": -0.009550749207207193,
+          "fixed_model_diameter_m": 0.14593794073728017
+        },
+        {
+          "stem": 4,
+          "baseline_width_m": 0.14518472522497175,
+          "leafwood_width_m": 0.14552512313150634,
+          "change_m": 0.0003403979065345897,
+          "fixed_model_diameter_m": 0.13723703263359321
+        }
+      ],
+      "geometry_only_control": {
+        "checks": {
+          "withheld_stem_surface": {
+            "baseline": {
+              "points": 1351,
+              "median_absolute_m": 0.023911784698900873,
+              "rmse_m": 0.02618541973482091,
+              "capped_rmse_5cm_m": 0.02618541973482091
+            },
+            "leafwood": {
+              "points": 1351,
+              "median_absolute_m": 0.022431882478437346,
+              "rmse_m": 0.025361376272454102,
+              "capped_rmse_5cm_m": 0.025360245634986775
+            }
+          },
+          "withheld_ground": {
+            "baseline": {
+              "points": 929,
+              "median_absolute_m": 0.012529556668163525,
+              "rmse_m": 0.023828485056117576,
+              "capped_rmse_5cm_m": 0.01975785500374671
+            },
+            "leafwood": {
+              "points": 929,
+              "median_absolute_m": 0.01239502096768127,
+              "rmse_m": 0.02372333122683607,
+              "capped_rmse_5cm_m": 0.01967416159844308
+            }
+          },
+          "withheld_same_face_overlap": {
+            "baseline": {
+              "points": 663,
+              "median_absolute_m": 0.006779588392803713,
+              "rmse_m": 0.010443059061794008,
+              "capped_rmse_5cm_m": 0.010443059061794008
+            },
+            "leafwood": {
+              "points": 663,
+              "median_absolute_m": 0.007582472792616687,
+              "rmse_m": 0.010482020254545707,
+              "capped_rmse_5cm_m": 0.010482020254545707
+            }
+          }
+        },
+        "shape_checks": [
+          {
+            "stem": 1,
+            "baseline_width_m": 0.22716073125600816,
+            "leafwood_width_m": 0.23201478189125835,
+            "change_m": 0.004854050635250184,
+            "fixed_model_diameter_m": 0.18995822548893992
+          },
+          {
+            "stem": 2,
+            "baseline_width_m": 0.23020413964986802,
+            "leafwood_width_m": 0.22998587446842622,
+            "change_m": -0.0002182651814418013,
+            "fixed_model_diameter_m": 0.2585073401174967
+          },
+          {
+            "stem": 3,
+            "baseline_width_m": 0.17132192410528657,
+            "leafwood_width_m": 0.16637238966122292,
+            "change_m": -0.004949534444063652,
+            "fixed_model_diameter_m": 0.14593794073728017
+          },
+          {
+            "stem": 4,
+            "baseline_width_m": 0.14518472522497175,
+            "leafwood_width_m": 0.14304160402024554,
+            "change_m": -0.002143121204726206,
+            "fixed_model_diameter_m": 0.13723703263359321
+          }
+        ],
+        "validation_passed": false,
+        "rejection_reasons": [
+          "Low-stem measured across width shrinks by over 3 mm: 3"
+        ]
+      },
+      "validation_passed": false,
+      "rejection_reasons": [
+        "A rigid correction reaches its bound",
+        "Low-stem measured across width shrinks by over 3 mm: 2",
+        "Low-stem measured across width shrinks by over 3 mm: 3"
+      ],
+      "baseline_primary_coordinate_sha256": "8695c3c395cb6bd2dff0056a8c4bd1f1fb492edecbc1afdfce9bdf03e18383ec"
+    }
+  }
+}

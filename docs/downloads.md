@@ -6,9 +6,13 @@ Open [Current results → Assets](https://github.com/u0063882/GreensprayAI/relea
 2. **02_final_mesh.zip** — chandelier mesh formats and ground under `chandelier/`. Spindle1, spindle2 and vhedge have not been meshed.
 3. **03_transformations.zip** — each dataset has its own `transformations.json`.
 4. **90_QC.zip** — extract and open **QC/index.html** to choose a dataset and browse figures/reports.
-5. **91_registered_contributions.zip** — each dataset has `separate_scans/` and `combined/` folders, in recording colours, with overlap retained.
+5. **91_registered_contributions.zip** — each dataset has leaf/wood-coloured `separate_scans/` and recording-coloured `combined/`, with overlap retained. Both store raw sensor channels, leaf/wood RGB and original `scan_id`.
 
-Every dataset uses its own independent local metric frame. All PLY coordinates and matrix translations are metres. A final PLY is already registered; do not apply its matrices again. Previously published chandelier, spindle1 and vhedge geometry, matrices and scan contributions retain their original bytes.
+Every dataset uses its own independent local metric frame. All PLY coordinates and matrix translations are metres. A final PLY is already registered; do not apply its matrices again. All four primary clouds retain their original baseline float coordinates and sample order. PLY bytes changed to add raw intensity/SIGNAL, ambient NIR, source indices and derived leaf/wood RGB. Matrices and the existing mesh retain their original bytes.
+
+Each dataset's 01 folder also contains `source_scans.json` (scan index to original PCAP/hash) and `leafwood_model.json`. Choose the `scan_id` scalar field in CloudCompare to display recording colours. `intensity` is raw first-return SIGNAL; reflectivity and ambient NIR remain distinct channels. RGB is derived leafWoodSignal, not camera colour. See [fields and method](leafwood_registration.md).
+
+The [comparison report](leafwood_comparison_report.md) covers the baseline, an extra geometry-only refinement control and optional leaf/wood refinement. All candidates remain experimental. Their PLYs, matrices and figures are under `QC/<dataset>/leafwood_comparison/`, with a report at `QC/leafwood_comparison_report.md`. These candidates are not the final data in 01.
 
 QC is grouped under `QC/chandelier/`, `QC/spindle1/`, `QC/spindle2/` and `QC/vhedge/`. Each has figures and reports. Required chandelier rebuild seeds are under `QC/chandelier/provenance/registration_seed/`; each named capture's original archives are under its `provenance/raw_inputs/` folder. Vhedge's duplicate and incomplete-file exclusions are recorded in its configuration and reports. The current source snapshot and collection metadata are under `QC/provenance/`. These internal inputs are not the final outputs.
 

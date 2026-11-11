@@ -1,11 +1,49 @@
 {
   "version": 1,
   "tag": "current",
-  "title": "GreensprayAI \u2014 current orchard datasets",
+  "title": "GreensprayAI — current orchard datasets",
   "datasets": [
     {
       "id": "chandelier",
-      "kind": "frozen"
+      "kind": "frozen",
+      "inputs": [
+        {
+          "side": "sideA",
+          "name": "chandelier_sideA.zip",
+          "bytes": 22380516,
+          "sha256": "3deccf5b8d31b4e04ff97cc15a43a07ed02c2d9893c3c9ecb0ea7940a0441dc0",
+          "bootstrap_blobs": [
+            "8ad69851581ecdeff26dd1352db715cdd2e3ce96",
+            "003d7d6d295df76a14b7af40924162b851f318d7",
+            "2c7055e1db6517a789ccd2667b5af0c7c862e3d7",
+            "2c7bf2073b76b4b46df4d2112401744607bc4b96",
+            "266d1d9c769bea3f2c1ea0baabedd08b54d86973",
+            "09f7e314586195fe6ae9080834fc3dfff269bcec",
+            "661a6b4572514778dc812a8b22ccebd680ee07a8",
+            "20e87cf18fbbc1843c78dbafecf67d5049d9cb79",
+            "5104361d1699cde6257c1e4ae8440cae4ff7c9db",
+            "ec348422b489c79f919224dc209897c2725cff7c"
+          ]
+        },
+        {
+          "side": "sideB",
+          "name": "chandelier_sideB.zip",
+          "bytes": 21687676,
+          "sha256": "1f1791cb6f882bddf1ae941d6261f9266c603a28b04e24875b565f2f6a13127e",
+          "bootstrap_blobs": [
+            "75bcc159a218283ef239ce736346304414c69856",
+            "04a11026ba329eb8ca6b9906b6527035cea12d76",
+            "01275a863bea33f608248e94775d83ada6be79ac",
+            "da0956b7d0fcb3c31b35ab18ade2f48a70fafe51",
+            "376cfd6f7adffbddb811ba90ae34d482b1c55f1b",
+            "8097a225f1e81704108dc07e696f43cb5ef98942",
+            "60626b760edc5378aabbb091d285fda99249abfb",
+            "d7559101b348d1f3f1a938f2e84023737ec77401",
+            "c4b9c84c52d70c6fd83da6c269123c752debe88c",
+            "930e57f6bc4ae172ac0abb00820f3c3cd15b4d44"
+          ]
+        }
+      ]
     },
     {
       "id": "spindle1",
@@ -152,7 +190,7 @@
     },
     {
       "id": "spindle2",
-      "kind": "raw_capture",
+      "kind": "frozen",
       "config": "presets/captures/spindle2.json",
       "inputs": [
         {
@@ -201,5 +239,6 @@
         }
       ]
     }
-  ]
+  ],
+  "leafwood_comparison": true
 }

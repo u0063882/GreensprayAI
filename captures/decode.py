@@ -48,18 +48,24 @@ def decode_capture(data,output,exclusions=()):
         finally:packets.close()
         try:
             up,rotation=levelling_rotation(acceleration);points=[];reflectivity=[]
+            attributes={key:[] for key in ['signal','near_ir','frame_id','pixel_index']}
             for frame_set in source:
                 frame=frame_set[0]
                 if frame is None:continue
                 ranges=frame.field('RANGE');mask=(ranges>500)&(ranges<12000);xyz=lut(frame)[mask]@rotation.T
                 keep=(xyz[:,0]>.35)&(xyz[:,0]<3.15)&(xyz[:,2]>-2.3)&(xyz[:,2]<4.)
                 points.append(xyz[keep]);reflectivity.append(frame.field('REFLECTIVITY')[mask][keep])
+                attributes['signal'].append(frame.field('SIGNAL')[mask][keep])
+                attributes['near_ir'].append(frame.field('NEAR_IR')[mask][keep])
+                attributes['frame_id'].append(np.full(keep.sum(),frame.frame_id,dtype='<u4'))
+                attributes['pixel_index'].append(np.flatnonzero(mask)[keep].astype('<u4'))
         finally:source.close()
         if not points:raise ValueError('No decoded lidar frames: '+str(path))
         points=np.concatenate(points);reflectivity=np.concatenate(reflectivity)
         if len(points)<10000:raise ValueError('Insufficient measured point coverage: '+str(path))
         _,indices=np.unique(np.floor(points/.01).astype(np.int32),axis=0,return_index=True);points=points[indices];reflectivity=reflectivity[indices]
-        np.savez_compressed(destination,xyz=points.astype('f4'),reflectivity=reflectivity,up=up,rotation=rotation,lat=lat,lon=lon,input_signature=signature)
+        attributes={key:np.concatenate(value)[indices] for key,value in attributes.items()}
+        np.savez_compressed(destination,xyz=points.astype('f4'),reflectivity=reflectivity,up=up,rotation=rotation,lat=lat,lon=lon,input_signature=signature,**attributes)
         summary.append(dict(tag=tag,lat=lat,lon=lon,up=up.tolist()));print('Decoded',tag,len(points),'points',flush=True)
     (output/'scans.json').write_text(json.dumps(summary,indent=2)+'\n')
     return summary
