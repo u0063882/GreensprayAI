@@ -42,4 +42,4 @@ The collection publisher verifies source download hashes before extracting them.
 
 All five replacement downloads must pass server checksum verification before obsolete flat attachments are removed. Current archive hashes are in the release notes; the four non-QC download hashes are also in `QC/SHA256SUMS.txt`. Individual dataset output hashes and build metadata are in QC provenance. The legacy chandelier raw/seed recipe remains documented separately.
 
-The current dataset frames and chandelier across-row extension are described in [the structural-up report](structural_up_report.md). Download fresh 01–03 and 91 archives together; their matrices, clouds and mesh share the reported output frame.
+The [orientation correction and wider chandelier ROI](structural_up_report.md) explain the withdrawal of the PCA frame. Download fresh 01–03 and 91 archives together: their clouds, matrices and mesh retain the original gravity-referenced working frame.

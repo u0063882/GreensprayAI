@@ -126,4 +126,4 @@ No repository license has been imposed; the owner can choose one.
 
 The [earlier structural investigation](docs/structural_alignment.md) records rejected trials on the former baseline. The [current report](docs/joint_registration_report.md) describes the accepted joint result and its remaining uncertainty. No tree-shape symmetry is imposed.
 
-The current outputs use a [shared woody structural-up frame](docs/structural_up_report.md) where a supported PCA direction exists. Chandelier now includes the wider across-row ROI and matching mesh. Structural Z is explicitly distinguished from measured gravity; all per-recording poses and mesh coordinates match the final frame.
+The [PCA orientation trial has been withdrawn](docs/structural_up_report.md): it introduced a large ground slope that is inconsistent with the field conditions. Current outputs retain the original gravity-referenced registration frame, the joint rigid refinements, and the wider chandelier across-row ROI with its matching mesh. Canopy PCA is diagnostic only; the remaining V-hedge slant is unresolved.

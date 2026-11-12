@@ -1,4 +1,4 @@
-"""Choose one shared structural-up output frame; preserve the measured geometry."""
+"""Retain the physical working frame; keep canopy PCA as a diagnostic only."""
 from pathlib import Path
 import hashlib,io,json,os,shutil,sys,tempfile,zipfile
 import numpy as np
@@ -38,7 +38,7 @@ def _refresh_caches(stage,name):
     hashes={folder+'/'+name+'/'+p:h for folder in ['pointclouds','contributions','transformations'] for p,h in directory_hashes(stage/folder/name).items()}
     for relative in ['provenance/build.json','trunk_refinement/build.json','joint_registration/build.json']:
         p=stage/'QC'/name/relative
-        if p.exists():d=json.loads(p.read_text());d['output_hashes']=hashes;d['structural_frame_note']='A subsequent common output-frame rotation preserves relative registration and all source measurements.';save_json(p,d)
+        if p.exists():d=json.loads(p.read_text());d['output_hashes']=hashes;d['structural_frame_note']='Working-frame cache refreshed after coordinate export; see structural_frame/report.json for the current orientation policy.';save_json(p,d)
     p=stage/'QC'/name/'roi_extension/build.json'
     if p.exists():
         d=json.loads(p.read_text());d['output_hashes']={folder+'/'+name+'/'+p:h for folder in ['pointclouds','contributions','transformations','meshes'] for p,h in directory_hashes(stage/folder/name).items()};save_json(p,d)
@@ -62,24 +62,33 @@ def restore_working_frames(stage):
                 p=stage/item['path'];_,d=read_records(p);q=np.load(io.BytesIO(z.read(item['xyz'])),allow_pickle=False)
                 if _raw_hash(d)!=item['raw_sha256']:raise RuntimeError('Source set changed before frame restoration')
                 for j,k in enumerate(['x','y','z']):d[k]=q[:,j]
-                write_records(p,d,comment='Accepted working-frame coordinates; structural orientation is applied as a separate final stage')
+                write_records(p,d,comment='Accepted gravity-referenced working-frame coordinates; no canopy-PCA output rotation')
             for relative in [f'transformations/{name}/transformations.json',f'contributions/{name}/separate_scans/scan_manifest.json',*baseline['meshes']]:
                 p=stage/relative;p.write_bytes(z.read(relative))
             for relative in ['roi_extension/shrinkwrap_quality.json','roi_extension/report.json','meshing/shrinkwrap_quality.json']:
                 p=stage/'QC'/name/relative;member=p.relative_to(stage).as_posix()
                 if member in z.namelist():p.write_bytes(z.read(member))
+        primary=stage/'pointclouds'/name/'final_registered.ply'
+        for relative in ['roi_extension/shrinkwrap_quality.json','meshing/shrinkwrap_quality.json']:
+            quality_path=stage/'QC'/name/relative
+            if quality_path.exists():
+                quality=json.loads(quality_path.read_text());quality['working_frame_restoration']=dict(previous_source_sha256=quality['source_sha256'],policy='Original archived XYZ and mesh restored exactly; PLY header regenerated');quality['source_sha256']=sha256(primary);save_json(quality_path,quality)
+        roi=stage/'QC'/name/'roi_extension/report.json'
+        quality=stage/'QC'/name/'roi_extension/shrinkwrap_quality.json'
+        if roi.exists() and quality.exists():
+            data=json.loads(roi.read_text());data['mesh']=json.loads(quality.read_text());data['orientation_policy']='Original gravity-referenced working frame retained; no canopy-PCA rotation applied';save_json(roi,data)
         _refresh_caches(stage,name)
         print('Restored physics working frame:',name,flush=True)
 
 
-def orient_collection(stage):
+def _orient_structure_explicitly(stage):
     stage=Path(stage);results=[];code=sha256(ROOT/'captures/structural_frame.py')+sha256(Path(__file__))
     for primary in sorted((stage/'pointclouds').glob('*/final_registered.ply')):
         name=primary.parent.name;qc=stage/'QC'/name/'structural_frame';qc.mkdir(parents=True,exist_ok=True);archive=stage/'QC'/name/'provenance/structural_frame_baseline.zip';marker=qc/'build.json';classifier=sha256(primary.parent/'leafwood_model.json')
         key=hashlib.sha256((code+classifier+(sha256(archive) if archive.exists() else 'none')).encode()).hexdigest()
         if marker.exists():
             record=json.loads(marker.read_text())
-            if record['cache_key']==key:
+            if record.get('cache_key')==key:
                 valid=all(sha256(stage/p)==h for p,h in record['output_hashes'].items())
                 if valid:results.append(record);print('Reusing structural frame:',name,flush=True);continue
         if archive.exists():
@@ -165,6 +174,36 @@ def orient_collection(stage):
     save_json(stage/'QC/structural_frame_summary.json',dict(datasets=[{k:v for k,v in r.items() if k!='output_hashes'} for r in results]));return results
 
 
+def orient_collection(stage,apply_rotation=False):
+    if apply_rotation:return _orient_structure_explicitly(stage)
+    stage=Path(stage);restore_working_frames(stage);results=[]
+    for primary in sorted((stage/'pointclouds').glob('*/final_registered.ply')):
+        name=primary.parent.name;folder=stage/'contributions'/name/'separate_scans';manifest=json.loads((folder/'scan_manifest.json').read_text());clouds=[];scores=[];labels=[]
+        for e in manifest['scans']:
+            _,d=read_records(folder/e['filename']);clouds.append(xyz(d));scores.append(d['wood_score']);labels.append(e['scan'].split('_')[0])
+        meta=json.loads((stage/'transformations'/name/'transformations.json').read_text());roi=meta.get('measured_roi_extension',{});pivot=float(np.mean(roi['across_m'])) if roi else 0.
+        try:T,estimate=estimate_structural_frame(clouds,scores,labels,pivot)
+        except ValueError as error:T=np.eye(4);estimate=dict(reason=str(error),estimated_rotation_deg=None)
+        report=dict(dataset=name,estimated_pca=estimate,applied_rotation_deg=0.,primary_frame_changed=False,automatic_structural_rotation_enabled=False,policy='Retain the original gravity-referenced registration frame. Canopy or wood PCA is not a physical vertical reference; large PCA rotations were rejected after the real ground slope was clarified.',export=dict(points=len(read_records(primary)[1]),primary_sha256=sha256(primary)))
+        qc=stage/'QC'/name/'structural_frame';qc.mkdir(parents=True,exist_ok=True);save_json(qc/'report.json',report)
+        # Show the rejected artificial ground tilt against the retained result.
+        _,d=read_records(primary);q=xyz(d);ground=(q[:,2]>-.12)&(q[:,2]<.12);q=q[ground][::4];candidate=q@T[:3,:3].T+T[:3,3]
+        import matplotlib
+        matplotlib.use('Agg')
+        import matplotlib.pyplot as plt
+        fig,axes=plt.subplots(1,2,figsize=(12,4),sharex=True,sharey=True)
+        for ax,p,title in zip(axes,[candidate,q],['Rejected PCA orientation — not the real slope','Current output: original gravity reference']):
+            ax.scatter(p[:,1],p[:,2],s=.25,c='#536f87',alpha=.35,linewidths=0);ax.set(xlabel='Across Y (m)',ylabel='Ground Z (m)',title=title);ax.grid(alpha=.25)
+        fig.suptitle(name+' · ground comparison · no terrain flattening');fig.tight_layout();fig.savefig(qc/'profiles.png',dpi=125);plt.close(fig)
+        gallery=stage/'QC'/name/'index.html';text=gallery.read_text();start='<!-- structural-frame-start -->';end='<!-- structural-frame-end -->'
+        if start in text:text=text[:text.index(start)]+text[text.index(end)+len(end):]
+        block=start+'<h2>Orientation correction: PCA rotation withdrawn</h2><p>Current data retain the original gravity-referenced registration frame and measured terrain variation. The large canopy-PCA rotation was not a valid estimate of real ground slope.</p><p><a href="structural_frame/report.json">Policy and diagnostic estimate</a></p><img style="max-width:100%" src="structural_frame/profiles.png">'+end
+        at=text.find('</h1>');at=at+5 if at>=0 else len(text);gallery.write_text(text[:at]+block+text[at:])
+        record=dict(dataset=name,applied_rotation_deg=0.,supported=False,output_hashes={folder+'/'+name+'/'+p:h for folder in ['pointclouds','contributions','transformations','meshes'] for p,h in directory_hashes(stage/folder/name).items()});save_json(qc/'build.json',record);results.append(record)
+        print('Retained physical working frame; PCA diagnostic only:',name,flush=True)
+    save_json(stage/'QC/structural_frame_summary.json',dict(policy='No automatic PCA output rotation',datasets=[{k:v for k,v in r.items() if k!='output_hashes'} for r in results]));return results
+
+
 if __name__=='__main__':
     import argparse
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',required=True,type=Path);args=parser.parse_args();orient_collection(args.stage)
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',required=True,type=Path);parser.add_argument('--research-structural-frame',action='store_true',help='Explicit nonphysical PCA output-frame experiment; not used by the release');args=parser.parse_args();orient_collection(args.stage,apply_rotation=args.research_structural_frame)

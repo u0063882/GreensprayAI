@@ -1,58 +1,30 @@
 {
+  "policy": "No automatic PCA output rotation",
   "datasets": [
     {
-      "dataset": "vhedge",
-      "estimated_rotation_deg": -10.328789943968614,
-      "applied_rotation_deg": -10.328789943968614,
-      "supported": true,
-      "bootstrap_interval_deg": [
-        -11.823887444156096,
-        -8.442358950411602
-      ],
-      "points": 830803,
-      "maximum_coordinate_export_error_m": 1.3305504261304723e-07,
-      "matching_matrices_verified": true
-    },
-    {
       "dataset": "chandelier",
-      "estimated_rotation_deg": -8.38740915372117,
-      "applied_rotation_deg": -8.38740915372117,
-      "supported": true,
-      "bootstrap_interval_deg": [
-        -10.051757631752247,
-        -6.338060857119858
-      ],
-      "points": 1527905,
-      "maximum_coordinate_export_error_m": 2.6201113327628535e-07,
-      "matching_matrices_verified": true
+      "applied_rotation_deg": 0.0,
+      "supported": false
     },
     {
       "dataset": "spindle1",
-      "estimated_rotation_deg": -0.6843703260676882,
       "applied_rotation_deg": 0.0,
-      "supported": false,
-      "bootstrap_interval_deg": [
-        -2.264167458804482,
-        1.344904719593885
-      ],
-      "points": 1227174
+      "supported": false
     },
     {
       "dataset": "spindle2",
-      "estimated_rotation_deg": 0.09754616700861256,
       "applied_rotation_deg": 0.0,
-      "supported": false,
-      "bootstrap_interval_deg": [
-        -2.1967323494486877,
-        2.653661457923976
-      ],
-      "points": 1282862
+      "supported": false
+    },
+    {
+      "dataset": "vhedge",
+      "applied_rotation_deg": 0.0,
+      "supported": false
     }
   ],
   "chandelier_across_roi": [
     0.65,
     3.35
   ],
-  "mesh_triangles": 609606,
-  "mesh_matches_final_ply": true
+  "mesh_triangles": 609606
 }

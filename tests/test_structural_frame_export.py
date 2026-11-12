@@ -24,12 +24,14 @@ class StructuralFrameExportTests(unittest.TestCase):
             meta=root/'transformations/test/transformations.json';meta.parent.mkdir(parents=True);meta.write_text(json.dumps(dict(scans=entries)))
             qc=root/'QC/test';qc.mkdir(parents=True);(qc/'index.html').write_text('<h1>Test</h1>')
             with patch('tools.orient_collection.estimate_structural_frame',return_value=(T,report.copy())) as fit:
-                orient_collection(root);_,first=read_records(primary);orient_collection(root);self.assertEqual(fit.call_count,1)
+                orient_collection(root,apply_rotation=True);_,first=read_records(primary);orient_collection(root,apply_rotation=True);self.assertEqual(fit.call_count,1)
                 old=np.concatenate(arrays);np.testing.assert_allclose(xyz(first),xyz(old)@R.T,rtol=0,atol=1e-7)
                 for k in old.dtype.names:
                     if k not in ['x','y','z']:np.testing.assert_array_equal(first[k],old[k])
                 restore_working_frames(root);_,working=read_records(primary);np.testing.assert_array_equal(xyz(working),xyz(old));self.assertNotIn('structural_up_frame',json.loads(meta.read_text()))
-                orient_collection(root);_,again=read_records(primary);np.testing.assert_array_equal(xyz(again),xyz(first))
+                orient_collection(root,apply_rotation=True);_,again=read_records(primary);np.testing.assert_array_equal(xyz(again),xyz(first))
                 output=json.loads(meta.read_text());np.testing.assert_allclose(output['scans'][1]['sensor_to_merged'],T@np.array(entries[1]['sensor_to_merged']),atol=1e-12)
+                orient_collection(root);_,physical=read_records(primary);np.testing.assert_array_equal(xyz(physical),xyz(old));self.assertNotIn('structural_up_frame',json.loads(meta.read_text()))
+                policy=json.loads((qc/'structural_frame/report.json').read_text());self.assertFalse(policy['automatic_structural_rotation_enabled']);self.assertEqual(policy['applied_rotation_deg'],0.)
 
 if __name__=='__main__':unittest.main()

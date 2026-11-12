@@ -12,7 +12,7 @@ def api(repo,path):return json.loads(subprocess.check_output(['gh','api',f'repos
 
 def release_notes(datasets,paths):
     base=(ROOT/'results/RELEASE_NOTES.md').read_text()
-    table='\n\n| Dataset | Final measured points | Mesh | Final registration | Structural-up rotation |\n| --- | ---: | --- | --- | ---: |\n'
+    table='\n\n| Dataset | Final measured points | Mesh | Final registration | Applied PCA rotation |\n| --- | ---: | --- | --- | ---: |\n'
     for item in datasets:
         method=('Joint rigid refinement' if item.get('joint_registration',{}).get('promoted') else
                 'Trunk-refined rigid poses' if item.get('trunk_refinement',{}).get('promoted') else 'Accepted rigid poses')

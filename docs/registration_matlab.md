@@ -166,18 +166,15 @@ Pfinal = Pfinal(:,1:3);
 
 Actual fitting includes robust losses, source visibility, return-set exclusions, plausible pose bounds and same-facing wood overlap. Disconnected within-side recordings first receive a validated multistart recovery. No prescribed branch angle, symmetry, upright trunk or per-point warp is used. The saved final JSON matrices already include the composition above; loading a final PLY does not require another transformation.
 
-## Common structural output frame
+## Current output frame
 
-The relative registration is evaluated in the original physics working frame. A subsequent common frame transform can align a paired-view woody height-centre PCA axis with output Z. It preserves relative poses and branch angles. It is not an independently surveyed gravity reference.
+The PCA output-frame trial was withdrawn because it introduced a ground slope inconsistent with the field conditions. Final point clouds and saved sensor-to-output matrices again use the original gravity-referenced registration frame. Do not apply a canopy-PCA rotation to these files. Soil can have a slight real slope; neither a soil-plane normal nor a tree-growth PCA axis is an independent measurement of vertical.
 
 ```matlab
-% F is structural_up_frame.registration_to_structural from transformations.json.
-% Final PLY files ALREADY include F; do not apply it again to those files.
-T_sensor_output = F * T_sensor_registration;
-p_output = p_registration * F(1:3,1:3).' + F(1:3,4).'; % N-by-3
-g_reference_output = F(1:3,1:3) * [0; 0; 1];
-% To inspect the original registration frame from an already exported cloud:
-p_registration = (p_output - F(1:3,4).') * F(1:3,1:3); % N-by-3
+% T is scans(i).sensor_to_merged from the CURRENT transformations.json.
+% Apply only when starting with that scan's decoded sensor-frame coordinates:
+p_registered = p_sensor * T(1:3,1:3).' + T(1:3,4).'; % N-by-3
+% Current final PLY coordinates are already registered; plot them directly.
 ```
 
-The estimator balances both viewing sides and height bins. Per-scan PCA alignment is avoided because opposite views may be dominated by different branches. ROI limits are stored in the earlier registration frame.
+The historical structural-frame estimator remains available for explicit research experiments. Release generation uses it only as a diagnostic, with zero applied PCA rotation. See [orientation correction](structural_up_report.md).
