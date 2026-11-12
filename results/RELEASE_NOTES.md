@@ -10,3 +10,5 @@ Chandelier coverage remains expanded to Y=0.65…3.35 m and X=−1.25…7.35 m. 
 Raw SIGNAL/intensity, NIR, reflectivity, leaf/wood colours and scan/frame/pixel identifiers are retained. Original states are archived in QC. Terrain variation is retained; tree axes and V-shapes are not forced upright or symmetric.
 
 [Orientation correction, limitations and figures](https://github.com/u0063882/GreensprayAI/blob/main/docs/structural_up_report.md). `git pull` updates code and documents; download fresh release ZIPs for data.
+
+**Read-only raw-source angle audit:** `90_QC.zip → QC/vhedge/raw_geometry/` now compares the original east/west captures using IMU rotation only. The observed wall-profile asymmetry is already present before registration; current clouds, matrices, contributions and mesh are unchanged by this check. [Method, angles and figures](https://github.com/u0063882/GreensprayAI/blob/main/docs/raw_geometry_audit.md).

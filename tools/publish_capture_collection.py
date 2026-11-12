@@ -91,6 +91,10 @@ def main():
             result=next((r for r in frames if r['dataset']==item['dataset']),None)
             if result:item['structural_frame_deg']=result['applied_rotation_deg']
         before=frozen_hashes(stage,frozen_ids)
+        if (ROOT/'presets/raw_geometry_audit.json').exists():
+            from tools.raw_geometry_collection import add_raw_geometry_checks
+            add_raw_geometry_checks(stage,args.asset_dir/'raw_geometry',config,repo)
+            assert_frozen(stage,before,frozen_ids)
         provenance=stage/'QC/provenance';provenance.mkdir(parents=True,exist_ok=True)
         (provenance/'collection.json').write_text(json.dumps(dict(packaging_commit=commit,datasets=datasets,frozen_dataset_sha256=before),indent=2)+'\n')
         code=work/'code.zip';subprocess.run(['git','archive','--format=zip','--output',str(code),'HEAD'],cwd=ROOT,check=True)

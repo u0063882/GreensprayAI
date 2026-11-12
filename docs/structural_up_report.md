@@ -33,3 +33,7 @@ Use the existing [Current release](https://github.com/u0063882/GreensprayAI/rele
 `QC/<dataset>/structural_frame/report.json` records zero applied rotation, `automatic_structural_rotation_enabled=false`, and the rejected PCA diagnostic estimate. The former PCA field is removed from current transformation metadata. `structural_frame_baseline.zip` preserves the accepted pre-PCA XYZ, matrices and mesh. Chandelier’s earlier ROI baselines remain in QC for provenance.
 
 Regression checks exercise explicit research-frame round trips, source-attribute preservation and default restoration even when the diagnostic estimator reports a strong PCA direction. Real-data verification compares every restored point coordinate and raw-attribute digest with the wider-ROI/joint baseline, checks all sensor matrices, and verifies mesh bytes and the current source-cloud hash. Relative registration quality is distinct from absolute orientation accuracy; the latter remains under investigation.
+
+## Subsequent independent raw-source check
+
+The [original-PCAP angle audit](raw_geometry_audit.md) now measures the east and west tracks separately with IMU rotation only. It finds the visible profile difference before registration, with ground-plane tilts around 1–2°. This supports retaining the physical working frame; it does not establish exact biological branch angles.

@@ -1,0 +1,5 @@
+{
+  "purpose": "Independent read-only raw PCAP checks; no output rotations or registration changes",
+  "datasets": ["vhedge"],
+  "repeat_last_complete_frame": true
+}

@@ -1,0 +1,5202 @@
+{
+  "dataset": "vhedge",
+  "policy": "Read-only raw-source audit; no current output cloud, registration transform, terrain levelling or PCA-up frame is read or changed.",
+  "side_mapping": {
+    "sideB": "west",
+    "sideA": "east"
+  },
+  "gps_sides": {
+    "median_lat_lon": {
+      "sideA": [
+        50.77316986665,
+        5.15841922415
+      ],
+      "sideB": [
+        50.773168493325,
+        5.1583588332999994
+      ]
+    },
+    "median_easting_separation_m": 4.251369077949348,
+    "method": "Geographic east/west from median original H5 RTK longitude; no assumed A/B meaning"
+  },
+  "primary_method": "Near-side vegetation centre sheet from equally weighted along-row/height-cell medians; local row axis from low-stem/support candidates; wall fit free to lean. This measures visible structure, not a verified individual branch.",
+  "angle_definitions": {
+    "wall_from_vertical": "Outward near-side centre-sheet tilt from IMU vertical; positive leans toward the viewing track",
+    "ground_from_horizontal": "Detected ground-plane normal angle from IMU up; ground is not flattened",
+    "wall_ground_dihedral": "Acute dihedral between independently fitted ground and vegetation-sheet planes"
+  },
+  "summary": {
+    "east": {
+      "wall_from_vertical_deg": {
+        "median": 25.530385411224426,
+        "minimum": 25.012952885946667,
+        "maximum": 26.78222909941571,
+        "q25": 25.45166554064565,
+        "q75": 25.973771610290576
+      },
+      "ground_from_horizontal_deg": {
+        "median": 1.3240953676119698,
+        "minimum": 0.9510784619895247,
+        "maximum": 1.8745278893327288,
+        "q25": 1.1400321955529162,
+        "q75": 1.3974574366844
+      },
+      "wall_ground_dihedral_deg": {
+        "median": 65.63160867869992,
+        "minimum": 64.5343355392408,
+        "maximum": 66.00782596559318,
+        "q25": 65.10681602821163,
+        "q75": 65.73763602294423
+      },
+      "scans": 7
+    },
+    "west": {
+      "wall_from_vertical_deg": {
+        "median": 8.161826480253932,
+        "minimum": 5.4156698214217736,
+        "maximum": 9.37875336792945,
+        "q25": 6.301114864183899,
+        "q75": 8.686327031233379
+      },
+      "ground_from_horizontal_deg": {
+        "median": 1.1648179536608394,
+        "minimum": 0.9672804838936443,
+        "maximum": 1.4379013555469855,
+        "q25": 1.067604604737508,
+        "q75": 1.2521206956598934
+      },
+      "wall_ground_dihedral_deg": {
+        "median": 82.41749285728957,
+        "minimum": 81.43073370361148,
+        "maximum": 84.8822063637938,
+        "q25": 81.6440667573103,
+        "q75": 84.34104392009574
+      },
+      "scans": 6
+    },
+    "apparent_median_sheet_opening_deg": 33.69221189147836,
+    "difference_between_outward_tilts_deg": 17.368558930970494,
+    "opening_caution": "Sum of independently measured median near-side profile inclinations; not a matched individual-tree opening or a surveyed biological branch angle."
+  },
+  "excluded_inputs": [
+    {
+      "path": "sideA/OS-0-128_122412001905_1024x10_20260806_084742.pcap",
+      "reason": "Byte-identical duplicate of sideB recording 084742; GPS places it on the B track"
+    },
+    {
+      "path": "sideB/OS-0-128_122412001905_1024x10_20260806_084751.pcap",
+      "reason": "Incomplete capture: one lidar packet, zero duration and no IMU packets"
+    }
+  ],
+  "limits": [
+    "The IMU median is used without inferred bias correction; factory calibration uncertainty remains.",
+    "Occlusion, supports, crown curvature and feature selection affect a vegetation-sheet inclination.",
+    "Different scans view overlapping trees; scan-to-scan ranges are not independent survey confidence intervals.",
+    "Low-cylinder roles are inferred from fitted size, not verified tree/post identities.",
+    "Presence of a feature in these raw scans rules out its creation by later registration, but does not alone establish biological shape."
+  ],
+  "secondary_wood_model_sha256": "02c362761dd36bdf53fd5c8472467daa430b61e20e811c47485a9c94aa10f551",
+  "repeatability": {
+    "median_absolute_wall_change_deg": 0.21808249548290704,
+    "maximum_absolute_wall_change_deg": 0.49080863345285763,
+    "repeated_scans": 13
+  },
+  "geometry_preservation": {
+    "files_verified": 110,
+    "all_geometry_hashes_unchanged": true
+  },
+  "scans": [
+    {
+      "scan": "sideA_084441",
+      "side": "sideA",
+      "geographic_side": "east",
+      "selected_frame": 16563,
+      "points": 37812,
+      "imu_samples": 54,
+      "identity": {
+        "pcap_sha256": "356dc33910341499d1222793f44dc522bda2dcb8df79fe27e52e6d58bb6e246a",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "e08d0c1fa810a18e0ac96d7eef7321d14d8b681d8a0c4330193b92be06009c0c",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        0.0004206398266557242,
+        -0.9998608679606563,
+        0.016675364556709066
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999999115310643,
+          0.0004205813393871959,
+          -7.0143230771048064e-06
+        ],
+        [
+          0.0,
+          0.016675366031960955,
+          0.9998609564172911
+        ],
+        [
+          0.0004206398266557242,
+          -0.9998608679606563,
+          0.016675364556709066
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.1952193011253642,
+      "ground_slope_outward_deg": -1.1206859705680148,
+      "ground_slope_along_row_deg": 0.4155721480382217,
+      "wall_ground_dihedral_deg": 65.71306442674594,
+      "ground": {
+        "normal": [
+          -0.019568196854573634,
+          -0.007223816055871437,
+          0.9997824274078093
+        ],
+        "offset": 1.6642905196598488,
+        "coef": [
+          0.019572455284405398,
+          0.007225388102290436,
+          -1.664652702463421
+        ],
+        "inliers": 5183,
+        "rmse_m": 0.012536208046998206
+      },
+      "row": {
+        "centre": [
+          2.0538439949353537,
+          -0.06833295317159759,
+          -1.6249476648182446
+        ],
+        "along": [
+          0.0014228499141981598,
+          0.9999989877485482,
+          0.0
+        ],
+        "outward": [
+          -0.9999989877485482,
+          0.0014228499141981598,
+          0.0
+        ],
+        "extent": [
+          -2.2999342029494865,
+          2.122279963689224
+        ],
+        "row_residual_m": 0.04523113020248627
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            2.065309209643983,
+            0.8161738578323616,
+            -1.307689607143402
+          ],
+          "axis": [
+            -0.14090576939541535,
+            -0.06161809130086971,
+            0.9881036256261403
+          ],
+          "radius_m": 0.06658422051910541,
+          "diameter_cm": 13.316844103821083,
+          "taper": 0.00349552453116299,
+          "inclination_from_gravity_deg": 8.846600750615778,
+          "outward_inclination_deg": 8.110797255356099,
+          "along_row_inclination_deg": -3.5799177948005227,
+          "points": 74,
+          "inliers": 68,
+          "rmse_m": 0.004683581485833891,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.0801045919661414,
+            -0.058070849882161345,
+            -1.3438079953193665
+          ],
+          "axis": [
+            -0.2247466613012667,
+            0.0066119302100064795,
+            0.974394797098605
+          ],
+          "radius_m": 0.07350555620633256,
+          "diameter_cm": 14.701111241266512,
+          "taper": -0.10352482075825205,
+          "inclination_from_gravity_deg": 12.99369909707331,
+          "outward_inclination_deg": 12.988782809627962,
+          "along_row_inclination_deg": 0.36998166841297697,
+          "points": 102,
+          "inliers": 70,
+          "rmse_m": 0.00535802322573208,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.140818670137338,
+            -1.0561673499036248,
+            -1.346124529838562
+          ],
+          "axis": [
+            -0.2285648253367284,
+            -0.034852845241712636,
+            0.9729046200925083
+          ],
+          "radius_m": 0.08970758232817898,
+          "diameter_cm": 17.941516465635797,
+          "taper": -0.053748074115047006,
+          "inclination_from_gravity_deg": 13.368133531175358,
+          "outward_inclination_deg": 13.217988829049174,
+          "along_row_inclination_deg": -2.0707832547757747,
+          "points": 91,
+          "inliers": 61,
+          "rmse_m": 0.004766340618166624,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.1247750103921734,
+            -2.170806188212959,
+            -1.357722520828247
+          ],
+          "axis": [
+            -0.04491723633911153,
+            -0.08247174277224928,
+            0.995580661485429
+          ],
+          "radius_m": 0.0745183062676796,
+          "diameter_cm": 14.903661253535919,
+          "taper": 0.023951511362720997,
+          "inclination_from_gravity_deg": 5.388604826249642,
+          "outward_inclination_deg": 2.5764980963150705,
+          "along_row_inclination_deg": -4.739094347167864,
+          "points": 66,
+          "inliers": 51,
+          "rmse_m": 0.004878806441620405,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideA/OS-0-128_122412001905_1024x10_20260806_084441.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 25.40439938299748,
+        "plane_tilt_from_vertical_deg": 25.398605672583567,
+        "normal": [
+          -0.9030797497162489,
+          0.021919748013156444,
+          -0.4289131500659279
+        ],
+        "coef": [
+          -0.022848576950953676,
+          0.47492901045024183,
+          -0.12864880323537417
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 112,
+        "fit_rmse_m": 0.1320960213040759
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 23.190032289937296,
+          "plane_tilt_from_vertical_deg": 23.17914273800954,
+          "normal": [
+            -0.9187527254717008,
+            0.031092260373669175,
+            -0.39360729259399824
+          ],
+          "coef": [
+            -0.03241740334805483,
+            0.42839463554985097,
+            -0.15038020825190782
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 112,
+          "fit_rmse_m": 0.14186376176877857
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.40439938299748,
+          "plane_tilt_from_vertical_deg": 25.398605672583567,
+          "normal": [
+            -0.9030797497162489,
+            0.021919748013156444,
+            -0.4289131500659279
+          ],
+          "coef": [
+            -0.022848576950953676,
+            0.47492901045024183,
+            -0.12864880323537417
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 112,
+          "fit_rmse_m": 0.1320960213040759
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.715560988016215,
+          "plane_tilt_from_vertical_deg": 26.71359895035902,
+          "normal": [
+            -0.893171044857216,
+            0.012936098587716416,
+            -0.4495310244933021
+          ],
+          "coef": [
+            -0.013060218012722063,
+            0.5032879407919467,
+            -0.09332722769868393
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 112,
+          "fit_rmse_m": 0.1302558981161346
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.44853964871402,
+          "plane_tilt_from_vertical_deg": 26.444287786482686,
+          "normal": [
+            -0.8951757075893985,
+            0.018546080185243115,
+            -0.44532740253838254
+          ],
+          "coef": [
+            -0.019294389832437517,
+            0.49746069112147295,
+            -0.21837688802199556
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 71,
+          "fit_rmse_m": 0.09801812559782498
+        },
+        {
+          "outward_tilt_from_vertical_deg": 29.609554779814683,
+          "plane_tilt_from_vertical_deg": 29.606938904350873,
+          "normal": [
+            -0.869323783938331,
+            0.013912504566254461,
+            -0.49404716464709714
+          ],
+          "coef": [
+            -0.014580640317219307,
+            0.56829966479862,
+            -0.2202917139047562
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 71,
+          "fit_rmse_m": 0.08992471392306804
+        },
+        {
+          "outward_tilt_from_vertical_deg": 31.576077010936388,
+          "plane_tilt_from_vertical_deg": 31.575689514176254,
+          "normal": [
+            -0.8519287306734498,
+            0.005903336110672655,
+            -0.5236244727625791
+          ],
+          "coef": [
+            -0.005506472245167763,
+            0.6146286905622383,
+            -0.202037528515575
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 71,
+          "fit_rmse_m": 0.10057683998373632
+        },
+        {
+          "outward_tilt_from_vertical_deg": 19.992965300170454,
+          "plane_tilt_from_vertical_deg": 19.9765459590767,
+          "normal": [
+            -0.9389369723241275,
+            0.041019268996811256,
+            -0.3416354512836275
+          ],
+          "coef": [
+            -0.04226144657511028,
+            0.3638311967821245,
+            -0.03493583440451528
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 86,
+          "fit_rmse_m": 0.15494417557975473
+        },
+        {
+          "outward_tilt_from_vertical_deg": 22.6723186305801,
+          "plane_tilt_from_vertical_deg": 22.664354940647456,
+          "normal": [
+            -0.92237976809849,
+            0.027106941309164485,
+            -0.3853320349198042
+          ],
+          "coef": [
+            -0.027964027779167996,
+            0.4177415055768516,
+            -0.0250510229184365
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 86,
+          "fit_rmse_m": 0.1117613297900873
+        },
+        {
+          "outward_tilt_from_vertical_deg": 23.618918153078948,
+          "plane_tilt_from_vertical_deg": 23.615381149098727,
+          "normal": [
+            -0.9160763072575496,
+            0.018106115854168298,
+            -0.40059501725564073
+          ],
+          "coef": [
+            -0.018341488353457537,
+            0.4372825213105348,
+            0.02474681669988094
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 86,
+          "fit_rmse_m": 0.11122489439298051
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.842862025672346,
+          "plane_tilt_from_vertical_deg": 26.839581470693748,
+          "normal": [
+            -0.8921250200442711,
+            0.016311545881813706,
+            -0.4514940554226095
+          ],
+          "coef": [
+            -0.01686063380565164,
+            0.5060756697127075,
+            -0.18453964814738946
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 46,
+          "fit_rmse_m": 0.09699210479793562
+        }
+      ]
+    },
+    {
+      "scan": "sideA_084449",
+      "side": "sideA",
+      "geographic_side": "east",
+      "selected_frame": 16647,
+      "points": 37529,
+      "imu_samples": 53,
+      "identity": {
+        "pcap_sha256": "d4a4a1348b2d3f31e3d8595217b42e237157f1d3c689f3d651f1264b86fedbbc",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "54398fc8a6899c61f486c3503eeb3a29d3262effe374e1a170ea4702aa36e97a",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        0.004931060940628829,
+        -0.9998026731572551,
+        0.01924316464635641
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999878422450944,
+          0.004930147849471235,
+          -9.489037121561381e-05
+        ],
+        [
+          0.0,
+          0.019243398602880175,
+          0.999814828660893
+        ],
+        [
+          0.004931060940628829,
+          -0.9998026731572551,
+          0.01924316464635641
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.8745278893327288,
+      "ground_slope_outward_deg": -1.6381404302616331,
+      "ground_slope_along_row_deg": 0.9117325677814918,
+      "wall_ground_dihedral_deg": 65.76220761914253,
+      "ground": {
+        "normal": [
+          -0.02909282265698339,
+          -0.014953501395890327,
+          0.9994648570439346
+        ],
+        "offset": 1.6673311989325017,
+        "coef": [
+          0.02910839981210517,
+          0.014961507941477326,
+          -1.6682239372216454
+        ],
+        "inliers": 5075,
+        "rmse_m": 0.013160616570804773
+      },
+      "row": {
+        "centre": [
+          2.0385563174883523,
+          -0.21986731700599194,
+          -1.6121743715021581
+        ],
+        "along": [
+          0.03300496539331004,
+          0.9994551877194827,
+          0.0
+        ],
+        "outward": [
+          -0.9994551877194827,
+          0.03300496539331004,
+          0.0
+        ],
+        "extent": [
+          -2.04209460057798,
+          2.1748172847997562
+        ],
+        "row_residual_m": 0.04517420050716038
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            1.9789734265263852,
+            -0.5675783326311347,
+            -1.3160679340362549
+          ],
+          "axis": [
+            -0.3199656331363864,
+            0.00814429139649468,
+            0.9473941440231094
+          ],
+          "radius_m": 0.05458140093475917,
+          "diameter_cm": 10.916280186951834,
+          "taper": 0.06476596229158835,
+          "inclination_from_gravity_deg": 18.66711392815204,
+          "outward_inclination_deg": 18.66661706930499,
+          "along_row_inclination_deg": -0.14639090153169246,
+          "points": 44,
+          "inliers": 40,
+          "rmse_m": 0.0045743886583695615,
+          "role": "small stem / support candidate",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.101346629989445,
+            -1.231382461239245,
+            -1.337608277797699
+          ],
+          "axis": [
+            -0.043702042334816234,
+            -0.08932287947581437,
+            0.9950434938724615
+          ],
+          "radius_m": 0.07143566123078511,
+          "diameter_cm": 14.287132246157022,
+          "taper": -0.014140292691320382,
+          "inclination_from_gravity_deg": 5.70696224073577,
+          "outward_inclination_deg": 2.3439807012005507,
+          "along_row_inclination_deg": -5.209168461179977,
+          "points": 82,
+          "inliers": 73,
+          "rmse_m": 0.004271109048800193,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.1256934616130163,
+            0.8745231587278534,
+            -1.309073567390442
+          ],
+          "axis": [
+            -0.2342489457211316,
+            0.008378744615550042,
+            0.9721405392571619
+          ],
+          "radius_m": 0.07938583432774832,
+          "diameter_cm": 15.877166865549663,
+          "taper": -0.0894144897526799,
+          "inclination_from_gravity_deg": 13.556183544616713,
+          "outward_inclination_deg": 13.556134451457956,
+          "along_row_inclination_deg": 0.03788526648107,
+          "points": 83,
+          "inliers": 62,
+          "rmse_m": 0.004891828101684631,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.1550339598001025,
+            -0.11576524846631746,
+            -1.3131573796272278
+          ],
+          "axis": [
+            -0.13669862568761956,
+            -0.053674419159357965,
+            0.9891574912333332
+          ],
+          "radius_m": 0.09322489402574552,
+          "diameter_cm": 18.644978805149105,
+          "taper": 0.06265330275784772,
+          "inclination_from_gravity_deg": 8.444923252575801,
+          "outward_inclination_deg": 7.763318751800931,
+          "along_row_inclination_deg": -3.3647967817316524,
+          "points": 98,
+          "inliers": 64,
+          "rmse_m": 0.005507160447449544,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.158967463540515,
+            1.746136000192883,
+            -1.2651315927505493
+          ],
+          "axis": [
+            -0.05658846464649162,
+            -0.01562387419004114,
+            0.9982753328737751
+          ],
+          "radius_m": 0.07166991369173824,
+          "diameter_cm": 14.333982738347647,
+          "taper": 0.0826274724186474,
+          "inclination_from_gravity_deg": 3.3655241437308687,
+          "outward_inclination_deg": 3.2131430827016403,
+          "along_row_inclination_deg": -1.00333371308995,
+          "points": 65,
+          "inliers": 53,
+          "rmse_m": 0.005044082487035416,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideA/OS-0-128_122412001905_1024x10_20260806_084449.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 25.876617165090835,
+        "plane_tilt_from_vertical_deg": 25.876517913066042,
+        "normal": [
+          -0.8991543610869817,
+          0.03236671262977718,
+          -0.4364330771742711
+        ],
+        "coef": [
+          -0.0029703489925064306,
+          0.48506967844522825,
+          -0.15450308454839873
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 114,
+        "fit_rmse_m": 0.09141316304523328
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 24.52733000857389,
+          "plane_tilt_from_vertical_deg": 24.52691180331248,
+          "normal": [
+            -0.9090664833210859,
+            0.035679292902010155,
+            -0.41512060531879974
+          ],
+          "coef": [
+            -0.00621726186616821,
+            0.4563024456018319,
+            -0.1843335728659509
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 114,
+          "fit_rmse_m": 0.09681244989528459
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.876617165090835,
+          "plane_tilt_from_vertical_deg": 25.876517913066042,
+          "normal": [
+            -0.8991543610869817,
+            0.03236671262977718,
+            -0.4364330771742711
+          ],
+          "coef": [
+            -0.0029703489925064306,
+            0.48506967844522825,
+            -0.15450308454839873
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 114,
+          "fit_rmse_m": 0.09141316304523328
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.924535757799728,
+          "plane_tilt_from_vertical_deg": 26.92453556768705,
+          "normal": [
+            -0.8911217121632818,
+            0.029313101468452615,
+            -0.452816559098142
+          ],
+          "coef": [
+            0.00012820711813469097,
+            0.507867521326157,
+            -0.1259951027384784
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 114,
+          "fit_rmse_m": 0.0925617915275309
+        },
+        {
+          "outward_tilt_from_vertical_deg": 27.218162175552795,
+          "plane_tilt_from_vertical_deg": 27.21744416721894,
+          "normal": [
+            -0.8885348962674252,
+            0.03632649299232801,
+            -0.4573686959356907
+          ],
+          "coef": [
+            -0.007850031156830776,
+            0.5143309712592269,
+            -0.24402262786767787
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.10545750759748665
+        },
+        {
+          "outward_tilt_from_vertical_deg": 28.752601870903213,
+          "plane_tilt_from_vertical_deg": 28.752345968993733,
+          "normal": [
+            -0.8760869690466488,
+            0.03296806599096548,
+            -0.48102466599070737
+          ],
+          "coef": [
+            -0.00460236651599166,
+            0.5486778672966105,
+            -0.22199694605974193
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.0915580127273071
+        },
+        {
+          "outward_tilt_from_vertical_deg": 30.870944373816528,
+          "plane_tilt_from_vertical_deg": 30.870943629826677,
+          "normal": [
+            -0.8578506965722751,
+            0.028537309706429703,
+            -0.51310603616132
+          ],
+          "coef": [
+            -0.00024283299172989187,
+            0.5977991034484004,
+            -0.2206714914822913
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.08321294560967306
+        },
+        {
+          "outward_tilt_from_vertical_deg": 22.940742818818308,
+          "plane_tilt_from_vertical_deg": 22.94062671983795,
+          "normal": [
+            -0.9205044676602261,
+            0.02730176315910632,
+            -0.3897770372225229
+          ],
+          "coef": [
+            0.003360099507768184,
+            0.42325477154635116,
+            -0.1322279712017138
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 89,
+          "fit_rmse_m": 0.1058786257690475
+        },
+        {
+          "outward_tilt_from_vertical_deg": 24.43036309324759,
+          "plane_tilt_from_vertical_deg": 24.430335968878136,
+          "normal": [
+            -0.9100152831908354,
+            0.028606893125435552,
+            -0.41358654478212153
+          ],
+          "coef": [
+            0.0015856922637496075,
+            0.4542592533752808,
+            -0.10110881526564268
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 89,
+          "fit_rmse_m": 0.09486880113095102
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.48551580674755,
+          "plane_tilt_from_vertical_deg": 25.48414057012565,
+          "normal": [
+            -0.9024880735563053,
+            0.019762029735689742,
+            -0.43026124537233684
+          ],
+          "coef": [
+            0.011117642169681106,
+            0.4766652605251997,
+            -0.06961343683189783
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 89,
+          "fit_rmse_m": 0.09396211137372923
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.586724970494565,
+          "plane_tilt_from_vertical_deg": 26.58591823515668,
+          "normal": [
+            -0.8934980330299345,
+            0.03701116477461761,
+            -0.44753931520444584
+          ],
+          "coef": [
+            -0.008388340270452911,
+            0.5004729382945297,
+            -0.19036965695727928
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 43,
+          "fit_rmse_m": 0.05682116403363046
+        }
+      ]
+    },
+    {
+      "scan": "sideA_084457",
+      "side": "sideA",
+      "geographic_side": "east",
+      "selected_frame": 16728,
+      "points": 37939,
+      "imu_samples": 52,
+      "identity": {
+        "pcap_sha256": "85f09f393af8c74572b45cd72eb5e7f42d6533bdc1d82a39eb930441df265e68",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "da9410215a0038d92a3abcdbc1e0b5b233efcd1b585e7b752a33f28e4e0e51d7",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        -0.002672008356757974,
+        -0.9999615993094139,
+        0.008346273294142885
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.999996430179299,
+          -0.002671915288050329,
+          2.2301391601705096e-05
+        ],
+        [
+          -3.3881317890172014e-21,
+          0.00834630308894843,
+          0.9999651690057746
+        ],
+        [
+          -0.002672008356757974,
+          -0.9999615993094139,
+          0.008346273294142885
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.3646153158299557,
+      "ground_slope_outward_deg": -1.3187844280815975,
+      "ground_slope_along_row_deg": 0.3508126323132923,
+      "wall_ground_dihedral_deg": 64.5343355392408,
+      "ground": {
+        "normal": [
+          -0.023232005958331574,
+          -0.005236179996685445,
+          0.9997163879411972
+        ],
+        "offset": 1.6638522215763172,
+        "coef": [
+          0.02323859670458665,
+          0.005237665461770377,
+          -1.664324244001674
+        ],
+        "inliers": 5405,
+        "rmse_m": 0.01365544247610318
+      },
+      "row": {
+        "centre": [
+          2.0893257515771047,
+          -0.053294437272208076,
+          -1.6160503839096714
+        ],
+        "along": [
+          0.038258817509087155,
+          0.9992678634294242,
+          0.0
+        ],
+        "outward": [
+          -0.9992678634294242,
+          0.038258817509087155,
+          0.0
+        ],
+        "extent": [
+          -2.542063004231885,
+          2.5744399304261636
+        ],
+        "row_residual_m": 0.031030619104483535
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            2.056751199095996,
+            -2.3735712124491624,
+            -1.3478899002075195
+          ],
+          "axis": [
+            0.1607255837421441,
+            -0.06795099272064206,
+            0.9846572750551463
+          ],
+          "radius_m": 0.0523521170349924,
+          "diameter_cm": 10.47042340699848,
+          "taper": 0.0688511518937902,
+          "inclination_from_gravity_deg": 10.049529286717716,
+          "outward_inclination_deg": -9.411252170285533,
+          "along_row_inclination_deg": -3.5885638076380606,
+          "points": 30,
+          "inliers": 22,
+          "rmse_m": 0.004608753739948607,
+          "role": "small stem / support candidate",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.1235112974166217,
+            -0.6578281363600256,
+            -1.3367907404899597
+          ],
+          "axis": [
+            0.002561111344356803,
+            -0.07589090301828631,
+            0.9971128379214416
+          ],
+          "radius_m": 0.07561004844250392,
+          "diameter_cm": 15.122009688500784,
+          "taper": 0.011767783962231286,
+          "inclination_from_gravity_deg": 4.354895698049737,
+          "outward_inclination_deg": -0.31389464850809196,
+          "along_row_inclination_deg": -4.343655100060293,
+          "points": 82,
+          "inliers": 76,
+          "rmse_m": 0.004758934465830419,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.2407781094395163,
+            2.317241549015073,
+            -1.2886309623718262
+          ],
+          "axis": [
+            -0.16040592169146597,
+            -0.16077390591578067,
+            0.9738694427195541
+          ],
+          "radius_m": 0.0678929360102075,
+          "diameter_cm": 13.5785872020415,
+          "taper": -0.03899630452083958,
+          "inclination_from_gravity_deg": 13.126901485513734,
+          "outward_inclination_deg": 8.993783989438837,
+          "along_row_inclination_deg": -9.718667568787321,
+          "points": 55,
+          "inliers": 46,
+          "rmse_m": 0.004528784447776946,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideA/OS-0-128_122412001905_1024x10_20260806_084457.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 26.78222909941571,
+        "plane_tilt_from_vertical_deg": 26.778609541423595,
+        "normal": [
+          -0.8913550776889825,
+          0.04995978590295789,
+          -0.45054427670385383
+        ],
+        "coef": [
+          -0.017724368290821534,
+          0.5047471068769,
+          -0.1537075958253842
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 116,
+        "fit_rmse_m": 0.09386261623482331
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 25.767797932761436,
+          "plane_tilt_from_vertical_deg": 25.767453228508103,
+          "normal": [
+            -0.8997016816882925,
+            0.03944298839975795,
+            -0.43471960461124237
+          ],
+          "coef": [
+            -0.005543919936085051,
+            0.4827257007973181,
+            -0.20162142973961097
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 116,
+          "fit_rmse_m": 0.11514771044109921
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.78222909941571,
+          "plane_tilt_from_vertical_deg": 26.778609541423595,
+          "normal": [
+            -0.8913550776889825,
+            0.04995978590295789,
+            -0.45054427670385383
+          ],
+          "coef": [
+            -0.017724368290821534,
+            0.5047471068769,
+            -0.1537075958253842
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 116,
+          "fit_rmse_m": 0.09386261623482331
+        },
+        {
+          "outward_tilt_from_vertical_deg": 27.91189214110135,
+          "plane_tilt_from_vertical_deg": 27.908023962180735,
+          "normal": [
+            -0.8822981861107982,
+            0.04975701513309378,
+            -0.4680535762395588
+          ],
+          "coef": [
+            -0.01806892070053966,
+            0.5297385182328039,
+            -0.12298084255795146
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 116,
+          "fit_rmse_m": 0.11913404849109499
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.91438158525659,
+          "plane_tilt_from_vertical_deg": 25.914282049019285,
+          "normal": [
+            -0.8986840704428359,
+            0.037083840226558716,
+            -0.4370260064645431
+          ],
+          "coef": [
+            -0.002973055889116478,
+            0.48588413694842414,
+            -0.20322473437758712
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 74,
+          "fit_rmse_m": 0.1014789895384429
+        },
+        {
+          "outward_tilt_from_vertical_deg": 28.212708138657778,
+          "plane_tilt_from_vertical_deg": 28.211299399447174,
+          "normal": [
+            -0.8801468194375403,
+            0.043278949888366364,
+            -0.4727245590516134
+          ],
+          "coef": [
+            -0.010865116933065504,
+            0.5364808966601556,
+            -0.18604765731807035
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 74,
+          "fit_rmse_m": 0.07612372605858546
+        },
+        {
+          "outward_tilt_from_vertical_deg": 30.183429520241322,
+          "plane_tilt_from_vertical_deg": 30.181850193816086,
+          "normal": [
+            -0.8633739596591512,
+            0.04279863047641494,
+            -0.5027461417174893
+          ],
+          "coef": [
+            -0.011263145158846691,
+            0.5816267870986774,
+            -0.17573120407909817
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 74,
+          "fit_rmse_m": 0.06892338165612287
+        },
+        {
+          "outward_tilt_from_vertical_deg": 24.798180358020236,
+          "plane_tilt_from_vertical_deg": 24.79793705626971,
+          "normal": [
+            -0.9072818653852959,
+            0.030446440567188586,
+            -0.4194193975006001
+          ],
+          "coef": [
+            0.004722917560590824,
+            0.462026331027307,
+            -0.1650317907315774
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 90,
+          "fit_rmse_m": 0.12566495729391833
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.271406288796847,
+          "plane_tilt_from_vertical_deg": 25.271043126545663,
+          "normal": [
+            -0.9034232568963428,
+            0.039774957957492925,
+            -0.4269008920326638
+          ],
+          "coef": [
+            -0.005730427828042594,
+            0.47208741365653606,
+            -0.09557681663023962
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 90,
+          "fit_rmse_m": 0.10310789129408764
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.09699714530583,
+          "plane_tilt_from_vertical_deg": 26.09642547535917,
+          "normal": [
+            -0.8971306633372723,
+            0.040735646781918246,
+            -0.4398831435521081
+          ],
+          "coef": [
+            -0.007107388140337134,
+            0.48982995881548635,
+            -0.05413223982728284
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 90,
+          "fit_rmse_m": 0.13512974160211383
+        },
+        {
+          "outward_tilt_from_vertical_deg": 28.259302585760548,
+          "plane_tilt_from_vertical_deg": 28.251039888223804,
+          "normal": [
+            -0.8790466705625948,
+            0.05683580613071584,
+            -0.4733356548098704
+          ],
+          "coef": [
+            -0.026304222914375317,
+            0.5375286366632093,
+            -0.2054383942791087
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 50,
+          "fit_rmse_m": 0.07911889016180056
+        }
+      ]
+    },
+    {
+      "scan": "sideA_084504",
+      "side": "sideA",
+      "geographic_side": "east",
+      "selected_frame": 16792,
+      "points": 40089,
+      "imu_samples": 40,
+      "identity": {
+        "pcap_sha256": "e346ece9b410e61a990900f9bdc79b1f8eeaede7ec4e81942e1c47cf3c3ddb77",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "d8e6f4cd2569cb1f4fc2469bbd0081f238eb290b7a41af41adbf261624401e7f",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        -0.006751867710826604,
+        -0.9999065955220146,
+        0.011883287171054824
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999772058814219,
+          -0.0067513909481534875,
+          8.023621186245254e-05
+        ],
+        [
+          0.0,
+          0.011883558046286062,
+          0.9999293880310551
+        ],
+        [
+          -0.006751867710826604,
+          -0.9999065955220146,
+          0.011883287171054824
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.3240953676119698,
+      "ground_slope_outward_deg": -1.0959073526791863,
+      "ground_slope_along_row_deg": 0.7432933802503972,
+      "wall_ground_dihedral_deg": 65.63160867869992,
+      "ground": {
+        "normal": [
+          -0.020142189225702708,
+          -0.011325241724531488,
+          0.9997329799066734
+        ],
+        "offset": 1.6706354547094535,
+        "coef": [
+          0.020147569031465792,
+          0.011328266599336072,
+          -1.6710816670921569
+        ],
+        "inliers": 3921,
+        "rmse_m": 0.013498587267572509
+      },
+      "row": {
+        "centre": [
+          2.1360888395990645,
+          0.7307764440774918,
+          -1.6197662393559664
+        ],
+        "along": [
+          0.08363631031766708,
+          0.9964963460025567,
+          0.0
+        ],
+        "outward": [
+          -0.9964963460025567,
+          0.08363631031766708,
+          0.0
+        ],
+        "extent": [
+          -1.939817263298668,
+          1.4281200006775068
+        ],
+        "row_residual_m": 0.028886389644216245
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            2.0564083532517436,
+            -0.9757896289254723,
+            -1.3336235284805298
+          ],
+          "axis": [
+            -0.17744384114733364,
+            0.10978252787150734,
+            0.9779884865442033
+          ],
+          "radius_m": 0.0754853141722048,
+          "diameter_cm": 15.09706283444096,
+          "taper": -0.08614433983235219,
+          "inclination_from_gravity_deg": 12.043769637802146,
+          "outward_inclination_deg": 10.76849141085509,
+          "along_row_inclination_deg": 5.5224958524255126,
+          "points": 76,
+          "inliers": 64,
+          "rmse_m": 0.005080765433471072,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.1270828969701348,
+            -0.13670579395270166,
+            -1.3318415880203247
+          ],
+          "axis": [
+            0.0013385311023502377,
+            -0.06577524081149455,
+            0.997833566297846
+          ],
+          "radius_m": 0.06838761779139024,
+          "diameter_cm": 13.677523558278049,
+          "taper": 0.0007115679874011682,
+          "inclination_from_gravity_deg": 3.7721483901297015,
+          "outward_inclination_deg": -0.39246305391453556,
+          "along_row_inclination_deg": -3.7517935664840625,
+          "points": 83,
+          "inliers": 78,
+          "rmse_m": 0.005168941738079849,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideA/OS-0-128_122412001905_1024x10_20260806_084504.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 25.498931698293816,
+        "plane_tilt_from_vertical_deg": 25.48850852091449,
+        "normal": [
+          -0.9013976862042451,
+          0.04794005764906565,
+          -0.43033006190392686
+        ],
+        "coef": [
+          0.030609602677434265,
+          0.4769526455895682,
+          -0.09791477829704451
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 109,
+        "fit_rmse_m": 0.07398500338793572
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 24.840801050789427,
+          "plane_tilt_from_vertical_deg": 24.822033511133174,
+          "normal": [
+            -0.9068049806306133,
+            0.03836309020824969,
+            -0.4198011438921847
+          ],
+          "coef": [
+            0.0414773201274075,
+            0.4629293059437885,
+            -0.15225021129847707
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 109,
+          "fit_rmse_m": 0.08298139723521603
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.498931698293816,
+          "plane_tilt_from_vertical_deg": 25.48850852091449,
+          "normal": [
+            -0.9013976862042451,
+            0.04794005764906565,
+            -0.43033006190392686
+          ],
+          "coef": [
+            0.030609602677434265,
+            0.4769526455895682,
+            -0.09791477829704451
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 109,
+          "fit_rmse_m": 0.07398500338793572
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.45364179234487,
+          "plane_tilt_from_vertical_deg": 26.444788640917434,
+          "normal": [
+            -0.8939654451280387,
+            0.050023158076421104,
+            -0.445335229431817
+          ],
+          "coef": [
+            0.027843131134302774,
+            0.49757178200026825,
+            -0.07441707113858267
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 109,
+          "fit_rmse_m": 0.10100496240793348
+        },
+        {
+          "outward_tilt_from_vertical_deg": 27.31957295761894,
+          "plane_tilt_from_vertical_deg": 27.300195841494283,
+          "normal": [
+            -0.8877940110375302,
+            0.03820463269495577,
+            -0.45865259184543755
+          ],
+          "coef": [
+            0.040749975375940314,
+            0.5165711816482084,
+            -0.20788375604108447
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 66,
+          "fit_rmse_m": 0.0836365744785227
+        },
+        {
+          "outward_tilt_from_vertical_deg": 27.936651456460694,
+          "plane_tilt_from_vertical_deg": 27.925639880185848,
+          "normal": [
+            -0.8823032607279448,
+            0.047036301877376244,
+            -0.468325252804647
+          ],
+          "coef": [
+            0.030483169095673814,
+            0.5302920425661642,
+            -0.1548881087464131
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 66,
+          "fit_rmse_m": 0.06517326693425687
+        },
+        {
+          "outward_tilt_from_vertical_deg": 29.266999711174623,
+          "plane_tilt_from_vertical_deg": 29.25161932597175,
+          "normal": [
+            -0.8714666135695432,
+            0.04208474274654777,
+            -0.4886459002811642
+          ],
+          "coef": [
+            0.03549464912637683,
+            0.5604167285443767,
+            -0.13685970247019158
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 66,
+          "fit_rmse_m": 0.0694241791939723
+        },
+        {
+          "outward_tilt_from_vertical_deg": 23.641125936276982,
+          "plane_tilt_from_vertical_deg": 23.613789255280125,
+          "normal": [
+            -0.9157744977424163,
+            0.03001827506985154,
+            -0.4005695600597429
+          ],
+          "coef": [
+            0.05101092167489112,
+            0.4377443136588836,
+            -0.10068228277045387
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 85,
+          "fit_rmse_m": 0.08534432526621889
+        },
+        {
+          "outward_tilt_from_vertical_deg": 23.66303489432141,
+          "plane_tilt_from_vertical_deg": 23.646423369503026,
+          "normal": [
+            -0.9151507350169038,
+            0.04030931383756807,
+            -0.4010913753946411
+          ],
+          "coef": [
+            0.039736833398459015,
+            0.4382000457674545,
+            -0.02135292709585079
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 85,
+          "fit_rmse_m": 0.07365974936008224
+        },
+        {
+          "outward_tilt_from_vertical_deg": 24.294010306698706,
+          "plane_tilt_from_vertical_deg": 24.27899052419413,
+          "normal": [
+            -0.9105754582134701,
+            0.04222834049365657,
+            -0.4111801334676576
+          ],
+          "coef": [
+            0.03740932143752812,
+            0.4513914668354241,
+            0.015814817844046536
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 85,
+          "fit_rmse_m": 0.1077719386243837
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.277627064263427,
+          "plane_tilt_from_vertical_deg": 26.27420071973569,
+          "normal": [
+            -0.8947112425307123,
+            0.05947520546116767,
+            -0.44266747387231953
+          ],
+          "coef": [
+            0.017359331690636748,
+            0.4937450151893485,
+            -0.12224683842864865
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 45,
+          "fit_rmse_m": 0.10316586364589012
+        }
+      ]
+    },
+    {
+      "scan": "sideA_084511",
+      "side": "sideA",
+      "geographic_side": "east",
+      "selected_frame": 16866,
+      "points": 39968,
+      "imu_samples": 52,
+      "identity": {
+        "pcap_sha256": "7b275a3f9bb3ab5f3769819e1e88a22ca086c367dcd28087805e6195a6267e23",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "64442dc9a4395ae1cda64386ff5c81bb800d33a1d77d3cef1c4233fac3b101cf",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        -0.00477540634808408,
+        -0.999982102889682,
+        0.003604080262704966
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999885976820989,
+          -0.004775375332457493,
+          1.7211144012461304e-05
+        ],
+        [
+          0.0,
+          0.0036041213580424443,
+          0.9999935051335266
+        ],
+        [
+          -0.00477540634808408,
+          -0.999982102889682,
+          0.003604080262704966
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 0.9510784619895247,
+      "ground_slope_outward_deg": -0.9195521119579474,
+      "ground_slope_along_row_deg": 0.24288765381822072,
+      "wall_ground_dihedral_deg": 65.39969587845323,
+      "ground": {
+        "normal": [
+          -0.016302898697991893,
+          -0.0031196069716012123,
+          0.999862232283221
+        ],
+        "offset": 1.6650150424857113,
+        "coef": [
+          0.01630514502059313,
+          0.003120036811949061,
+          -1.6652444594127636
+        ],
+        "inliers": 4976,
+        "rmse_m": 0.013044744963214262
+      },
+      "row": {
+        "centre": [
+          2.0851329982280733,
+          0.15326000452041627,
+          -1.6307678866335276
+        ],
+        "along": [
+          0.06909689459816155,
+          0.9976099534171109,
+          0.0
+        ],
+        "outward": [
+          -0.9976099534171109,
+          0.06909689459816155,
+          0.0
+        ],
+        "extent": [
+          -2.475842890165546,
+          1.9922209866576808
+        ],
+        "row_residual_m": 0.05676607228163367
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            2.0019390449038212,
+            0.5094834110654681,
+            -1.3163349628448486
+          ],
+          "axis": [
+            -0.2775799764109361,
+            0.09439578362826774,
+            0.9560537603759056
+          ],
+          "radius_m": 0.040674127392569356,
+          "diameter_cm": 8.134825478513871,
+          "taper": 0.05278702913436366,
+          "inclination_from_gravity_deg": 17.049118485756566,
+          "outward_inclination_deg": 16.513385961027836,
+          "along_row_inclination_deg": 4.484942557232065,
+          "points": 41,
+          "inliers": 37,
+          "rmse_m": 0.004354026266699301,
+          "role": "small stem / support candidate",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.0520998497188927,
+            -0.9856692271261269,
+            -1.3416293263435364
+          ],
+          "axis": [
+            -0.19969659294899103,
+            0.11470681823337117,
+            0.9731205560542545
+          ],
+          "radius_m": 0.07395302756918852,
+          "diameter_cm": 14.790605513837704,
+          "taper": -0.11321672029861354,
+          "inclination_from_gravity_deg": 13.314516480402046,
+          "outward_inclination_deg": 12.017013494244848,
+          "along_row_inclination_deg": 5.904195706941409,
+          "points": 74,
+          "inliers": 64,
+          "rmse_m": 0.00480029214321501,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.125913851809173,
+            -0.1516239486998138,
+            -1.3320878744125366
+          ],
+          "axis": [
+            -0.0034401582076285862,
+            -0.060573048983622806,
+            0.9981578387451225
+          ],
+          "radius_m": 0.0678414788012217,
+          "diameter_cm": 13.56829576024434,
+          "taper": -0.006026719527212713,
+          "inclination_from_gravity_deg": 3.4783088736467964,
+          "outward_inclination_deg": -0.04325051843339757,
+          "along_row_inclination_deg": -3.4780412860434535,
+          "points": 85,
+          "inliers": 77,
+          "rmse_m": 0.004939212346373249,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.1507827672032738,
+            0.4343003343821661,
+            -1.3181852102279663
+          ],
+          "axis": [
+            0.08186335066635805,
+            0.04744140238341553,
+            0.9955137895366252
+          ],
+          "radius_m": 0.05028827616039274,
+          "diameter_cm": 10.057655232078549,
+          "taper": -0.038547933641816884,
+          "inclination_from_gravity_deg": 5.429251341041465,
+          "outward_inclination_deg": -4.502345491934619,
+          "along_row_inclination_deg": 3.0465953092750073,
+          "points": 57,
+          "inliers": 52,
+          "rmse_m": 0.003470219389580046,
+          "role": "small stem / support candidate",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideA/OS-0-128_122412001905_1024x10_20260806_084511.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 25.530385411224426,
+        "plane_tilt_from_vertical_deg": 25.525117121589773,
+        "normal": [
+          -0.9013826399909863,
+          0.042763634655374326,
+          -0.43090672758027515
+        ],
+        "coef": [
+          0.02174870387829231,
+          0.4776266749830906,
+          -0.13200327137470802
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 115,
+        "fit_rmse_m": 0.08896535351853693
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 24.158813531211152,
+          "plane_tilt_from_vertical_deg": 24.14520664412741,
+          "normal": [
+            -0.9120001083254942,
+            0.03055222934185069,
+            -0.4090505637406334
+          ],
+          "coef": [
+            0.035679400328564766,
+            0.44855407043059087,
+            -0.1706091170835354
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 115,
+          "fit_rmse_m": 0.11594618539542684
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.530385411224426,
+          "plane_tilt_from_vertical_deg": 25.525117121589773,
+          "normal": [
+            -0.9013826399909863,
+            0.042763634655374326,
+            -0.43090672758027515
+          ],
+          "coef": [
+            0.02174870387829231,
+            0.4776266749830906,
+            -0.13200327137470802
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 115,
+          "fit_rmse_m": 0.08896535351853693
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.35304029036367,
+          "plane_tilt_from_vertical_deg": 26.345451794682283,
+          "normal": [
+            -0.8952929208162805,
+            0.03883204676858122,
+            -0.4437822192021847
+          ],
+          "coef": [
+            0.025811327518293927,
+            0.495383160717029,
+            -0.09731243731163573
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 115,
+          "fit_rmse_m": 0.10168861724293903
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.924043909771136,
+          "plane_tilt_from_vertical_deg": 25.91774208778807,
+          "normal": [
+            -0.8984916615132069,
+            0.04090875008111278,
+            -0.4370803225472842
+          ],
+          "coef": [
+            0.023657357633711473,
+            0.4860926063647723,
+            -0.21050129898768774
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 73,
+          "fit_rmse_m": 0.10130713169112264
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.828547048396956,
+          "plane_tilt_from_vertical_deg": 26.825083189091757,
+          "normal": [
+            -0.891190204096012,
+            0.0462274801594144,
+            -0.4512682574715614
+          ],
+          "coef": [
+            0.01732855717685417,
+            0.5057618778355147,
+            -0.16368977861561654
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 73,
+          "fit_rmse_m": 0.0725443474829525
+        },
+        {
+          "outward_tilt_from_vertical_deg": 28.0156081032873,
+          "plane_tilt_from_vertical_deg": 28.00933725039408,
+          "normal": [
+            -0.8819299750563963,
+            0.040753542713673735,
+            -0.46961544677886097
+          ],
+          "coef": [
+            0.022979388149258376,
+            0.5320589102432322,
+            -0.13698653466981656
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 73,
+          "fit_rmse_m": 0.06387322888637556
+        },
+        {
+          "outward_tilt_from_vertical_deg": 23.443138751569098,
+          "plane_tilt_from_vertical_deg": 23.407759578770257,
+          "normal": [
+            -0.9176454732094548,
+            0.010079759055178057,
+            -0.3972721786830605
+          ],
+          "coef": [
+            0.05823375875150549,
+            0.43363283960161947,
+            -0.13504130063038142
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 89,
+          "fit_rmse_m": 0.12075614790337043
+        },
+        {
+          "outward_tilt_from_vertical_deg": 24.62098569239185,
+          "plane_tilt_from_vertical_deg": 24.607551781572248,
+          "normal": [
+            -0.9086568666310059,
+            0.03087417702711948,
+            -0.41640062910281556
+          ],
+          "coef": [
+            0.035201774341795354,
+            0.45827886478067975,
+            -0.09180996834175456
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 89,
+          "fit_rmse_m": 0.09670088812440855
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.27688105859961,
+          "plane_tilt_from_vertical_deg": 25.25915250331256,
+          "normal": [
+            -0.9040036314793662,
+            0.02632998014544467,
+            -0.4267132133150534
+          ],
+          "coef": [
+            0.04005566210959657,
+            0.47220426719834147,
+            -0.052624850923039784
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 89,
+          "fit_rmse_m": 0.11089995782093652
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.16179437162554,
+          "plane_tilt_from_vertical_deg": 26.161442219445284,
+          "normal": [
+            -0.8957418236641419,
+            0.05702692542817333,
+            -0.44090193367124947
+          ],
+          "coef": [
+            0.005573392244411229,
+            0.49123300824800004,
+            -0.14562676565201135
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 55,
+          "fit_rmse_m": 0.11231285389554786
+        }
+      ]
+    },
+    {
+      "scan": "sideA_084519",
+      "side": "sideA",
+      "geographic_side": "east",
+      "selected_frame": 16940,
+      "points": 36434,
+      "imu_samples": 51,
+      "identity": {
+        "pcap_sha256": "693beebcf4133ddeec8c856c4f8e55a11f10cb92a494f697488d3fa696c45092",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "4052c1861d7a28df8436069b2f8c6f97a6a8cf5042228f0afea12f0156429e3e",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        0.005825217474356536,
+        -0.9998355229954844,
+        0.01717538348109247
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999830332767533,
+          0.005824358180309037,
+          -0.00010005204153813348
+        ],
+        [
+          -1.3552527156068805e-20,
+          0.017175674896015004,
+          0.9998524872159223
+        ],
+        [
+          0.005825217474356536,
+          -0.9998355229954844,
+          0.01717538348109247
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.4302995575388444,
+      "ground_slope_outward_deg": -1.0159406123511459,
+      "ground_slope_along_row_deg": 1.0069987414978128,
+      "wall_ground_dihedral_deg": 66.00782596559318,
+      "ground": {
+        "normal": [
+          -0.019849863770969173,
+          -0.01513362600610001,
+          0.999688429598033
+        ],
+        "offset": 1.668114231887981,
+        "coef": [
+          0.019856050328551516,
+          0.015138342665609449,
+          -1.6686341288942566
+        ],
+        "inliers": 5193,
+        "rmse_m": 0.012815302597600327
+      },
+      "row": {
+        "centre": [
+          2.1359497706095376,
+          0.0389818764395184,
+          -1.6256324817464856
+        ],
+        "along": [
+          0.1292218244346845,
+          0.991615711901426,
+          0.0
+        ],
+        "outward": [
+          -0.991615711901426,
+          0.1292218244346845,
+          0.0
+        ],
+        "extent": [
+          -2.4627486086628774,
+          2.9495086029781747
+        ],
+        "row_residual_m": 0.03442630004263765
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            2.1360098512276777,
+            -0.15322814120992204,
+            -1.3396503925323486
+          ],
+          "axis": [
+            -0.05131832231059535,
+            0.0740545727916231,
+            0.9959329043885817
+          ],
+          "radius_m": 0.06705228322285314,
+          "diameter_cm": 13.410456644570628,
+          "taper": 0.007352671028631524,
+          "inclination_from_gravity_deg": 5.169245094517627,
+          "outward_inclination_deg": 3.4738437435712863,
+          "along_row_inclination_deg": 3.8373682396012136,
+          "points": 83,
+          "inliers": 67,
+          "rmse_m": 0.004846159859130705,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.2701673397854534,
+            0.6606776625267957,
+            -1.3106017112731934
+          ],
+          "axis": [
+            -0.06938073093484529,
+            -0.04836871543870208,
+            0.9964169717250686
+          ],
+          "radius_m": 0.07036680833961538,
+          "diameter_cm": 14.073361667923075,
+          "taper": -0.028304939441156616,
+          "inclination_from_gravity_deg": 4.851684007395461,
+          "outward_inclination_deg": 3.5919520339556366,
+          "along_row_inclination_deg": -3.269947454559717,
+          "points": 77,
+          "inliers": 68,
+          "rmse_m": 0.0042014539256434134,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.5226067627401627,
+            2.7570891757962035,
+            -1.2675507068634033
+          ],
+          "axis": [
+            -0.20930074682816474,
+            -0.00840604678823146,
+            0.9778151848660188
+          ],
+          "radius_m": 0.05774803660793548,
+          "diameter_cm": 11.549607321587096,
+          "taper": -0.03753831192918401,
+          "inclination_from_gravity_deg": 12.091264405018583,
+          "outward_inclination_deg": 11.922534386880262,
+          "along_row_inclination_deg": -2.0723172844282653,
+          "points": 47,
+          "inliers": 38,
+          "rmse_m": 0.004652275768266418,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideA/OS-0-128_122412001905_1024x10_20260806_084519.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 25.012952885946667,
+        "plane_tilt_from_vertical_deg": 25.012944130106654,
+        "normal": [
+          -0.8987185697934472,
+          0.11629979088579913,
+          -0.4228230019149147
+        ],
+        "coef": [
+          0.0008931170358905858,
+          0.46658291509561517,
+          -0.1049584770588001
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 119,
+        "fit_rmse_m": 0.14348619957894673
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 22.229973653400716,
+          "plane_tilt_from_vertical_deg": 22.22854177805337,
+          "normal": [
+            -0.9192845615800135,
+            0.10864401282430451,
+            -0.37830196049990916
+          ],
+          "coef": [
+            0.011947196030867415,
+            0.40870283337316293,
+            -0.10836041997488158
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 119,
+          "fit_rmse_m": 0.16467229357780802
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.012952885946667,
+          "plane_tilt_from_vertical_deg": 25.012944130106654,
+          "normal": [
+            -0.8987185697934472,
+            0.11629979088579913,
+            -0.4228230019149147
+          ],
+          "coef": [
+            0.0008931170358905858,
+            0.46658291509561517,
+            -0.1049584770588001
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 119,
+          "fit_rmse_m": 0.14348619957894673
+        },
+        {
+          "outward_tilt_from_vertical_deg": 27.170502274493906,
+          "plane_tilt_from_vertical_deg": 27.166402928551403,
+          "normal": [
+            -0.879911976937366,
+            0.13150278812408803,
+            -0.4565763129617739
+          ],
+          "coef": [
+            -0.01876996328566605,
+            0.5132795514474704,
+            -0.0926910183105002
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 119,
+          "fit_rmse_m": 0.1395819583352594
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.182732550635638,
+          "plane_tilt_from_vertical_deg": 26.180978760160045,
+          "normal": [
+            -0.8912538809227248,
+            0.10489071134609015,
+            -0.44120795370606436
+          ],
+          "coef": [
+            0.012434785948618276,
+            0.4916867141965576,
+            -0.1927511900821469
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 76,
+          "fit_rmse_m": 0.11260273091090002
+        },
+        {
+          "outward_tilt_from_vertical_deg": 27.148130755122537,
+          "plane_tilt_from_vertical_deg": 27.14800472454054,
+          "normal": [
+            -0.8827439339756116,
+            0.11208047153225481,
+            -0.4562906035964016
+          ],
+          "coef": [
+            0.0032916829766748658,
+            0.5127863254867573,
+            -0.152975838430029
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 76,
+          "fit_rmse_m": 0.12893095046300004
+        },
+        {
+          "outward_tilt_from_vertical_deg": 27.74374558188835,
+          "plane_tilt_from_vertical_deg": 27.74215005827095,
+          "normal": [
+            -0.8762418890934588,
+            0.12456392316795362,
+            -0.4654932661628253
+          ],
+          "coef": [
+            -0.01162719258657494,
+            0.5259860828943073,
+            -0.11209535234806735
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 76,
+          "fit_rmse_m": 0.13507245408334348
+        },
+        {
+          "outward_tilt_from_vertical_deg": 20.802758455950695,
+          "plane_tilt_from_vertical_deg": 20.80070052771659,
+          "normal": [
+            -0.9286600853517607,
+            0.10715117128636281,
+            -0.35511839204189527
+          ],
+          "coef": [
+            0.014710675441315487,
+            0.3799194576881082,
+            -0.05846547098723124
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 92,
+          "fit_rmse_m": 0.17865145382340697
+        },
+        {
+          "outward_tilt_from_vertical_deg": 23.883866981784546,
+          "plane_tilt_from_vertical_deg": 23.883655067411578,
+          "normal": [
+            -0.9061659399453806,
+            0.12220826786994009,
+            -0.40488075843034793
+          ],
+          "coef": [
+            -0.00447003471187236,
+            0.44280217799933475,
+            -0.0604797487662076
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 92,
+          "fit_rmse_m": 0.15140093794829562
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.601026154256232,
+          "plane_tilt_from_vertical_deg": 25.58970928277976,
+          "normal": [
+            -0.8901848636078761,
+            0.14495781642790848,
+            -0.431923766491125
+          ],
+          "coef": [
+            -0.03184984223329688,
+            0.47914174265083304,
+            -0.029504554962707385
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 92,
+          "fit_rmse_m": 0.15190752699400847
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.344331936124817,
+          "plane_tilt_from_vertical_deg": 26.343395727592664,
+          "normal": [
+            -0.8896502438276952,
+            0.10774194643438614,
+            -0.44375006099813935
+          ],
+          "coef": [
+            0.009065389871290365,
+            0.4951938866204116,
+            -0.14443827671940954
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 49,
+          "fit_rmse_m": 0.06346692644840901
+        }
+      ]
+    },
+    {
+      "scan": "sideA_084527",
+      "side": "sideA",
+      "geographic_side": "east",
+      "selected_frame": 17021,
+      "points": 38089,
+      "imu_samples": 49,
+      "identity": {
+        "pcap_sha256": "723ade4f2525c3e0baf5f188bb5394ce9023ac19e692c3b050150ea20525166f",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "5a319b230d8a4ef4bf0c66b465690c42beb9016bd6261a0fc513adb95ceaa9cc",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        0.00012013142907714711,
+        -0.9999740156381726,
+        0.007207885744628826
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999999927842199,
+          0.00012012830840544659,
+          -8.658936213751556e-07
+        ],
+        [
+          1.0587911840678754e-22,
+          0.007207885796639346,
+          0.9999740228537654
+        ],
+        [
+          0.00012013142907714711,
+          -0.9999740156381726,
+          0.007207885744628826
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.0848450899804682,
+      "ground_slope_outward_deg": -0.8917397468423667,
+      "ground_slope_along_row_deg": 0.6179096923319507,
+      "wall_ground_dihedral_deg": 64.81393617797,
+      "ground": {
+        "normal": [
+          -0.017180623328124214,
+          -0.007955136320629922,
+          0.9998207549296911
+        ],
+        "offset": 1.6686676016453104,
+        "coef": [
+          0.017183703422252304,
+          0.007956562495233797,
+          -1.6689667557087806
+        ],
+        "inliers": 4593,
+        "rmse_m": 0.012883140017286817
+      },
+      "row": {
+        "centre": [
+          2.221146196126938,
+          0.7299730356782674,
+          -1.6249911621388617
+        ],
+        "along": [
+          0.1714552232535904,
+          0.9851919134965845,
+          0.0
+        ],
+        "outward": [
+          -0.9851919134965845,
+          0.1714552232535904,
+          0.0
+        ],
+        "extent": [
+          -2.2721271023900544,
+          2.1743649881373344
+        ],
+        "row_residual_m": 0.05531416933037111
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            2.2379122444055843,
+            0.7356681690530759,
+            -1.3383749723434448
+          ],
+          "axis": [
+            -0.11831766749735403,
+            0.09367187780747208,
+            0.9885476765771125
+          ],
+          "radius_m": 0.06217131918206973,
+          "diameter_cm": 12.434263836413946,
+          "taper": -0.03625023756618268,
+          "inclination_from_gravity_deg": 8.679601352215663,
+          "outward_inclination_deg": 7.641322717217134,
+          "along_row_inclination_deg": 4.165650893004518,
+          "points": 72,
+          "inliers": 52,
+          "rmse_m": 0.005191240114113558,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.4016880018349056,
+            2.223345588702945,
+            -1.291098415851593
+          ],
+          "axis": [
+            -0.22712756354421995,
+            0.12663637444234874,
+            0.965596343482391
+          ],
+          "radius_m": 0.048524310552386846,
+          "diameter_cm": 9.70486211047737,
+          "taper": 0.11110737165024256,
+          "inclination_from_gravity_deg": 15.072766463349389,
+          "outward_inclination_deg": 14.263738195539782,
+          "along_row_inclination_deg": 5.078909569422256,
+          "points": 34,
+          "inliers": 31,
+          "rmse_m": 0.004178289291611857,
+          "role": "small stem / support candidate",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.431511351685802,
+            1.5369960071068443,
+            -1.3236932754516602
+          ],
+          "axis": [
+            -0.03071755438554478,
+            0.010331866001153081,
+            0.9994747042309302
+          ],
+          "radius_m": 0.07227205827209254,
+          "diameter_cm": 14.454411654418509,
+          "taper": 0.04147942384903207,
+          "inclination_from_gravity_deg": 1.8571996561327895,
+          "outward_inclination_deg": 1.8357571553455874,
+          "along_row_inclination_deg": 0.28159316187461836,
+          "points": 57,
+          "inliers": 47,
+          "rmse_m": 0.004888715441644481,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideA/OS-0-128_122412001905_1024x10_20260806_084527.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 26.070926055490318,
+        "plane_tilt_from_vertical_deg": 26.064495833488856,
+        "normal": [
+          -0.8810741334480386,
+          0.1750751090703899,
+          -0.43938260952474956
+        ],
+        "coef": [
+          -0.02384939254064043,
+          0.48926588212854655,
+          -0.12669417045351705
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 117,
+        "fit_rmse_m": 0.11986878198381597
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 25.816189144154837,
+          "plane_tilt_from_vertical_deg": 25.81463268474563,
+          "normal": [
+            -0.8849988008937149,
+            0.16477507618988127,
+            -0.4354610162612786
+          ],
+          "coef": [
+            -0.01177299563337355,
+            0.48376752065322526,
+            -0.19224344655791165
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 117,
+          "fit_rmse_m": 0.14512114708178359
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.070926055490318,
+          "plane_tilt_from_vertical_deg": 26.064495833488856,
+          "normal": [
+            -0.8810741334480386,
+            0.1750751090703899,
+            -0.43938260952474956
+          ],
+          "coef": [
+            -0.02384939254064043,
+            0.48926588212854655,
+            -0.12669417045351705
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 117,
+          "fit_rmse_m": 0.11986878198381597
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.944330735986767,
+          "plane_tilt_from_vertical_deg": 26.920582639231014,
+          "normal": [
+            -0.8706073941538879,
+            0.1924984015955843,
+            -0.45275504483961526
+          ],
+          "coef": [
+            -0.04533149975873636,
+            0.5083021965588771,
+            -0.09028255397503117
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 117,
+          "fit_rmse_m": 0.14408830649914242
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.847282608394973,
+          "plane_tilt_from_vertical_deg": 25.847244473631857,
+          "normal": [
+            -0.8869156170616179,
+            0.15266939749760242,
+            -0.4359733286336773
+          ],
+          "coef": [
+            0.0018419294764197654,
+            0.4844373846362204,
+            -0.1877812676038078
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 73,
+          "fit_rmse_m": 0.1264661218977526
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.84597171345797,
+          "plane_tilt_from_vertical_deg": 25.843302764272316,
+          "normal": [
+            -0.8841794668381455,
+            0.16795210457120544,
+            -0.43591141415649526
+          ],
+          "coef": [
+            -0.015410749632769814,
+            0.48440913618084164,
+            -0.11986109975934732
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 73,
+          "fit_rmse_m": 0.11157990532411666
+        },
+        {
+          "outward_tilt_from_vertical_deg": 27.338668868714745,
+          "plane_tilt_from_vertical_deg": 27.323952543359866,
+          "normal": [
+            -0.869314455689867,
+            0.18328147019763244,
+            -0.4590210014921155
+          ],
+          "coef": [
+            -0.03549962874595008,
+            0.5169934769950317,
+            -0.09948648224885442
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 73,
+          "fit_rmse_m": 0.13368219161834557
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.296271875403917,
+          "plane_tilt_from_vertical_deg": 26.28230815018565,
+          "normal": [
+            -0.8774195715573757,
+            0.18457534382531596,
+            -0.44279435170272624
+          ],
+          "coef": [
+            -0.03504621282625177,
+            0.49414982419953773,
+            -0.22950523205098802
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 93,
+          "fit_rmse_m": 0.16241346772165702
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.13781935077519,
+          "plane_tilt_from_vertical_deg": 26.12431470995723,
+          "normal": [
+            -0.8787047384951853,
+            0.18438025808591968,
+            -0.44032022775961305
+          ],
+          "coef": [
+            -0.034538307350660484,
+            0.49071369747370025,
+            -0.13560617027706634
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 93,
+          "fit_rmse_m": 0.1298651986604213
+        },
+        {
+          "outward_tilt_from_vertical_deg": 26.64147062094299,
+          "plane_tilt_from_vertical_deg": 26.609064787429475,
+          "normal": [
+            -0.8714612262580085,
+            0.19985102295241944,
+            -0.44790054672188084
+          ],
+          "coef": [
+            -0.05317412619565936,
+            0.5016683272074186,
+            -0.08349197557979761
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 93,
+          "fit_rmse_m": 0.1545355433446059
+        },
+        {
+          "outward_tilt_from_vertical_deg": 31.371148379828334,
+          "plane_tilt_from_vertical_deg": 31.37091328199575,
+          "normal": [
+            -0.8417930703548702,
+            0.14277532201596385,
+            -0.5205762519802054
+          ],
+          "coef": [
+            0.00429690178572391,
+            0.6097116430115515,
+            -0.2879345290743098
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 64,
+          "fit_rmse_m": 0.12831803082853294
+        }
+      ]
+    },
+    {
+      "scan": "sideB_084742",
+      "side": "sideB",
+      "geographic_side": "west",
+      "selected_frame": 18379,
+      "points": 38092,
+      "imu_samples": 46,
+      "identity": {
+        "pcap_sha256": "3513095aa1f6109975bb11f29462daba5e09ef189027843e18b819551c48a120",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "3785bdab4d3161c154d5e913b7a1163dff6534fb089a031a040d2a8a9f3d5b5f",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        -0.010524117725968705,
+        -0.999911116932565,
+        0.00818542489797566
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999446199395694,
+          -0.010523765116851302,
+          8.614914620829427e-05
+        ],
+        [
+          0.0,
+          0.008185878232406846,
+          0.9999664951374941
+        ],
+        [
+          -0.010524117725968705,
+          -0.999911116932565,
+          0.00818542489797566
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.0448449663464934,
+      "ground_slope_outward_deg": -0.2868513175187177,
+      "ground_slope_along_row_deg": 1.0047144150580303,
+      "wall_ground_dihedral_deg": 84.8822063637938,
+      "ground": {
+        "normal": [
+          -0.00554995822271219,
+          -0.017369866000207446,
+          0.9998337290364138
+        ],
+        "offset": 1.685124801858838,
+        "coef": [
+          0.005550881173073589,
+          0.017372754584852417,
+          -1.68540503577817
+        ],
+        "inliers": 5930,
+        "rmse_m": 0.012315727227945208
+      },
+      "row": {
+        "centre": [
+          1.8160987675189972,
+          -0.2851526878774166,
+          -1.680277974986812
+        ],
+        "along": [
+          0.031177605285880972,
+          0.9995138602984142,
+          0.0
+        ],
+        "outward": [
+          -0.9995138602984142,
+          0.031177605285880972,
+          0.0
+        ],
+        "extent": [
+          -1.953372773325884,
+          2.3404905966621556
+        ],
+        "row_residual_m": 0.03657427281904595
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            1.768505608616228,
+            -2.0457318705729786,
+            -1.3936721086502075
+          ],
+          "axis": [
+            0.06682703461116962,
+            0.0010685457373526713,
+            0.9977640029862195
+          ],
+          "radius_m": 0.07959375847193532,
+          "diameter_cm": 15.918751694387065,
+          "taper": 0.01707104045008197,
+          "inclination_from_gravity_deg": 3.832253208238239,
+          "outward_inclination_deg": -3.8280030969458707,
+          "along_row_inclination_deg": 0.1809736062949092,
+          "points": 85,
+          "inliers": 71,
+          "rmse_m": 0.004055066949907955,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            1.844487334382616,
+            -1.2000714372866788,
+            -1.4092097282409668
+          ],
+          "axis": [
+            0.10890235417734853,
+            -0.14535474612440955,
+            0.983367822858639
+          ],
+          "radius_m": 0.06659240162756688,
+          "diameter_cm": 13.318480325513377,
+          "taper": 0.04473370378245374,
+          "inclination_from_gravity_deg": 10.464439311007201,
+          "outward_inclination_deg": -6.577097834243921,
+          "along_row_inclination_deg": -8.210462455074095,
+          "points": 83,
+          "inliers": 75,
+          "rmse_m": 0.004595273827464954,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            1.969391170363539,
+            1.8436269612587441,
+            -1.3408737778663635
+          ],
+          "axis": [
+            0.06164817212524806,
+            0.1637242297855632,
+            0.9845780210093764
+          ],
+          "radius_m": 0.06697028490839063,
+          "diameter_cm": 13.394056981678126,
+          "taper": 0.07647861979438093,
+          "inclination_from_gravity_deg": 10.075518589905158,
+          "outward_inclination_deg": -3.285108845670992,
+          "along_row_inclination_deg": 9.545553437840903,
+          "points": 68,
+          "inliers": 47,
+          "rmse_m": 0.004298234586314678,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideB/OS-0-128_122412001905_1024x10_20260806_084742.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 5.4156698214217736,
+        "plane_tilt_from_vertical_deg": 5.415403812343889,
+        "normal": [
+          -0.9953120410112954,
+          0.021145175249888157,
+          -0.09437596400345064
+        ],
+        "coef": [
+          0.009941411463321849,
+          0.0948037720695713,
+          0.06318645484616855
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 117,
+        "fit_rmse_m": 0.08771027081282746
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 2.8678890688009786,
+          "plane_tilt_from_vertical_deg": 2.8676854988303497,
+          "normal": [
+            -0.998562540458955,
+            0.019232418544160464,
+            -0.05002965989390783
+          ],
+          "coef": [
+            0.011925500610407603,
+            0.05009595084783607,
+            0.060360205000051244
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 117,
+          "fit_rmse_m": 0.05580657039244773
+        },
+        {
+          "outward_tilt_from_vertical_deg": 5.4156698214217736,
+          "plane_tilt_from_vertical_deg": 5.415403812343889,
+          "normal": [
+            -0.9953120410112954,
+            0.021145175249888157,
+            -0.09437596400345064
+          ],
+          "coef": [
+            0.009941411463321849,
+            0.0948037720695713,
+            0.06318645484616855
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 117,
+          "fit_rmse_m": 0.08771027081282746
+        },
+        {
+          "outward_tilt_from_vertical_deg": 7.265476282498352,
+          "plane_tilt_from_vertical_deg": 7.26531327714797,
+          "normal": [
+            -0.9912581799052008,
+            0.03760390229582691,
+            -0.12646409491691454
+          ],
+          "coef": [
+            -0.0067347891546496305,
+            0.12749056100011338,
+            0.11355972492098415
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 117,
+          "fit_rmse_m": 0.11141117209808146
+        },
+        {
+          "outward_tilt_from_vertical_deg": 6.240516446260152,
+          "plane_tilt_from_vertical_deg": 6.2397446374910635,
+          "normal": [
+            -0.9939580465002966,
+            0.01530080294476953,
+            -0.10868894712232538
+          ],
+          "coef": [
+            0.015791375057341045,
+            0.10935031021777057,
+            -0.00439793693095192
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 69,
+          "fit_rmse_m": 0.04079403709121102
+        },
+        {
+          "outward_tilt_from_vertical_deg": 12.432290583643564,
+          "plane_tilt_from_vertical_deg": 12.429203194694265,
+          "normal": [
+            -0.9765270801866862,
+            0.008341091606071013,
+            -0.2152331012016609
+          ],
+          "coef": [
+            0.022645148244851566,
+            0.22045515317455597,
+            -0.07466678026063972
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 69,
+          "fit_rmse_m": 0.06820052619991121
+        },
+        {
+          "outward_tilt_from_vertical_deg": 17.16434557411847,
+          "plane_tilt_from_vertical_deg": 17.160842530507036,
+          "normal": [
+            -0.9554289788824119,
+            0.009896641709436722,
+            -0.2950551182314701
+          ],
+          "coef": [
+            0.020827717064084667,
+            0.30886992466127133,
+            -0.09758877920556122
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 69,
+          "fit_rmse_m": 0.09482335141222414
+        },
+        {
+          "outward_tilt_from_vertical_deg": 1.3794229236010613,
+          "plane_tilt_from_vertical_deg": 1.3793509079870103,
+          "normal": [
+            -0.9994905924279951,
+            0.020954707901883255,
+            -0.024071889512084135
+          ],
+          "coef": [
+            0.010220697485991083,
+            0.0240801244816601,
+            0.10811828485542271
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 97,
+          "fit_rmse_m": 0.05822901592449334
+        },
+        {
+          "outward_tilt_from_vertical_deg": 2.5813706315611165,
+          "plane_tilt_from_vertical_deg": 2.5813690680448325,
+          "normal": [
+            -0.9985333190715004,
+            0.030046227802621173,
+            -0.04503814937234854
+          ],
+          "coef": [
+            0.001101374816318211,
+            0.045083924802843095,
+            0.157334937679709
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 97,
+          "fit_rmse_m": 0.0902506802622629
+        },
+        {
+          "outward_tilt_from_vertical_deg": 2.6734188510752412,
+          "plane_tilt_from_vertical_deg": 2.6726898690140684,
+          "normal": [
+            -0.9974261875467793,
+            0.05446662638813195,
+            -0.046630322814589675
+          ],
+          "coef": [
+            -0.02337459059991628,
+            0.04669385269356487,
+            0.2706534479439422
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 97,
+          "fit_rmse_m": 0.1127727497758466
+        },
+        {
+          "outward_tilt_from_vertical_deg": 2.519813724241437,
+          "plane_tilt_from_vertical_deg": 2.5194697282960865,
+          "normal": [
+            -0.9989261636533205,
+            0.014633424644231865,
+            -0.04395887227899569
+          ],
+          "coef": [
+            0.016536057775657222,
+            0.044007422097748834,
+            0.06811957253899176
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 51,
+          "fit_rmse_m": 0.02865687525026437
+        }
+      ]
+    },
+    {
+      "scan": "sideB_084758",
+      "side": "sideB",
+      "geographic_side": "west",
+      "selected_frame": 18536,
+      "points": 39137,
+      "imu_samples": 55,
+      "identity": {
+        "pcap_sha256": "9cbc0b4a5c1a64fecbf5fa0e41527ce30e2b4d951206a9b97eaccc9c68fbe00f",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "1509e0d9d8159eacd6fcb8086089bd377665e5138c70eecb6884a274468fbe7c",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        -0.0016790324089641885,
+        -0.9999237649813515,
+        0.012232950408167659
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999985904240914,
+          -0.0016789067744437218,
+          2.0539549144618844e-05
+        ],
+        [
+          3.3881317890172014e-21,
+          0.012232967651464153,
+          0.9999251744517879
+        ],
+        [
+          -0.0016790324089641885,
+          -0.9999237649813515,
+          0.012232950408167659
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.2715767984094823,
+      "ground_slope_outward_deg": -0.42972697445410524,
+      "ground_slope_along_row_deg": 1.196808124407222,
+      "wall_ground_dihedral_deg": 81.58382313606239,
+      "ground": {
+        "normal": [
+          -0.010960357755874547,
+          -0.019295800210281773,
+          0.9997537410043075
+        ],
+        "offset": 1.6710162233361288,
+        "coef": [
+          0.01096305750740604,
+          0.019300553145115598,
+          -1.671427827474295
+        ],
+        "inliers": 5613,
+        "rmse_m": 0.012838607423986423
+      },
+      "row": {
+        "centre": [
+          1.920950010418892,
+          0.41497887546817463,
+          -1.6423590202011467
+        ],
+        "along": [
+          0.1710423106842095,
+          0.985263684480356,
+          0.0
+        ],
+        "outward": [
+          -0.985263684480356,
+          0.1710423106842095,
+          0.0
+        ],
+        "extent": [
+          -2.110700662092536,
+          2.4003528841915163
+        ],
+        "row_residual_m": 0.05210609147417652
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            1.6874894515622987,
+            -0.911426697457637,
+            -1.3519272804260254
+          ],
+          "axis": [
+            -0.21002125157044974,
+            0.025597094010041805,
+            0.9773616846730914
+          ],
+          "radius_m": 0.03713678598969068,
+          "diameter_cm": 7.427357197938137,
+          "taper": -0.049124307513387665,
+          "inclination_from_gravity_deg": 12.21468896094677,
+          "outward_inclination_deg": 12.199519607229437,
+          "along_row_inclination_deg": -0.6273943424994709,
+          "points": 53,
+          "inliers": 46,
+          "rmse_m": 0.004440160762139878,
+          "role": "small stem / support candidate",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            1.93575779270141,
+            0.4769317398309918,
+            -1.3517674207687378
+          ],
+          "axis": [
+            0.02070119254872838,
+            -0.11054039497598844,
+            0.993656017797715
+          ],
+          "radius_m": 0.053633388522674214,
+          "diameter_cm": 10.726677704534843,
+          "taper": -0.015143218950804286,
+          "inclination_from_gravity_deg": 6.457262952224273,
+          "outward_inclination_deg": -2.2651049962850847,
+          "along_row_inclination_deg": -6.053216708687997,
+          "points": 78,
+          "inliers": 66,
+          "rmse_m": 0.004173186098988839,
+          "role": "small stem / support candidate",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideB/OS-0-128_122412001905_1024x10_20260806_084758.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 8.823977838507187,
+        "plane_tilt_from_vertical_deg": 8.821974293320094,
+        "normal": [
+          -0.9697528148031515,
+          0.18989130007385366,
+          -0.15336483409708357
+        ],
+        "coef": [
+          -0.021483292177814743,
+          0.15523672854184656,
+          0.04315835817206162
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 121,
+        "fit_rmse_m": 0.09932914820709914
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 6.003627719621473,
+          "plane_tilt_from_vertical_deg": 6.003117913082291,
+          "normal": [
+            -0.9775519928134554,
+            0.18290594498201668,
+            -0.1045825828552625
+          ],
+          "coef": [
+            -0.013080678149590694,
+            0.10516825078519303,
+            0.04519094544773366
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 121,
+          "fit_rmse_m": 0.07528262350622814
+        },
+        {
+          "outward_tilt_from_vertical_deg": 8.823977838507187,
+          "plane_tilt_from_vertical_deg": 8.821974293320094,
+          "normal": [
+            -0.9697528148031515,
+            0.18989130007385366,
+            -0.15336483409708357
+          ],
+          "coef": [
+            -0.021483292177814743,
+            0.15523672854184656,
+            0.04315835817206162
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 121,
+          "fit_rmse_m": 0.09932914820709914
+        },
+        {
+          "outward_tilt_from_vertical_deg": 13.088094552715328,
+          "plane_tilt_from_vertical_deg": 13.079767794809577,
+          "normal": [
+            -0.9530227598118656,
+            0.2013270874716693,
+            -0.2263073642874882
+          ],
+          "coef": [
+            -0.03631861364985382,
+            0.232488258542953,
+            0.017551896993104298
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 121,
+          "fit_rmse_m": 0.13400937606266775
+        },
+        {
+          "outward_tilt_from_vertical_deg": 11.788049672686693,
+          "plane_tilt_from_vertical_deg": 11.786197147531393,
+          "normal": [
+            -0.9613243547808064,
+            0.18475184078571313,
+            -0.20426023164472598
+          ],
+          "coef": [
+            -0.01798415336435776,
+            0.20869321837682175,
+            -0.06305511590222156
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.0722316930418428
+        },
+        {
+          "outward_tilt_from_vertical_deg": 17.38945812459648,
+          "plane_tilt_from_vertical_deg": 17.382821716883715,
+          "normal": [
+            -0.9352333097164636,
+            0.18995867211600312,
+            -0.298754680774568
+          ],
+          "coef": [
+            -0.02850792169607081,
+            0.31317895599425255,
+            -0.1204629225142529
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.08919114160186721
+        },
+        {
+          "outward_tilt_from_vertical_deg": 24.343442960888492,
+          "plane_tilt_from_vertical_deg": 24.326952670468298,
+          "normal": [
+            -0.89099364121856,
+            0.19087497426707567,
+            -0.41194304886311073
+          ],
+          "coef": [
+            -0.039169822830837586,
+            0.45243042582939597,
+            -0.20844706691950074
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.11362590932174597
+        },
+        {
+          "outward_tilt_from_vertical_deg": 4.149337745929807,
+          "plane_tilt_from_vertical_deg": 4.148846063422533,
+          "normal": [
+            -0.9799341715278962,
+            0.18572781412021785,
+            -0.07234776108534184
+          ],
+          "coef": [
+            -0.01542291084001378,
+            0.07254647553972314,
+            0.10365910724477677
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 99,
+          "fit_rmse_m": 0.07956098989424247
+        },
+        {
+          "outward_tilt_from_vertical_deg": 6.1909602318984405,
+          "plane_tilt_from_vertical_deg": 6.189459038095059,
+          "normal": [
+            -0.9755219213180457,
+            0.19165748866070828,
+            -0.10781645546120923
+          ],
+          "coef": [
+            -0.02211190643343482,
+            0.10847513140593414,
+            0.12552315153541194
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 99,
+          "fit_rmse_m": 0.10323885658894026
+        },
+        {
+          "outward_tilt_from_vertical_deg": 9.136078156351104,
+          "plane_tilt_from_vertical_deg": 9.12571393855772,
+          "normal": [
+            -0.963560179604354,
+            0.21540065234840222,
+            -0.1586011956093262
+          ],
+          "coef": [
+            -0.04808022058687128,
+            0.16081995159734006,
+            0.14431007750213157
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 99,
+          "fit_rmse_m": 0.14248041950492144
+        },
+        {
+          "outward_tilt_from_vertical_deg": 5.51330944452142,
+          "plane_tilt_from_vertical_deg": 5.5126424361635395,
+          "normal": [
+            -0.9779310829455676,
+            0.18553231127964975,
+            -0.09606538648306369
+          ],
+          "coef": [
+            -0.015604718708299117,
+            0.09652350080349203,
+            0.06800816591042602
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 54,
+          "fit_rmse_m": 0.11310845374541272
+        }
+      ]
+    },
+    {
+      "scan": "sideB_084804",
+      "side": "sideB",
+      "geographic_side": "west",
+      "selected_frame": 18595,
+      "points": 38960,
+      "imu_samples": 56,
+      "identity": {
+        "pcap_sha256": "d27ddd8bcdc8baa8da074dd62a0a94c3c2cd3debe5827be90cd059acd5f555f2",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "76ee029ba558af515840efadae60d96f5afa837479e375a27c7e130c5cc151ff",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        0.0027358389401627822,
+        -0.9999942288757634,
+        0.0020142989999000706
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999962575856439,
+          0.002735833389918521,
+          -5.510818264822949e-06
+        ],
+        [
+          0.0,
+          0.002014306538269777,
+          0.9999979712825272
+        ],
+        [
+          0.0027358389401627822,
+          -0.9999942288757634,
+          0.0020142989999000706
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.1937523874111269,
+      "ground_slope_outward_deg": -0.7980180254556427,
+      "ground_slope_along_row_deg": 0.887927856012427,
+      "wall_ground_dihedral_deg": 81.43073370361148,
+      "ground": {
+        "normal": [
+          -0.016308012163242333,
+          -0.012964543538438698,
+          0.9997829611221245
+        ],
+        "offset": 1.673182243398308,
+        "coef": [
+          0.016311552404272563,
+          0.012967357959259187,
+          -1.6735454678287192
+        ],
+        "inliers": 5849,
+        "rmse_m": 0.012902809375850543
+      },
+      "row": {
+        "centre": [
+          1.9038066019614537,
+          0.45295492683847743,
+          -1.6366177979975003
+        ],
+        "along": [
+          0.16623656932045902,
+          0.9860859004268158,
+          0.0
+        ],
+        "outward": [
+          -0.9860859004268158,
+          0.16623656932045902,
+          0.0
+        ],
+        "extent": [
+          -2.4335745349545683,
+          2.021192270337488
+        ],
+        "row_residual_m": 0.05961242462672902
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            2.0214744320950864,
+            1.1332542613325556,
+            -1.3387820720672607
+          ],
+          "axis": [
+            0.09521057027995979,
+            -0.08718203355678905,
+            0.9916321093691288
+          ],
+          "radius_m": 0.060080559937381414,
+          "diameter_cm": 12.016111987476283,
+          "taper": 0.03192217200688348,
+          "inclination_from_gravity_deg": 7.417352821724685,
+          "outward_inclination_deg": -6.237282724326078,
+          "along_row_inclination_deg": -4.045985753245897,
+          "points": 77,
+          "inliers": 74,
+          "rmse_m": 0.003970801162029762,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideB/OS-0-128_122412001905_1024x10_20260806_084804.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 9.37875336792945,
+        "plane_tilt_from_vertical_deg": 9.378177470278562,
+        "normal": [
+          -0.974679281051717,
+          0.15312587878303488,
+          -0.16295018973732897
+        ],
+        "coef": [
+          0.01118221772883258,
+          0.16516796319783264,
+          0.03817767420091779
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 120,
+        "fit_rmse_m": 0.11869808317385687
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 6.487814083721963,
+          "plane_tilt_from_vertical_deg": 6.4877724950830915,
+          "normal": [
+            -0.9791707159487771,
+            0.16869411340324186,
+            -0.11299117280324815
+          ],
+          "coef": [
+            -0.003595957757007373,
+            0.11372016823322757,
+            0.040235305210151714
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 120,
+          "fit_rmse_m": 0.07377145886673052
+        },
+        {
+          "outward_tilt_from_vertical_deg": 9.37875336792945,
+          "plane_tilt_from_vertical_deg": 9.378177470278562,
+          "normal": [
+            -0.974679281051717,
+            0.15312587878303488,
+            -0.16295018973732897
+          ],
+          "coef": [
+            0.01118221772883258,
+            0.16516796319783264,
+            0.03817767420091779
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 120,
+          "fit_rmse_m": 0.11869808317385687
+        },
+        {
+          "outward_tilt_from_vertical_deg": 12.698493029063473,
+          "plane_tilt_from_vertical_deg": 12.696584788969403,
+          "normal": [
+            -0.9646824284147367,
+            0.1451930539934133,
+            -0.21978805558972567
+          ],
+          "coef": [
+            0.01762635032260477,
+            0.22533209577624444,
+            0.036918233097587516
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 120,
+          "fit_rmse_m": 0.1588645633797168
+        },
+        {
+          "outward_tilt_from_vertical_deg": 13.78869331890041,
+          "plane_tilt_from_vertical_deg": 13.788641522285879,
+          "normal": [
+            -0.95721347945645,
+            0.16412176775529308,
+            -0.23834093248066704
+          ],
+          "coef": [
+            -0.0027948294628359397,
+            0.24541432415667686,
+            -0.09255464514664931
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 71,
+          "fit_rmse_m": 0.06708009818084673
+        },
+        {
+          "outward_tilt_from_vertical_deg": 19.547402840537863,
+          "plane_tilt_from_vertical_deg": 19.54738884503237,
+          "normal": [
+            -0.9290572006489036,
+            0.1578121091394253,
+            -0.33458639561612363
+          ],
+          "coef": [
+            -0.0012447563416669064,
+            0.3550499291087556,
+            -0.15371836197413627
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 71,
+          "fit_rmse_m": 0.10691545830995389
+        },
+        {
+          "outward_tilt_from_vertical_deg": 25.40754180417367,
+          "plane_tilt_from_vertical_deg": 25.40746098831982,
+          "normal": [
+            -0.8903027485737882,
+            0.15256062450003532,
+            -0.4290527610144434
+          ],
+          "coef": [
+            -0.0026979636527100963,
+            0.4749962286362866,
+            -0.2121644122375072
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 71,
+          "fit_rmse_m": 0.13359753789477588
+        },
+        {
+          "outward_tilt_from_vertical_deg": 3.851683623219385,
+          "plane_tilt_from_vertical_deg": 3.851608796923199,
+          "normal": [
+            -0.9828041104334178,
+            0.1719997599403625,
+            -0.06717263650949037
+          ],
+          "coef": [
+            -0.006242776026018607,
+            0.0673260101294712,
+            0.1256893837103312
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 97,
+          "fit_rmse_m": 0.07628778435914535
+        },
+        {
+          "outward_tilt_from_vertical_deg": 5.009601624224701,
+          "plane_tilt_from_vertical_deg": 5.009050239562321,
+          "normal": [
+            -0.9846744941980418,
+            0.15097206217230322,
+            -0.08731309706609298
+          ],
+          "coef": [
+            0.014875939784408956,
+            0.0876575286611579,
+            0.18452406187040615
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 97,
+          "fit_rmse_m": 0.12362923272039358
+        },
+        {
+          "outward_tilt_from_vertical_deg": 6.097390493336749,
+          "plane_tilt_from_vertical_deg": 6.093665487224999,
+          "normal": [
+            -0.9857095520885107,
+            0.13079746857716376,
+            -0.10615413856874968
+          ],
+          "coef": [
+            0.035103264916046685,
+            0.10682310612694326,
+            0.2584051776761041
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 97,
+          "fit_rmse_m": 0.164890308092739
+        },
+        {
+          "outward_tilt_from_vertical_deg": 8.75244842728744,
+          "plane_tilt_from_vertical_deg": 8.752009920883028,
+          "normal": [
+            -0.9728969615467136,
+            0.1741247476186741,
+            -0.15215805755826922
+          ],
+          "coef": [
+            -0.010088886026176556,
+            0.153958466801749,
+            0.012270266550565444
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 67,
+          "fit_rmse_m": 0.05472740895852081
+        }
+      ]
+    },
+    {
+      "scan": "sideB_084822",
+      "side": "sideB",
+      "geographic_side": "west",
+      "selected_frame": 18770,
+      "points": 38654,
+      "imu_samples": 55,
+      "identity": {
+        "pcap_sha256": "127c63b5cc779b3f5715922252b39d22a7ef7e037da7093147b512f6bec604a9",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "2b5f8f973c535b842cf73a0f8f92e868e87e39a4352dc3dc71c8b7c1ce1ae89c",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        -0.005697966733377979,
+        -0.9999631724092385,
+        0.006417709899699408
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999837664557887,
+          -0.0056978493872808875,
+          3.656849114917556e-05
+        ],
+        [
+          0.0,
+          0.0064178140835680735,
+          0.99997940561913
+        ],
+        [
+          -0.005697966733377979,
+          -0.9999631724092385,
+          0.006417709899699408
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 0.9672804838936443,
+      "ground_slope_outward_deg": -0.09589728795175256,
+      "ground_slope_along_row_deg": 0.962516859374774,
+      "wall_ground_dihedral_deg": 81.824797621054,
+      "ground": {
+        "normal": [
+          -0.005650121703644996,
+          -0.015907819235955026,
+          0.9998574985526139
+        ],
+        "offset": 1.6778060503890355,
+        "coef": [
+          0.00565092696891714,
+          0.015910086446301663,
+          -1.6780451742551463
+        ],
+        "inliers": 6138,
+        "rmse_m": 0.013877994829532649
+      },
+      "row": {
+        "centre": [
+          1.8760684674436396,
+          0.1461864086714658,
+          -1.6651178099576966
+        ],
+        "along": [
+          0.23963139753201204,
+          0.9708639417121508,
+          0.0
+        ],
+        "outward": [
+          -0.9708639417121508,
+          0.23963139753201204,
+          0.0
+        ],
+        "extent": [
+          -2.3474888017393827,
+          2.8139622628124847
+        ],
+        "row_residual_m": 0.03397550938967938
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            2.016886492714064,
+            0.8036571195766492,
+            -1.3691173791885376
+          ],
+          "axis": [
+            0.043362479754139434,
+            0.14147546521444004,
+            0.9889916016286132
+          ],
+          "radius_m": 0.08424894325187449,
+          "diameter_cm": 16.849788650374897,
+          "taper": 0.03598392679144953,
+          "inclination_from_gravity_deg": 8.509399485353088,
+          "outward_inclination_deg": -0.4748763701483361,
+          "along_row_inclination_deg": 8.496523638162481,
+          "points": 95,
+          "inliers": 66,
+          "rmse_m": 0.005677167546298832,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            2.2497785566066253,
+            1.5645791448021062,
+            -1.3380571603775024
+          ],
+          "axis": [
+            0.054471879489584644,
+            -0.16475051893637213,
+            0.9848299756074995
+          ],
+          "radius_m": 0.05252612256159413,
+          "diameter_cm": 10.505224512318826,
+          "taper": -0.04679065307387102,
+          "inclination_from_gravity_deg": 9.992664919777642,
+          "outward_inclination_deg": -5.357922576795265,
+          "along_row_inclination_deg": -8.483686239908918,
+          "points": 66,
+          "inliers": 64,
+          "rmse_m": 0.004023921583861356,
+          "role": "small stem / support candidate",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideB/OS-0-128_122412001905_1024x10_20260806_084822.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 8.273374609411958,
+        "plane_tilt_from_vertical_deg": 8.273369201846599,
+        "normal": [
+          -0.9610323330695995,
+          0.23603118762939085,
+          -0.14389625867638722
+        ],
+        "coef": [
+          0.001151334809883523,
+          0.14540966467552338,
+          0.03689690237757806
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 123,
+        "fit_rmse_m": 0.11402522347013241
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 5.743195730528338,
+          "plane_tilt_from_vertical_deg": 5.743166020347937,
+          "normal": [
+            -0.9652161280158198,
+            0.2415449115311559,
+            -0.10006938558597492
+          ],
+          "coef": [
+            -0.003227371874833773,
+            0.10057474558532287,
+            0.03750820258362066
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 123,
+          "fit_rmse_m": 0.0819197271759551
+        },
+        {
+          "outward_tilt_from_vertical_deg": 8.273374609411958,
+          "plane_tilt_from_vertical_deg": 8.273369201846599,
+          "normal": [
+            -0.9610323330695995,
+            0.23603118762939085,
+            -0.14389625867638722
+          ],
+          "coef": [
+            0.001151334809883523,
+            0.14540966467552338,
+            0.03689690237757806
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 123,
+          "fit_rmse_m": 0.11402522347013241
+        },
+        {
+          "outward_tilt_from_vertical_deg": 12.113487911962181,
+          "plane_tilt_from_vertical_deg": 12.113434597952997,
+          "normal": [
+            -0.9499480637625595,
+            0.23143587918717398,
+            -0.20984782576577735
+          ],
+          "coef": [
+            0.0030117039581896246,
+            0.21462766438529976,
+            0.024021857089734002
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 123,
+          "fit_rmse_m": 0.1441697116599611
+        },
+        {
+          "outward_tilt_from_vertical_deg": 13.169436544579014,
+          "plane_tilt_from_vertical_deg": 13.169180147941695,
+          "normal": [
+            -0.9438306665920532,
+            0.23932920105354813,
+            -0.227827141323133
+          ],
+          "coef": [
+            -0.006351796722431651,
+            0.23398517432671315,
+            -0.09945583192791112
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.0694345076248313
+        },
+        {
+          "outward_tilt_from_vertical_deg": 18.020358237366775,
+          "plane_tilt_from_vertical_deg": 18.01811442213278,
+          "normal": [
+            -0.9194105104333635,
+            0.24291335414903634,
+            -0.3093176614432598
+          ],
+          "coef": [
+            -0.016318537939437477,
+            0.3253125718269019,
+            -0.14287978934623344
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.09964259900837645
+        },
+        {
+          "outward_tilt_from_vertical_deg": 24.400692415813584,
+          "plane_tilt_from_vertical_deg": 24.399102555981447,
+          "normal": [
+            -0.8814405565200004,
+            0.22895209228078614,
+            -0.4130901654142379
+          ],
+          "coef": [
+            -0.012146078920642539,
+            0.4536346899110741,
+            -0.21398176706680633
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.12352354750889222
+        },
+        {
+          "outward_tilt_from_vertical_deg": 3.0545649287924506,
+          "plane_tilt_from_vertical_deg": 3.0545349057361317,
+          "normal": [
+            -0.9684131062933206,
+            0.24359107269769464,
+            -0.053286441627382546
+          ],
+          "coef": [
+            -0.004437951735285461,
+            0.05336278056645006,
+            0.12497071740216727
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 102,
+          "fit_rmse_m": 0.08612098599558217
+        },
+        {
+          "outward_tilt_from_vertical_deg": 4.346148366278088,
+          "plane_tilt_from_vertical_deg": 4.346148249488343,
+          "normal": [
+            -0.9681276178235259,
+            0.23871745466801483,
+            -0.07578187411359859
+          ],
+          "coef": [
+            0.0002322729798552229,
+            0.07600042150343482,
+            0.1637257934412711
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 102,
+          "fit_rmse_m": 0.11843450983150909
+        },
+        {
+          "outward_tilt_from_vertical_deg": 5.691214290543624,
+          "plane_tilt_from_vertical_deg": 5.6908904906492355,
+          "normal": [
+            -0.9685755166971356,
+            0.22809747195102076,
+            -0.09916154367712254
+          ],
+          "coef": [
+            0.010702854548621793,
+            0.0996584046091048,
+            0.22862342214931286
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 102,
+          "fit_rmse_m": 0.14601485657693813
+        },
+        {
+          "outward_tilt_from_vertical_deg": 6.408399497390066,
+          "plane_tilt_from_vertical_deg": 6.408349509721639,
+          "normal": [
+            -0.963845559711905,
+            0.2419588973267128,
+            -0.11161374927886798
+          ],
+          "coef": [
+            -0.003966324239411944,
+            0.11231641785936658,
+            0.047621145022019085
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 67,
+          "fit_rmse_m": 0.11187358587933699
+        }
+      ]
+    },
+    {
+      "scan": "sideB_084833",
+      "side": "sideB",
+      "geographic_side": "west",
+      "selected_frame": 18889,
+      "points": 39661,
+      "imu_samples": 49,
+      "identity": {
+        "pcap_sha256": "162cfda88d844d316d30d40b1eff032c840f53ee808c1f230afaf62ee2cb8210",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "7cb2bf4f91388bca4321ce558649a7e24e54bfdf72f9b5715317cc09de8f437c",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        0.007376431276880134,
+        -0.9999562204121899,
+        0.005757214655125959
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.999972793760719,
+          0.00737630902138757,
+          -4.2468853667578664e-05
+        ],
+        [
+          -6.776263578034403e-21,
+          0.005757371291546946,
+          0.9999834262005601
+        ],
+        [
+          0.007376431276880134,
+          -0.9999562204121899,
+          0.005757214655125959
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.4379013555469855,
+      "ground_slope_outward_deg": -1.0294854700176839,
+      "ground_slope_along_row_deg": 1.004068630233867,
+      "wall_ground_dihedral_deg": 83.01018809352513,
+      "ground": {
+        "normal": [
+          -0.018788571460056806,
+          -0.016633467999560805,
+          0.9996851090842546
+        ],
+        "offset": 1.676691343074761,
+        "coef": [
+          0.018794489674121256,
+          0.016638707377363685,
+          -1.6772194842540638
+        ],
+        "inliers": 6081,
+        "rmse_m": 0.014431059559253551
+      },
+      "row": {
+        "centre": [
+          1.8129080086946487,
+          0.47003128472715616,
+          -1.635326090399739
+        ],
+        "along": [
+          0.04824640940245883,
+          0.9988354639177418,
+          0.0
+        ],
+        "outward": [
+          -0.9988354639177418,
+          0.04824640940245883,
+          0.0
+        ],
+        "extent": [
+          -2.472358201357182,
+          2.0780389607513907
+        ],
+        "row_residual_m": 0.04674667428328992
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            1.777155009625646,
+            -1.7966562667541777,
+            -1.376265048980713
+          ],
+          "axis": [
+            0.0629496435260946,
+            0.1312697596685382,
+            0.9893460428871699
+          ],
+          "radius_m": 0.06348879301533478,
+          "diameter_cm": 12.697758603066955,
+          "taper": -0.04324465924291683,
+          "inclination_from_gravity_deg": 8.371040387409186,
+          "outward_inclination_deg": -3.2710064160255903,
+          "along_row_inclination_deg": 7.722131153448475,
+          "points": 74,
+          "inliers": 53,
+          "rmse_m": 0.004791765119170063,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            1.9103438838949365,
+            2.017731519261799,
+            -1.294308066368103
+          ],
+          "axis": [
+            0.05985413571492577,
+            -0.021057384644776814,
+            0.9979850043912191
+          ],
+          "radius_m": 0.06509481531128114,
+          "diameter_cm": 13.018963062256228,
+          "taper": 0.028913068858455834,
+          "inclination_from_gravity_deg": 3.6378738442258416,
+          "outward_inclination_deg": -3.4863295350864396,
+          "along_row_inclination_deg": -1.041622860924801,
+          "points": 65,
+          "inliers": 57,
+          "rmse_m": 0.003974690529454155,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideB/OS-0-128_122412001905_1024x10_20260806_084833.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 8.050278351095908,
+        "plane_tilt_from_vertical_deg": 8.047320753447075,
+        "normal": [
+          -0.9899349218012266,
+          0.020770008994924143,
+          -0.13999091872242986
+        ],
+        "coef": [
+          0.027293812481866225,
+          0.141435800664864,
+          0.04513346578351046
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 120,
+        "fit_rmse_m": 0.10055266186732963
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 6.386629823025419,
+          "plane_tilt_from_vertical_deg": 6.385467401912512,
+          "normal": [
+            -0.993375228793235,
+            0.028921673004091354,
+            -0.11121686765339375
+          ],
+          "coef": [
+            0.01916116281532583,
+            0.11193168867212741,
+            0.029219548165834067
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 120,
+          "fit_rmse_m": 0.07552862938425828
+        },
+        {
+          "outward_tilt_from_vertical_deg": 8.050278351095908,
+          "plane_tilt_from_vertical_deg": 8.047320753447075,
+          "normal": [
+            -0.9899349218012266,
+            0.020770008994924143,
+            -0.13999091872242986
+          ],
+          "coef": [
+            0.027293812481866225,
+            0.141435800664864,
+            0.04513346578351046
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 120,
+          "fit_rmse_m": 0.10055266186732963
+        },
+        {
+          "outward_tilt_from_vertical_deg": 10.854765225366256,
+          "plane_tilt_from_vertical_deg": 10.851131961528699,
+          "normal": [
+            -0.981880279550677,
+            0.021681723834469566,
+            -0.188257853703505
+          ],
+          "coef": [
+            0.026192881347155986,
+            0.19175099893528505,
+            0.045441450544981395
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 120,
+          "fit_rmse_m": 0.13404903575665233
+        },
+        {
+          "outward_tilt_from_vertical_deg": 12.86141325983431,
+          "plane_tilt_from_vertical_deg": 12.85903913431165,
+          "normal": [
+            -0.974518413746672,
+            0.02799882667594859,
+            -0.2225532003217219
+          ],
+          "coef": [
+            0.019544599462712715,
+            0.2283218910930079,
+            -0.08560217621204128
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.07306913836263762
+        },
+        {
+          "outward_tilt_from_vertical_deg": 16.399550912512208,
+          "plane_tilt_from_vertical_deg": 16.39669753224229,
+          "normal": [
+            -0.9589244135096526,
+            0.02790146259847273,
+            -0.28228616253730004
+          ],
+          "coef": [
+            0.019179080989893977,
+            0.2943074883459871,
+            -0.108139889072435
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.0883594138985745
+        },
+        {
+          "outward_tilt_from_vertical_deg": 23.222885099565257,
+          "plane_tilt_from_vertical_deg": 23.220422873549083,
+          "normal": [
+            -0.918498623183281,
+            0.030196606402367383,
+            -0.3942695070281212
+          ],
+          "coef": [
+            0.015402151247671055,
+            0.4290734216589234,
+            -0.18633094265218458
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 72,
+          "fit_rmse_m": 0.1137839839649425
+        },
+        {
+          "outward_tilt_from_vertical_deg": 3.419879959581846,
+          "plane_tilt_from_vertical_deg": 3.418795605074398,
+          "normal": [
+            -0.9979551001719944,
+            0.02300920223374013,
+            -0.05963383815646421
+          ],
+          "coef": [
+            0.02521822432364854,
+            0.059759149696646294,
+            0.13017849996757053
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 96,
+          "fit_rmse_m": 0.07719478869950001
+        },
+        {
+          "outward_tilt_from_vertical_deg": 4.359602361542225,
+          "plane_tilt_from_vertical_deg": 4.356409834741885,
+          "normal": [
+            -0.9970617815110194,
+            0.009890041635385023,
+            -0.07596045633434838
+          ],
+          "coef": [
+            0.03836509161927648,
+            0.0762365985527691,
+            0.17653855488924905
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 96,
+          "fit_rmse_m": 0.1024367233102142
+        },
+        {
+          "outward_tilt_from_vertical_deg": 4.578838175748639,
+          "plane_tilt_from_vertical_deg": 4.576278910370924,
+          "normal": [
+            -0.9967034489069886,
+            0.014710229588088904,
+            -0.07978623993132933
+          ],
+          "coef": [
+            0.033519880494177354,
+            0.0800863661885016,
+            0.2603049645458086
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 96,
+          "fit_rmse_m": 0.13563386763568996
+        },
+        {
+          "outward_tilt_from_vertical_deg": 6.260814940674796,
+          "plane_tilt_from_vertical_deg": 6.259671808033253,
+          "normal": [
+            -0.9936176999620903,
+            0.028901660796569605,
+            -0.1090346748756818
+          ],
+          "coef": [
+            0.019188395306267373,
+            0.10970883592943743,
+            0.046224011702104384
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 70,
+          "fit_rmse_m": 0.057567515349954086
+        }
+      ]
+    },
+    {
+      "scan": "sideB_084841",
+      "side": "sideB",
+      "geographic_side": "west",
+      "selected_frame": 18961,
+      "points": 39877,
+      "imu_samples": 46,
+      "identity": {
+        "pcap_sha256": "b5c5b311de95167afa7111626c41eea848ea3228b187caead5f20690e2a80733",
+        "metadata_sha256": "18e57d012c6e6a4a3eaa5265255987bce9e5c8441357da24197229531ca47414",
+        "gps_sha256": "e79f931a30302a6f1cfc97eecf25a8d1b00545a315aaf12789243a7e2dbfb0d2",
+        "sdk": "1.0.1",
+        "frame_choice": "first_complete",
+        "voxel_m": 0.015,
+        "decoder_sha256": "154c3a0bd5d21f788a7b7f5d5c3754846684c0eac5d1a3276b7a42d60edbb978"
+      },
+      "up_sensor": [
+        -0.0025837290756237762,
+        -0.9999331956277459,
+        0.011266260504173443
+      ],
+      "sensor_to_gravity_levelled": [
+        [
+          0.9999966621664613,
+          -0.002583565094735027,
+          2.910906199938813e-05
+        ],
+        [
+          0.0,
+          0.011266298109201128,
+          0.9999365332494431
+        ],
+        [
+          -0.0025837290756237762,
+          -0.9999331956277459,
+          0.011266260504173443
+        ]
+      ],
+      "selected_column_coverage": 1.0,
+      "ground_tilt_from_horizontal_deg": 1.135883519910552,
+      "ground_slope_outward_deg": -0.44825017602613715,
+      "ground_slope_along_row_deg": 1.0437394488362344,
+      "wall_ground_dihedral_deg": 84.78466252895261,
+      "ground": {
+        "normal": [
+          -0.009536358270185978,
+          -0.017379106268199752,
+          0.9998034929606222
+        ],
+        "offset": 1.6700560758357228,
+        "coef": [
+          0.009538232600035107,
+          0.017382522056145926,
+          -1.6703843181126983
+        ],
+        "inliers": 6354,
+        "rmse_m": 0.012890938288751189
+      },
+      "row": {
+        "centre": [
+          1.7719152967135112,
+          0.23087206234534582,
+          -1.6494702391492186
+        ],
+        "along": [
+          0.09610137769480782,
+          0.9953715513340531,
+          0.0
+        ],
+        "outward": [
+          -0.9953715513340531,
+          0.09610137769480782,
+          0.0
+        ],
+        "extent": [
+          -2.4642375765339986,
+          1.9740140097425722
+        ],
+        "row_residual_m": 0.05837968564474575
+      },
+      "raw_stem_fits": [
+        {
+          "centre_at_reference_z": [
+            1.7483926132493885,
+            -0.9647281179802791,
+            -1.37481290102005
+          ],
+          "axis": [
+            0.15672712990340526,
+            0.08456274500119772,
+            0.984015116200002
+          ],
+          "radius_m": 0.06338843068134471,
+          "diameter_cm": 12.677686136268942,
+          "taper": -0.0021080726928817454,
+          "inclination_from_gravity_deg": 10.25823366052413,
+          "outward_inclination_deg": -8.546303213778993,
+          "along_row_inclination_deg": 5.758526964540564,
+          "points": 86,
+          "inliers": 67,
+          "rmse_m": 0.005232002713012934,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        },
+        {
+          "centre_at_reference_z": [
+            1.9173834124821338,
+            2.0018882683071815,
+            -1.3159804344177246
+          ],
+          "axis": [
+            0.06013303570446451,
+            0.07995512552788231,
+            0.9949830128795096
+          ],
+          "radius_m": 0.06858063662807343,
+          "diameter_cm": 13.716127325614686,
+          "taper": -0.005694755109842368,
+          "inclination_from_gravity_deg": 5.741704814986578,
+          "outward_inclination_deg": -3.0014968423639963,
+          "along_row_inclination_deg": 4.903646543299792,
+          "points": 77,
+          "inliers": 56,
+          "rmse_m": 0.004965404884658926,
+          "role": "plausible trunk",
+          "uncertainty": "Partial low-height tube, free lean/radius/taper; inferred role is not verified tree identity"
+        }
+      ],
+      "source_path": "sideB/OS-0-128_122412001905_1024x10_20260806_084841.pcap",
+      "tree_wall": {
+        "outward_tilt_from_vertical_deg": 5.7180603685465625,
+        "plane_tilt_from_vertical_deg": 5.712029522367805,
+        "normal": [
+          -0.9937829463082776,
+          0.04989489578700878,
+          -0.0995286642191222
+        ],
+        "coef": [
+          0.04611765987169661,
+          0.10013163276173932,
+          0.06974977836431712
+        ],
+        "height_band_m": [
+          0.65,
+          2.35
+        ],
+        "quantile": 0.5,
+        "wood_only": false,
+        "cells": 113,
+        "fit_rmse_m": 0.08264059217963977
+      },
+      "sensitivity": [
+        {
+          "outward_tilt_from_vertical_deg": 4.461616868453754,
+          "plane_tilt_from_vertical_deg": 4.457513017443186,
+          "normal": [
+            -0.9955610711778908,
+            0.05308279156971988,
+            -0.07771982240262908
+          ],
+          "coef": [
+            0.04300737564372393,
+            0.07802768083052804,
+            0.049592024236568055
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 113,
+          "fit_rmse_m": 0.05228606106669872
+        },
+        {
+          "outward_tilt_from_vertical_deg": 5.7180603685465625,
+          "plane_tilt_from_vertical_deg": 5.712029522367805,
+          "normal": [
+            -0.9937829463082776,
+            0.04989489578700878,
+            -0.0995286642191222
+          ],
+          "coef": [
+            0.04611765987169661,
+            0.10013163276173932,
+            0.06974977836431712
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 113,
+          "fit_rmse_m": 0.08264059217963977
+        },
+        {
+          "outward_tilt_from_vertical_deg": 7.281412100004613,
+          "plane_tilt_from_vertical_deg": 7.273528546958478,
+          "normal": [
+            -0.9907399588506305,
+            0.04904255471199829,
+            -0.12660632592399026
+          ],
+          "coef": [
+            0.04682353053396006,
+            0.12777322423669035,
+            0.08701596316845739
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 113,
+          "fit_rmse_m": 0.10863731003777936
+        },
+        {
+          "outward_tilt_from_vertical_deg": 8.592026069160964,
+          "plane_tilt_from_vertical_deg": 8.587642943633204,
+          "normal": [
+            -0.9867600926731587,
+            0.06330428009424216,
+            -0.14932209357429033
+          ],
+          "coef": [
+            0.03219516317318893,
+            0.1510934294209594,
+            -0.0285308853567773
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 68,
+          "fit_rmse_m": 0.05003745012830403
+        },
+        {
+          "outward_tilt_from_vertical_deg": 13.295046595779993,
+          "plane_tilt_from_vertical_deg": 13.286175990906683,
+          "normal": [
+            -0.9715379239898467,
+            0.05743832737711385,
+            -0.22981492727326938
+          ],
+          "coef": [
+            0.03721478832324512,
+            0.23629870062382535,
+            -0.069198089548373
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 68,
+          "fit_rmse_m": 0.08272636489787948
+        },
+        {
+          "outward_tilt_from_vertical_deg": 16.603592657284842,
+          "plane_tilt_from_vertical_deg": 16.59171365181473,
+          "normal": [
+            -0.9567890867470471,
+            0.05491787982158021,
+            -0.28554976791735237
+          ],
+          "coef": [
+            0.03893437984803584,
+            0.2981812251146185,
+            -0.08528056543438794
+          ],
+          "height_band_m": [
+            0.65,
+            1.65
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 68,
+          "fit_rmse_m": 0.1054317116092567
+        },
+        {
+          "outward_tilt_from_vertical_deg": 1.980939271310301,
+          "plane_tilt_from_vertical_deg": 1.978122536160351,
+          "normal": [
+            -0.9984847901163608,
+            0.04285602605828421,
+            -0.034517892994483865
+          ],
+          "coef": [
+            0.05340587438358361,
+            0.03458769519455787,
+            0.13241609206088964
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.25,
+          "wood_only": false,
+          "cells": 89,
+          "fit_rmse_m": 0.048536774515467146
+        },
+        {
+          "outward_tilt_from_vertical_deg": 1.2496748237477993,
+          "plane_tilt_from_vertical_deg": 1.2476065992209997,
+          "normal": [
+            -0.9990143595556337,
+            0.03868126872143382,
+            -0.021773122232403956
+          ],
+          "coef": [
+            0.057613438208358354,
+            0.021814399524456622,
+            0.21754855851082536
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.5,
+          "wood_only": false,
+          "cells": 89,
+          "fit_rmse_m": 0.07870968902917616
+        },
+        {
+          "outward_tilt_from_vertical_deg": 1.2023612998014437,
+          "plane_tilt_from_vertical_deg": 1.2005668945406374,
+          "normal": [
+            -0.9989154371347683,
+            0.041580645502164934,
+            -0.020952311888621074
+          ],
+          "coef": [
+            0.05470261084015735,
+            0.020988244484532678,
+            0.28667320588838063
+          ],
+          "height_band_m": [
+            1.0,
+            2.4
+          ],
+          "quantile": 0.75,
+          "wood_only": false,
+          "cells": 89,
+          "fit_rmse_m": 0.10341713523467269
+        },
+        {
+          "outward_tilt_from_vertical_deg": 5.233214459592713,
+          "plane_tilt_from_vertical_deg": 5.227733210877598,
+          "normal": [
+            -0.9945784107011382,
+            0.05011898053083586,
+            -0.09111461330515505
+          ],
+          "coef": [
+            0.045932585267564593,
+            0.09159166310963768,
+            0.04934096585090469
+          ],
+          "height_band_m": [
+            0.65,
+            2.35
+          ],
+          "quantile": 0.5,
+          "wood_only": true,
+          "cells": 74,
+          "fit_rmse_m": 0.05834058360843334
+        }
+      ]
+    }
+  ]
+}
