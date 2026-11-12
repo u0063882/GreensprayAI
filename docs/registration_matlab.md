@@ -174,10 +174,10 @@ The relative registration is evaluated in the original physics working frame. A 
 % F is structural_up_frame.registration_to_structural from transformations.json.
 % Final PLY files ALREADY include F; do not apply it again to those files.
 T_sensor_output = F * T_sensor_registration;
-p_output = (F(1:3,1:3) * p_registration.') + F(1:3,4);
+p_output = p_registration * F(1:3,1:3).' + F(1:3,4).'; % N-by-3
 g_reference_output = F(1:3,1:3) * [0; 0; 1];
 % To inspect the original registration frame from an already exported cloud:
-p_registration = F(1:3,1:3).' * (p_output - F(1:3,4));
+p_registration = (p_output - F(1:3,4).') * F(1:3,1:3); % N-by-3
 ```
 
 The estimator balances both viewing sides and height bins. Per-scan PCA alignment is avoided because opposite views may be dominated by different branches. ROI limits are stored in the earlier registration frame.
