@@ -37,4 +37,17 @@ class RawCentralPlaneTests(unittest.TestCase):
         b['central_profile']['profile']=[p for p in b['central_profile']['profile'] if 1.0<p[0]<2.6]
         r=central_plane([a,b]);lo,hi=r['common_height_range_m'];self.assertGreaterEqual(lo,b['central_profile']['profile'][0][0]);self.assertLessEqual(hi,b['central_profile']['profile'][-1][0])
 
+    def test_occlusion_can_produce_false_lean_with_a_truly_upright_V(self):
+        z=np.linspace(.35,2.95,30)
+        # True limbs are +0.5*z and -0.5*z, so the actual V centre is zero.
+        # Different near/far visibility weights bias the observed centroids.
+        def observed(side,near_fraction):
+            centroid=(2*near_fraction-1)*.5*z
+            return dict(scan=side,geographic_side=side,central_profile=dict(profile=np.c_[z,centroid].tolist(),along_coefficient=0.,ground_normal_local_row=[0.,0.,1.]))
+        r=central_plane([observed('east',.9),observed('west',.65)])
+        self.assertGreater(abs(r['central_plane_tilt_from_imu_vertical_deg']),6.)
+        self.assertFalse(r['structural_centre_identified'])
+        self.assertFalse(r['valid_for_tree_centre_ground_angle'])
+        self.assertEqual(r['measurement_status'],'withdrawn_as_structural_centre_measurement')
+
 if __name__=='__main__':unittest.main()

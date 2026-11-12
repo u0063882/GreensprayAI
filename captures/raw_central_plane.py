@@ -1,4 +1,4 @@
-"""Central observed-tree plane from height-matched raw east/west profiles.
+"""WITHDRAWN AS A STRUCTURAL CENTRE MEASUREMENT: visible-centroid proxy.
 
 Uses all selected tree returns, including both halves of each visible tree.
 The sides, recordings and heights are balanced. No arm angle, symmetry,
@@ -72,7 +72,10 @@ def central_plane(profiles,band=(.3,3.)):
     bh=float(np.mean(along));bz=float(f.x[0]);normal=np.array([-bh,1.,-bz]);normal/=np.linalg.norm(normal)
     ng=np.mean(ground,axis=0);ng/=np.linalg.norm(ng)
     angle=float(np.rad2deg(np.arccos(np.clip(abs(normal@ng),0,1))))
-    return dict(definition='Plane through the height-matched midpoint of equally weighted east/west mean observed-tree profiles; all selected tree returns, not individual V-arm angles',
+    return dict(measurement_status='withdrawn_as_structural_centre_measurement',
+        structural_centre_identified=False,valid_for_tree_centre_ground_angle=False,
+        rejection_reason='Profiles are visibility-dependent point centroids. Both arms of the same tree and their trunk/junction were not jointly identified; equal track weighting does not remove occlusion bias.',
+        definition='Plane through the height-matched midpoint of equally weighted east/west mean observed-tree profiles; all selected tree returns, not individual V-arm angles',
         height_band_requested_m=list(band),common_height_range_m=[float(grid[0]),float(grid[-1])],heights_m=grid.tolist(),
         source_counts={side:len(rows) for side,rows in grouped.items()},east_profile_m=track['east'].tolist(),west_profile_m=track['west'].tolist(),central_profile_m=middle.tolist(),
         central_plane_normal_row_east_up=normal.tolist(),mean_ground_normal_row_east_up=ng.tolist(),

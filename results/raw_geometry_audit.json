@@ -578,9 +578,13 @@
       82.16203397396016,
       82.11880409883359,
       82.5193411487886
-    ]
+    ],
+    "measurement_status": "withdrawn_as_structural_centre_measurement",
+    "structural_centre_identified": false,
+    "valid_for_tree_centre_ground_angle": false,
+    "rejection_reason": "Both arms of the same tree and their trunk/junction were not identified. Equal weighting does not remove occlusion bias."
   },
-  "primary_method": "Central observed-tree plane from equally weighted east/west profiles at matched heights, using all selected tree returns; no individual arm, symmetry or upright target.",
+  "primary_method": "No validated V-centre angle. The legacy central_tree_plane data are visibility-biased centroid proxies and are withdrawn as structural-centre measurements.",
   "central_plane_sensitivity": {
     "mid_height": {
       "definition": "Plane through the height-matched midpoint of equally weighted east/west mean observed-tree profiles; all selected tree returns, not individual V-arm angles",
@@ -674,7 +678,11 @@
       "central_plane_tilt_from_imu_vertical_deg": 8.589139079323209,
       "mean_ground_tilt_from_horizontal_deg": 0.37225876872652947,
       "central_fit_rmse_m": 0.032752323868669456,
-      "limits": "Statistical observed-tree centre, not a surveyed trunk/symmetry plane. Occlusion and foliage/support visibility can bias centres. Origins are independent raw low-row/ground references; absolute cross-side positions are not registered."
+      "limits": "Statistical observed-tree centre, not a surveyed trunk/symmetry plane. Occlusion and foliage/support visibility can bias centres. Origins are independent raw low-row/ground references; absolute cross-side positions are not registered.",
+      "measurement_status": "withdrawn_as_structural_centre_measurement",
+      "structural_centre_identified": false,
+      "valid_for_tree_centre_ground_angle": false,
+      "rejection_reason": "Both arms of the same tree and their trunk/junction were not identified. Equal weighting does not remove occlusion bias."
     },
     "median_cells": {
       "definition": "Plane through the height-matched midpoint of equally weighted east/west mean observed-tree profiles; all selected tree returns, not individual V-arm angles",
@@ -800,7 +808,11 @@
       "central_plane_tilt_from_imu_vertical_deg": 9.232134523023037,
       "mean_ground_tilt_from_horizontal_deg": 0.37225876872652947,
       "central_fit_rmse_m": 0.031127563084398308,
-      "limits": "Statistical observed-tree centre, not a surveyed trunk/symmetry plane. Occlusion and foliage/support visibility can bias centres. Origins are independent raw low-row/ground references; absolute cross-side positions are not registered."
+      "limits": "Statistical observed-tree centre, not a surveyed trunk/symmetry plane. Occlusion and foliage/support visibility can bias centres. Origins are independent raw low-row/ground references; absolute cross-side positions are not registered.",
+      "measurement_status": "withdrawn_as_structural_centre_measurement",
+      "structural_centre_identified": false,
+      "valid_for_tree_centre_ground_angle": false,
+      "rejection_reason": "Both arms of the same tree and their trunk/junction were not identified. Equal weighting does not remove occlusion bias."
     },
     "wood_only": {
       "definition": "Plane through the height-matched midpoint of equally weighted east/west mean observed-tree profiles; all selected tree returns, not individual V-arm angles",
@@ -894,7 +906,11 @@
       "central_plane_tilt_from_imu_vertical_deg": 8.2783235128308,
       "mean_ground_tilt_from_horizontal_deg": 0.37225876872652947,
       "central_fit_rmse_m": 0.06639519835203872,
-      "limits": "Statistical observed-tree centre, not a surveyed trunk/symmetry plane. Occlusion and foliage/support visibility can bias centres. Origins are independent raw low-row/ground references; absolute cross-side positions are not registered."
+      "limits": "Statistical observed-tree centre, not a surveyed trunk/symmetry plane. Occlusion and foliage/support visibility can bias centres. Origins are independent raw low-row/ground references; absolute cross-side positions are not registered.",
+      "measurement_status": "withdrawn_as_structural_centre_measurement",
+      "structural_centre_identified": false,
+      "valid_for_tree_centre_ground_angle": false,
+      "rejection_reason": "Both arms of the same tree and their trunk/junction were not identified. Equal weighting does not remove occlusion bias."
     },
     "near_half_only": {
       "definition": "Plane through the height-matched midpoint of equally weighted east/west mean observed-tree profiles; all selected tree returns, not individual V-arm angles",
@@ -1016,7 +1032,11 @@
       "central_plane_tilt_from_imu_vertical_deg": 8.905137372470012,
       "mean_ground_tilt_from_horizontal_deg": 0.37225876872652947,
       "central_fit_rmse_m": 0.017558708611776757,
-      "limits": "Statistical observed-tree centre, not a surveyed trunk/symmetry plane. Occlusion and foliage/support visibility can bias centres. Origins are independent raw low-row/ground references; absolute cross-side positions are not registered."
+      "limits": "Statistical observed-tree centre, not a surveyed trunk/symmetry plane. Occlusion and foliage/support visibility can bias centres. Origins are independent raw low-row/ground references; absolute cross-side positions are not registered.",
+      "measurement_status": "withdrawn_as_structural_centre_measurement",
+      "structural_centre_identified": false,
+      "valid_for_tree_centre_ground_angle": false,
+      "rejection_reason": "Both arms of the same tree and their trunk/junction were not identified. Equal weighting does not remove occlusion bias."
     },
     "last_complete_frames": {
       "definition": "Plane through the height-matched midpoint of equally weighted east/west mean observed-tree profiles; all selected tree returns, not individual V-arm angles",
@@ -1142,7 +1162,11 @@
       "central_plane_tilt_from_imu_vertical_deg": 8.00078838734636,
       "mean_ground_tilt_from_horizontal_deg": 0.3519345521698049,
       "central_fit_rmse_m": 0.026626072835292156,
-      "limits": "Statistical observed-tree centre, not a surveyed trunk/symmetry plane. Occlusion and foliage/support visibility can bias centres. Origins are independent raw low-row/ground references; absolute cross-side positions are not registered."
+      "limits": "Statistical observed-tree centre, not a surveyed trunk/symmetry plane. Occlusion and foliage/support visibility can bias centres. Origins are independent raw low-row/ground references; absolute cross-side positions are not registered.",
+      "measurement_status": "withdrawn_as_structural_centre_measurement",
+      "structural_centre_identified": false,
+      "valid_for_tree_centre_ground_angle": false,
+      "rejection_reason": "Both arms of the same tree and their trunk/junction were not identified. Equal weighting does not remove occlusion bias."
     }
   },
   "supporting_wall_repeatability": {
@@ -7743,5 +7767,7 @@
       ]
     }
   ],
-  "privacy_policy": "Absolute RTK coordinates and sensor filenames are omitted from this public audit; geographic labels, relative separation, source hashes and local angle evidence are retained."
+  "privacy_policy": "Absolute RTK coordinates and sensor filenames are omitted from this public audit; geographic labels, relative separation, source hashes and local angle evidence are retained.",
+  "requested_measurement_available": false,
+  "measurement_status": "structural_V_centre_not_identified"
 }

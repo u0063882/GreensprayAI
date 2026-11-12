@@ -1,6 +1,6 @@
 """Add independent original-capture angle checks to QC; never export geometry."""
 from pathlib import Path
-import hashlib,json,shutil
+import hashlib,json,shutil,re
 from tools.capture_collection import input_archives,extract_inputs,digest
 from tools.audit_raw_capture_geometry import run_audit
 ROOT=Path(__file__).resolve().parent.parent
@@ -36,5 +36,10 @@ def add_raw_geometry_checks(stage,work,config,repo,data_directories=None):
         index=stage/'QC'/identifier/'index.html';tag='<!-- independent-raw-geometry -->'
         if index.exists() and tag not in index.read_text():index.write_text(index.read_text()+'\n'+tag+'<h2>Original PCAP angle check</h2><p>IMU gravity rotation only; no registered poses, ground flattening or PCA-up correction. The plots measure visible structure, not verified individual branch angles.</p><p><a href="raw_geometry/raw_geometry_report.json">Raw-source report</a> · <a href="raw_geometry/raw_angles.csv">Per-scan angles</a></p><img style="max-width:100%" src="raw_geometry/raw_imu_geometry.png"><p><a href="raw_geometry/raw_all_scan_profiles.png">Every original scan</a> · <a href="raw_geometry/raw_angle_sensitivity.png">Height-band sensitivity</a> · <a href="raw_geometry/raw_row_detection.png">Low-stem row detection</a></p>\n')
         central_tag='<!-- raw-central-plane -->'
-        if index.exists() and central_tag not in index.read_text():index.write_text(index.read_text()+'\n'+central_tag+'<h2>Central tree plane versus ground — primary raw check</h2><p>Both tracks and matched heights are weighted equally, using all selected tree returns. Individual V-arm inclinations are supporting diagnostics. No symmetry or upright-growth target is applied.</p><img style="max-width:100%" src="raw_geometry/raw_central_plane.png"><p><a href="raw_geometry/central_plane_angles.csv">Central-plane angles and sensitivity</a></p>\n')
+        block=central_tag+'<h2>Central-plane claim withdrawn — V centre not fitted</h2><p>The former 82.3° value is a visibility-biased centroid proxy. Both arms of the same tree and their common trunk/junction were not identified. The structural centre-plane angle remains unmeasured; no registration change is justified by the proxy.</p><img style="max-width:100%" src="raw_geometry/raw_central_plane.png"><p><a href="raw_geometry/central_plane_angles.csv">Withdrawn proxy data, status flagged</a></p>\n'
+        if index.exists():
+            text=index.read_text()
+            if central_tag in text:text=re.sub(r'<!-- raw-central-plane -->.*?<a href="raw_geometry/central_plane_angles.csv">.*?</p>\n?',block,text,flags=re.S)
+            else:text+='\n'+block
+            index.write_text(text)
     (stage/'QC/raw_geometry_summary.json').write_text(json.dumps(summaries,indent=2)+'\n');return summaries

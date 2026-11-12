@@ -1,0 +1,3199 @@
+{
+  "method": "40 mm measured-point sampling. Ground RANSAC plus robust slope fit. Single least-squares tree plane Y=aX+bZ+c through ALL observed returns 0.30\u20134.50 m above ground. Acute angle between plane sections at median along-row X; not the full 3D dihedral.",
+  "limitations": [
+    "Statistical observed-point plane, not a verified biological centre plane.",
+    "Raw single-view visibility and different fields of view prevent using raw/final angle differences alone as registration error.",
+    "Geographic east/west inferred independently per dataset from H5 longitude.",
+    "No registered transforms applied to raw scans; only original IMU leveling. Horizontal row axes from low-stem/support candidates; flagged horizontal canopy PCA fallback if insufficient resolved stems.",
+    "The excluded duplicate and no-IMU capture are listed rather than assigned invented angles."
+  ],
+  "combined": [
+    {
+      "dataset": "spindle1",
+      "source": "combined_registered",
+      "scan": "combined",
+      "status": "ok",
+      "angle_deg": 89.64814572558282,
+      "ground_cross_slope_deg": 2.219711370396691,
+      "tree_cross_lean_deg": -1.8678570959795073,
+      "ground_line_Z_aY_b": [
+        0.03876066557996046,
+        0.002842204087381034
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.0326118101243036,
+        0.06929331185088175
+      ],
+      "intersection_YZ": [
+        0.06911325943747174,
+        0.005521080023577921
+      ],
+      "section_X_m": 3.409310817718506,
+      "display_Y_origin_m": -0.030812187120318413,
+      "tree_plane_Y_aX_bZ_c": [
+        0.013116874586810974,
+        -0.0326118101243036,
+        -0.006238377692908271
+      ],
+      "tree_returns": 161947,
+      "tree_across_rms_m": 0.3175666141299569,
+      "ground_rmse_m": 0.017634743925667596,
+      "ground_normal": [
+        -0.007282198460473696,
+        -0.03873055455538734,
+        0.9992231551207241
+      ],
+      "ground_offset": 0.020793908758141834,
+      "structural_centre_verified": false,
+      "input_sha256": "c3bc4c5489157a7f8983aef940a39630289e98c6ae6945f6e066a9eccec4bd5b"
+    },
+    {
+      "dataset": "spindle2",
+      "source": "combined_registered",
+      "scan": "combined",
+      "status": "ok",
+      "angle_deg": 87.62270033645744,
+      "ground_cross_slope_deg": 2.2676238838145113,
+      "tree_cross_lean_deg": -4.644923547357076,
+      "ground_line_Z_aY_b": [
+        0.0395981803780775,
+        -0.004711835040570203
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.0812472790152793,
+        0.16708864216135688
+      ],
+      "intersection_YZ": [
+        0.16693439718145756,
+        0.0018984633303267848
+      ],
+      "section_X_m": 3.403170943260193,
+      "display_Y_origin_m": -0.08649573475122452,
+      "tree_plane_Y_aX_bZ_c": [
+        0.024152008829725503,
+        -0.0812472790152793,
+        -0.0016005072605530725
+      ],
+      "tree_returns": 166752,
+      "tree_across_rms_m": 0.28721910118139987,
+      "ground_rmse_m": 0.01676327437547122,
+      "ground_normal": [
+        -0.004456579114599566,
+        -0.03956677862638082,
+        0.9992069900334596
+      ],
+      "ground_offset": 0.016452241468539963,
+      "structural_centre_verified": false,
+      "input_sha256": "addf23a63be45c0441848a7b81b96a7110ea3a3fbfab1adcbe2a93fa4a71991f"
+    },
+    {
+      "dataset": "chandelier",
+      "source": "combined_registered",
+      "scan": "combined",
+      "status": "ok",
+      "angle_deg": 84.11603753770703,
+      "ground_cross_slope_deg": 2.122189313558499,
+      "tree_cross_lean_deg": -8.006151775851468,
+      "ground_line_Z_aY_b": [
+        0.03705613821481657,
+        -0.005994661166845383
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.1406503258164774,
+        0.287049356090916
+      ],
+      "intersection_YZ": [
+        0.28639980341538107,
+        0.004618209533211271
+      ],
+      "section_X_m": 3.106884717941284,
+      "display_Y_origin_m": 1.6972248554229736,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.03731915169186159,
+        -0.1406503258164774,
+        2.100220513591867
+      ],
+      "tree_returns": 200955,
+      "tree_across_rms_m": 0.25645928941093693,
+      "ground_rmse_m": 0.01649863876062722,
+      "ground_normal": [
+        0.008767077449394199,
+        -0.0370292992834002,
+        0.9992757223847564
+      ],
+      "ground_offset": 0.041599067542103706,
+      "structural_centre_verified": false,
+      "input_sha256": "a53cf1bf7fdbbf36803bd7e99f7b7417a830cf1a0da02c18c4352a96d87d853e"
+    },
+    {
+      "dataset": "vhedge",
+      "source": "combined_registered",
+      "scan": "combined",
+      "status": "ok",
+      "angle_deg": 83.52354973159251,
+      "ground_cross_slope_deg": 0.20099713200935762,
+      "tree_cross_lean_deg": -6.677447400416849,
+      "ground_line_Z_aY_b": [
+        0.003508076131350451,
+        0.0013645914665988798
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.11707397082909436,
+        0.0787756902280572
+      ],
+      "intersection_YZ": [
+        0.07858365743241771,
+        0.0016402689195517649
+      ],
+      "section_X_m": 2.04233980178833,
+      "display_Y_origin_m": 0.05640769004821777,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.011474239722538776,
+        -0.11707397082909436,
+        0.1586176767568766
+      ],
+      "tree_returns": 109373,
+      "tree_across_rms_m": 0.512171513632191,
+      "ground_rmse_m": 0.013758241840227206,
+      "ground_normal": [
+        -0.001124405133483681,
+        -0.0035080523277136746,
+        0.9999932146179601
+      ],
+      "ground_offset": 0.0011297162784989934,
+      "structural_centre_verified": false,
+      "input_sha256": "54f7e4e35fa7eda3d47851ee232d46c75745bca2bf7be9cc3024a4add2705e20"
+    }
+  ],
+  "raw_scans": [
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideA_082646",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 85.24366902338754,
+      "ground_cross_slope_deg": -1.4171031971206791,
+      "tree_cross_lean_deg": -3.33922777949178,
+      "ground_line_Z_aY_b": [
+        -0.02473816117020948,
+        -0.004527705811164743
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.058346594572199637,
+        0.07104820441228343
+      ],
+      "intersection_YZ": [
+        0.07141546080818888,
+        -0.006294392990682498
+      ],
+      "section_X_m": 0.22723872781484938,
+      "display_Y_origin_m": 0.26677816462178117,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.08034196038046772,
+        -0.058346594572199637,
+        0.35608317390107314
+      ],
+      "tree_returns": 9836,
+      "tree_across_rms_m": 0.24586302228531465,
+      "ground_rmse_m": 0.015413669766378556,
+      "ground_normal": [
+        -0.009114536594735673,
+        0.02472956778896733,
+        0.9996526265156483
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 5810,
+      "column_coverage": 1.0,
+      "pcap_sha256": "43d8ab9e3e65d375cbebf23dc3cf96cec793390269631998d062cba061179425",
+      "imu_samples": 49,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideA_082653",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 86.67281781196922,
+      "ground_cross_slope_deg": -2.7629776873736343,
+      "tree_cross_lean_deg": -0.5642045006571437,
+      "ground_line_Z_aY_b": [
+        -0.048260472924298796,
+        -0.009767949256922051
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.009847544491545873,
+        0.0024031137900127897
+      ],
+      "intersection_YZ": [
+        0.0025004924568359644,
+        -0.009888624205432597
+      ],
+      "section_X_m": 0.2583628523166395,
+      "display_Y_origin_m": 0.21517478961651285,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.023000228620819206,
+        -0.009847544491545873,
+        0.2235203080769353
+      ],
+      "tree_returns": 11133,
+      "tree_across_rms_m": 0.24201050219086595,
+      "ground_rmse_m": 0.015690096869575322,
+      "ground_normal": [
+        -0.002383351266997225,
+        0.04820423290893744,
+        0.9988346567707785
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 5881,
+      "column_coverage": 1.0,
+      "pcap_sha256": "c8813f083a2e3a7e3449b890a78d0a464606282cba570d821c18b0baeb948111",
+      "imu_samples": 50,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideA_082659",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 86.12470711779594,
+      "ground_cross_slope_deg": -2.7264193992528485,
+      "tree_cross_lean_deg": -1.1488734829512144,
+      "ground_line_Z_aY_b": [
+        -0.04762094393976108,
+        -0.009275926688222908
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.020054312768627625,
+        -0.015307211221479794
+      ],
+      "intersection_YZ": [
+        -0.01513564350628486,
+        -0.008555153057317908
+      ],
+      "section_X_m": -0.5573348955972655,
+      "display_Y_origin_m": 0.17979757919849432,
+      "tree_plane_Y_aX_bZ_c": [
+        0.05550172725097019,
+        -0.020054312768627625,
+        0.1954234173399019
+      ],
+      "tree_returns": 12531,
+      "tree_across_rms_m": 0.2669003493399764,
+      "ground_rmse_m": 0.015753703160791062,
+      "ground_normal": [
+        -0.0012792805324584532,
+        0.0475670003809298,
+        0.9988672303745277
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 5947,
+      "column_coverage": 1.0,
+      "pcap_sha256": "6b9e82b97971d9302e2d5b009573766125df16c9132f4dc03a9a4b195fac1e09",
+      "imu_samples": 56,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideA_082705",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 85.95848723640377,
+      "ground_cross_slope_deg": -3.186381986233489,
+      "tree_cross_lean_deg": -0.8551307773627517,
+      "ground_line_Z_aY_b": [
+        -0.055670260862218886,
+        -0.008223626485988855
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.014925955874153199,
+        0.021314016043670198
+      ],
+      "intersection_YZ": [
+        0.02145458883106699,
+        -0.009418009042906001
+      ],
+      "section_X_m": 0.13850740068074788,
+      "display_Y_origin_m": 0.16731952889695045,
+      "tree_plane_Y_aX_bZ_c": [
+        0.07643524396781454,
+        -0.014925955874153199,
+        0.17804669797823985
+      ],
+      "tree_returns": 12701,
+      "tree_across_rms_m": 0.2510175864257562,
+      "ground_rmse_m": 0.015566696295060536,
+      "ground_normal": [
+        -0.007865101824094802,
+        0.0555824755978421,
+        0.9984231210161912
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 6010,
+      "column_coverage": 1.0,
+      "pcap_sha256": "0cd7085c99e2bd5273dcdefa28fe780a0105c20a28299d8010c6e26ccd29fd83",
+      "imu_samples": 47,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideA_082713",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 79.6644906363722,
+      "ground_cross_slope_deg": -4.1345303240430455,
+      "tree_cross_lean_deg": -6.200979039584756,
+      "ground_line_Z_aY_b": [
+        -0.07228668198080158,
+        0.0031236312596670613
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.1086520535108754,
+        0.2530300380882934
+      ],
+      "intersection_YZ": [
+        0.2546910169466901,
+        -0.015287137285725276
+      ],
+      "section_X_m": 0.06273267016284571,
+      "display_Y_origin_m": -0.06350912122486985,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.3653013764811271,
+        -0.1086520535108754,
+        0.21243724762424762
+      ],
+      "tree_returns": 7357,
+      "tree_across_rms_m": 0.4023052848968529,
+      "ground_rmse_m": 0.015216796867550059,
+      "ground_normal": [
+        0.023321435383095376,
+        0.0720789473153018,
+        0.9971262387509368
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 6082,
+      "column_coverage": 1.0,
+      "pcap_sha256": "0ffac6a3da509d284455d785d2db8aba59ecbdc5d81e44b5e643a168bfc16f81",
+      "imu_samples": 53,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideA_082719",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 84.03583303077383,
+      "ground_cross_slope_deg": -3.6545577218042418,
+      "tree_cross_lean_deg": -2.3096092474219327,
+      "ground_line_Z_aY_b": [
+        -0.0638707057926814,
+        -0.00580693514877908
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.040332133654193796,
+        0.0798998378978795
+      ],
+      "intersection_YZ": [
+        0.08034100577497565,
+        -0.010938371891720668
+      ],
+      "section_X_m": -0.11501748551562428,
+      "display_Y_origin_m": 0.08090193271966384,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.05551864843456728,
+        -0.040332133654193796,
+        0.15441615527537345
+      ],
+      "tree_returns": 11835,
+      "tree_across_rms_m": 0.30097848365934243,
+      "ground_rmse_m": 0.01485014471574212,
+      "ground_normal": [
+        -0.005550121268987133,
+        0.06373984208580512,
+        0.9979511153782916
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 6145,
+      "column_coverage": 1.0,
+      "pcap_sha256": "26ddd23714c869cdbc5ae154ff4403f90070d1e6f9056acfb1e2d95fd07a606e",
+      "imu_samples": 54,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideA_082725",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 84.48276494029732,
+      "ground_cross_slope_deg": -3.476140086259286,
+      "tree_cross_lean_deg": -2.0410949734434034,
+      "ground_line_Z_aY_b": [
+        -0.060744638894333486,
+        -0.006815073152927684
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.03563890484314793,
+        0.07185363653572668
+      ],
+      "intersection_YZ": [
+        0.07225293666811669,
+        -0.01120405169988758
+      ],
+      "section_X_m": -0.25593455910140034,
+      "display_Y_origin_m": 0.08595532279501697,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.03949339231950972,
+        -0.03563890484314793,
+        0.1477012353800313
+      ],
+      "tree_returns": 13340,
+      "tree_across_rms_m": 0.3013880657275074,
+      "ground_rmse_m": 0.015242077428110975,
+      "ground_normal": [
+        -0.006215593167487249,
+        0.06063170568844919,
+        0.9981408531198819
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 6209,
+      "column_coverage": 1.0,
+      "pcap_sha256": "457a7ea8dcf6851ecb511e9816b0e9982eec85553ef8d26e59265c9c5f3c4da7",
+      "imu_samples": 56,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideA_082731",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 83.02854744031407,
+      "ground_cross_slope_deg": -3.9023635322763517,
+      "tree_cross_lean_deg": -3.0690890274095737,
+      "ground_line_Z_aY_b": [
+        -0.06821460395235654,
+        -0.013189643917143673
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.05361699919667148,
+        0.10584936845254
+      ],
+      "intersection_YZ": [
+        0.10694771482186728,
+        -0.02048503992732692
+      ],
+      "section_X_m": -0.058605006393478355,
+      "display_Y_origin_m": 0.17674852295688437,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.0364857547354345,
+        -0.05361699919667148,
+        0.28045964351988334
+      ],
+      "tree_returns": 12122,
+      "tree_across_rms_m": 0.3120276651504491,
+      "ground_rmse_m": 0.013946103197075888,
+      "ground_normal": [
+        -0.01928123436191901,
+        0.06804379478840611,
+        0.997496002995638
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 6267,
+      "column_coverage": 1.0,
+      "pcap_sha256": "d4e6621b1e4f67120362196d8234cdbb5660bebbe3b297291ce9b69ea7b388a5",
+      "imu_samples": 55,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideA_082737",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 83.343482045889,
+      "ground_cross_slope_deg": -3.384938284157788,
+      "tree_cross_lean_deg": -3.2715796699532116,
+      "ground_line_Z_aY_b": [
+        -0.05914714678250469,
+        -0.014314793305206724
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.057161973958425594,
+        0.12318064252306885
+      ],
+      "intersection_YZ": [
+        0.12441956288409349,
+        -0.021673855453727273
+      ],
+      "section_X_m": -0.1651120364295258,
+      "display_Y_origin_m": 0.1910906972009391,
+      "tree_plane_Y_aX_bZ_c": [
+        0.029792801512730855,
+        -0.057161973958425594,
+        0.3191904898527156
+      ],
+      "tree_returns": 12183,
+      "tree_across_rms_m": 0.30004098701423193,
+      "ground_rmse_m": 0.015800770191869224,
+      "ground_normal": [
+        -0.018209271264176864,
+        0.05903416806802672,
+        0.9980898704227709
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 6326,
+      "column_coverage": 1.0,
+      "pcap_sha256": "056e2dda74ca7e1c00f101393535908068a3645259a9ab754eb6e6915f58a031",
+      "imu_samples": 47,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideB_084157",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 88.61062547789946,
+      "ground_cross_slope_deg": -1.665296601767465,
+      "tree_cross_lean_deg": 3.0546711238680135,
+      "ground_line_Z_aY_b": [
+        -0.029073095866799115,
+        -0.0004641048263482248
+      ],
+      "tree_line_Y_bZ_c": [
+        0.05336463929822139,
+        -0.10752955336420832
+      ],
+      "intersection_YZ": [
+        -0.1073877107728444,
+        0.002657988383866777
+      ],
+      "section_X_m": -0.2170690754194854,
+      "display_Y_origin_m": -0.06655022102246448,
+      "tree_plane_Y_aX_bZ_c": [
+        0.008877055759992283,
+        0.05336463929822139,
+        -0.17215284010040405
+      ],
+      "tree_returns": 13025,
+      "tree_across_rms_m": 0.28393811350178344,
+      "ground_rmse_m": 0.013582579870096688,
+      "ground_normal": [
+        -0.011046098036605365,
+        0.029059043706885522,
+        0.9995166610402286
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 14927,
+      "column_coverage": 1.0,
+      "pcap_sha256": "16a1869e14e4287015a8711e0a64b4c66dc179f250bd10b1356b01f34e49144c",
+      "imu_samples": 51,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideB_084206",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 88.89840884471315,
+      "ground_cross_slope_deg": -2.453412014798903,
+      "tree_cross_lean_deg": 3.55500317008576,
+      "ground_line_Z_aY_b": [
+        -0.04284630789519189,
+        0.008170381423829368
+      ],
+      "tree_line_Y_bZ_c": [
+        0.06212625462425522,
+        -0.1271075897594678
+      ],
+      "intersection_YZ": [
+        -0.12626389514549174,
+        0.013580323151279331
+      ],
+      "section_X_m": 0.21339148098739585,
+      "display_Y_origin_m": -0.09592311626665385,
+      "tree_plane_Y_aX_bZ_c": [
+        0.020489852188985268,
+        0.06212625462425522,
+        -0.22740306592994206
+      ],
+      "tree_returns": 13553,
+      "tree_across_rms_m": 0.2959399681297617,
+      "ground_rmse_m": 0.014212377280497191,
+      "ground_normal": [
+        -0.01900720317700759,
+        0.042799299978052575,
+        0.9989028712286178
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 15016,
+      "column_coverage": 1.0,
+      "pcap_sha256": "0b2afa839d3e267781a986fa048967044be7c13430a33fdadc321deb66ddd361",
+      "imu_samples": 49,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideB_084212",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 88.59403658755753,
+      "ground_cross_slope_deg": -2.4030658463244814,
+      "tree_cross_lean_deg": 3.8090292587669667,
+      "ground_line_Z_aY_b": [
+        -0.04196602127060328,
+        0.013752962421165842
+      ],
+      "tree_line_Y_bZ_c": [
+        0.066578213893938,
+        -0.13082600281686962
+      ],
+      "intersection_YZ": [
+        -0.1295483939843393,
+        0.019189593078685122
+      ],
+      "section_X_m": 0.49141106274461327,
+      "display_Y_origin_m": -0.11373296173359161,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.01904644390085164,
+        0.066578213893938,
+        -0.23519933131163806
+      ],
+      "tree_returns": 13659,
+      "tree_across_rms_m": 0.2903464019513777,
+      "ground_rmse_m": 0.013713612661872229,
+      "ground_normal": [
+        -0.01825488066071297,
+        0.0419221290199564,
+        0.9989541002621178
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 15074,
+      "column_coverage": 1.0,
+      "pcap_sha256": "234c57f20980d78c811f91ea5c8be8c8ddf3ea4774ca8440c9e2a91e0e5e6dc6",
+      "imu_samples": 50,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideB_084218",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 87.97661108773113,
+      "ground_cross_slope_deg": -2.047200652793094,
+      "tree_cross_lean_deg": 4.070589565061966,
+      "ground_line_Z_aY_b": [
+        -0.035745604807064554,
+        0.009255806374945323
+      ],
+      "tree_line_Y_bZ_c": [
+        0.07116496384870609,
+        -0.1416502680585077
+      ],
+      "intersection_YZ": [
+        -0.14063382972008653,
+        0.014282847674623548
+      ],
+      "section_X_m": 0.1761538568532429,
+      "display_Y_origin_m": -0.1463743666486321,
+      "tree_plane_Y_aX_bZ_c": [
+        0.03843577854595256,
+        0.07116496384870609,
+        -0.29479524533916646
+      ],
+      "tree_returns": 10706,
+      "tree_across_rms_m": 0.3164950630184827,
+      "ground_rmse_m": 0.014194028161270017,
+      "ground_normal": [
+        -0.022820680285697406,
+        0.035713486596256436,
+        0.9991014780423643
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 15133,
+      "column_coverage": 1.0,
+      "pcap_sha256": "22596424d6779fc3fafc8b2108a5d9e742c960c2eaff95240410e19c212d6f81",
+      "imu_samples": 49,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideB_084235",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 84.61002419783834,
+      "ground_cross_slope_deg": -1.138023763651209,
+      "tree_cross_lean_deg": 6.527999565812878,
+      "ground_line_Z_aY_b": [
+        -0.019864874003782125,
+        -0.010476031951909206
+      ],
+      "tree_line_Y_bZ_c": [
+        0.11443066429035353,
+        -0.1859138061917922
+      ],
+      "intersection_YZ": [
+        -0.1866882150352044,
+        -0.006767494082243888
+      ],
+      "section_X_m": -0.3308048187831313,
+      "display_Y_origin_m": 0.08363355559678556,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.11812343811774006,
+        0.11443066429035353,
+        -0.14135605313558605
+      ],
+      "tree_returns": 13546,
+      "tree_across_rms_m": 0.34075263240535447,
+      "ground_rmse_m": 0.015009340651120563,
+      "ground_normal": [
+        -0.026631406115597656,
+        0.019853911432647347,
+        0.9994481429314532
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 15300,
+      "column_coverage": 1.0,
+      "pcap_sha256": "f1426ff3452f048c414cad5a87071ae7d0c144f811240f6d683505cddc959196",
+      "imu_samples": 48,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideB_084241",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 83.94505909580896,
+      "ground_cross_slope_deg": -0.16614906925935036,
+      "tree_cross_lean_deg": 6.221089973450404,
+      "ground_line_Z_aY_b": [
+        -0.0028998564361181027,
+        -0.0034227487276052527
+      ],
+      "tree_line_Y_bZ_c": [
+        0.10900721275487964,
+        -0.2080780953523878
+      ],
+      "intersection_YZ": [
+        -0.2083853279513112,
+        -0.0028184611931530617
+      ],
+      "section_X_m": -0.11635418426968006,
+      "display_Y_origin_m": -0.07970954170518596,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.04319960496328274,
+        0.10900721275487964,
+        -0.29281409185384893
+      ],
+      "tree_returns": 13586,
+      "tree_across_rms_m": 0.30105709135566516,
+      "ground_rmse_m": 0.015193176754904092,
+      "ground_normal": [
+        -0.03138760590080781,
+        0.0028984154546232155,
+        0.9995030852296894
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 15361,
+      "column_coverage": 1.0,
+      "pcap_sha256": "697d465fc489ee25917fc25db67ee0f0948d7487e03d7cc5c8757bb5325454a6",
+      "imu_samples": 55,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideB_084246",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 84.31582000904376,
+      "ground_cross_slope_deg": -0.28447169059130456,
+      "tree_cross_lean_deg": 5.96865168154755,
+      "ground_line_Z_aY_b": [
+        -0.004965008426914525,
+        -0.0007190236187199601
+      ],
+      "tree_line_Y_bZ_c": [
+        0.1045510915418073,
+        -0.18839272687449427
+      ],
+      "intersection_YZ": [
+        -0.18837011920538485,
+        0.00021623561051366936
+      ],
+      "section_X_m": -0.03788722570461886,
+      "display_Y_origin_m": -0.030845735205711454,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.0978832930445388,
+        0.1045510915418073,
+        -0.22294698849649552
+      ],
+      "tree_returns": 12657,
+      "tree_across_rms_m": 0.26616270287614174,
+      "ground_rmse_m": 0.014575446920464094,
+      "ground_normal": [
+        -0.02301385736958146,
+        0.004963632245483935,
+        0.9997228239486704
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 15417,
+      "column_coverage": 1.0,
+      "pcap_sha256": "ac2da151697485766dd2227c42326e0b4e4f3f108897093a56aa92145856c37b",
+      "imu_samples": 47,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideB_084253",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 84.64414641468011,
+      "ground_cross_slope_deg": 1.0299598370397345,
+      "tree_cross_lean_deg": 4.32589374828016,
+      "ground_line_Z_aY_b": [
+        0.017978126865824142,
+        0.010445034928350649
+      ],
+      "tree_line_Y_bZ_c": [
+        0.07564487937304203,
+        -0.14245132720134884
+      ],
+      "intersection_YZ": [
+        -0.14185412877591583,
+        0.00789476340477628
+      ],
+      "section_X_m": 0.36723266011847533,
+      "display_Y_origin_m": 0.030783280502581018,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.05207148793068943,
+        0.07564487937304203,
+        -0.09254569566965365
+      ],
+      "tree_returns": 12641,
+      "tree_across_rms_m": 0.26540067623709507,
+      "ground_rmse_m": 0.015112079300134005,
+      "ground_normal": [
+        -0.026921424784389594,
+        -0.017968707117684384,
+        0.9994760439610834
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 15480,
+      "column_coverage": 1.0,
+      "pcap_sha256": "4ef6155c6e104751dc9b2b175972db2d3294aa7b40fca88328ef0ae9c951e83c",
+      "imu_samples": 49,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle1",
+      "source": "raw_imu_only",
+      "scan": "sideB_084300",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 83.72569281319647,
+      "ground_cross_slope_deg": 0.5003574703882169,
+      "tree_cross_lean_deg": 5.773949716415314,
+      "ground_line_Z_aY_b": [
+        0.00873310730150519,
+        -0.004751937897997471
+      ],
+      "tree_line_Y_bZ_c": [
+        0.10111696268078317,
+        -0.20989424226164172
+      ],
+      "intersection_YZ": [
+        -0.21056068261796046,
+        -0.006590786932778298
+      ],
+      "section_X_m": -0.1904167089254571,
+      "display_Y_origin_m": 0.24129983069610444,
+      "tree_plane_Y_aX_bZ_c": [
+        0.13909055127228115,
+        0.10111696268078317,
+        0.05789075345035805
+      ],
+      "tree_returns": 11930,
+      "tree_across_rms_m": 0.29781619007917093,
+      "ground_rmse_m": 0.013975721120232563,
+      "ground_normal": [
+        -0.03599751437755619,
+        -0.00872711440540676,
+        0.9993137727624855
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 15559,
+      "column_coverage": 1.0,
+      "pcap_sha256": "186b34bfad581d9e0f61a36137200961946ef6d508508338fc3377ff998412f6",
+      "imu_samples": 52,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideA_082945",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 89.88943218985328,
+      "ground_cross_slope_deg": -2.538966482269027,
+      "tree_cross_lean_deg": 2.428398672122297,
+      "ground_line_Z_aY_b": [
+        -0.044342353107619005,
+        -0.004617409871086052
+      ],
+      "tree_line_Y_bZ_c": [
+        0.04240894941261814,
+        -0.08964456618859219
+      ],
+      "intersection_YZ": [
+        -0.08967175682079001,
+        -0.0006411531663580379
+      ],
+      "section_X_m": 0.019807522879638974,
+      "display_Y_origin_m": 0.10075312596008974,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.16589429309739287,
+        0.04240894941261814,
+        0.014394514777625692
+      ],
+      "tree_returns": 14093,
+      "tree_across_rms_m": 0.25719149124559415,
+      "ground_rmse_m": 0.014732241449037455,
+      "ground_normal": [
+        0.007554093469912171,
+        0.04429755938133932,
+        0.9989898207212646
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 7604,
+      "column_coverage": 1.0,
+      "pcap_sha256": "e0e54acbb0f9f08ea485102c141d3f0dfacdfdde62d30d97844c1d9844baab9c",
+      "imu_samples": 46,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideA_082952",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 88.7319672417606,
+      "ground_cross_slope_deg": -1.8670268212707226,
+      "tree_cross_lean_deg": 3.1350595795101355,
+      "ground_line_Z_aY_b": [
+        -0.03259730369214904,
+        -0.003959966597061122
+      ],
+      "tree_line_Y_bZ_c": [
+        0.054771784375219554,
+        -0.12012609131879194
+      ],
+      "intersection_YZ": [
+        -0.12012850681901485,
+        -4.410117819729806e-05
+      ],
+      "section_X_m": 0.433383393060195,
+      "display_Y_origin_m": 0.24498519601118618,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.007294070679212469,
+        0.054771784375219554,
+        0.1280202337925722
+      ],
+      "tree_returns": 14031,
+      "tree_across_rms_m": 0.23812019254991715,
+      "ground_rmse_m": 0.016035387092300832,
+      "ground_normal": [
+        -0.009284111168871765,
+        0.03257859464960261,
+        0.999426055519097
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 7672,
+      "column_coverage": 1.0,
+      "pcap_sha256": "a7955b95528df1d39d36f4c6962ded9e64471d7faf38c80cbf6ca908f9f156e3",
+      "imu_samples": 48,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideA_082959",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 88.3423415786035,
+      "ground_cross_slope_deg": -2.340293323421184,
+      "tree_cross_lean_deg": 3.9979517448176956,
+      "ground_line_Z_aY_b": [
+        -0.04086855459570631,
+        -0.013105624936981215
+      ],
+      "tree_line_Y_bZ_c": [
+        0.06989088843344225,
+        -0.1585434050872162
+      ],
+      "intersection_YZ": [
+        -0.15900519602117646,
+        -0.00660731240238878
+      ],
+      "section_X_m": -0.381663179611997,
+      "display_Y_origin_m": 0.22895881154322617,
+      "tree_plane_Y_aX_bZ_c": [
+        0.0458551879401153,
+        0.06989088843344225,
+        0.08791664328694007
+      ],
+      "tree_returns": 14202,
+      "tree_across_rms_m": 0.25160235662484187,
+      "ground_rmse_m": 0.016198657156466446,
+      "ground_normal": [
+        -0.009812585229534158,
+        0.04083250121050479,
+        0.9991178208880108
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 7742,
+      "column_coverage": 1.0,
+      "pcap_sha256": "dfbb30496c0afb83d8f08d08e55dbe247489f4075dcc1c0779c111a68a7522c0",
+      "imu_samples": 55,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideA_083006",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 88.60296293267064,
+      "ground_cross_slope_deg": -2.4192564182725915,
+      "tree_cross_lean_deg": 3.8162934856019644,
+      "ground_line_Z_aY_b": [
+        -0.04224910108614291,
+        -0.011082953157783532
+      ],
+      "tree_line_Y_bZ_c": [
+        0.06670556163863697,
+        -0.13486004444302685
+      ],
+      "intersection_YZ": [
+        -0.13521826019398453,
+        -0.005370103214155506
+      ],
+      "section_X_m": -0.153621320065746,
+      "display_Y_origin_m": 0.2165894741240818,
+      "tree_plane_Y_aX_bZ_c": [
+        0.0036055065569121935,
+        0.06670556163863697,
+        0.08228331235783352
+      ],
+      "tree_returns": 12617,
+      "tree_across_rms_m": 0.2385335654518155,
+      "ground_rmse_m": 0.01639675585207063,
+      "ground_normal": [
+        -0.012565755478307957,
+        0.04220811176531378,
+        0.9990298179185976
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 7810,
+      "column_coverage": 1.0,
+      "pcap_sha256": "455435429e2140b549b4d3a04b23843fe3bb16d262bb165e28f69fb1dcb10f45",
+      "imu_samples": 49,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideA_083013",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 89.38197474865245,
+      "ground_cross_slope_deg": -2.038707271654715,
+      "tree_cross_lean_deg": 2.656732523002261,
+      "ground_line_Z_aY_b": [
+        -0.035597178716807606,
+        -0.008974809357921802
+      ],
+      "tree_line_Y_bZ_c": [
+        0.04640199031295553,
+        -0.10051125813291419
+      ],
+      "intersection_YZ": [
+        -0.1007612717022743,
+        -0.005387992361403134
+      ],
+      "section_X_m": -0.14372993895307123,
+      "display_Y_origin_m": 0.21774111376764738,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.0037039200334443487,
+        0.04640199031295553,
+        0.11669749143443918
+      ],
+      "tree_returns": 9665,
+      "tree_across_rms_m": 0.2391550594790999,
+      "ground_rmse_m": 0.01599025735577783,
+      "ground_normal": [
+        -0.008509160184996438,
+        0.03557335855463049,
+        0.9993308412903557
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 7881,
+      "column_coverage": 1.0,
+      "pcap_sha256": "86b5d62b40e02eabc6350079d18931b4a0a8ec2b714e08ca9cff53016c9cf87b",
+      "imu_samples": 46,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideA_083019",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 85.9873692027603,
+      "ground_cross_slope_deg": -2.5622994084943174,
+      "tree_cross_lean_deg": -1.4503313887453746,
+      "ground_line_Z_aY_b": [
+        -0.044750397611541926,
+        -0.000865708782373243
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.02531846581959398,
+        0.037291014231624994
+      ],
+      "intersection_YZ": [
+        0.03735525658185941,
+        -0.0025373713672926196
+      ],
+      "section_X_m": 0.0010836544068035276,
+      "display_Y_origin_m": 0.019359776896657632,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.05659411518083796,
+        -0.02531846581959398,
+        0.056712119590597486
+      ],
+      "tree_returns": 13536,
+      "tree_across_rms_m": 0.2587572350048044,
+      "ground_rmse_m": 0.016025929553887167,
+      "ground_normal": [
+        -0.0005982373187816085,
+        0.044705648269415345,
+        0.9990000235860467
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "horizontal_canopy_PCA_fallback",
+      "selected_frame": 7944,
+      "column_coverage": 1.0,
+      "pcap_sha256": "d7281f96d2ef3026c0009f416e3d1ddbe507ce451c2204b93835b193d52b9b8a",
+      "imu_samples": 46,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideA_083026",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 86.0126328371302,
+      "ground_cross_slope_deg": -2.7839303306566876,
+      "tree_cross_lean_deg": -1.2034368322131157,
+      "ground_line_Z_aY_b": [
+        -0.04862702374687516,
+        -0.011244743722209667
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.021007024342731453,
+        0.02327803734321257
+      ],
+      "intersection_YZ": [
+        0.023538300535839395,
+        -0.012389341221327012
+      ],
+      "section_X_m": -0.6022161149304185,
+      "display_Y_origin_m": 0.17929383258946177,
+      "tree_plane_Y_aX_bZ_c": [
+        0.0205652436988028,
+        -0.021007024342731453,
+        0.21495659109556464
+      ],
+      "tree_returns": 13989,
+      "tree_across_rms_m": 0.256445566455166,
+      "ground_rmse_m": 0.016348032837275962,
+      "ground_normal": [
+        -0.004189882354672637,
+        0.04856920775464168,
+        0.9988110316491005
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 8013,
+      "column_coverage": 1.0,
+      "pcap_sha256": "601032585a7768307c6092280ef9796d787b0ee19a19cb0b6858d9a72c6108ea",
+      "imu_samples": 54,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideA_083032",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 85.05124828263288,
+      "ground_cross_slope_deg": -2.9869391872724957,
+      "tree_cross_lean_deg": -1.961812530094632,
+      "ground_line_Z_aY_b": [
+        -0.052179201731378015,
+        -0.0010403776281242693
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.03425347507446207,
+        0.060093671769630666
+      ],
+      "intersection_YZ": [
+        0.06023697100070699,
+        -0.004183494689657327
+      ],
+      "section_X_m": -0.007205132646284815,
+      "display_Y_origin_m": 0.019671295157176593,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.11902993173239351,
+        -0.03425347507446207,
+        0.07890734047979714
+      ],
+      "tree_returns": 12932,
+      "tree_across_rms_m": 0.2518025838861317,
+      "ground_rmse_m": 0.015225895178808305,
+      "ground_normal": [
+        -0.001932813611496168,
+        0.05210821577096555,
+        0.9986395736604421
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "horizontal_canopy_PCA_fallback",
+      "selected_frame": 8075,
+      "column_coverage": 1.0,
+      "pcap_sha256": "0b2026bd23f3bd499e2b44c40d72794945ba00651f8ffe0b2553132d4c70d9dd",
+      "imu_samples": 54,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideA_083041",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 87.680223365601,
+      "ground_cross_slope_deg": -2.6903771304056523,
+      "tree_cross_lean_deg": 0.3706004960066444,
+      "ground_line_Z_aY_b": [
+        -0.04699047993662448,
+        -0.005670220534369101
+      ],
+      "tree_line_Y_bZ_c": [
+        0.0064682890709811605,
+        -0.015804500171829106
+      ],
+      "intersection_YZ": [
+        -0.015836363366245425,
+        -0.004926062219338451
+      ],
+      "section_X_m": 0.14910579434446705,
+      "display_Y_origin_m": 0.13396739859981893,
+      "tree_plane_Y_aX_bZ_c": [
+        0.0023650275836045753,
+        0.0064682890709811605,
+        0.11781025911148989
+      ],
+      "tree_returns": 13352,
+      "tree_across_rms_m": 0.23264400753504136,
+      "ground_rmse_m": 0.015775035566147767,
+      "ground_normal": [
+        -0.004186809047946142,
+        0.04693827432988707,
+        0.998889017375268
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 8160,
+      "column_coverage": 1.0,
+      "pcap_sha256": "6b2d4b83c0b03206c6557fa34a8ef7de2a73c3ffaa4f0e54a4505d656a980cd7",
+      "imu_samples": 50,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideB_083938",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 87.85589494288995,
+      "ground_cross_slope_deg": -1.8123351579269196,
+      "tree_cross_lean_deg": 3.956440215036981,
+      "ground_line_Z_aY_b": [
+        -0.03164176924602591,
+        -0.002822572132586071
+      ],
+      "tree_line_Y_bZ_c": [
+        0.06916287324392427,
+        -0.13587168057062696
+      ],
+      "intersection_YZ": [
+        -0.13576977435139928,
+        0.0014734237380259127
+      ],
+      "section_X_m": -0.21446800591727358,
+      "display_Y_origin_m": -0.06316382944913274,
+      "tree_plane_Y_aX_bZ_c": [
+        0.0035224434053386234,
+        0.06916287324392427,
+        -0.19828005860666026
+      ],
+      "tree_returns": 13645,
+      "tree_across_rms_m": 0.24668428949006346,
+      "ground_rmse_m": 0.015302625239451006,
+      "ground_normal": [
+        -0.022462837142706575,
+        0.03161796133544355,
+        0.9992475796660658
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 13531,
+      "column_coverage": 1.0,
+      "pcap_sha256": "2fc088173e2e829615525f7d270b4e6a68b90d51a510de2d95a8c54e22546b58",
+      "imu_samples": 47,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideB_083944",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 86.74214164328986,
+      "ground_cross_slope_deg": -1.8649243970185663,
+      "tree_cross_lean_deg": 5.122782753728713,
+      "ground_line_Z_aY_b": [
+        -0.032560570519891884,
+        -0.00374034428513268
+      ],
+      "tree_line_Y_bZ_c": [
+        0.08964843788633427,
+        -0.1757691899976652
+      ],
+      "intersection_YZ": [
+        -0.1755919523588488,
+        0.001977029862373113
+      ],
+      "section_X_m": -0.39288605031109874,
+      "display_Y_origin_m": -0.05414758852255345,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.01326759663518498,
+        0.08964843788633427,
+        -0.2351294321593373
+      ],
+      "tree_returns": 13309,
+      "tree_across_rms_m": 0.2472442856336436,
+      "ground_rmse_m": 0.015732846158035694,
+      "ground_normal": [
+        -0.013998885033085072,
+        0.03254013513020343,
+        0.9993723884636491
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 13594,
+      "column_coverage": 1.0,
+      "pcap_sha256": "b10f536c1b6cf2fb72e936b185de3c71470c769fccb8c012de052349646f723a",
+      "imu_samples": 55,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideB_083950",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 87.38483219937446,
+      "ground_cross_slope_deg": -1.8886389808246857,
+      "tree_cross_lean_deg": 4.503806781450235,
+      "ground_line_Z_aY_b": [
+        -0.032974912506063166,
+        2.8290004953385197e-05
+      ],
+      "tree_line_Y_bZ_c": [
+        0.0787685595765042,
+        -0.14930908700202675
+      ],
+      "intersection_YZ": [
+        -0.14892005571759553,
+        0.004938915812639151
+      ],
+      "section_X_m": 0.005765802717945612,
+      "display_Y_origin_m": 0.0025913701959545126,
+      "tree_plane_Y_aX_bZ_c": [
+        0.005535977169787243,
+        0.0787685595765042,
+        -0.1467496361582843
+      ],
+      "tree_returns": 13170,
+      "tree_across_rms_m": 0.2543257370112812,
+      "ground_rmse_m": 0.015344323930224177,
+      "ground_normal": [
+        -0.019712144324383805,
+        0.032950595911902615,
+        0.9992625728982273
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "horizontal_canopy_PCA_fallback",
+      "selected_frame": 13655,
+      "column_coverage": 1.0,
+      "pcap_sha256": "a755969f928b6197c59e90a043ed25877fc26a785bf8b7c224f594bdb5988248",
+      "imu_samples": 47,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideB_084003",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 86.10178609546794,
+      "ground_cross_slope_deg": -1.940074719775256,
+      "tree_cross_lean_deg": 5.838288624307322,
+      "ground_line_Z_aY_b": [
+        -0.03387363848424897,
+        0.0044845862975000424
+      ],
+      "tree_line_Y_bZ_c": [
+        0.10225149927255996,
+        -0.18406931873951898
+      ],
+      "intersection_YZ": [
+        -0.18297699838735332,
+        0.010682682991806256
+      ],
+      "section_X_m": 0.07831917164054304,
+      "display_Y_origin_m": -0.08120096622932883,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.007748452242856837,
+        0.10225149927255996,
+        -0.26466343260769093
+      ],
+      "tree_returns": 13918,
+      "tree_across_rms_m": 0.2770423979628307,
+      "ground_rmse_m": 0.015313961348847112,
+      "ground_normal": [
+        -0.02212224671363671,
+        0.033845936453005314,
+        0.9991821949904632
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 13785,
+      "column_coverage": 1.0,
+      "pcap_sha256": "ce5b8f1b833154de61db047a9b17e5b7f4e99abbf26205feb024390992dade27",
+      "imu_samples": 54,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideB_084010",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 85.73396590376208,
+      "ground_cross_slope_deg": -2.33632702969444,
+      "tree_cross_lean_deg": 6.60236112593236,
+      "ground_line_Z_aY_b": [
+        -0.04079921428504969,
+        0.006430139626579561
+      ],
+      "tree_line_Y_bZ_c": [
+        0.11574570898294301,
+        -0.2010344876516854
+      ],
+      "intersection_YZ": [
+        -0.19934883480460464,
+        0.014563415455247595
+      ],
+      "section_X_m": 0.08213785300548024,
+      "display_Y_origin_m": -0.11169899233196993,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.05432959307493106,
+        0.11574570898294301,
+        -0.30827096385381914
+      ],
+      "tree_returns": 13208,
+      "tree_across_rms_m": 0.2809829750989119,
+      "ground_rmse_m": 0.014797943350403603,
+      "ground_normal": [
+        -0.022777149493372274,
+        0.040754724063926565,
+        0.9989095324039259
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 13853,
+      "column_coverage": 1.0,
+      "pcap_sha256": "eefbac9c9a957bdf38b831920eccf200b25b4166e60164dbf9df5ad5c3dbeb72",
+      "imu_samples": 54,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideB_084017",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 84.4527139834778,
+      "ground_cross_slope_deg": -1.8847004088127441,
+      "tree_cross_lean_deg": 7.431986425334945,
+      "ground_line_Z_aY_b": [
+        -0.032906096867279556,
+        0.003599839702960575
+      ],
+      "tree_line_Y_bZ_c": [
+        0.13044505031632309,
+        -0.2657373601558724
+      ],
+      "intersection_YZ": [
+        -0.2641340002073258,
+        0.012291458699724875
+      ],
+      "section_X_m": 0.10529557315037898,
+      "display_Y_origin_m": -0.06193607556026193,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.050511089479684954,
+        0.13044505031632309,
+        -0.3223548415989208
+      ],
+      "tree_returns": 13713,
+      "tree_across_rms_m": 0.27841809713692905,
+      "ground_rmse_m": 0.015753920179453908,
+      "ground_normal": [
+        -0.01482254960183222,
+        0.032884682668161865,
+        0.9993492330857693
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 13926,
+      "column_coverage": 1.0,
+      "pcap_sha256": "f00e1d3bccfcb85d02e2ed31c07292161fec86bed540cf98e44ff2cf2814c74d",
+      "imu_samples": 54,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideB_084026",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 84.46746813178909,
+      "ground_cross_slope_deg": -1.93562191772307,
+      "tree_cross_lean_deg": 7.468153785933976,
+      "ground_line_Z_aY_b": [
+        -0.033795833458945004,
+        0.0023718019630600638
+      ],
+      "tree_line_Y_bZ_c": [
+        0.13108708390784335,
+        -0.253033726890215
+      ],
+      "intersection_YZ": [
+        -0.25160814059313497,
+        0.010875108779460473
+      ],
+      "section_X_m": 0.07099400380295007,
+      "display_Y_origin_m": -0.02370920111425801,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.08148977027488674,
+        0.13108708390784335,
+        -0.2709576429436762
+      ],
+      "tree_returns": 13045,
+      "tree_across_rms_m": 0.2595707520673499,
+      "ground_rmse_m": 0.014875532677797268,
+      "ground_normal": [
+        -0.02210398118265997,
+        0.03376829749665035,
+        0.9991852261217908
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 14018,
+      "column_coverage": 1.0,
+      "pcap_sha256": "a61891d0a2b66820cddaa3125a5bcc6db89f84c48a06421ef7937d6876828f4e",
+      "imu_samples": 47,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideB_084032",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 83.81536627574543,
+      "ground_cross_slope_deg": -1.5095505022503675,
+      "tree_cross_lean_deg": 7.694184226504946,
+      "ground_line_Z_aY_b": [
+        -0.02635272430646949,
+        0.0027873828742848595
+      ],
+      "tree_line_Y_bZ_c": [
+        0.13510194612137377,
+        -0.26134673883613185
+      ],
+      "intersection_YZ": [
+        -0.26004432106052144,
+        0.009640259174655818
+      ],
+      "section_X_m": 0.2242211302877197,
+      "display_Y_origin_m": 0.06547498554999708,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.05839713926558629,
+        0.13510194612137377,
+        -0.18277788071443563
+      ],
+      "tree_returns": 13231,
+      "tree_across_rms_m": 0.2687463803139426,
+      "ground_rmse_m": 0.01375602229479326,
+      "ground_normal": [
+        -0.02011562477510786,
+        0.02633824818273514,
+        0.9994506782841122
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 14075,
+      "column_coverage": 1.0,
+      "pcap_sha256": "c56533f3aa90a56ff2605aa56f03e0d16684f66e887cd50c2901c3e3906913db",
+      "imu_samples": 47,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "spindle2",
+      "source": "raw_imu_only",
+      "scan": "sideB_084038",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 84.25721565920365,
+      "ground_cross_slope_deg": -1.557044644381461,
+      "tree_cross_lean_deg": 7.2998289851778075,
+      "ground_line_Z_aY_b": [
+        -0.027182247435794563,
+        -0.0014084954694256228
+      ],
+      "tree_line_Y_bZ_c": [
+        0.12809992070130044,
+        -0.2256294075817113
+      ],
+      "intersection_YZ": [
+        -0.22502628437458397,
+        0.004708224672001791
+      ],
+      "section_X_m": -0.030685283079818316,
+      "display_Y_origin_m": 0.023385909093896946,
+      "tree_plane_Y_aX_bZ_c": [
+        0.03344559660049186,
+        0.12809992070130044,
+        -0.20121721088835484
+      ],
+      "tree_returns": 12782,
+      "tree_across_rms_m": 0.24351570904967412,
+      "ground_rmse_m": 0.013915636751087996,
+      "ground_normal": [
+        -0.025167890562948998,
+        0.02716360375051528,
+        0.9993141227441432
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 14130,
+      "column_coverage": 1.0,
+      "pcap_sha256": "3daf481360e728ab102517c11d330c5b760885f9f480fbf6373db7a0e0ddce53",
+      "imu_samples": 48,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideA_083208",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 87.08773746958579,
+      "ground_cross_slope_deg": -2.9580853126607476,
+      "tree_cross_lean_deg": 5.870347843074954,
+      "ground_line_Z_aY_b": [
+        -0.05167424872065317,
+        -0.02279514913180373
+      ],
+      "tree_line_Y_bZ_c": [
+        0.10281692079050289,
+        -0.20615421871177256
+      ],
+      "intersection_YZ": [
+        -0.20739605319146548,
+        -0.012078113895506127
+      ],
+      "section_X_m": -0.22509810976345998,
+      "display_Y_origin_m": 0.34163155859361705,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.03207328613705055,
+        0.10281692079050289,
+        0.12825770379849183
+      ],
+      "tree_returns": 14928,
+      "tree_across_rms_m": 0.1990798898924502,
+      "ground_rmse_m": 0.013234763478542428,
+      "ground_normal": [
+        -0.022805205709550982,
+        0.051591974422406484,
+        0.998407827877838
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 9038,
+      "column_coverage": 1.0,
+      "pcap_sha256": "8651304c5ad98ba9ff7fb4791c49eea116eef323edf52fbe847172557f950c67",
+      "imu_samples": 55,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideA_083214",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 88.51287663423176,
+      "ground_cross_slope_deg": -3.342461307373451,
+      "tree_cross_lean_deg": 4.829584673141689,
+      "ground_line_Z_aY_b": [
+        -0.058403222592213616,
+        -0.01496262546869398
+      ],
+      "tree_line_Y_bZ_c": [
+        0.08449235968426413,
+        -0.1787344272239753
+      ],
+      "intersection_YZ": [
+        -0.1791147902398779,
+        -0.004501744504756741
+      ],
+      "section_X_m": 0.1738587064857004,
+      "display_Y_origin_m": 0.35394825964004756,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.002542265147656149,
+        0.08449235968426413,
+        0.17565582734618743
+      ],
+      "tree_returns": 15412,
+      "tree_across_rms_m": 0.20842777764644502,
+      "ground_rmse_m": 0.01296296030854896,
+      "ground_normal": [
+        -0.03276408687118458,
+        0.05827256926001195,
+        0.9977629088532679
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 9099,
+      "column_coverage": 1.0,
+      "pcap_sha256": "41cb8b331d32f298f3735675aae574fcf8f05a22b70398c51634df9da4c50309",
+      "imu_samples": 51,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideA_083237",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 89.05560859325092,
+      "ground_cross_slope_deg": -3.7352483047554945,
+      "tree_cross_lean_deg": 4.679639711504575,
+      "ground_line_Z_aY_b": [
+        -0.06528489546221593,
+        -0.016161137468289528
+      ],
+      "tree_line_Y_bZ_c": [
+        0.08185722017839853,
+        -0.1779511163452897
+      ],
+      "intersection_YZ": [
+        -0.17832106720628477,
+        -0.004519465237016446
+      ],
+      "section_X_m": 0.24862708709060238,
+      "display_Y_origin_m": 0.35787500866278665,
+      "tree_plane_Y_aX_bZ_c": [
+        0.012195319896939455,
+        0.08185722017839853,
+        0.17689180545538283
+      ],
+      "tree_returns": 14634,
+      "tree_across_rms_m": 0.20167315797829918,
+      "ground_rmse_m": 0.012386126984159957,
+      "ground_normal": [
+        -0.028896261176677592,
+        0.06511900864129666,
+        0.9974590321429668
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 9324,
+      "column_coverage": 1.0,
+      "pcap_sha256": "d7a84fbfb0f8a68267c6ce4701713aa2649104c67c7ffba068a16d4ba9128819",
+      "imu_samples": 46,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideA_083244",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 88.68765367690102,
+      "ground_cross_slope_deg": -3.8820137367050678,
+      "tree_cross_lean_deg": 5.19436005980405,
+      "ground_line_Z_aY_b": [
+        -0.06785778895455684,
+        -0.03126955214973133
+      ],
+      "tree_line_Y_bZ_c": [
+        0.09090787935537917,
+        -0.1932486327295486
+      ],
+      "intersection_YZ": [
+        -0.19488904834344276,
+        -0.018044812237687568
+      ],
+      "section_X_m": -0.23062575824414894,
+      "display_Y_origin_m": 0.3530663309793697,
+      "tree_plane_Y_aX_bZ_c": [
+        0.010327496151946993,
+        0.09090787935537917,
+        0.16219948488062738
+      ],
+      "tree_returns": 14952,
+      "tree_across_rms_m": 0.20751350434784732,
+      "ground_rmse_m": 0.012152813512603888,
+      "ground_normal": [
+        -0.031613253450754636,
+        0.06766825563566649,
+        0.99720690400011
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 9392,
+      "column_coverage": 1.0,
+      "pcap_sha256": "45cd3ae40a4dd9cf8c7d220382b4ce5bc42d7a33f31b6f5f0f44426f51e1899d",
+      "imu_samples": 53,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideA_083252",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 88.56551414357003,
+      "ground_cross_slope_deg": -3.525193234394106,
+      "tree_cross_lean_deg": 4.9596790908240775,
+      "ground_line_Z_aY_b": [
+        -0.06160398181521018,
+        -0.02552685225209088
+      ],
+      "tree_line_Y_bZ_c": [
+        0.08677958788630732,
+        -0.1726070504995607
+      ],
+      "intersection_YZ": [
+        -0.17389263572521585,
+        -0.014814373483075714
+      ],
+      "section_X_m": -0.20743294845687976,
+      "display_Y_origin_m": 0.3255116544033366,
+      "tree_plane_Y_aX_bZ_c": [
+        0.02293640058773555,
+        0.08677958788630732,
+        0.157662369104678
+      ],
+      "tree_returns": 14074,
+      "tree_across_rms_m": 0.1979810453275186,
+      "ground_rmse_m": 0.01211514743501947,
+      "ground_normal": [
+        -0.02633036997418392,
+        0.06146610041835016,
+        0.9977618103116515
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 9473,
+      "column_coverage": 1.0,
+      "pcap_sha256": "0fd5adca6f9dd6c988897e0cc1f7f934631ba280b1be23d6a5e335fa148814b8",
+      "imu_samples": 50,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideA_083258",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 89.4374958887005,
+      "ground_cross_slope_deg": -3.9034726060582674,
+      "tree_cross_lean_deg": 4.465976717357768,
+      "ground_line_Z_aY_b": [
+        -0.06823405103974446,
+        -0.03429838912168322
+      ],
+      "tree_line_Y_bZ_c": [
+        0.07810423828632265,
+        -0.151127653932524
+      ],
+      "intersection_YZ": [
+        -0.1529911572227479,
+        -0.023859182691116667
+      ],
+      "section_X_m": -0.31023757813993724,
+      "display_Y_origin_m": 0.3389916971470353,
+      "tree_plane_Y_aX_bZ_c": [
+        0.005314319518690477,
+        0.07810423828632265,
+        0.18951274483145164
+      ],
+      "tree_returns": 13057,
+      "tree_across_rms_m": 0.22106144974493125,
+      "ground_rmse_m": 0.01218962062999241,
+      "ground_normal": [
+        -0.03589032340111152,
+        0.06803189975551548,
+        0.9970373841044372
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 9537,
+      "column_coverage": 1.0,
+      "pcap_sha256": "ee2af474a676c3860d712062370cacde9106ea9f30cfb65a5b6931a8d7164ab3",
+      "imu_samples": 52,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideA_083305",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 88.21788531370824,
+      "ground_cross_slope_deg": -3.430474047426824,
+      "tree_cross_lean_deg": 5.212588733718589,
+      "ground_line_Z_aY_b": [
+        -0.0599447137761653,
+        -0.024231712010893924
+      ],
+      "tree_line_Y_bZ_c": [
+        0.09122866829414714,
+        -0.17073731673482817
+      ],
+      "intersection_YZ": [
+        -0.17200729133575288,
+        -0.013920784164358739
+      ],
+      "section_X_m": -0.17436775434767843,
+      "display_Y_origin_m": 0.3186814470056639,
+      "tree_plane_Y_aX_bZ_c": [
+        0.0036075816989058042,
+        0.09122866829414714,
+        0.14857317619029975
+      ],
+      "tree_returns": 13698,
+      "tree_across_rms_m": 0.22786507035030293,
+      "ground_rmse_m": 0.01191183051269962,
+      "ground_normal": [
+        -0.02934630675594085,
+        0.05981152977632488,
+        0.997778219438369
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 9608,
+      "column_coverage": 1.0,
+      "pcap_sha256": "984b90a86a24de683b74531084df269bfb448411312fcfeb61297f451913e794",
+      "imu_samples": 45,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideA_083313",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 88.67141728786258,
+      "ground_cross_slope_deg": -3.7153434878130254,
+      "tree_cross_lean_deg": 5.04392619995045,
+      "ground_line_Z_aY_b": [
+        -0.0649360180889415,
+        -0.029774348027614292
+      ],
+      "tree_line_Y_bZ_c": [
+        0.08826124050936804,
+        -0.17189520680976667
+      ],
+      "intersection_YZ": [
+        -0.1735285775505369,
+        -0.01850609317684434
+      ],
+      "section_X_m": -0.2954100291270606,
+      "display_Y_origin_m": 0.33769507529104864,
+      "tree_plane_Y_aX_bZ_c": [
+        0.01221903747663238,
+        0.08826124050936804,
+        0.16940949469815858
+      ],
+      "tree_returns": 14840,
+      "tree_across_rms_m": 0.22195303256944462,
+      "ground_rmse_m": 0.013160469582925048,
+      "ground_normal": [
+        -0.02649380869625982,
+        0.06477679603015818,
+        0.9975480162863507
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 9681,
+      "column_coverage": 1.0,
+      "pcap_sha256": "4139c73f4a15fc16ed61b35b6f26e04a28841ab0ecc4d25aa1d016a1b88b4f2a",
+      "imu_samples": 51,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideA_083319",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 89.41233799090574,
+      "ground_cross_slope_deg": -3.4362129986483883,
+      "tree_cross_lean_deg": 4.0238750077426415,
+      "ground_line_Z_aY_b": [
+        -0.06004523789922998,
+        -0.029145130664875427
+      ],
+      "tree_line_Y_bZ_c": [
+        0.07034555921372401,
+        -0.13822298695167995
+      ],
+      "intersection_YZ": [
+        -0.13968320735478923,
+        -0.020757819248729634
+      ],
+      "section_X_m": -0.45516387520455076,
+      "display_Y_origin_m": 0.3276411177302488,
+      "tree_plane_Y_aX_bZ_c": [
+        0.018053190275228805,
+        0.07034555921372401,
+        0.1976352908240471
+      ],
+      "tree_returns": 15140,
+      "tree_across_rms_m": 0.2193528282312456,
+      "ground_rmse_m": 0.012854715645766606,
+      "ground_normal": [
+        -0.020767846820081495,
+        0.059924358281308286,
+        0.9979868575402339
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 9744,
+      "column_coverage": 1.0,
+      "pcap_sha256": "d98fb90a0687772b71f345f127a7c412adb628c88c9d02ce99c6b0762faa6572",
+      "imu_samples": 48,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideB_083639",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 83.82575169644186,
+      "ground_cross_slope_deg": -3.0064517891342386,
+      "tree_cross_lean_deg": 9.180700092692387,
+      "ground_line_Z_aY_b": [
+        -0.05252069419092208,
+        -0.0074099992738642165
+      ],
+      "tree_line_Y_bZ_c": [
+        0.16161899368501065,
+        -0.3294819666247706
+      ],
+      "intersection_YZ": [
+        -0.32789626767441826,
+        0.009811340327008637
+      ],
+      "section_X_m": -0.27666437846116915,
+      "display_Y_origin_m": 0.11256893739502954,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.0308147873468138,
+        0.16161899368501065,
+        -0.22543838321846035
+      ],
+      "tree_returns": 15210,
+      "tree_across_rms_m": 0.24035591150824565,
+      "ground_rmse_m": 0.012749301985541212,
+      "ground_normal": [
+        -0.0054062513116858064,
+        0.05244764007784982,
+        0.9986090413655482
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 11741,
+      "column_coverage": 1.0,
+      "pcap_sha256": "c7c8dcb9e9c238c28f7ef54188c010521cd5efd82b173d2422b891a2acfc46d8",
+      "imu_samples": 48,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideB_083646",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 82.13528210419179,
+      "ground_cross_slope_deg": -2.8030923572828907,
+      "tree_cross_lean_deg": 10.667810253091108,
+      "ground_line_Z_aY_b": [
+        -0.048962260480959856,
+        -0.004838189459558454
+      ],
+      "tree_line_Y_bZ_c": [
+        0.18837014775121738,
+        -0.3820837003168577
+      ],
+      "intersection_YZ": [
+        -0.3794949778818688,
+        0.013742742498709706
+      ],
+      "section_X_m": 0.13552065374344116,
+      "display_Y_origin_m": 0.10866873569800609,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.0014547961649595037,
+        0.18837014775121738,
+        -0.2732178096915128
+      ],
+      "tree_returns": 14890,
+      "tree_across_rms_m": 0.229843879189316,
+      "ground_rmse_m": 0.012386461843132584,
+      "ground_normal": [
+        -0.0035558945387763256,
+        0.048903367926275185,
+        0.9987971847274582
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 11819,
+      "column_coverage": 1.0,
+      "pcap_sha256": "aeac47a368a304dee2a5e77fdfd8d2da00df73b19ac0b2cc0fd207028cb00a68",
+      "imu_samples": 48,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideB_083654",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 80.11721965625047,
+      "ground_cross_slope_deg": -2.500833482655151,
+      "tree_cross_lean_deg": 12.383613826404677,
+      "ground_line_Z_aY_b": [
+        -0.043675517665017455,
+        -0.0035151665967243944
+      ],
+      "tree_line_Y_bZ_c": [
+        0.21956446060709015,
+        -0.42606091536424806
+      ],
+      "intersection_YZ": [
+        -0.4227784484160506,
+        0.014949900995459495
+      ],
+      "section_X_m": 0.31557848012377643,
+      "display_Y_origin_m": 0.0861172281988298,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.0017693793216016817,
+        0.21956446060709015,
+        -0.3393853091283448
+      ],
+      "tree_returns": 13696,
+      "tree_across_rms_m": 0.22962993931156603,
+      "ground_rmse_m": 0.012215209003302788,
+      "ground_normal": [
+        -0.0007789298903150294,
+        0.04363390729472941,
+        0.9990472838671955
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 11896,
+      "column_coverage": 1.0,
+      "pcap_sha256": "02bccc3e568c26f1ce8155be3780b59f0e91090a2739c42af019cae07813f622",
+      "imu_samples": 47,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideB_083701",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 80.21419164762602,
+      "ground_cross_slope_deg": -2.3533673057657407,
+      "tree_cross_lean_deg": 12.139175658139715,
+      "ground_line_Z_aY_b": [
+        -0.04109712189127352,
+        -0.002621932706127802
+      ],
+      "tree_line_Y_bZ_c": [
+        0.21509669789943778,
+        -0.4167950168277375
+      ],
+      "intersection_YZ": [
+        -0.4137019208140246,
+        0.014380025560220154
+      ],
+      "section_X_m": -0.050163155987240596,
+      "display_Y_origin_m": 0.057934290611387884,
+      "tree_plane_Y_aX_bZ_c": [
+        0.02671179182627644,
+        0.21509669789943778,
+        -0.3575207784362694
+      ],
+      "tree_returns": 13439,
+      "tree_across_rms_m": 0.22461517479771642,
+      "ground_rmse_m": 0.012062926250435172,
+      "ground_normal": [
+        -0.004800217615104445,
+        0.04106198673401708,
+        0.9991450701256065
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 11960,
+      "column_coverage": 1.0,
+      "pcap_sha256": "b37f3da07784ef3a5c356af7aeb0c14104f00d6b2e31320305513731b9e8bf42",
+      "imu_samples": 50,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideB_083710",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 80.04239478583155,
+      "ground_cross_slope_deg": -2.724596674492232,
+      "tree_cross_lean_deg": 12.682201888660689,
+      "ground_line_Z_aY_b": [
+        -0.04758905929657982,
+        -0.004051556787665213
+      ],
+      "tree_line_Y_bZ_c": [
+        0.22503334393632707,
+        -0.44933926226469556
+      ],
+      "intersection_YZ": [
+        -0.44548029342340206,
+        0.017148431311518844
+      ],
+      "section_X_m": 0.2583949877147208,
+      "display_Y_origin_m": 0.09257982631349501,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.03756985732221922,
+        0.22503334393632707,
+        -0.3470515731299819
+      ],
+      "tree_returns": 13781,
+      "tree_across_rms_m": 0.22864127700181286,
+      "ground_rmse_m": 0.012151480241353253,
+      "ground_normal": [
+        -0.0013693349556415928,
+        0.047535218175674056,
+        0.9988686239715263
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 12057,
+      "column_coverage": 1.0,
+      "pcap_sha256": "5391c8b4dd36ebd5b04ea11901bf13756daddeb3df980933d157cc19b2028efc",
+      "imu_samples": 51,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideB_083719",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 80.11782532080757,
+      "ground_cross_slope_deg": -2.646332680753945,
+      "tree_cross_lean_deg": 12.52850735994638,
+      "ground_line_Z_aY_b": [
+        -0.04622008953359376,
+        -0.005676717993421195
+      ],
+      "tree_line_Y_bZ_c": [
+        0.22221672127782163,
+        -0.43649483270185596
+      ],
+      "intersection_YZ": [
+        -0.43330586324410064,
+        0.01435071780115227
+      ],
+      "section_X_m": -0.17407994728874696,
+      "display_Y_origin_m": 0.08780814497731584,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.03351557389414476,
+        0.22221672127782163,
+        -0.3545210770613849
+      ],
+      "tree_returns": 14448,
+      "tree_across_rms_m": 0.23117106741217827,
+      "ground_rmse_m": 0.01240166900452681,
+      "ground_normal": [
+        -0.009285516653888999,
+        0.0461688080978388,
+        0.9988904946686076
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 12141,
+      "column_coverage": 1.0,
+      "pcap_sha256": "1f8c56939f3201402b10617b5c6bf378e0bc106933d2d74c8c6a1ec8f5f1c5d5",
+      "imu_samples": 53,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideB_083725",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 80.89821735697022,
+      "ground_cross_slope_deg": -2.5176706948161485,
+      "tree_cross_lean_deg": 11.619453337845929,
+      "ground_line_Z_aY_b": [
+        -0.0439699468034939,
+        -0.006050784027702046
+      ],
+      "tree_line_Y_bZ_c": [
+        0.20562437597094746,
+        -0.39010878438302843
+      ],
+      "intersection_YZ": [
+        -0.3878463407167399,
+        0.011002798941542779
+      ],
+      "section_X_m": -0.14785525897322785,
+      "display_Y_origin_m": 0.10254680972085502,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.04714779868835103,
+        0.20562437597094746,
+        -0.29453302464725717
+      ],
+      "tree_returns": 14351,
+      "tree_across_rms_m": 0.23131138221138162,
+      "ground_rmse_m": 0.013407054435936889,
+      "ground_normal": [
+        -0.010417177037595598,
+        0.04392512003411758,
+        0.9989805134498649
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 12209,
+      "column_coverage": 1.0,
+      "pcap_sha256": "1e6e48653941b9d861af2573804d749521fba5d00fe4191bf44852562d94dfe8",
+      "imu_samples": 49,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideB_083732",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 81.62241098460358,
+      "ground_cross_slope_deg": -2.486693634881494,
+      "tree_cross_lean_deg": 10.864282650277927,
+      "ground_line_Z_aY_b": [
+        -0.043428262667107996,
+        -0.005515391619826541
+      ],
+      "tree_line_Y_bZ_c": [
+        0.1919232224447662,
+        -0.3697051799818755
+      ],
+      "intersection_YZ": [
+        -0.3676989803818599,
+        0.01045313628262466
+      ],
+      "section_X_m": -0.1499332525288179,
+      "display_Y_origin_m": 0.1148876518841845,
+      "tree_plane_Y_aX_bZ_c": [
+        0.02523665515624475,
+        0.1919232224447662,
+        -0.2510337143071671
+      ],
+      "tree_returns": 12483,
+      "tree_across_rms_m": 0.23193020746416246,
+      "ground_rmse_m": 0.013536740683670043,
+      "ground_normal": [
+        -0.0035050392034229705,
+        0.043387100834999096,
+        0.9990521879167855
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 12279,
+      "column_coverage": 1.0,
+      "pcap_sha256": "411576610dfc02e1451f60b3ce0473c487d916857cfed0004581e0222fb07ffa",
+      "imu_samples": 49,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "chandelier",
+      "source": "raw_imu_only",
+      "scan": "sideB_083744",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 81.1270583323804,
+      "ground_cross_slope_deg": -1.387050871379562,
+      "tree_cross_lean_deg": 10.25999253899916,
+      "ground_line_Z_aY_b": [
+        -0.024213334910780603,
+        -0.0034414419645397354
+      ],
+      "tree_line_Y_bZ_c": [
+        0.18100956869322543,
+        -0.3485653894783912
+      ],
+      "intersection_YZ": [
+        -0.3476645634033184,
+        0.0049766765457551305
+      ],
+      "section_X_m": -0.16923883329882472,
+      "display_Y_origin_m": 0.10278050071631925,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.026096705225759007,
+        0.18100956869322543,
+        -0.25020146470742277
+      ],
+      "tree_returns": 12662,
+      "tree_across_rms_m": 0.23129290431262878,
+      "ground_rmse_m": 0.01196953574949304,
+      "ground_normal": [
+        -0.005628075988917131,
+        0.024205856693430883,
+        0.9996911529379462
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 12391,
+      "column_coverage": 1.0,
+      "pcap_sha256": "b650f34caf2a94d94e7311f2014ebc5c05d1654f326c24b12966e400325ac87c",
+      "imu_samples": 48,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideA_084441",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 74.51113132495527,
+      "ground_cross_slope_deg": -1.0999101448837993,
+      "tree_cross_lean_deg": 16.58877881992852,
+      "ground_line_Z_aY_b": [
+        -0.019199412061958025,
+        -0.010148730927625861
+      ],
+      "tree_line_Y_bZ_c": [
+        0.2978997083453413,
+        -0.5969590229294992
+      ],
+      "intersection_YZ": [
+        -0.5965702438484676,
+        0.0013050670079236472
+      ],
+      "section_X_m": 0.06359592407776013,
+      "display_Y_origin_m": 0.5527559406995396,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.023061924322965693,
+        0.2978997083453413,
+        -0.04273643784162924
+      ],
+      "tree_returns": 10911,
+      "tree_across_rms_m": 0.40950347032571394,
+      "ground_rmse_m": 0.012281103609884022,
+      "ground_normal": [
+        -0.007292296691887777,
+        0.0191953640190859,
+        0.999789157977387
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 16563,
+      "column_coverage": 1.0,
+      "pcap_sha256": "356dc33910341499d1222793f44dc522bda2dcb8df79fe27e52e6d58bb6e246a",
+      "imu_samples": 54,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideA_084449",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 72.63173910231976,
+      "ground_cross_slope_deg": -1.63041593482957,
+      "tree_cross_lean_deg": 18.998676832509815,
+      "ground_line_Z_aY_b": [
+        -0.028463809521755305,
+        -0.01337610523595886
+      ],
+      "tree_line_Y_bZ_c": [
+        0.3443017818503602,
+        -0.716047776036158
+      ],
+      "intersection_YZ": [
+        -0.7136592322743254,
+        0.006937355214939666
+      ],
+      "section_X_m": 0.1931383221121757,
+      "display_Y_origin_m": 0.5780268649086351,
+      "tree_plane_Y_aX_bZ_c": [
+        0.031030479879963848,
+        0.3443017818503602,
+        -0.14401408594587478
+      ],
+      "tree_returns": 10576,
+      "tree_across_rms_m": 0.3941834267252273,
+      "ground_rmse_m": 0.01301880204595029,
+      "ground_normal": [
+        -0.015921780047481782,
+        0.028448679398906947,
+        0.9994684435041348
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 16647,
+      "column_coverage": 1.0,
+      "pcap_sha256": "d4a4a1348b2d3f31e3d8595217b42e237157f1d3c689f3d651f1264b86fedbbc",
+      "imu_samples": 53,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideA_084457",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 71.85215995225812,
+      "ground_cross_slope_deg": -1.3187844280815975,
+      "tree_cross_lean_deg": 19.46662447582348,
+      "ground_line_Z_aY_b": [
+        -0.023021195991014837,
+        -0.012614286634244892
+      ],
+      "tree_line_Y_bZ_c": [
+        0.35346314778809307,
+        -0.690954811271918
+      ],
+      "intersection_YZ": [
+        -0.6898004905335243,
+        0.003265745653025547
+      ],
+      "section_X_m": 0.05623924157469511,
+      "display_Y_origin_m": 0.56290014501154,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.0023200830058070963,
+        0.35346314778809307,
+        -0.12792418655174118
+      ],
+      "tree_returns": 10830,
+      "tree_across_rms_m": 0.41713909756219614,
+      "ground_rmse_m": 0.01365544247610318,
+      "ground_normal": [
+        -0.006121175474149586,
+        0.023014666902223726,
+        0.9997163879411972
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 16728,
+      "column_coverage": 1.0,
+      "pcap_sha256": "85f09f393af8c74572b45cd72eb5e7f42d6533bdc1d82a39eb930441df265e68",
+      "imu_samples": 52,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideA_084504",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 68.85761097930259,
+      "ground_cross_slope_deg": -1.0950744239409123,
+      "tree_cross_lean_deg": 22.237463444638326,
+      "ground_line_Z_aY_b": [
+        -0.019114981835373742,
+        -0.020008269324310785
+      ],
+      "tree_line_Y_bZ_c": [
+        0.4088553985040047,
+        -0.8138804202120744
+      ],
+      "intersection_YZ": [
+        -0.8156861072656654,
+        -0.004416444200560874
+      ],
+      "section_X_m": -0.6027626571843848,
+      "display_Y_origin_m": 0.6389563557236917,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.008496727379715366,
+        0.4088553985040047,
+        -0.18004557446115133
+      ],
+      "tree_returns": 9917,
+      "tree_across_rms_m": 0.37347160777520183,
+      "ground_rmse_m": 0.013953597775904875,
+      "ground_normal": [
+        -0.012928065784899483,
+        0.019109893486706508,
+        0.9997338031126026
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 16792,
+      "column_coverage": 1.0,
+      "pcap_sha256": "e346ece9b410e61a990900f9bdc79b1f8eeaede7ec4e81942e1c47cf3c3ddb77",
+      "imu_samples": 40,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideA_084511",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 70.80241690396008,
+      "ground_cross_slope_deg": -0.9195521119579474,
+      "tree_cross_lean_deg": 20.117135207997872,
+      "ground_line_Z_aY_b": [
+        -0.01605059010971552,
+        -0.009849907450626645
+      ],
+      "tree_line_Y_bZ_c": [
+        0.3662871864527669,
+        -0.7259350274181159
+      ],
+      "intersection_YZ": [
+        -0.7252789165378573,
+        0.0017912471539410762
+      ],
+      "section_X_m": -0.17027441877032376,
+      "display_Y_origin_m": 0.5687066690393308,
+      "tree_plane_Y_aX_bZ_c": [
+        0.07052439839541683,
+        0.3662871864527669,
+        -0.14521985743287874
+      ],
+      "tree_returns": 11303,
+      "tree_across_rms_m": 0.3953832046247808,
+      "ground_rmse_m": 0.013044744963214262,
+      "ground_normal": [
+        -0.004238630638598431,
+        0.016048378856563152,
+        0.999862232283221
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 16866,
+      "column_coverage": 1.0,
+      "pcap_sha256": "7b275a3f9bb3ab5f3769819e1e88a22ca086c367dcd28087805e6195a6267e23",
+      "imu_samples": 52,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideA_084519",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 76.9351106457338,
+      "ground_cross_slope_deg": -1.0159406123511456,
+      "tree_cross_lean_deg": 14.080829966617362,
+      "ground_line_Z_aY_b": [
+        -0.017733367223929677,
+        -0.008125484304684238
+      ],
+      "tree_line_Y_bZ_c": [
+        0.25082697858107483,
+        -0.4723493619604787
+      ],
+      "intersection_YZ": [
+        -0.47228671804763067,
+        0.00024974950143893173
+      ],
+      "section_X_m": -0.0017796461478596453,
+      "display_Y_origin_m": 0.4564391472308961,
+      "tree_plane_Y_aX_bZ_c": [
+        0.03523873467043596,
+        0.25082697858107483,
+        -0.01584750225117093
+      ],
+      "tree_returns": 10426,
+      "tree_across_rms_m": 0.4285659463574472,
+      "ground_rmse_m": 0.012815302597600327,
+      "ground_normal": [
+        -0.017571776936953377,
+        0.01772784203157549,
+        0.999688429598033
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 16940,
+      "column_coverage": 1.0,
+      "pcap_sha256": "693beebcf4133ddeec8c856c4f8e55a11f10cb92a494f697488d3fa696c45092",
+      "imu_samples": 51,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideA_084527",
+      "geographic_side": "east",
+      "status": "ok",
+      "angle_deg": 71.88736326737094,
+      "ground_cross_slope_deg": -0.8917397468423669,
+      "tree_cross_lean_deg": 19.004376479471414,
+      "ground_line_Z_aY_b": [
+        -0.0155650514565751,
+        -0.01753678826867839
+      ],
+      "tree_line_Y_bZ_c": [
+        0.3444130557127077,
+        -0.6780657436856421
+      ],
+      "intersection_YZ": [
+        -0.6804578394164762,
+        -0.006945426984131022
+      ],
+      "section_X_m": -0.7138592491594218,
+      "display_Y_origin_m": 0.6320462801601567,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.07976039160640473,
+        0.3444130557127077,
+        -0.10295715679029488
+      ],
+      "tree_returns": 10136,
+      "tree_across_rms_m": 0.4109810233161367,
+      "ground_rmse_m": 0.012883140017286817,
+      "ground_normal": [
+        -0.010783043582206952,
+        0.015562261497832405,
+        0.9998207549296911
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 17021,
+      "column_coverage": 1.0,
+      "pcap_sha256": "723ade4f2525c3e0baf5f188bb5394ce9023ac19e692c3b050150ea20525166f",
+      "imu_samples": 49,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideB_084742",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 89.57872787249333,
+      "ground_cross_slope_deg": 0.2868513175187177,
+      "tree_cross_lean_deg": -0.7081234450253924,
+      "ground_line_Z_aY_b": [
+        0.005006541784181565,
+        0.0039049923740414674
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.012359714935782064,
+        0.09264726421533037
+      ],
+      "intersection_YZ": [
+        0.09259327000405904,
+        0.004368564449250795
+      ],
+      "section_X_m": 0.26117473383688156,
+      "display_Y_origin_m": -0.13488874491137556,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.00913588192991897,
+        -0.012359714935782064,
+        -0.03985541916463343
+      ],
+      "tree_returns": 12272,
+      "tree_across_rms_m": 0.37461106267041516,
+      "ground_rmse_m": 0.012315727227945208,
+      "ground_normal": [
+        -0.01753445622555437,
+        -0.005005709341654874,
+        0.9998337290364138
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 18379,
+      "column_coverage": 1.0,
+      "pcap_sha256": "3513095aa1f6109975bb11f29462daba5e09ef189027843e18b819551c48a120",
+      "imu_samples": 46,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideB_084758",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 86.65387155697066,
+      "ground_cross_slope_deg": 0.42972697445410524,
+      "tree_cross_lean_deg": -3.7758554174834584,
+      "ground_line_Z_aY_b": [
+        0.007500291225492944,
+        -0.008515361689089273
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.06599667701308476,
+        0.17673270243815278
+      ],
+      "intersection_YZ": [
+        0.17720697157278914,
+        -0.007186257795105704
+      ],
+      "section_X_m": -0.32674511563836484,
+      "display_Y_origin_m": -0.22522295200618117,
+      "tree_plane_Y_aX_bZ_c": [
+        0.041790183831361606,
+        -0.06599667701308476,
+        -0.03483551111950162
+      ],
+      "tree_returns": 12385,
+      "tree_across_rms_m": 0.37502575207911976,
+      "ground_rmse_m": 0.012838607423986423,
+      "ground_normal": [
+        -0.020886136126669425,
+        -0.007498444211308353,
+        0.9997537410043075
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 18536,
+      "column_coverage": 1.0,
+      "pcap_sha256": "9cbc0b4a5c1a64fecbf5fa0e41527ce30e2b4d951206a9b97eaccc9c68fbe00f",
+      "imu_samples": 55,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideB_084804",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 87.68737903906639,
+      "ground_cross_slope_deg": 0.8143403067917908,
+      "tree_cross_lean_deg": -3.126961267725408,
+      "ground_line_Z_aY_b": [
+        0.01421387669936452,
+        -0.009625915291024923
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.054630019247947775,
+        0.16661153703338882
+      ],
+      "intersection_YZ": [
+        0.1670077187496423,
+        -0.00725208816887536
+      ],
+      "section_X_m": -0.39475343926036,
+      "display_Y_origin_m": -0.24653234118594347,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.004603674436319384,
+        -0.054630019247947775,
+        -0.08173812046952672
+      ],
+      "tree_returns": 12182,
+      "tree_across_rms_m": 0.38368614634843173,
+      "ground_rmse_m": 0.013010177029386078,
+      "ground_normal": [
+        -0.015504313131073767,
+        -0.01421073274920876,
+        0.9997788112122922
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 18595,
+      "column_coverage": 1.0,
+      "pcap_sha256": "d27ddd8bcdc8baa8da074dd62a0a94c3c2cd3debe5827be90cd059acd5f555f2",
+      "imu_samples": 56,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideB_084822",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 86.9935559846267,
+      "ground_cross_slope_deg": 0.09589728795175258,
+      "tree_cross_lean_deg": -3.1023413033250606,
+      "ground_line_Z_aY_b": [
+        0.0016737249813880012,
+        -0.0041377625724981085
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.05419904748598474,
+        0.1738072098111654
+      ],
+      "intersection_YZ": [
+        0.17401568689013713,
+        -0.0038465081701966933
+      ],
+      "section_X_m": -0.22530459389906943,
+      "display_Y_origin_m": -0.2106049217178903,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.03895796569752807,
+        -0.05419904748598474,
+        -0.04557512054734034
+      ],
+      "tree_returns": 12334,
+      "tree_across_rms_m": 0.37669708613570296,
+      "ground_rmse_m": 0.013877994829532649,
+      "ground_normal": [
+        -0.016798274647534073,
+        -0.001673486473155627,
+        0.9998574985526139
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 18770,
+      "column_coverage": 1.0,
+      "pcap_sha256": "127c63b5cc779b3f5715922252b39d22a7ef7e037da7093147b512f6bec604a9",
+      "imu_samples": 55,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideB_084833",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 88.03831323949206,
+      "ground_cross_slope_deg": 1.0294854700176839,
+      "tree_cross_lean_deg": -2.9911722305256343,
+      "ground_line_Z_aY_b": [
+        0.017969844924692113,
+        -0.012395727749723997
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.05225328371151619,
+        0.16718250282458022
+      ],
+      "intersection_YZ": [
+        0.16767277834714198,
+        -0.00938267392473358
+      ],
+      "section_X_m": -0.477646246116348,
+      "display_Y_origin_m": -0.2239559115343348,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.045111328087311386,
+        -0.05225328371151619,
+        -0.07832066522798184
+      ],
+      "tree_returns": 12272,
+      "tree_across_rms_m": 0.3739531798006232,
+      "ground_rmse_m": 0.014431059559253551,
+      "ground_normal": [
+        -0.017520578836651486,
+        -0.017964186383767972,
+        0.9996851090842546
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 18889,
+      "column_coverage": 1.0,
+      "pcap_sha256": "162cfda88d844d316d30d40b1eff032c840f53ee808c1f230afaf62ee2cb8210",
+      "imu_samples": 49,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideB_084841",
+      "geographic_side": "west",
+      "status": "ok",
+      "angle_deg": 89.2375524387022,
+      "ground_cross_slope_deg": 0.44897105376567925,
+      "tree_cross_lean_deg": -1.211418615063478,
+      "ground_line_Z_aY_b": [
+        0.007836183524083844,
+        -0.005572707787355684
+      ],
+      "tree_line_Y_bZ_c": [
+        -0.021146394618518242,
+        0.12404177938096973
+      ],
+      "intersection_YZ": [
+        0.12413905134554067,
+        -0.00459993139850636
+      ],
+      "section_X_m": -0.23915695918230592,
+      "display_Y_origin_m": -0.1573299492370425,
+      "tree_plane_Y_aX_bZ_c": [
+        -0.07574816474993293,
+        -0.021146394618518242,
+        -0.05140387060130706
+      ],
+      "tree_returns": 12355,
+      "tree_across_rms_m": 0.37041197654691776,
+      "ground_rmse_m": 0.01254566860228069,
+      "ground_normal": [
+        -0.018142871152344236,
+        -0.007834653181294619,
+        0.9998047081484855
+      ],
+      "ground_offset": -0.0,
+      "structural_centre_verified": false,
+      "row_axis_method": "low_stem_support_candidates",
+      "selected_frame": 18961,
+      "column_coverage": 1.0,
+      "pcap_sha256": "b5c5b311de95167afa7111626c41eea848ea3228b187caead5f20690e2a80733",
+      "imu_samples": 46,
+      "visible_plane_caution": "Single-view observed points can be occlusion-biased; not a verified centre plane."
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideA_084742",
+      "status": "excluded",
+      "error": "Byte-identical duplicate of sideB recording 084742; GPS places it on the B track"
+    },
+    {
+      "dataset": "vhedge",
+      "source": "raw_imu_only",
+      "scan": "sideB_084751",
+      "status": "excluded",
+      "error": "Incomplete capture: one lidar packet, zero duration and no IMU packets"
+    }
+  ]
+}

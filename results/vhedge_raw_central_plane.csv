@@ -1,7 +1,7 @@
-estimate,central_plane_ground_deg,central_plane_tilt_from_vertical_deg,height_min_m,height_max_m
-primary,82.27524843131374,8.036621296570232,0.42,2.82
-mid_height,81.72196421703553,8.589139079323209,0.78,2.22
-median_cells,81.07937771426677,9.232134523023037,0.42,2.82
-wood_only,82.03311298170986,8.2783235128308,0.42,1.8599999999999999
-near_half_only,81.40692064723312,8.905137372470012,0.54,2.82
-last_complete_frames,82.29118772677286,8.00078838734636,0.42,2.82
+estimate,central_plane_ground_deg,central_plane_tilt_from_vertical_deg,height_min_m,height_max_m,measurement_status,structural_centre_identified
+primary,82.27524843131374,8.036621296570232,0.42,2.82,withdrawn_as_structural_centre_measurement,False
+mid_height,81.72196421703553,8.589139079323209,0.78,2.22,withdrawn_as_structural_centre_measurement,False
+median_cells,81.07937771426677,9.232134523023037,0.42,2.82,withdrawn_as_structural_centre_measurement,False
+wood_only,82.03311298170986,8.2783235128308,0.42,1.8599999999999999,withdrawn_as_structural_centre_measurement,False
+near_half_only,81.40692064723312,8.905137372470012,0.54,2.82,withdrawn_as_structural_centre_measurement,False
+last_complete_frames,82.29118772677286,8.00078838734636,0.42,2.82,withdrawn_as_structural_centre_measurement,False

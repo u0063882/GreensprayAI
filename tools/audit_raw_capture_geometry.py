@@ -93,9 +93,9 @@ def run_audit(data_root,output,dataset='vhedge',config=None,wood_model=None,repe
     if len(rr)==len(valid):centre_sensitivity['last_complete_frames']=central_plane(rr)
     centre['leave_one_recording_out_angles_deg']=[central_plane([r for r in valid if r['scan']!=scan['scan']])['central_plane_to_ground_deg'] for scan in valid]
     result=dict(dataset=dataset,policy='Read-only raw-source audit; no current output cloud, registration transform, terrain levelling or PCA-up frame is read or changed.',
-        gps_sides=gps,side_mapping=mapping,primary_method='Central observed-tree plane from equally weighted east/west profiles at matched heights, using all selected tree returns; no individual arm, symmetry or upright target.',
+        gps_sides=gps,side_mapping=mapping,requested_measurement_available=False,measurement_status='structural_V_centre_not_identified',primary_method='No validated central-tree-plane angle. The legacy central_tree_plane field is a withdrawn visible-centroid proxy; ground and side-wall diagnostics remain available.',
         supporting_wall_method='Near-side vegetation centre sheet from equally weighted along-row/height-cell medians; local row axis from low-stem/support candidates; wall fit free to lean. This measures visible structure, not a verified individual branch.',
-        angle_definitions=dict(central_tree_plane_ground='Angle between the balanced height-matched central observed-tree plane and equally track-weighted raw ground normals',wall_from_vertical='Outward near-side centre-sheet tilt from IMU vertical; positive leans toward the viewing track',ground_from_horizontal='Detected ground-plane normal angle from IMU up; ground is not flattened',wall_ground_dihedral='Acute dihedral between independently fitted ground and vegetation-sheet planes'),
+        angle_definitions=dict(central_tree_plane_ground='WITHDRAWN visible-centroid proxy angle, not a structural tree-centre/ground measurement',wall_from_vertical='Outward near-side centre-sheet tilt from IMU vertical; positive leans toward the viewing track',ground_from_horizontal='Detected ground-plane normal angle from IMU up; ground is not flattened',wall_ground_dihedral='Acute dihedral between independently fitted ground and vegetation-sheet planes'),
         summary=summary,central_tree_plane=centre,central_plane_sensitivity=centre_sensitivity,reports=reports,repeat_frames=repeats,excluded_inputs=exclusions,
         secondary_wood_model_sha256=hashlib.sha256(Path(wood_model).read_bytes()).hexdigest() if wood_model else None,
         limits=['The IMU median is used without inferred bias correction; factory calibration uncertainty remains.',
@@ -105,9 +105,9 @@ def run_audit(data_root,output,dataset='vhedge',config=None,wood_model=None,repe
                 'Presence of a feature in these raw scans rules out its creation by later registration, but does not alone establish biological shape.'])
     (output/'raw_geometry_report.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n')
     with (output/'central_plane_angles.csv').open('w',newline='') as f:
-        writer=csv.DictWriter(f,fieldnames=['estimate','central_plane_ground_deg','central_plane_tilt_from_vertical_deg','height_min_m','height_max_m'],lineterminator='\n');writer.writeheader()
+        writer=csv.DictWriter(f,fieldnames=['estimate','central_plane_ground_deg','central_plane_tilt_from_vertical_deg','height_min_m','height_max_m','measurement_status','structural_centre_identified'],lineterminator='\n');writer.writeheader()
         for name,value in [('primary',centre)]+list(centre_sensitivity.items()):
-            writer.writerow(dict(estimate=name,central_plane_ground_deg=value['central_plane_to_ground_deg'],central_plane_tilt_from_vertical_deg=value['central_plane_tilt_from_imu_vertical_deg'],height_min_m=value['common_height_range_m'][0],height_max_m=value['common_height_range_m'][1]))
+            writer.writerow(dict(estimate=name,central_plane_ground_deg=value['central_plane_to_ground_deg'],central_plane_tilt_from_vertical_deg=value['central_plane_tilt_from_imu_vertical_deg'],height_min_m=value['common_height_range_m'][0],height_max_m=value['common_height_range_m'][1],measurement_status=value['measurement_status'],structural_centre_identified=False))
     fields=['scan','geographic_side','selected_frame','wall_from_vertical_deg','ground_from_horizontal_deg','wall_ground_dihedral_deg','low_stem_candidates','supported_low_cylinders']
     with (output/'raw_angles.csv').open('w',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=fields,lineterminator='\n');writer.writeheader()

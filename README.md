@@ -128,4 +128,6 @@ The [earlier structural investigation](docs/structural_alignment.md) records rej
 
 The [PCA orientation trial has been withdrawn](docs/structural_up_report.md): it introduced a large ground slope that is inconsistent with the field conditions. Current outputs retain the original gravity-referenced registration frame, the joint rigid refinements, and the wider chandelier across-row ROI with its matching mesh. Canopy PCA is diagnostic only; the remaining V-hedge slant is unresolved.
 
-The [independent original-PCAP angle check](docs/raw_geometry_audit.md) measures the central observed-tree plane against the raw ground (about 82.3°), balancing both tracks at matched heights with IMU rotation only. Individual V-arm angles are supporting diagnostics. It retains the slight measured soil slope and changes no final geometry.
+The [raw audit’s 82.3° central-plane claim is withdrawn](docs/raw_geometry_audit.md). It fitted visibility-biased point-centroid profiles without identifying both arms and the centre of the same tree. The structural V-centre/ground angle remains unmeasured; current registered geometry is unchanged.
+
+[Across-row angle check for all systems and every original scan](docs/tree_ground_angle_check.md): combined-cloud overlays, 67 raw-scan angles and per-scan fitted-line plots. Observed-point plane diagnostics; no geometry changes or V-centre claim.

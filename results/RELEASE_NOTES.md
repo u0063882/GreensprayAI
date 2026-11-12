@@ -11,4 +11,6 @@ Raw SIGNAL/intensity, NIR, reflectivity, leaf/wood colours and scan/frame/pixel 
 
 [Orientation correction, limitations and figures](https://github.com/u0063882/GreensprayAI/blob/main/docs/structural_up_report.md). `git pull` updates code and documents; download fresh release ZIPs for data.
 
-**Read-only raw-source angle audit:** `90_QC.zip → QC/vhedge/raw_geometry/` now compares the original east/west captures using IMU rotation only. The primary check is the central observed-tree plane versus ground, about 82.3°, with both tracks balanced at matched heights; individual V-arm inclinations are supporting diagnostics. Current clouds, matrices, contributions and mesh are unchanged by this check. [Method, angles and figures](https://github.com/u0063882/GreensprayAI/blob/main/docs/raw_geometry_audit.md).
+**Raw-audit correction:** the former 82.3° centroid-proxy value is withdrawn as a structural V-centre/ground measurement. Both arms and their common centre were not identified. The true centre-plane angle remains unmeasured; current clouds, matrices, contributions and mesh are unchanged. [Corrected report](https://github.com/u0063882/GreensprayAI/blob/main/docs/raw_geometry_audit.md).
+
+The [across-row angle report](https://github.com/u0063882/GreensprayAI/blob/main/docs/tree_ground_angle_check.md) includes all four systems and every original usable scan (67 angles), with CSVs and fitted-line figures. It is a read-only observed-point diagnostic; it does not establish the structural V centre.

@@ -1,0 +1,5 @@
+dataset,source,scan,geographic_side,status,angle_deg,ground_cross_slope_deg,tree_cross_lean_deg,tree_across_rms_m,ground_rmse_m,selected_frame,column_coverage,row_axis_method,structural_centre_verified,error
+spindle1,combined_registered,combined,,ok,89.64814572558282,2.219711370396691,-1.8678570959795073,0.3175666141299569,0.017634743925667596,,,,False,
+spindle2,combined_registered,combined,,ok,87.62270033645744,2.2676238838145113,-4.644923547357076,0.28721910118139987,0.01676327437547122,,,,False,
+chandelier,combined_registered,combined,,ok,84.11603753770703,2.122189313558499,-8.006151775851468,0.25645928941093693,0.01649863876062722,,,,False,
+vhedge,combined_registered,combined,,ok,83.52354973159251,0.20099713200935762,-6.677447400416849,0.512171513632191,0.013758241840227206,,,,False,
