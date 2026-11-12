@@ -6,6 +6,7 @@ from scipy.spatial import cKDTree
 ROOT=Path(__file__).resolve().parent.parent
 sys.path.insert(0,str(ROOT))
 from captures.leafwood import decode_attributes,classify_leafwood,write_records
+from captures.roi_decode import decode_roi_attributes
 from captures.orchard import sha256,save_json,transform
 from processing.export_anchored import read_records,xyz
 from tools.refine_trunk_collection import _read_bytes,_raw_hash,_create_baseline,_dataset_hashes
@@ -20,7 +21,7 @@ def _snapshot(stage,dataset,path):
             root=stage/folder/dataset
             for p in sorted(root.rglob('*')):
                 if p.is_file():archive.write(p,p.relative_to(stage).as_posix())
-        for relative in ['meshing','provenance/trunk_refinement_baseline.zip']:
+        for relative in ['meshing','roi_extension','joint_registration','provenance/trunk_refinement_baseline.zip','provenance/joint_registration_baseline.zip']:
             p=stage/'QC'/dataset/relative
             if p.is_dir():
                 for f in sorted(p.rglob('*')):
@@ -54,7 +55,10 @@ def _original(stage,dataset,archive):
 
 def extended_scan(original,decoded,pose,scan_id,palette,model,roi):
     p=transform(decoded['xyz'],np.array(pose['gravity_levelled_to_merged']));x,y,z=p.T
-    old=roi['original_along_m'];keep=((x<old[0]-2e-6)|(x>old[1]+2e-6))&(x>roi['along_m'][0])&(x<roi['along_m'][1])&(y>roi['across_m'][0])&(y<roi['across_m'][1])&(z>roi['height_m'][0])&(z<roi['height_m'][1]);ix=np.flatnonzero(keep)
+    previous=roi.get('previous_roi',dict(along_m=roi['original_along_m'],across_m=roi['across_m'],height_m=roi['height_m']))
+    outside=np.zeros(len(p),dtype=bool)
+    for values,key in [(x,'along_m'),(y,'across_m'),(z,'height_m')]:outside|=(values<previous[key][0]-2e-6)|(values>previous[key][1]+2e-6)
+    keep=outside&(x>roi['along_m'][0])&(x<roi['along_m'][1])&(y>roi['across_m'][0])&(y<roi['across_m'][1])&(z>roi['height_m'][0])&(z<roi['height_m'][1]);ix=np.flatnonzero(keep)
     extra=np.zeros(len(ix),dtype=original.dtype)
     for j,key in enumerate(['x','y','z']):extra[key]=p[ix,j]
     for key in ['reflectivity','signal','near_ir','frame_id','pixel_index']:extra[key]=decoded[key][ix]
@@ -68,9 +72,9 @@ def extended_scan(original,decoded,pose,scan_id,palette,model,roi):
         extra[key]=attrs['rgb'][:,j] if semantic_rgb else palette[j]
         if 'leaf_'+key in extra.dtype.names:extra['leaf_'+key]=attrs['rgb'][:,j]
     old_ids=(original['frame_id'].astype('u8')<<32)|original['pixel_index'];new_ids=(extra['frame_id'].astype('u8')<<32)|extra['pixel_index']
-    if len(np.intersect1d(old_ids,new_ids)):raise RuntimeError('Extended ROI duplicates an existing measured return')
+    fresh=~np.isin(new_ids,old_ids);extra=extra[fresh];ix=ix[fresh]
     expanded=np.concatenate([original,extra]);np.testing.assert_array_equal(expanded[:len(original)],original)
-    return expanded,extra,dict(added=len(extra),maximum_source_coordinate_error_m=float(np.max(np.linalg.norm(xyz(extra)-p[ix],axis=1))) if len(extra) else 0.)
+    return expanded,extra,dict(added=len(extra),added_beyond_legacy_forward_gate=int(np.sum((decoded['xyz'][ix,0]<=.35)|(decoded['xyz'][ix,0]>=3.15))),maximum_source_coordinate_error_m=float(np.max(np.linalg.norm(xyz(extra)-p[ix],axis=1))) if len(extra) else 0.)
 
 
 def merge_extension(original,extras):
@@ -99,14 +103,16 @@ def _refresh_caches(stage,dataset):
     # return sets on a future rebuild. Its exact former archive is in the ROI ZIP.
     archive=stage/'QC'/dataset/'provenance/trunk_refinement_baseline.zip'
     archive.unlink(missing_ok=True);_create_baseline(stage,dataset,archive)
+    joint=stage/'QC'/dataset/'provenance/joint_registration_baseline.zip'
+    if joint.exists():joint.unlink();_create_baseline(stage,dataset,joint)
 
 
 def extend_collection_roi(stage,work,collection,repo,data_directories=None,decoded_directories=None):
     stage=Path(stage);work=Path(work);work.mkdir(parents=True,exist_ok=True);presets=json.loads((ROOT/'presets/roi_extensions.json').read_text());results=[]
-    files=['tools/extend_collection_roi.py','captures/leafwood.py','captures/leafwood_lab.py','presets/roi_extensions.json','processing/ground_surface.py','processing/shrinkwrap.py','requirements-meshing.txt']
+    files=['tools/extend_collection_roi.py','captures/roi_decode.py','captures/leafwood.py','captures/leafwood_lab.py','presets/roi_extensions.json','processing/ground_surface.py','processing/shrinkwrap.py','requirements-meshing.txt']
     code=hashlib.sha256(''.join(name+sha256(ROOT/name) for name in files).encode()).hexdigest()
     for dataset,roi in presets.items():
-        qc=stage/'QC'/dataset/'roi_extension';qc.mkdir(parents=True,exist_ok=True);archive=stage/'QC'/dataset/'provenance/roi_extension_baseline.zip'
+        qc=stage/'QC'/dataset/'roi_extension';qc.mkdir(parents=True,exist_ok=True);archive=stage/'QC'/dataset/'provenance'/roi.get('baseline_archive_filename','roi_extension_baseline.zip')
         if not archive.exists():_snapshot(stage,dataset,archive)
         model_path=stage/'pointclouds'/dataset/'leafwood_model.json';key=hashlib.sha256((code+sha256(archive)+sha256(model_path)).encode()).hexdigest();marker=qc/'build.json'
         if marker.exists():
@@ -115,23 +121,23 @@ def extend_collection_roi(stage,work,collection,repo,data_directories=None,decod
                 for relative,digest in previous['output_hashes'].items():
                     if sha256(stage/relative)!=digest:raise RuntimeError('Expanded ROI output changed: '+relative)
                 results.append(previous);print('Reusing verified measured ROI extension:',dataset,flush=True);continue
-        print('Recovering measured ROI ends:',dataset,flush=True)
+        print('Recovering measured ROI bounds:',dataset,flush=True)
         if data_directories and dataset in data_directories:data=Path(data_directories[dataset])
         else:
             definition=next(d for d in collection['datasets'] if d['id']==dataset);workspace=work/dataset;workspace.mkdir(parents=True,exist_ok=True);inputs=input_archives(definition,stage/'QC'/dataset,workspace,repo);extract_inputs(inputs,workspace);data=workspace/'work/data'
         decoded_root=Path(decoded_directories[dataset]) if decoded_directories and dataset in decoded_directories else work/dataset/'decoded'
         primary,originals,matrices,manifest,palettes=_original(stage,dataset,archive);lookup={p['scan']:p for p in matrices['scans']};model=json.loads(model_path.read_text());expanded=[];extras=[];proof=[]
         for original,entry in zip(originals,manifest['scans']):
-            pose=lookup[entry['scan']];path=input_scan(data,pose);rotation=np.linalg.solve(np.array(pose['gravity_levelled_to_merged'])[:3,:3],np.array(pose['sensor_to_merged'])[:3,:3]);decoded=decode_attributes(path,rotation,decoded_root/(entry['scan']+'.npz'))
+            pose=lookup[entry['scan']];path=input_scan(data,pose);rotation=np.linalg.solve(np.array(pose['gravity_levelled_to_merged'])[:3,:3],np.array(pose['sensor_to_merged'])[:3,:3]);decoded=decode_roi_attributes(path,rotation,np.array(pose['gravity_levelled_to_merged']),roi,decoded_root/'world_roi'/(entry['scan']+'.npz'))
             palette=entry.get('rgb',[int(original[k][0]) for k in ['red','green','blue']]);out,extra,check=extended_scan(original,decoded,pose,entry['scan_id'],palette,model,roi)
             expanded.append(out);extras.append(extra);proof.append(dict(scan_id=entry['scan_id'],source_pcap_sha256=sha256(path),**check));entry['point_count']=len(out);lookup[entry['scan']]['point_count']=len(out)
         merged=merge_extension(primary,extras);manifest['total_points']=sum(len(p) for p in expanded);manifest['crop']=dict(x=roi['along_m'],y=roi['across_m'],z=roi['height_m'])
-        details=dict(original_along_m=roi['original_along_m'],along_m=roi['along_m'],across_m=roi['across_m'],height_m=roi['height_m'],original_primary_points=len(primary),final_primary_points=len(merged),added_primary_points=len(merged)-len(primary),poses_unchanged=True,old_primary_prefix_unchanged=True,source_policy='Additional first-return measured samples through accepted poses; no interpolation, padding or shape extrapolation',baseline_archive_sha256=sha256(archive))
+        details=dict(original_along_m=roi['original_along_m'],along_m=roi['along_m'],across_m=roi['across_m'],height_m=roi['height_m'],original_primary_points=len(primary),final_primary_points=len(merged),added_primary_points=len(merged)-len(primary),previous_roi=roi.get('previous_roi'),poses_unchanged=True,old_primary_prefix_unchanged=True,source_policy='Additional first-return measured samples through accepted poses; no interpolation, padding or shape extrapolation',baseline_archive_sha256=sha256(archive))
         matrices['measured_roi_extension']=details;manifest['measured_roi_extension']=details
-        matrices['registration']=matrices.get('registration','Accepted rigid poses')+'; measured X-end ROI expanded through unchanged poses'
-        manifest['source_crop_limit']='Original PCAP returns re-decoded to extend the former X crop; only measured coverage is available.'
+        matrices['registration']=matrices.get('registration','Accepted rigid poses')+'; measured across/along ROI expanded through unchanged poses'
+        manifest['source_crop_limit']='Original PCAP returns re-decoded to extend the former row crop; only measured coverage is available.'
         with tempfile.TemporaryDirectory(prefix='expanded-roi-',dir=work) as temporary:
-            temporary=Path(temporary);cloud_path=temporary/'final_registered.ply';write_records(cloud_path,merged,comment='Accepted rigid poses; original samples retained, measured X-end canopy/ground returns restored')
+            temporary=Path(temporary);cloud_path=temporary/'final_registered.ply';write_records(cloud_path,merged,comment='Accepted rigid poses; original samples retained, measured canopy/ground returns beyond former ROI restored')
             meshdir=temporary/'mesh';meshdir.mkdir()
             import open3d as o3d
             from processing.ground_surface import observed_ground
@@ -155,7 +161,7 @@ def extend_collection_roi(stage,work,collection,repo,data_directories=None,decod
             for name in ['canopy_wrap.ply','canopy_wrap.stl','canopy_wrap.obj','canopy_wrap_with_ground.ply','ground_surface.ply','README.txt']:shutil.copy2(meshdir/name,mesh_output/name)
             for name in ['shrinkwrap_quality.json','shrinkwrap_preview.png']:
                 shutil.copy2(meshdir/name,qc/name);shutil.copy2(meshdir/name,stage/'QC'/dataset/'meshing'/name)
-        (stage/'pointclouds'/dataset/'README.txt').write_text('FINAL CHANDELIER POINT CLOUD — METRES\n\nAccepted rigid poses are unchanged. Original points and attributes are retained; measured canopy and ground returns extend the X ROI to -1.25…7.35 m. No synthetic padding was added.\nThe independently rebuilt mesh uses this exact PLY. Matrices are already applied to point coordinates.\nThe complete former crop, contributions, matrices and mesh are archived inside 90_QC.zip: QC/chandelier/provenance/roi_extension_baseline.zip.\n')
+        (stage/'pointclouds'/dataset/'README.txt').write_text('FINAL CHANDELIER POINT CLOUD — METRES\n\nAccepted rigid poses are unchanged. Original points and attributes are retained; measured canopy and ground returns extend both the along-row and across-row ROI. Current bounds are in transformations.json. No synthetic padding was added.\nThe independently rebuilt mesh uses this exact PLY. Matrices are already applied to point coordinates.\nFormer crops, contributions, matrices and meshes are archived inside 90_QC.zip under QC/chandelier/provenance/.\n')
         counts={int(e['scan_id']):e['point_count'] for e in manifest['scans']}
         for part in ['separate_scans','combined']:
             directory=stage/'contributions'/dataset/part
@@ -167,15 +173,20 @@ def extend_collection_roi(stage,work,collection,repo,data_directories=None,decod
                     if 'point_count' in row:row['point_count']=str(counts[int(row['scan_id'])])
                 with colour_csv.open('w',newline='') as stream:
                     writer=csv.DictWriter(stream,fieldnames=fieldnames,lineterminator='\n');writer.writeheader();writer.writerows(rows)
-            (directory/'README.txt').write_text('FINAL REGISTERED CONTRIBUTIONS — METRES\n\nAccepted poses are already applied. The measured X ROI is now -1.25…7.35 m; original samples are retained.\nSeparate PLY RGB is leaf/wood colour. Combined PLY RGB identifies the recording, with leaf/wood colour in leaf_RGB fields. Raw channels and source frame/pixel indices are preserved.\nUse scan_manifest.json for current point counts and matching matrices. The complete former crop and metadata are in QC provenance/roi_extension_baseline.zip.\n')
+            (directory/'README.txt').write_text('FINAL REGISTERED CONTRIBUTIONS — METRES\n\nAccepted poses are already applied. The current measured ROI is recorded in scan_manifest.json; original samples are retained.\nSeparate PLY RGB is leaf/wood colour. Combined PLY RGB identifies the recording, with leaf/wood colour in leaf_RGB fields. Raw channels and source frame/pixel indices are preserved.\nUse scan_manifest.json for current point counts and matching matrices. The complete former crop and metadata are in QC provenance/roi_extension_baseline.zip.\n')
         report=dict(dataset=dataset,**details,source_verification=proof,mesh=mesh_quality,shared_classifier_sha256=model.get('model_sha256'))
         save_json(qc/'report.json',report)
-        # A simple view shows added measured ends without implying extra accuracy.
+        # A simple view shows added measured coverage without implying extra accuracy.
         import matplotlib
         matplotlib.use('Agg')
         import matplotlib.pyplot as plt
-        q=merged[::5];fig,ax=plt.subplots(figsize=(14,6));ax.scatter(q['x'],q['z'],s=.35,c='#388dbc',alpha=.4,linewidths=0)
-        ax.axvline(roi['original_along_m'][0],c='#be6540',ls='--',label='Former crop edges');ax.axvline(roi['original_along_m'][1],c='#be6540',ls='--');ax.set(xlabel='Along row X (m)',ylabel='Z (m)',title=dataset+' · measured X-end returns restored; accepted poses unchanged');ax.set_aspect('equal');ax.legend();ax.grid(alpha=.2);fig.tight_layout();fig.savefig(qc/'expanded_roi.png',dpi=125,bbox_inches='tight');plt.close(fig)
+        q=merged[::5];fig,axes=plt.subplots(1,2,figsize=(15,6))
+        previous=roi.get('previous_roi',dict(along_m=roi['original_along_m'],across_m=roi['across_m']))
+        for ax,key,bounds,label in [(axes[0],'x',previous['along_m'],'Along X (m)'),(axes[1],'y',previous['across_m'],'Across Y (m)')]:
+            ax.scatter(q[key],q['z'],s=.35,c='#388dbc',alpha=.4,linewidths=0)
+            for edge in bounds:ax.axvline(edge,c='#be6540',ls='--')
+            ax.set(xlabel=label,ylabel='Z (m)',title='Dashed: former boundaries');ax.set_aspect('equal');ax.grid(alpha=.2)
+        fig.suptitle(dataset+' · measured returns restored beyond across-row cutoffs; accepted poses unchanged');fig.tight_layout();fig.savefig(qc/'expanded_roi.png',dpi=125,bbox_inches='tight');plt.close(fig)
         gallery=stage/'QC'/dataset/'index.html';text=gallery.read_text();start='<!-- measured-roi-start -->';end='<!-- measured-roi-end -->'
         if start in text:text=text[:text.index(start)]+text[text.index(end)+len(end):]
         block=start+'<h2>Current measured ROI extension and matching mesh</h2><p><a href="roi_extension/report.json">Report</a> · <a href="roi_extension/shrinkwrap_quality.json">Current mesh topology/source hash</a></p><img style="max-width:100%" src="roi_extension/expanded_roi.png"><img style="max-width:100%" src="roi_extension/shrinkwrap_preview.png">'+end

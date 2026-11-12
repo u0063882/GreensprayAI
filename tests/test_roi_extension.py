@@ -23,4 +23,17 @@ class MeasuredRoiTests(unittest.TestCase):
         _,added,_=extended_scan(semantic,decoded,dict(gravity_levelled_to_merged=np.eye(4).tolist()),0,[31,119,180],model,roi)
         for key in ['red','green','blue']:np.testing.assert_array_equal(added[key],added['leaf_'+key])
 
+class AcrossRoiTests(unittest.TestCase):
+    def test_across_only_extension_keeps_existing_x_extent_and_original_samples(self):
+        names=[('x','<f4'),('y','<f4'),('z','<f4'),('red','u1'),('green','u1'),('blue','u1'),('reflectivity','u1'),('signal','<u2'),('intensity','<u2'),('near_ir','<u2'),('scan_id','<u4'),('frame_id','<u4'),('pixel_index','<u4')]
+        original=np.zeros(1,dtype=names);original['y']=2;original['z']=.5;original['frame_id']=1
+        p=np.array([[0,2,.5],[0,.9,.5],[0,3.0,.5],[0,1.6,.5],[8,3,.5]])
+        n=len(p);decoded=dict(xyz=p,reflectivity=np.arange(n,dtype='u1'),signal=np.arange(n,dtype='u2')+100,near_ir=np.arange(n,dtype='u2')+20,frame_id=np.ones(n,dtype='u4'),pixel_index=np.arange(n,dtype='u4'))
+        roi=dict(original_along_m=[-.5,6.6],previous_roi=dict(along_m=[-1.25,7.35],across_m=[1.2875,2.6875],height_m=[-.12,4.5]),along_m=[-1.25,7.35],across_m=[.65,3.35],height_m=[-.12,4.5])
+        expanded,added,proof=extended_scan(original,decoded,dict(gravity_levelled_to_merged=np.eye(4).tolist()),0,[1,2,3],dict(log_centres=[.1,.8],log_threshold=.45),roi)
+        np.testing.assert_array_equal(expanded[:1],original)
+        np.testing.assert_allclose(xyz(added),p[[1,2]],atol=1e-7)
+        np.testing.assert_array_equal(added['pixel_index'],[1,2]);self.assertEqual(proof['added'],2)
+
+
 if __name__=='__main__':unittest.main()

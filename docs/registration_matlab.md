@@ -165,3 +165,19 @@ Pfinal = Pfinal(:,1:3);
 ```
 
 Actual fitting includes robust losses, source visibility, return-set exclusions, plausible pose bounds and same-facing wood overlap. Disconnected within-side recordings first receive a validated multistart recovery. No prescribed branch angle, symmetry, upright trunk or per-point warp is used. The saved final JSON matrices already include the composition above; loading a final PLY does not require another transformation.
+
+## Common structural output frame
+
+The relative registration is evaluated in the original physics working frame. A subsequent common frame transform can align a paired-view woody height-centre PCA axis with output Z. It preserves relative poses and branch angles. It is not an independently surveyed gravity reference.
+
+```matlab
+% F is structural_up_frame.registration_to_structural from transformations.json.
+% Final PLY files ALREADY include F; do not apply it again to those files.
+T_sensor_output = F * T_sensor_registration;
+p_output = (F(1:3,1:3) * p_registration.') + F(1:3,4);
+g_reference_output = F(1:3,1:3) * [0; 0; 1];
+% To inspect the original registration frame from an already exported cloud:
+p_registration = F(1:3,1:3).' * (p_output - F(1:3,4));
+```
+
+The estimator balances both viewing sides and height bins. Per-scan PCA alignment is avoided because opposite views may be dominated by different branches. ROI limits are stored in the earlier registration frame.

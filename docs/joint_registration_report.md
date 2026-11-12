@@ -1,4 +1,6 @@
-# Current joint registration and measured ROI extension
+# Joint-registration stage and earlier X ROI extension
+
+**Subsequent output update:** see [shared structural-up and the wider across-row ROI](structural_up_report.md). The joint-fit metrics below remain working-frame checks; current output coordinates include the separately documented common rotation.
 
 **V-hedge now uses the joint rigid result. Chandelier has a wider measured X ROI and a matching rebuilt mesh. The accepted spindle outputs remain unchanged.** All results stay in the single [Current release](https://github.com/u0063882/GreensprayAI/releases/tag/current), under the existing dataset folders and five download names.
 

@@ -125,3 +125,5 @@ python -m unittest discover -s tests -v
 No repository license has been imposed; the owner can choose one.
 
 The [earlier structural investigation](docs/structural_alignment.md) records rejected trials on the former baseline. The [current report](docs/joint_registration_report.md) describes the accepted joint result and its remaining uncertainty. No tree-shape symmetry is imposed.
+
+The current outputs use a [shared woody structural-up frame](docs/structural_up_report.md) where a supported PCA direction exists. Chandelier now includes the wider across-row ROI and matching mesh. Structural Z is explicitly distinguished from measured gravity; all per-recording poses and mesh coordinates match the final frame.

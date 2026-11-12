@@ -12,11 +12,11 @@ def api(repo,path):return json.loads(subprocess.check_output(['gh','api',f'repos
 
 def release_notes(datasets,paths):
     base=(ROOT/'results/RELEASE_NOTES.md').read_text()
-    table='\n\n| Dataset | Final measured points | Mesh | Final registration |\n| --- | ---: | --- | --- |\n'
+    table='\n\n| Dataset | Final measured points | Mesh | Final registration | Structural-up rotation |\n| --- | ---: | --- | --- | ---: |\n'
     for item in datasets:
         method=('Joint rigid refinement' if item.get('joint_registration',{}).get('promoted') else
                 'Trunk-refined rigid poses' if item.get('trunk_refinement',{}).get('promoted') else 'Accepted rigid poses')
-        table+='| '+item['dataset']+' | '+f"{item['points']:,}"+' | '+('Available' if item['mesh_available'] else 'Not generated')+' | '+method+' |\n'
+        table+='| '+item['dataset']+' | '+f"{item['points']:,}"+' | '+('Available' if item['mesh_available'] else 'Not generated')+' | '+method+' | '+f"{item.get('structural_frame_deg',0):.2f}°"+' |\n'
     sums='\n<details><summary>SHA-256 checksums</summary>\n\n```text\n'+''.join(digest(p)+'  '+p.name+'\n' for p in paths)+'```\n</details>\n'
     return base+table+sums
 
@@ -36,6 +36,8 @@ def main():
     commit=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     with tempfile.TemporaryDirectory(prefix='collection-',dir=args.asset_dir) as temporary:
         work=Path(temporary);stage=work/'stage';layout=import_current(source,stage)
+        from tools.orient_collection import restore_working_frames,orient_collection
+        restore_working_frames(stage)
         frozen_ids=tuple(d['id'] for d in config['datasets'] if d.get('kind')=='frozen');before=frozen_hashes(stage,frozen_ids)
         # Keep the old geometry bytes frozen while introducing named captures.
         datasets=[dict(dataset='chandelier',points=1219008,mesh_available=True,geometry_policy='Frozen validated outputs; only ZIP paths changed')]
@@ -69,7 +71,7 @@ def main():
                 result=next((r for r in extended if r['dataset']==item['dataset']),None)
                 if result:
                     item['points']=result['points'];item['measured_roi_extension']=True
-                    item['geometry_policy']='Accepted poses and original samples retained; measured X ROI extended and matching mesh rebuilt independently'
+                    item['geometry_policy']='Accepted poses and original samples retained; measured row ROI extended and matching mesh rebuilt independently'
             before=frozen_hashes(stage,frozen_ids)
         if (ROOT/'presets/joint_registration.json').exists():
             from tools.refine_joint_collection import refine_joint_collection
@@ -84,6 +86,11 @@ def main():
         # Diagnostic coverage only; no correction or shape prior is applied.
         from tools.structural_collection import add_structural_checks
         add_structural_checks(stage)
+        frames=orient_collection(stage)
+        for item in datasets:
+            result=next((r for r in frames if r['dataset']==item['dataset']),None)
+            if result:item['structural_frame_deg']=result['applied_rotation_deg']
+        before=frozen_hashes(stage,frozen_ids)
         provenance=stage/'QC/provenance';provenance.mkdir(parents=True,exist_ok=True)
         (provenance/'collection.json').write_text(json.dumps(dict(packaging_commit=commit,datasets=datasets,frozen_dataset_sha256=before),indent=2)+'\n')
         code=work/'code.zip';subprocess.run(['git','archive','--format=zip','--output',str(code),'HEAD'],cwd=ROOT,check=True)

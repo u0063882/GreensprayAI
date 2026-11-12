@@ -1,10 +1,42 @@
 {
   "chandelier": {
-    "original_along_m": [-0.5, 6.6],
-    "along_m": [-1.25, 7.35],
-    "across_m": [1.2875, 2.6875],
-    "height_m": [-0.12, 4.5],
-    "policy": "Recover measured canopy and ground at both X ends. Preserve every existing point and every accepted pose; no extrapolation or synthetic points.",
-    "mesh": {"voxel_m": 0.025, "outward_offset_m": 0.04, "closing_radius_m": 0.05, "minimum_volume_m3": 0.0005}
+    "original_along_m": [
+      -0.5,
+      6.6
+    ],
+    "along_m": [
+      -1.25,
+      7.35
+    ],
+    "across_m": [
+      0.65,
+      3.35
+    ],
+    "height_m": [
+      -0.12,
+      4.5
+    ],
+    "policy": "Recover measured canopy and direct ground beyond both across-row edges. Preserve the entire already expanded X cloud and every accepted pose; no interpolation or deformation.",
+    "mesh": {
+      "voxel_m": 0.025,
+      "outward_offset_m": 0.04,
+      "closing_radius_m": 0.05,
+      "minimum_volume_m3": 0.0005
+    },
+    "previous_roi": {
+      "along_m": [
+        -1.25,
+        7.35
+      ],
+      "across_m": [
+        1.2875,
+        2.6875
+      ],
+      "height_m": [
+        -0.12,
+        4.5
+      ]
+    },
+    "baseline_archive_filename": "roi_across_extension_baseline.zip"
   }
 }
