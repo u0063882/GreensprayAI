@@ -99,6 +99,12 @@ def _refresh_caches(stage,dataset):
     if p.exists():
         from tools.leafwood_collection import output_hashes
         config=json.loads((ROOT/'results/capture_collection.json').read_text());data=json.loads(p.read_text());data['output_hashes']=output_hashes(stage,config);save_json(p,data)
+    # Rebuilding the ROI invalidates downstream diagnostic fits even when a
+    # deterministic export happens to recover an earlier input SHA. Its cached
+    # output hashes may refer to a subsequently restored PLY header/frame.
+    marker=stage/'QC'/dataset/'joint_registration/build.json'
+    if marker.exists() and not json.loads(marker.read_text()).get('promoted',False):
+        marker.unlink()
     # The trunk stage's immutable baseline must describe the same expanded source
     # return sets on a future rebuild. Its exact former archive is in the ROI ZIP.
     archive=stage/'QC'/dataset/'provenance/trunk_refinement_baseline.zip'

@@ -1,7 +1,9 @@
 """ROI widening adds measured returns and preserves the complete original prefix."""
-import unittest
+import json,tempfile,unittest
+from pathlib import Path
+from unittest.mock import patch
 import numpy as np
-from tools.extend_collection_roi import extended_scan,merge_extension
+from tools.extend_collection_roi import extended_scan,merge_extension,_refresh_caches
 from processing.export_anchored import xyz
 
 
@@ -34,6 +36,19 @@ class AcrossRoiTests(unittest.TestCase):
         np.testing.assert_array_equal(expanded[:1],original)
         np.testing.assert_allclose(xyz(added),p[[1,2]],atol=1e-7)
         np.testing.assert_array_equal(added['pixel_index'],[1,2]);self.assertEqual(proof['added'],2)
+
+
+class RoiCacheTests(unittest.TestCase):
+    def test_roi_rebuild_invalidates_only_unpromoted_downstream_fit_cache(self):
+        for promoted in [False,True]:
+            with self.subTest(promoted=promoted),tempfile.TemporaryDirectory() as tmp:
+                root=Path(tmp);qc=root/'QC/test/joint_registration';qc.mkdir(parents=True)
+                marker=qc/'build.json';marker.write_text(json.dumps(dict(promoted=promoted,cache_key='same-input-sha',output_hashes={'pointclouds/test/final_registered.ply':'restored-header-sha'})))
+                report=qc/'report.json';report.write_text('prior diagnostic report')
+                with patch('tools.extend_collection_roi._dataset_hashes',return_value={}),patch('tools.extend_collection_roi._create_baseline'):
+                    _refresh_caches(root,'test')
+                self.assertEqual(marker.exists(),promoted)
+                self.assertEqual(report.read_text(),'prior diagnostic report')
 
 
 if __name__=='__main__':unittest.main()
