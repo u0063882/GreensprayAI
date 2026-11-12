@@ -71,3 +71,22 @@ def plot_raw_audit(result,output,cache_directory=None):
             ax.plot(hh,uu,'+',c=colour,ms=10,mew=2);ax.text(hh+.025,uu+.015,f"{stem['diameter_cm']:.0f} cm",fontsize=7,color=colour)
         ax.set(xlim=(row['extent'][0]-.2,row['extent'][1]+.2),ylim=(-.5,.5),xlabel='Along detected row (m)',ylabel='Across row, east positive (m)',title=side.capitalize()+' raw low-return candidates · '+r['scan']);ax.set_aspect('equal');ax.grid(alpha=.2)
     fig.suptitle('Low-stem/support detection from raw scans; + fitted free-lean tubes, inferred diameters');fig.tight_layout();fig.savefig(output/'raw_row_detection.png',dpi=130);plt.close(fig)
+
+    central=result.get('central_tree_plane')
+    if central:
+        fig,axes=plt.subplots(1,2,figsize=(12,7),gridspec_kw={'width_ratios':[1,1.15]});ax=axes[0];zz=np.array(central['heights_m'])
+        for r in central['per_source_profiles']:
+            ax.plot(r['east_positive_centres_m'],zz,c=COLOURS[r['geographic_side']],alpha=.22,lw=.7)
+        for side in ['east','west']:ax.plot(central[side+'_profile_m'],zz,c=COLOURS[side],lw=2,label=side.capitalize()+' mean observed-tree profile')
+        ax.plot(central['central_profile_m'],zz,'ko',ms=4,label='Height-matched midpoint')
+        line=central['eastward_height_coefficient']*zz+central['intercept_m'];ax.plot(line,zz,'k-',lw=2,label='Free central-plane fit')
+        x=np.linspace(-.8,.8,100);ng=np.array(central['mean_ground_normal_row_east_up']);ax.plot(x,-ng[1]/ng[2]*x,c='#666666',lw=2,label='Mean raw ground, H=0')
+        ax.axvline(central['intercept_m'],c='#888888',ls=':',lw=1);ax.set(xlabel='Observed centre across row, east positive (m)',ylabel='Height above local ground datum (m)',title=f"Central plane–ground: {central['central_plane_to_ground_deg']:.1f}°\nCentral plane tilt from IMU vertical: {central['central_plane_tilt_from_imu_vertical_deg']:.1f}°",ylim=(-.15,3.2));ax.set_aspect('equal');ax.grid(alpha=.2);ax.legend(fontsize=7,loc='upper left')
+        ax=axes[1];choices=[('Whole-tree mean profiles',central)]+[(name.replace('_',' '),v) for name,v in result.get('central_plane_sensitivity',{}).items()]
+        for i,(label,v) in enumerate(choices):ax.plot([75,v['central_plane_to_ground_deg']],[i,i],c='#AAAAAA',lw=2);ax.plot(v['central_plane_to_ground_deg'],i,'o',c='black' if i==0 else '#666666',ms=7)
+        omit=central.get('leave_one_recording_out_angles_deg',[])
+        if omit:ax.plot([min(omit),max(omit)],[0,0],c='#B21C4B',lw=4,label='Range when omitting one recording')
+        ax.axvline(90,c='#A32233',ls='--',label='90° perpendicular reference');ax.set_yticks(range(len(choices)),[a[0] for a in choices]);ax.invert_yaxis();ax.set(xlim=(75,92),xlabel='Central plane–ground angle (°)',title='Central-plane definition / height sensitivity');ax.grid(alpha=.2);ax.legend(fontsize=8,loc='lower right')
+        fig.suptitle('RAW CENTRAL TREE PLANE · equal east/west weighting · no upright or V-shape target',fontsize=12)
+        fig.text(.5,.018,'Statistical observed-tree centres at matched heights; independent raw row origins. No scan poses or output point clouds are changed.',ha='center',fontsize=8)
+        fig.tight_layout(rect=(0,.04,1,.94));fig.savefig(output/'raw_central_plane.png',dpi=130);fig.savefig(output/'raw_central_plane.pdf');plt.close(fig)
