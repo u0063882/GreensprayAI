@@ -1,5 +1,7 @@
 # Final trunk refinement — measured-reference comparison
 
+The spindle outputs described here remain current. V-hedge subsequently received the [joint rigid refinement](joint_registration_report.md); chandelier subsequently received a measured X-ROI extension and matching mesh rebuild. The V-hedge/chandelier comparisons below describe the earlier trunk-only stage.
+
 The refinement is a final, independent step on the existing registration. Spindle 1 and Spindle 2 pass the acceptance checks and become the primary results. Chandelier and V-hedge retain their previous primary results; their flagged candidates are preserved in QC.
 
 The user confirmed representative measurements, with no correspondence between spreadsheet tree numbers and scan windows. Loose netting can affect circumference. Reference ranges inform object association and per-stem radius priors; they are not exact assigned sizes.

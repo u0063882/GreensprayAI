@@ -135,3 +135,33 @@ e = sqrt(sum(radial.^2,2)) - r;
 ```
 
 This preserves opposite bark faces and supports lean/taper without forcing vertical stems. The objective adds local east-ground planes, same-face west overlap, and bounded pose priors. West candidate 5 and two low-height bands are excluded for validation. Ground/overlap checkerboards provide additional checks, conditional on model/correspondence assumptions. The expressions specify the Python method; a full MATLAB optimizer for this stage has not been runtime-tested or supplied.
+
+## Subsequent joint stage (current V-hedge)
+
+The [current report](joint_registration_report.md) supersedes the fixed-side assumption for V-hedge. The former registration supplies initial poses. Both sides then receive per-recording 6-DOF rigid corrections, with a coordinate-origin/yaw gauge at one recording and soft gravity constraints. Low-trunk axes/radii/taper are shared variables and remain free to lean; measured local terrain planes may slope.
+
+With X along the row, Y across it and Z up, the important residuals can be written in MATLAB terms as:
+
+```matlab
+% Each observation and normal belongs to its original recording.
+piWorld = Ri*pi + ti;
+pjWorld = Rj*pj + tj;
+niWorld = Ri*ni;
+njWorld = Rj*nj;
+rGround = [niWorld.'*(piWorld-pjWorld); ...
+           njWorld.'*(piWorld-pjWorld)]; % no Z=0 or horizontal-plane target
+
+axis = [leanX; leanY; 1]; axis = axis/norm(axis);
+d = piWorld - [centreX; centreY; 0.30];
+s = axis.'*d;
+rTrunk = norm(d-axis*s) - (radius + taper*s);
+
+g = Ri*upInCurrentFrame;
+rGravity = g(1:2)/deg2rad(0.75); % weighted prior, not a soil normal
+
+Tfinal = Cjoint * Crecovery * Tbaseline;
+Pfinal = (Tfinal * [Psensor, ones(size(Psensor,1),1)].').';
+Pfinal = Pfinal(:,1:3);
+```
+
+Actual fitting includes robust losses, source visibility, return-set exclusions, plausible pose bounds and same-facing wood overlap. Disconnected within-side recordings first receive a validated multistart recovery. No prescribed branch angle, symmetry, upright trunk or per-point warp is used. The saved final JSON matrices already include the composition above; loading a final PLY does not require another transformation.

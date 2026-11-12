@@ -1,0 +1,6 @@
+{
+  "datasets": ["vhedge", "spindle1", "spindle2", "chandelier"],
+  "promote_datasets": ["vhedge"],
+  "policy": "Run the same geometry model on each dataset. Promote the requested V-hedge repair only after internal validation; preserve the accepted spindle results and the meshed chandelier result.",
+  "settings": {}
+}

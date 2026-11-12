@@ -1,8 +1,8 @@
-# Full-height registration checks without tree-shape templates
+# Earlier full-height registration investigation
 
 The requested outcome is a faithful rigid reconstruction. No V symmetry, equal branch angles, horizontal support bar, vertical trunk, mirror operation, scale change or per-point deformation is an optimisation target. A known horizontal bar can diagnose an orientation problem; it is not silently made horizontal.
 
-The V-hedge orientation concern is **not yet resolved**. This change adds a reusable diagnostic and reports the evidence. It does not promote a new V-hedge pose, change the accepted spindle poses, expand the chandelier crop or rebuild meshes.
+**Historical baseline investigation.** The [subsequent joint stage](joint_registration_report.md) now recovers a disconnected V-hedge recording and promotes a validated rigid refinement; chandelier also has a measured ROI extension and matching rebuilt mesh. The trials below describe the former baseline and rejected proposals, not the current primary result. Remaining upper-geometry uncertainty is discussed in the current report.
 
 ![Delivered V-hedge, orthographic across-row profiles](figures/vhedge_orthographic_profile.png)
 

@@ -1,5 +1,7 @@
 # Meshing and a shrink-wrap-style canopy proxy
 
+The current chandelier mesh was rebuilt from the expanded measured X ROI. See the [current report](joint_registration_report.md) and `QC/chandelier/roi_extension/shrinkwrap_quality.json` for its matching input hash and counts; earlier example figures/statistics below describe the original crop.
+
 [Download the current mesh archive](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip)
 
 The main mesh ZIP contains only the final representations in the registered metric frame:

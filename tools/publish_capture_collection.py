@@ -12,8 +12,11 @@ def api(repo,path):return json.loads(subprocess.check_output(['gh','api',f'repos
 
 def release_notes(datasets,paths):
     base=(ROOT/'results/RELEASE_NOTES.md').read_text()
-    table='\n\n| Dataset | Final measured points | Mesh | Final trunk refinement |\n| --- | ---: | --- | --- |\n'
-    for item in datasets:table+='| '+item['dataset']+' | '+f"{item['points']:,}"+' | '+('Available' if item['mesh_available'] else 'Not generated')+' | '+('Applied' if item.get('trunk_refinement',{}).get('promoted') else 'Baseline retained')+' |\n'
+    table='\n\n| Dataset | Final measured points | Mesh | Final registration |\n| --- | ---: | --- | --- |\n'
+    for item in datasets:
+        method=('Joint rigid refinement' if item.get('joint_registration',{}).get('promoted') else
+                'Trunk-refined rigid poses' if item.get('trunk_refinement',{}).get('promoted') else 'Accepted rigid poses')
+        table+='| '+item['dataset']+' | '+f"{item['points']:,}"+' | '+('Available' if item['mesh_available'] else 'Not generated')+' | '+method+' |\n'
     sums='\n<details><summary>SHA-256 checksums</summary>\n\n```text\n'+''.join(digest(p)+'  '+p.name+'\n' for p in paths)+'```\n</details>\n'
     return base+table+sums
 
@@ -58,6 +61,22 @@ def main():
                 if result:item['trunk_refinement']=dict(promoted=result['promoted'],validation_passed=result['validation_passed'])
             # These are now verified, explicitly authorised final corrections.
             # Their original geometry is retained in per-dataset baseline ZIPs.
+            before=frozen_hashes(stage,frozen_ids)
+        if (ROOT/'presets/roi_extensions.json').exists():
+            from tools.extend_collection_roi import extend_collection_roi
+            extended=extend_collection_roi(stage,args.asset_dir/'roi_extensions',config,repo)
+            for item in datasets:
+                result=next((r for r in extended if r['dataset']==item['dataset']),None)
+                if result:
+                    item['points']=result['points'];item['measured_roi_extension']=True
+                    item['geometry_policy']='Accepted poses and original samples retained; measured X ROI extended and matching mesh rebuilt independently'
+            before=frozen_hashes(stage,frozen_ids)
+        if (ROOT/'presets/joint_registration.json').exists():
+            from tools.refine_joint_collection import refine_joint_collection
+            joint=refine_joint_collection(stage)
+            for item in datasets:
+                result=next((r for r in joint if r['dataset']==item['dataset']),None)
+                if result:item['joint_registration']=dict(promoted=result['promoted'],validation_passed=result['validation_passed'])
             before=frozen_hashes(stage,frozen_ids)
         if (ROOT/'presets/spindle_trunk_reference.json').exists():
             from tools.trunk_reference_qc import add_reference_checks

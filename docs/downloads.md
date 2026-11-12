@@ -8,9 +8,15 @@ Open [Current results → Assets](https://github.com/u0063882/GreensprayAI/relea
 4. **90_QC.zip** — extract and open **QC/index.html** to choose a dataset and browse figures/reports.
 5. **91_registered_contributions.zip** — each dataset has leaf/wood-coloured `separate_scans/` and recording-coloured `combined/`, with overlap retained. Both store raw sensor channels, leaf/wood RGB and original `scan_id`.
 
-Every dataset uses its own independent local metric frame. All PLY coordinates and matrix translations are metres. A final PLY is already registered; do not apply its matrices again. **Spindle 1 and Spindle 2 now include an accepted independent final trunk/post refinement**, with matching updated matrices and contributions. Chandelier and V-hedge retain their previous primary registrations; their proposed refinements trigger checks. Every original measured sample, point order, height, sensor channel, shared Lab colour and source index is retained. The unchanged chandelier mesh still matches its retained primary cloud.
+Every dataset uses its own independent local metric frame. PLY coordinates and matrix translations are metres. A final PLY is already registered; do not apply its matrices again.
 
-See [final refinement results](trunk_refinement_report.md) and [method/reference details](trunk_refinement.md). Before/after 18/30/40 cm slices are at `QC/<dataset>/trunk_refinement/`. The original primary PLY, matrices and per-scan XYZ are preserved in `QC/<dataset>/provenance/trunk_refinement_baseline.zip`. Canonical final filenames stay the same.
+- **V-hedge:** the final joint stage adjusts individual rigid poses on both sides and recovers a recording disconnected from its original pose graph. Its 830,803 primary samples retain their raw/display fields and source identities.
+- **Chandelier:** the X ROI is extended from −0.5…6.6 to −1.25…7.35 m using original measured returns. It now contains 1,326,879 points. Every former point and accepted matrix is retained; the mesh is rebuilt from this exact expanded PLY.
+- **Spindle 1 / Spindle 2:** their accepted trunk-refined primary outputs remain unchanged. The same joint method was evaluated as QC on both.
+
+See the [current results and figures](joint_registration_report.md). V-hedge before/after figures and validation are under `QC/vhedge/joint_registration/`. Its pre-joint primary PLY, matrices and per-scan XYZ are archived in `QC/vhedge/provenance/joint_registration_baseline.zip`. Chandelier's complete former crop, contributions, matrices and mesh are in `QC/chandelier/provenance/roi_extension_baseline.zip`; current ROI/mesh checks are under `QC/chandelier/roi_extension/`.
+
+The [earlier trunk-stage report](trunk_refinement_report.md) remains relevant to the spindle outputs. Before/after 18/30/40 cm figures are under `QC/<dataset>/trunk_refinement/`. Original trunk-stage baselines remain under provenance. Canonical final filenames and the five-download layout stay the same.
 
 Each dataset's 01 folder also contains `source_scans.json` (scan index to original PCAP/hash) and `leafwood_model.json`. Choose the `scan_id` scalar field in CloudCompare to display recording colours. `intensity` is raw first-return SIGNAL; reflectivity and ambient NIR remain distinct channels. RGB is derived leafWoodSignal, not camera colour. See [fields and method](leafwood_registration.md).
 

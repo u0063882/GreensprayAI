@@ -1,33 +1,30 @@
 ## Final datasets
 
-One release, with a folder per dataset inside the five downloads:
+One Current release, with dataset folders in the same five downloads:
 
-1. **[Final aligned point clouds](https://github.com/u0063882/GreensprayAI/releases/download/current/01_final_aligned_pointclouds.zip)** — open `final_registered.ply` in the `chandelier/`, `spindle1/`, `spindle2/` or `vhedge/` folder.
-2. **[Final meshes](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip)** — chandelier mesh/ground formats under `chandelier/`; spindle1, spindle2 and vhedge have no mesh yet.
-3. **[Transformation matrices](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.zip)** — matching JSONs in each dataset folder.
+1. **[Final aligned point clouds](https://github.com/u0063882/GreensprayAI/releases/download/current/01_final_aligned_pointclouds.zip)** — `final_registered.ply` under `chandelier/`, `spindle1/`, `spindle2/` and `vhedge/`.
+2. **[Final mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip)** — chandelier envelope/ground formats. The other datasets have no mesh yet.
+3. **[Transformation matrices](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.zip)** — matching JSONs under each dataset folder.
 
-Coordinates are metres. Each dataset uses an independent local frame. Final PLYs are already aligned; do not apply the matrices again. **Spindle 1 and Spindle 2 now include a validated final trunk/post across/yaw refinement**, with matching matrices and contributions. Chandelier and V-hedge retain their previous primary registrations because their proposed refinements trigger checks. The existing chandelier mesh is unchanged and still matches its retained primary cloud.
+**V-hedge:** joint rigid refinement now adjusts both sides and recovers a previously disconnected recording. Its 830,803 measured samples retain all non-coordinate fields and source identities. Terrain may slope and trunks may lean; no V symmetry or horizontal-bar target is imposed.
 
-**[Final refinement report](https://github.com/u0063882/GreensprayAI/blob/main/docs/trunk_refinement_report.md):** uses the user's representative workbook size ranges as soft priors, not exact tree identities. The geometric 26–34 cm band is withheld. Before/after slices at 18/30/40 cm and full reports are under `QC/<dataset>/trunk_refinement/`. Original primary PLYs, matrices and per-recording XYZ are archived under each dataset's `provenance/trunk_refinement_baseline.zip`. Samples, ordering, Z values, raw channels, RGB and scan IDs are retained exactly.
+**Chandelier:** the measured X ROI expands from −0.5…6.6 to −1.25…7.35 m, adding 107,871 samples for a total of 1,326,879. All original points and accepted poses are retained. The independently rebuilt mesh hashes this exact expanded PLY.
 
-**Sensor attributes added:** original raw `intensity`/`signal`, ambient `near_ir`, calibrated `reflectivity`, derived shared leafWoodSignal RGB and unsigned 32-bit original `scan_id` (plus sensor frame/pixel indices). `source_scans.json` beside each PLY maps indices to original files/hashes. Display the `scan_id` scalar field to colour by recording. RGB is derived leaf/wood colour, not camera RGB.
+**Spindle 1 / Spindle 2:** accepted trunk-refined primary outputs are retained. The same joint method was evaluated on them as QC.
 
-**Shared Toolbox-style colour model:** one fitted Lab a*/b* classifier across all 67 recordings now retains the original scheme-13 feature mapping. It replaces the earlier raw-NIR threshold, which labelled too much foliage as wood. Raw sensor channels and primary point coordinates are unchanged.
+Read the **[current report and figures](https://github.com/u0063882/GreensprayAI/blob/main/docs/joint_registration_report.md)** for excluded-return checks, reference-size uncertainty, anchor tests, the ambiguous object window and mesh limits. These are internal consistency checks, not independent survey accuracy or guaranteed biological symmetry.
 
-**[Earlier leaf/wood comparison](https://github.com/u0063882/GreensprayAI/blob/main/docs/leafwood_comparison_report.md):** historical comparison on the pre-refinement baseline. Its candidates remain under QC; the final trunk/post step is a separate function and comparison. Historical circle fits are provisional diagnostics, not verified trunk sizes.
+Coordinates are metres; each dataset has its own local frame. Final PLYs are already registered: do not apply the matrices again. Original raw SIGNAL/intensity, ambient NIR, reflectivity, saved shared Lab leafWoodSignal RGB, `scan_id`, frame IDs and pixel indices are retained. `source_scans.json` maps scan indices to original PCAPs/hashes. RGB is derived leaf/wood colour, not camera RGB.
 
-<details>
-<summary>QC and individual scan contributions</summary>
+<details><summary>QC, individual contributions and original results</summary>
 
-- **[90_QC.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)** — extract and open `QC/index.html`, then choose a dataset. Includes low-height circle figures, ground checks, reports, code and internal rebuild inputs.
-- **[91_registered_contributions.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/91_registered_contributions.zip)** — each dataset has leaf/wood-coloured `separate_scans/` and recording-coloured `combined/`, with overlaps, raw channels and leaf/wood RGB fields retained.
+- **[90_QC.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)** — extract and open `QC/index.html`. Current joint figures are under `QC/<dataset>/joint_registration/`; chandelier crop/mesh checks are under `QC/chandelier/roi_extension/`.
+- **[91_registered_contributions.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/91_registered_contributions.zip)** — dataset folders contain `separate_scans/` and recording-coloured `combined/`, with overlaps and leaf/wood RGB fields retained.
 
-Spindle1 was registered from 18 recordings using measured RTK track directions, gravity levelling, within-side ICP, relative ground refinement and bounded per-recording opposite-side poses. Low-stem fitting stays below 0.5 m. Validation uses unused height bands and spatial patches; entire-stem omission leaves some end recordings unsupported and is not used in the final configuration. Circle fits affected by clutter/short arcs remain marked uncertain. These checks are internal model diagnostics, not surveyed accuracy.
+The pre-joint V-hedge result is archived at `QC/vhedge/provenance/joint_registration_baseline.zip`. The complete former chandelier crop, contributions, matrices and mesh are at `QC/chandelier/provenance/roi_extension_baseline.zip`. Earlier trunk/colour experiments remain historical QC. No separate v2 release or new top-level result list is introduced.
 
-Vhedge uses 13 usable recordings (seven A, six B). One byte-identical cross-archive duplicate and one single-packet capture without IMU are excluded and documented in QC and its transformation JSON. Original archives are retained. Its wider crop preserves both V arms and their underlying ground. Side headings come from its own RTK tracks.
+V-hedge still uses the same 13 usable recordings; its duplicate/incomplete capture exclusions are retained. Spindles use all 18 recordings each. Registration and meshing remain independent. The chandelier envelope uses the existing voxel/SDF approximation and is not native Rhino ShrinkWrap.
 
-Spindle2 uses all 18 complete, distinct recordings. It has its own RTK-inferred headings, reviewed crop and low-stem windows, with the same bounded per-recording registration and held-out checks. Its QC includes ground alignment, low-height circles and the across-row profile.
-
-Registration and meshing remain independent. The existing chandelier mesh is a voxel/SDF envelope prototype, not native Rhino ShrinkWrap. Only the `current` release is active.
+`git pull` updates code/docs, not release assets. Download the current ZIPs into a fresh folder.
 
 </details>

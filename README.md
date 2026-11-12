@@ -4,7 +4,7 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 
 **[Current downloads](https://github.com/u0063882/GreensprayAI/releases/tag/current)** · [Mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) · [Cross-row QA](docs/cross_row_quality.md) · [Registration in MATLAB terms](docs/registration_matlab.md)
 
-**[Final trunk refinement report](docs/trunk_refinement_report.md)** · [Independent method and manual references](docs/trunk_refinement.md). Spindle 1 and Spindle 2 now use accepted final across/yaw refinements of their existing registrations. Chandelier and V-hedge retain their baselines because their candidates trigger checks. Original baselines are preserved inside QC. Every measured sample, height, raw sensor attribute, shared Lab leafWoodSignal colour and source `scan_id` is retained.
+**[Current joint registration and ROI report](docs/joint_registration_report.md).** V-hedge now uses a validated joint rigid refinement of both sides, including recovery of a disconnected recording. Chandelier has a measured X-ROI extension and an independently rebuilt matching mesh. Accepted spindle outputs remain unchanged. Original sensor channels, derived leaf/wood RGB and source IDs are retained; complete previous results are archived inside QC.
 
 ## Current results
 
@@ -13,17 +13,17 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 | Main download | Contents |
 | --- | --- |
 | [01_final_aligned_pointclouds.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/01_final_aligned_pointclouds.zip) | One final PLY per dataset: `chandelier/`, `spindle1/`, `spindle2/`, `vhedge/` |
-| [02_final_mesh.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) | Existing chandelier canopy PLY/OBJ/STL, ground and combined scene, under `chandelier/` |
+| [02_final_mesh.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) | Rebuilt chandelier canopy PLY/OBJ/STL, ground and combined scene, under `chandelier/` |
 | [03_transformations.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.zip) | One matching `transformations.json` per dataset folder |
 
 Each dataset has its **own local frame, in metres**. Its final PLYs already have its matrices applied; do not apply them again. The dataset folders are separate capture results, not a common field-wide georeferenced scene.
 
 | Dataset | Status |
 | --- | --- |
-| Chandelier | Existing baseline coordinates, point order, transforms and mesh retained; PLY sensor attributes enriched |
+| Chandelier | Accepted poses and original points retained; X ROI extended to −1.25…7.35 m; matching mesh rebuilt |
 | Spindle1 | Final independent trunk-based refinement applied to the 18 registered recordings; no mesh yet |
 | Spindle2 | Final independent trunk-based refinement applied to the 18 registered recordings; no mesh yet |
-| Vhedge | Existing 13-recording baseline geometry retained; PLY sensor attributes enriched |
+| Vhedge | Joint rigid poses for both sides; disconnected recording recovered; original samples and attributes retained |
 
 <details>
 <summary>Quality checks, individual scan contributions and code</summary>
@@ -34,13 +34,13 @@ Each dataset has its **own local frame, in metres**. Its final PLYs already have
 
 </details>
 
-See the [download guide](docs/downloads.md) and [named capture registration](docs/capture_registration.md). A/B names are labels; the new capture pipeline infers inward headings from the RTK tracks. Spindle1 uses a 7.1 m row section and a 1.8 m ground strip. Spindle2 uses a 7.45 m section and 2.0 m ground strip. Vhedge uses a 5.1 m section and a 3.1 m strip to preserve both V arms. Previous dataset crops are unchanged. Supports and attached clutter may remain, and some short-arc trunk centre fits remain uncertain.
+See the [download guide](docs/downloads.md) and [named capture registration](docs/capture_registration.md). A/B names are labels; the new capture pipeline infers inward headings from the RTK tracks. Spindle1 uses a 7.1 m row section and a 1.8 m ground strip. Spindle2 uses a 7.45 m section and 2.0 m ground strip. Vhedge uses a 5.1 m section and a 3.1 m strip to preserve both V arms. The chandelier X crop is now wider; the other dataset input crops are unchanged. Supports and attached clutter may remain, and some short-arc trunk centre fits remain uncertain.
 
-The [earlier colour-only experiment](docs/leafwood_comparison_report.md) remains a historical comparison on the pre-refinement baseline. Its candidate never became the primary result. The accepted final step is the independent trunk/post refinement linked above; before/after slices include all configured windows and identify weak held-out evidence.
+The [earlier colour-only experiment](docs/leafwood_comparison_report.md) remains a historical comparison on the pre-refinement baseline. Its candidate never became the primary result. The spindle primary data retain the independent trunk/post refinement. V-hedge now adds the joint stage documented above; its figures identify an ambiguous landmark excluded from fitting while retaining all measured points.
 
 The following existing east-anchored description and historical report numbers refer to **chandelier**:
 
-The current [east-anchored registration](docs/anchored_registration.md) holds all nine east/Side A files fixed and fits a separate bounded rigid pose for each west/Side B recording. Low stem observations stay below 0.5 m; ground and west-overlap constraints preserve scene consistency. [Before/after circles — `QC/chandelier/registration/anchored_trunk_sections.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip) show the improvement and remaining model uncertainty. The [mesh archive](docs/meshing.md) was computed from this refined cloud using the existing independent voxel/SDF mesher.
+The underlying [east-anchored registration](docs/anchored_registration.md) held all nine original east/Side A files fixed during its pose fit; the subsequent ROI export adds original measured returns through those same accepted poses. The pose fit uses a separate bounded rigid pose for each west/Side B recording. Low stem observations stay below 0.5 m; ground and west-overlap constraints preserve scene consistency. [Before/after circles — `QC/chandelier/registration/anchored_trunk_sections.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip) show the improvement and remaining model uncertainty. The [mesh archive](docs/meshing.md) was computed from this refined cloud using the existing independent voxel/SDF mesher.
 
 [Current canopy envelope preview — inside QC bundle: `QC/chandelier/meshing/shrinkwrap_preview.png`](https://github.com/u0063882/GreensprayAI/releases/download/current/90_QC.zip)
 
@@ -124,4 +124,4 @@ python -m unittest discover -s tests -v
 
 No repository license has been imposed; the owner can choose one.
 
-Full-height pose coverage and the unresolved V-hedge profile are documented in [the structural alignment report](docs/structural_alignment.md). The audit uses shared measured surfaces and gravity; no tree-shape symmetry is imposed, and it does not change final geometry.
+The [earlier structural investigation](docs/structural_alignment.md) records rejected trials on the former baseline. The [current report](docs/joint_registration_report.md) describes the accepted joint result and its remaining uncertainty. No tree-shape symmetry is imposed.

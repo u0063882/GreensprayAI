@@ -1,0 +1,495 @@
+{
+  "datasets": [
+    {
+      "dataset": "vhedge",
+      "promoted": true,
+      "validation_passed": true,
+      "rejection_reasons": [],
+      "points": 830803,
+      "stem_validation": {
+        "before": {
+          "points": 1787,
+          "median_absolute_m": 0.015779466880649753,
+          "rmse_m": 0.03378094228001836
+        },
+        "after": {
+          "points": 1787,
+          "median_absolute_m": 0.010078124587232867,
+          "rmse_m": 0.01636535674141104
+        },
+        "per_object": {
+          "0": {
+            "before": {
+              "points": 272,
+              "median_absolute_m": 0.010526053502840499,
+              "rmse_m": 0.016218038819956506
+            },
+            "after": {
+              "points": 272,
+              "median_absolute_m": 0.011490807361908405,
+              "rmse_m": 0.013802608244811578
+            }
+          },
+          "1": {
+            "before": {
+              "points": 413,
+              "median_absolute_m": 0.014172652732246882,
+              "rmse_m": 0.023031666212473365
+            },
+            "after": {
+              "points": 413,
+              "median_absolute_m": 0.0164548040216779,
+              "rmse_m": 0.021392642684257564
+            }
+          },
+          "3": {
+            "before": {
+              "points": 506,
+              "median_absolute_m": 0.013098876306804029,
+              "rmse_m": 0.03616314441094003
+            },
+            "after": {
+              "points": 506,
+              "median_absolute_m": 0.007563307427733576,
+              "rmse_m": 0.013299519088184667
+            }
+          },
+          "4": {
+            "before": {
+              "points": 393,
+              "median_absolute_m": 0.018363090792800282,
+              "rmse_m": 0.03685264171312173
+            },
+            "after": {
+              "points": 393,
+              "median_absolute_m": 0.00707091876736201,
+              "rmse_m": 0.010495072239429798
+            }
+          },
+          "5": {
+            "before": {
+              "points": 203,
+              "median_absolute_m": 0.04900779011908072,
+              "rmse_m": 0.05220005939248235
+            },
+            "after": {
+              "points": 203,
+              "median_absolute_m": 0.01840430253538322,
+              "rmse_m": 0.022741742033834937
+            }
+          }
+        },
+        "method": "Independent 26\u201334 cm returns, with a separately trained baseline model and candidate model; identical source-return identities. Radius priors are representative sizes, not survey truth."
+      },
+      "ground_validation": {
+        "before": {
+          "points": 2860,
+          "coverage": 0.9493006993006993,
+          "median_absolute_m": 0.007718707005515477,
+          "capped_rmse_m": 0.017736533226887667,
+          "method": "Fixed excluded ground queries; re-matched robust local terrain planes evaluated at actual XY; no horizontal-plane target"
+        },
+        "after": {
+          "points": 2860,
+          "coverage": 0.951048951048951,
+          "median_absolute_m": 0.007705764839956228,
+          "capped_rmse_m": 0.01757362126217764,
+          "method": "Fixed excluded ground queries; re-matched robust local terrain planes evaluated at actual XY; no horizontal-plane target"
+        }
+      },
+      "anchor_checks": [
+        {
+          "gauge_scan_id": 7,
+          "solver_success": true,
+          "rmse_m": 0.0002066362599300147,
+          "p95_m": 0.0005666023351753711,
+          "method": "Matching measured returns after removing only the best common rigid frame difference"
+        },
+        {
+          "gauge_scan_id": 12,
+          "solver_success": true,
+          "rmse_m": 0.00017736977519297578,
+          "p95_m": 0.00047340489440652727,
+          "method": "Matching measured returns after removing only the best common rigid frame difference"
+        }
+      ],
+      "recovered_scan_ids": [
+        7
+      ]
+    },
+    {
+      "dataset": "spindle1",
+      "promoted": false,
+      "validation_passed": false,
+      "rejection_reasons": [
+        "Excluded low-stem RMS improvement below 10%"
+      ],
+      "points": 1227174,
+      "stem_validation": {
+        "before": {
+          "points": 1450,
+          "median_absolute_m": 0.009599626578677377,
+          "rmse_m": 0.02288266230020489
+        },
+        "after": {
+          "points": 1450,
+          "median_absolute_m": 0.008911642335069768,
+          "rmse_m": 0.021994641348493642
+        },
+        "per_object": {
+          "1": {
+            "before": {
+              "points": 247,
+              "median_absolute_m": 0.00900794862184616,
+              "rmse_m": 0.037776611846740346
+            },
+            "after": {
+              "points": 247,
+              "median_absolute_m": 0.007341065880402453,
+              "rmse_m": 0.038255109963686515
+            }
+          },
+          "0": {
+            "before": {
+              "points": 125,
+              "median_absolute_m": 0.007559577828125247,
+              "rmse_m": 0.011866864940872503
+            },
+            "after": {
+              "points": 125,
+              "median_absolute_m": 0.006983805727044837,
+              "rmse_m": 0.011025603635404562
+            }
+          },
+          "2": {
+            "before": {
+              "points": 563,
+              "median_absolute_m": 0.0066095878261545615,
+              "rmse_m": 0.009408679120856163
+            },
+            "after": {
+              "points": 563,
+              "median_absolute_m": 0.006926642538637048,
+              "rmse_m": 0.009789371096436161
+            }
+          },
+          "3": {
+            "before": {
+              "points": 298,
+              "median_absolute_m": 0.017748289170739943,
+              "rmse_m": 0.026594636618241498
+            },
+            "after": {
+              "points": 298,
+              "median_absolute_m": 0.01241562996841808,
+              "rmse_m": 0.022142437324251574
+            }
+          },
+          "4": {
+            "before": {
+              "points": 217,
+              "median_absolute_m": 0.018706120391724347,
+              "rmse_m": 0.02433894680705558
+            },
+            "after": {
+              "points": 217,
+              "median_absolute_m": 0.015895783948311926,
+              "rmse_m": 0.02397489936899524
+            }
+          }
+        },
+        "method": "Independent 26\u201334 cm returns, with a separately trained baseline model and candidate model; identical source-return identities. Radius priors are representative sizes, not survey truth."
+      },
+      "ground_validation": {
+        "before": {
+          "points": 3912,
+          "coverage": 0.9102760736196319,
+          "median_absolute_m": 0.011412780320399114,
+          "capped_rmse_m": 0.022538923665396258,
+          "method": "Fixed excluded ground queries; re-matched robust local terrain planes evaluated at actual XY; no horizontal-plane target"
+        },
+        "after": {
+          "points": 3912,
+          "coverage": 0.9100204498977505,
+          "median_absolute_m": 0.010757813150526317,
+          "capped_rmse_m": 0.022187988998461326,
+          "method": "Fixed excluded ground queries; re-matched robust local terrain planes evaluated at actual XY; no horizontal-plane target"
+        }
+      },
+      "anchor_checks": [
+        {
+          "gauge_scan_id": 9,
+          "solver_success": true,
+          "rmse_m": 0.00042506515655676736,
+          "p95_m": 0.0008357486605081114,
+          "method": "Matching measured returns after removing only the best common rigid frame difference"
+        },
+        {
+          "gauge_scan_id": 17,
+          "solver_success": true,
+          "rmse_m": 0.00032690788669286836,
+          "p95_m": 0.0005389494752549624,
+          "method": "Matching measured returns after removing only the best common rigid frame difference"
+        }
+      ],
+      "recovered_scan_ids": []
+    },
+    {
+      "dataset": "spindle2",
+      "promoted": false,
+      "validation_passed": true,
+      "rejection_reasons": [],
+      "points": 1282862,
+      "stem_validation": {
+        "before": {
+          "points": 2128,
+          "median_absolute_m": 0.010922359210501775,
+          "rmse_m": 0.0207680154316638
+        },
+        "after": {
+          "points": 2128,
+          "median_absolute_m": 0.00817303822810242,
+          "rmse_m": 0.01808625989908938
+        },
+        "per_object": {
+          "0": {
+            "before": {
+              "points": 203,
+              "median_absolute_m": 0.013259629082581131,
+              "rmse_m": 0.02219624235484146
+            },
+            "after": {
+              "points": 203,
+              "median_absolute_m": 0.011985225091714707,
+              "rmse_m": 0.02393165610610674
+            }
+          },
+          "1": {
+            "before": {
+              "points": 531,
+              "median_absolute_m": 0.015728717715621968,
+              "rmse_m": 0.02506303022649874
+            },
+            "after": {
+              "points": 531,
+              "median_absolute_m": 0.009536226427831737,
+              "rmse_m": 0.02031294166151657
+            }
+          },
+          "2": {
+            "before": {
+              "points": 520,
+              "median_absolute_m": 0.011086263831292374,
+              "rmse_m": 0.02504115676681061
+            },
+            "after": {
+              "points": 520,
+              "median_absolute_m": 0.0077729621194866025,
+              "rmse_m": 0.02184801683622903
+            }
+          },
+          "3": {
+            "before": {
+              "points": 528,
+              "median_absolute_m": 0.007931452425850909,
+              "rmse_m": 0.013748741573412406
+            },
+            "after": {
+              "points": 528,
+              "median_absolute_m": 0.0065850304579156485,
+              "rmse_m": 0.010953050536692956
+            }
+          },
+          "4": {
+            "before": {
+              "points": 346,
+              "median_absolute_m": 0.0088166440108731,
+              "rmse_m": 0.012990410834760789
+            },
+            "after": {
+              "points": 346,
+              "median_absolute_m": 0.008039835908307383,
+              "rmse_m": 0.011921674591170025
+            }
+          }
+        },
+        "method": "Independent 26\u201334 cm returns, with a separately trained baseline model and candidate model; identical source-return identities. Radius priors are representative sizes, not survey truth."
+      },
+      "ground_validation": {
+        "before": {
+          "points": 3960,
+          "coverage": 0.9267676767676768,
+          "median_absolute_m": 0.00929123553337213,
+          "capped_rmse_m": 0.019713218641600787,
+          "method": "Fixed excluded ground queries; re-matched robust local terrain planes evaluated at actual XY; no horizontal-plane target"
+        },
+        "after": {
+          "points": 3960,
+          "coverage": 0.930050505050505,
+          "median_absolute_m": 0.00944661239229428,
+          "capped_rmse_m": 0.019488295031437494,
+          "method": "Fixed excluded ground queries; re-matched robust local terrain planes evaluated at actual XY; no horizontal-plane target"
+        }
+      },
+      "anchor_checks": [
+        {
+          "gauge_scan_id": 9,
+          "solver_success": true,
+          "rmse_m": 0.00026702529782280336,
+          "p95_m": 0.0005751130023865233,
+          "method": "Matching measured returns after removing only the best common rigid frame difference"
+        },
+        {
+          "gauge_scan_id": 17,
+          "solver_success": true,
+          "rmse_m": 0.0002902110344249865,
+          "p95_m": 0.0006763730870233163,
+          "method": "Matching measured returns after removing only the best common rigid frame difference"
+        }
+      ],
+      "recovered_scan_ids": []
+    },
+    {
+      "dataset": "chandelier",
+      "promoted": false,
+      "validation_passed": true,
+      "rejection_reasons": [],
+      "points": 1326879,
+      "stem_validation": {
+        "before": {
+          "points": 2181,
+          "median_absolute_m": 0.010321830563279358,
+          "rmse_m": 0.015443365054541903
+        },
+        "after": {
+          "points": 2181,
+          "median_absolute_m": 0.008446388670988458,
+          "rmse_m": 0.012738268747488976
+        },
+        "per_object": {
+          "1": {
+            "before": {
+              "points": 294,
+              "median_absolute_m": 0.007734297062941604,
+              "rmse_m": 0.010579366499433461
+            },
+            "after": {
+              "points": 294,
+              "median_absolute_m": 0.0064398256717153254,
+              "rmse_m": 0.009523403025561268
+            }
+          },
+          "3": {
+            "before": {
+              "points": 437,
+              "median_absolute_m": 0.010914647660164326,
+              "rmse_m": 0.015543301418918663
+            },
+            "after": {
+              "points": 437,
+              "median_absolute_m": 0.00930467552229966,
+              "rmse_m": 0.013330669872201334
+            }
+          },
+          "4": {
+            "before": {
+              "points": 676,
+              "median_absolute_m": 0.008211502385893951,
+              "rmse_m": 0.014466335989079914
+            },
+            "after": {
+              "points": 676,
+              "median_absolute_m": 0.008161408749254938,
+              "rmse_m": 0.012557646605542282
+            }
+          },
+          "6": {
+            "before": {
+              "points": 427,
+              "median_absolute_m": 0.01424328621445662,
+              "rmse_m": 0.018137317673811514
+            },
+            "after": {
+              "points": 427,
+              "median_absolute_m": 0.00882444601414542,
+              "rmse_m": 0.012815092043214262
+            }
+          },
+          "7": {
+            "before": {
+              "points": 326,
+              "median_absolute_m": 0.011792273010653241,
+              "rmse_m": 0.0165043769305171
+            },
+            "after": {
+              "points": 326,
+              "median_absolute_m": 0.008907123937440174,
+              "rmse_m": 0.013487932726821786
+            }
+          },
+          "2": {
+            "before": {
+              "points": 21,
+              "median_absolute_m": 0.013853854738881871,
+              "rmse_m": 0.02282830007698394
+            },
+            "after": {
+              "points": 21,
+              "median_absolute_m": 0.026667961493588813,
+              "rmse_m": 0.025392980153357007
+            }
+          }
+        },
+        "method": "Independent 26\u201334 cm returns, with a separately trained baseline model and candidate model; identical source-return identities. Radius priors are representative sizes, not survey truth."
+      },
+      "ground_validation": {
+        "before": {
+          "points": 3952,
+          "coverage": 0.9994939271255061,
+          "median_absolute_m": 0.007866047292964216,
+          "capped_rmse_m": 0.013769814608887683,
+          "method": "Fixed excluded ground queries; re-matched robust local terrain planes evaluated at actual XY; no horizontal-plane target"
+        },
+        "after": {
+          "points": 3952,
+          "coverage": 0.9992408906882592,
+          "median_absolute_m": 0.007984627463143905,
+          "capped_rmse_m": 0.013703975926290702,
+          "method": "Fixed excluded ground queries; re-matched robust local terrain planes evaluated at actual XY; no horizontal-plane target"
+        }
+      },
+      "anchor_checks": [
+        {
+          "gauge_scan_id": 9,
+          "solver_success": true,
+          "rmse_m": 0.0011080712229493697,
+          "p95_m": 0.001966116536718015,
+          "method": "Matching measured returns after removing only the best common rigid frame difference"
+        },
+        {
+          "gauge_scan_id": 17,
+          "solver_success": true,
+          "rmse_m": 0.00013253203445962863,
+          "p95_m": 0.00025911613786431604,
+          "method": "Matching measured returns after removing only the best common rigid frame difference"
+        }
+      ],
+      "recovered_scan_ids": []
+    }
+  ],
+  "chandelier_roi_extension": {
+    "original_along_m": [
+      -0.5,
+      6.6
+    ],
+    "along_m": [
+      -1.25,
+      7.35
+    ],
+    "original_primary_points": 1219008,
+    "final_primary_points": 1326879,
+    "added_primary_points": 107871,
+    "poses_unchanged": true,
+    "old_primary_prefix_unchanged": true
+  }
+}
