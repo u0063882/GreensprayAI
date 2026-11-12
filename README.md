@@ -131,3 +131,5 @@ The [PCA orientation trial has been withdrawn](docs/structural_up_report.md): it
 The [raw audit’s 82.3° central-plane claim is withdrawn](docs/raw_geometry_audit.md). It fitted visibility-biased point-centroid profiles without identifying both arms and the centre of the same tree. The structural V-centre/ground angle remains unmeasured; current registered geometry is unchanged.
 
 [Across-row angle check for all systems and every original scan](docs/tree_ground_angle_check.md): combined-cloud overlays, 67 raw-scan angles and per-scan fitted-line plots. Observed-point plane diagnostics; no geometry changes or V-centre claim.
+
+[Ground fit restricted beneath the trunk row](docs/QC/tree_ground_angles/under_tree/README.md): selected-point overlays, ground-strip width sensitivity and per-scan comparisons; diagnostic only.

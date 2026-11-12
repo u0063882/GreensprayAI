@@ -2,6 +2,21 @@
 
 The requested view is **Y–Z in the exported clouds**, with X along the row. This read-only diagnostic leaves every point, mesh and transformation unchanged. These are **acute section angles**, where 90° means perpendicular; they are not the full 3D plane dihedrals.
 
+## Ground underneath the trunks
+
+A follow-up restricts the fit to a 50 cm strip beneath the detected low-stem row, with 40/70 cm width checks. The tree plane and point geometry stay fixed. This supplies 64 supported raw-scan comparisons; three scans have insufficient evidence for locating the trunk strip.
+
+| System | Wider-ground angle | Under-trunk angle | Wider ground slope | Under-trunk ground slope | Slope range across widths |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Spindle 1 | 89.6° | 89.2° | +2.2° | +2.6° | 1.3° |
+| Spindle 2 | 87.5° | 89.3° | +2.2° | +4.0° | 5.4° |
+| Chandelier | 84.2° | 85.3° | +2.2° | +3.3° | 0.9° |
+| V-hedge | 83.5° | 82.1° | +0.2° | -1.2° | 1.2° |
+
+[Full under-trunk ground comparison, selected-point figures and every-scan CSV](QC/tree_ground_angles/under_tree/README.md). Width sensitivity is substantial in Spindle 2; a smaller strip is not automatically more accurate. These are diagnostic ground references, not changes to final registration.
+
+## Earlier wider-ground reference
+
 ![Combined-cloud overlays](QC/tree_ground_angles/combined_ground_tree_planes.png)
 
 | System | Current combined cloud | Raw east median | Raw west median | Usable raw scans |
