@@ -1,3 +1,5 @@
+> Current final outputs also include the [joint refinement and ground-first frame](balanced_registration.md) described below. The older east-anchored description remains the working-frame foundation.
+
 # Registration in MATLAB terms
 
 This describes the registration actually used here and maps it to the row frame in `u0063882/GreenSprayToolbox`. That repository is referenced for comparison and has not been modified.
@@ -178,3 +180,19 @@ p_registered = p_sensor * T(1:3,1:3).' + T(1:3,4).'; % N-by-3
 ```
 
 The historical structural-frame estimator remains available for explicit research experiments. Release generation uses it only as a diagnostic, with zero applied PCA rotation. See [orientation correction](structural_up_report.md).
+
+## Current final composition in MATLAB notation
+
+For each recording, the final column-vector transform is:
+
+```matlab
+T_final = T_groundFirstFrame * C_validatedJoint * T_previousSensorToMerged;
+% C_validatedJoint is identity if the candidate fails the existing checks.
+tform = rigidtform3d(T_final(1:3,1:3), T_final(1:3,4).');
+pcFinal = pctransform(pcOriginalSensor, tform);
+% Exported final PLYs already contain this transform: do not apply it again.
+```
+
+Along-row direction and across-row displacement are jointly adjustable in the scan fit; low trunks, slope-aware terrain patches and same-facing woody overlap constrain one rigid pose per scan. Both sides remain adjustable. No V-arm symmetry, per-tree scaling or per-point terrain correction is used.
+
+The final shared frame uses `up = normalize(4*groundNormal + observedEnvelopeAxis)`, rotates this direction to output Z, aligns the row horizontally with X, and translates a low-row ground reference to the origin. This is an explicit local coordinate convention. The weak envelope estimate is not a verified biological V centre or Earth vertical. The remaining ground and centre tilts are reported rather than eliminated through shape changes.

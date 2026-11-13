@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "datasets": ["spindle1", "spindle2", "chandelier", "vhedge"],
+  "policy": "User-requested new fully registered outputs, using validated joint rigid refinement followed by a ground-first shared local frame. Retain relative poses when a new joint fit does not pass existing independent checks. No deformation, symmetry target, per-arm upright constraint or terrain flattening.",
+  "frame": {"ground_weight": 4.0, "centre_weight": 1.0},
+  "joint": {}
+}

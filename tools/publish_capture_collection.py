@@ -12,11 +12,12 @@ def api(repo,path):return json.loads(subprocess.check_output(['gh','api',f'repos
 
 def release_notes(datasets,paths):
     base=(ROOT/'results/RELEASE_NOTES.md').read_text()
-    table='\n\n| Dataset | Final measured points | Mesh | Final registration | Applied PCA rotation |\n| --- | ---: | --- | --- | ---: |\n'
+    table='\n\n| Dataset | Final measured points | Mesh | Final registration | Ground tilt in final frame |\n| --- | ---: | --- | --- | ---: |\n'
     for item in datasets:
-        method=('Joint rigid refinement' if item.get('joint_registration',{}).get('promoted') else
+        method=('Balanced final rigid registration' if item.get('balanced_registration') else
+                'Joint rigid refinement' if item.get('joint_registration',{}).get('promoted') else
                 'Trunk-refined rigid poses' if item.get('trunk_refinement',{}).get('promoted') else 'Accepted rigid poses')
-        table+='| '+item['dataset']+' | '+f"{item['points']:,}"+' | '+('Available' if item['mesh_available'] else 'Not generated')+' | '+method+' | '+f"{item.get('structural_frame_deg',0):.2f}°"+' |\n'
+        table+='| '+item['dataset']+' | '+f"{item['points']:,}"+' | '+('Available' if item['mesh_available'] else 'Not generated')+' | '+method+' | '+f"{item.get('balanced_registration',{}).get('ground_tilt_deg',0):.2f}°"+' |\n'
     sums='\n<details><summary>SHA-256 checksums</summary>\n\n```text\n'+''.join(digest(p)+'  '+p.name+'\n' for p in paths)+'```\n</details>\n'
     return base+table+sums
 
@@ -37,6 +38,8 @@ def main():
     with tempfile.TemporaryDirectory(prefix='collection-',dir=args.asset_dir) as temporary:
         work=Path(temporary);stage=work/'stage';layout=import_current(source,stage)
         from tools.orient_collection import restore_working_frames,orient_collection
+        from tools.refine_balanced_collection import restore_balanced_frames
+        restore_balanced_frames(stage)
         restore_working_frames(stage)
         frozen_ids=tuple(d['id'] for d in config['datasets'] if d.get('kind')=='frozen');before=frozen_hashes(stage,frozen_ids)
         # Keep the old geometry bytes frozen while introducing named captures.
@@ -95,6 +98,13 @@ def main():
             from tools.raw_geometry_collection import add_raw_geometry_checks
             add_raw_geometry_checks(stage,args.asset_dir/'raw_geometry',config,repo)
             assert_frozen(stage,before,frozen_ids)
+        if (ROOT/'presets/balanced_registration.json').exists():
+            from tools.refine_balanced_collection import refine_balanced_collection
+            balanced=refine_balanced_collection(stage)
+            for item in datasets:
+                result=next((r for r in balanced if r['dataset']==item['dataset']),None)
+                if result:item['balanced_registration']=result
+            before=frozen_hashes(stage,frozen_ids)
         provenance=stage/'QC/provenance';provenance.mkdir(parents=True,exist_ok=True)
         (provenance/'collection.json').write_text(json.dumps(dict(packaging_commit=commit,datasets=datasets,frozen_dataset_sha256=before),indent=2)+'\n')
         code=work/'code.zip';subprocess.run(['git','archive','--format=zip','--output',str(code),'HEAD'],cwd=ROOT,check=True)

@@ -1,0 +1,195 @@
+{
+  "datasets": [
+    {
+      "dataset": "spindle1",
+      "points": 1227174,
+      "relative_refinement_applied": false,
+      "relative_rejection_reasons": [
+        "Excluded low-stem RMS improvement below 10%"
+      ],
+      "ground_tilt_deg": 0.1886269340191313,
+      "observed_centre_tilt_deg": 0.7545281816602574,
+      "rotation_deg": 2.142597125410709,
+      "primary_sha256": "e53214d403a7130e352f264774a2d8224b361a4a12081312f627789f8ce63361",
+      "frame_transform": [
+        [
+          0.999971069868648,
+          -0.0039428059910888835,
+          0.006504898667027383,
+          -0.3498505853215616
+        ],
+        [
+          0.003700725930454285,
+          0.9993151935407926,
+          0.036816417344930796,
+          0.012923451465181604
+        ],
+        [
+          -0.006645604061281733,
+          -0.03679127939396905,
+          0.9993008744653511,
+          0.02678174511065202
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_watertight": null,
+      "baseline_sha256": "35f057e48cc4c82086d8fbe0974556205722f7eb121f221b06ad1326364d9613"
+    },
+    {
+      "dataset": "spindle2",
+      "points": 1282862,
+      "relative_refinement_applied": true,
+      "relative_rejection_reasons": [],
+      "ground_tilt_deg": 0.22757633247360684,
+      "observed_centre_tilt_deg": 0.9103412373781673,
+      "rotation_deg": 1.9735147855786581,
+      "primary_sha256": "bc575ad2748d33d2285d21e39986f787c3b16999254292cae7e8fad40e29704f",
+      "frame_transform": [
+        [
+          0.9999921030484068,
+          -0.001211178158346227,
+          0.003785087620257627,
+          -0.5019467771204514
+        ],
+        [
+          0.0010809169674280636,
+          0.9994134358193841,
+          0.034228875561481104,
+          0.02371580814667009
+        ],
+        [
+          -0.003824324689903908,
+          -0.03422451389227577,
+          0.9994068526828819,
+          0.02128041335340398
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_watertight": null,
+      "baseline_sha256": "198ce38a5636bae7a9c70820fe7d8340ba8b4454c9cc36560cacb39ce906dba1"
+    },
+    {
+      "dataset": "chandelier",
+      "points": 1527905,
+      "relative_refinement_applied": true,
+      "relative_rejection_reasons": [],
+      "ground_tilt_deg": 0.7775572387348717,
+      "observed_centre_tilt_deg": 3.1116628730130445,
+      "rotation_deg": 4.1837453151430815,
+      "primary_sha256": "6616fc326c9d4f05b95cdd1e9544068c605ea4360d425394e90a26a5650ee7a4",
+      "frame_transform": [
+        [
+          0.9986738185218436,
+          -0.05032279315338313,
+          -0.010872933745860226,
+          0.045868717889837284
+        ],
+        [
+          0.05097805881400079,
+          0.9960908535346763,
+          0.0721404811746939,
+          -2.1112796777867744
+        ],
+        [
+          0.007200119343200247,
+          -0.07259909086071192,
+          0.9973352146032156,
+          0.12164515846233497
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_watertight": true,
+      "baseline_sha256": "28c59ee9b10879ec77b815882b81dc08f33d87601453186d77d990160957e169"
+    },
+    {
+      "dataset": "vhedge",
+      "points": 830803,
+      "relative_refinement_applied": false,
+      "relative_rejection_reasons": [
+        "Excluded low-stem RMS improvement below 10%"
+      ],
+      "ground_tilt_deg": 1.7712993695170793,
+      "observed_centre_tilt_deg": 7.102243181195827,
+      "rotation_deg": 2.126507370481292,
+      "primary_sha256": "cd219c52339fee63afefd6226d0b0e53cc1741045e5ea0aead2679c73a8a40a0",
+      "frame_transform": [
+        [
+          0.9998892116549392,
+          -0.014811971457296442,
+          0.0014730640219803653,
+          -0.21337866674303113
+        ],
+        [
+          0.014747192529990226,
+          0.9992035990730875,
+          0.03707678400120741,
+          -0.11160791513340923
+        ],
+        [
+          -0.002021071138782088,
+          -0.03705095276692658,
+          0.9993113339547967,
+          0.013416663270405364
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_watertight": null,
+      "baseline_sha256": "3b593109b495667286d4f9fe6336b1eb783822d3462dc646a03b7906230ea08e"
+    }
+  ],
+  "policy": "User-requested new fully registered outputs, using validated joint rigid refinement followed by a ground-first shared local frame. Retain relative poses when a new joint fit does not pass existing independent checks. No deformation, symmetry target, per-arm upright constraint or terrain flattening.",
+  "export_checks": [
+    {
+      "dataset": "spindle1",
+      "points": 1227174,
+      "baseline_identity_verified": true,
+      "primary_per_scan_matrix_reconstruction": true,
+      "non_coordinate_attributes_preserved": true,
+      "maximum_sensor_pose_error_m": 2.3841820340209097e-07
+    },
+    {
+      "dataset": "spindle2",
+      "points": 1282862,
+      "baseline_identity_verified": true,
+      "primary_per_scan_matrix_reconstruction": true,
+      "non_coordinate_attributes_preserved": true,
+      "maximum_sensor_pose_error_m": 2.3841763940879446e-07
+    },
+    {
+      "dataset": "chandelier",
+      "points": 1527905,
+      "baseline_identity_verified": true,
+      "primary_per_scan_matrix_reconstruction": true,
+      "non_coordinate_attributes_preserved": true,
+      "maximum_sensor_pose_error_m": 2.3841826912729402e-07
+    },
+    {
+      "dataset": "vhedge",
+      "points": 830803,
+      "baseline_identity_verified": true,
+      "primary_per_scan_matrix_reconstruction": true,
+      "non_coordinate_attributes_preserved": true,
+      "maximum_sensor_pose_error_m": 2.3841798579837814e-07
+    }
+  ]
+}
