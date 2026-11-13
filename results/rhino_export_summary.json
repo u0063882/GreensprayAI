@@ -1,0 +1,261 @@
+{
+  "packaging_commit": "378130f21cb0dc7ae1d4578e8636550feef2df76",
+  "all_original_enriched_PLY_hashes_unchanged": true,
+  "mesh_matrices_QC_and_contribution_assets_unchanged": true,
+  "pointcloud_zip": {
+    "bytes": 346521574,
+    "digest": "sha256:1d7f55a0d2c66488d875828ab7297de33a913ffbacbe1697a9889f9363b908fb"
+  },
+  "native_units": "millimetres",
+  "ascii_PLY_units": "metres",
+  "Rhino_8_UI_tested": false,
+  "independently_read_published_native": {
+    "dataset": "vhedge",
+    "points": 830803,
+    "objects": 13,
+    "unit": "millimetres",
+    "RGB_and_raw_intensity_exact": true,
+    "maximum_coordinate_difference_from_published_transform_mm": 0.000476837158203125
+  },
+  "datasets": {
+    "chandelier": {
+      "points": 1527905,
+      "native_clouds": 18,
+      "source_enriched_PLY_sha256": "9b3b57a414df8bbe835fcbf59a57ef5e47bcee0dd4a316d30ea70f0277275d3d",
+      "source_file_unchanged": true,
+      "native_readback": {
+        "points": 1527905,
+        "objects": 18,
+        "per_scan_points": {
+          "0": 97006,
+          "1": 91906,
+          "2": 82836,
+          "3": 103782,
+          "4": 84770,
+          "5": 92471,
+          "6": 84938,
+          "7": 82327,
+          "8": 85125,
+          "9": 66442,
+          "10": 89696,
+          "11": 88165,
+          "12": 82583,
+          "13": 77708,
+          "14": 83673,
+          "15": 77791,
+          "16": 76506,
+          "17": 80180
+        },
+        "model_units": "millimetres",
+        "coordinate_scale_from_metres": 1000.0,
+        "point_coordinates_and_RGB_roundtrip_exact": true,
+        "raw_intensity_in_native_point_values": true,
+        "scan_id_preserved_as_object_and_layer": true,
+        "rhino3dm_version": "8.35.0",
+        "Rhino_8_UI_tested": false
+      },
+      "ascii_readback": {
+        "points": 1527905,
+        "coordinate_and_RGB_roundtrip_exact": true,
+        "coordinate_units": "metres",
+        "properties": [
+          "x",
+          "y",
+          "z",
+          "red",
+          "green",
+          "blue"
+        ],
+        "encoding": "ASCII"
+      },
+      "output_files": {
+        "final_registered.3dm": {
+          "bytes": 55045691,
+          "sha256": "d65d2ef60d97c7126d28fd25ac533e4775eb0c54957de74d6ab67fc522ea100e"
+        },
+        "final_registered_xyzrgb_ascii.ply": {
+          "bytes": 69070485,
+          "sha256": "2ec0b66033e75d74ac6c720a3613ad070c4a9f28b39020ab506e8e759858186b"
+        }
+      }
+    },
+    "spindle1": {
+      "points": 1227174,
+      "native_clouds": 18,
+      "source_enriched_PLY_sha256": "e53214d403a7130e352f264774a2d8224b361a4a12081312f627789f8ce63361",
+      "source_file_unchanged": true,
+      "native_readback": {
+        "points": 1227174,
+        "objects": 18,
+        "per_scan_points": {
+          "0": 46417,
+          "1": 64364,
+          "2": 76983,
+          "3": 75023,
+          "4": 73358,
+          "5": 78494,
+          "6": 72950,
+          "7": 77913,
+          "8": 56437,
+          "9": 54863,
+          "10": 68256,
+          "11": 82100,
+          "12": 82677,
+          "13": 67031,
+          "14": 75687,
+          "15": 63806,
+          "16": 61658,
+          "17": 49157
+        },
+        "model_units": "millimetres",
+        "coordinate_scale_from_metres": 1000.0,
+        "point_coordinates_and_RGB_roundtrip_exact": true,
+        "raw_intensity_in_native_point_values": true,
+        "scan_id_preserved_as_object_and_layer": true,
+        "rhino3dm_version": "8.35.0",
+        "Rhino_8_UI_tested": false
+      },
+      "ascii_readback": {
+        "points": 1227174,
+        "coordinate_and_RGB_roundtrip_exact": true,
+        "coordinate_units": "metres",
+        "properties": [
+          "x",
+          "y",
+          "z",
+          "red",
+          "green",
+          "blue"
+        ],
+        "encoding": "ASCII"
+      },
+      "output_files": {
+        "final_registered.3dm": {
+          "bytes": 44219371,
+          "sha256": "57ffb4b8f8d697aedc2f40c96235d19b4b95470d4c038ddad3a848f0941f6b74"
+        },
+        "final_registered_xyzrgb_ascii.ply": {
+          "bytes": 55112667,
+          "sha256": "e84277264b1e79818c81136319d984509c7288d30eabdb644b338c59527260c9"
+        }
+      }
+    },
+    "spindle2": {
+      "points": 1282862,
+      "native_clouds": 18,
+      "source_enriched_PLY_sha256": "31512fbe6d830714ee8ca1e1151a01ce01490d8d1fc492ec4e0bee28243556fd",
+      "source_file_unchanged": true,
+      "native_readback": {
+        "points": 1282862,
+        "objects": 18,
+        "per_scan_points": {
+          "0": 54727,
+          "1": 75635,
+          "2": 85813,
+          "3": 77665,
+          "4": 75014,
+          "5": 80695,
+          "6": 77044,
+          "7": 69663,
+          "8": 53856,
+          "9": 54384,
+          "10": 72673,
+          "11": 73845,
+          "12": 80772,
+          "13": 80472,
+          "14": 74267,
+          "15": 70122,
+          "16": 68111,
+          "17": 58104
+        },
+        "model_units": "millimetres",
+        "coordinate_scale_from_metres": 1000.0,
+        "point_coordinates_and_RGB_roundtrip_exact": true,
+        "raw_intensity_in_native_point_values": true,
+        "scan_id_preserved_as_object_and_layer": true,
+        "rhino3dm_version": "8.35.0",
+        "Rhino_8_UI_tested": false
+      },
+      "ascii_readback": {
+        "points": 1282862,
+        "coordinate_and_RGB_roundtrip_exact": true,
+        "coordinate_units": "metres",
+        "properties": [
+          "x",
+          "y",
+          "z",
+          "red",
+          "green",
+          "blue"
+        ],
+        "encoding": "ASCII"
+      },
+      "output_files": {
+        "final_registered.3dm": {
+          "bytes": 46224139,
+          "sha256": "9faf1d6b1ed404a93eb02cbd78ed7d908c536b829406fab7f65ad44e96f1e244"
+        },
+        "final_registered_xyzrgb_ascii.ply": {
+          "bytes": 57780999,
+          "sha256": "0b8e5184f27afd40b661dd9067b825440ad36d7c5cea63f08bd4d377ab9640e4"
+        }
+      }
+    },
+    "vhedge": {
+      "points": 830803,
+      "native_clouds": 13,
+      "source_enriched_PLY_sha256": "65a386969dbde8ee5bd5eda059f2f732c17d3d43faf65f9876848854d3e0f5b7",
+      "source_file_unchanged": true,
+      "native_readback": {
+        "points": 830803,
+        "objects": 13,
+        "per_scan_points": {
+          "0": 57136,
+          "1": 85587,
+          "2": 77384,
+          "3": 63245,
+          "4": 40610,
+          "5": 63781,
+          "6": 54653,
+          "7": 46069,
+          "8": 87545,
+          "9": 81302,
+          "10": 72339,
+          "11": 57292,
+          "12": 43860
+        },
+        "model_units": "millimetres",
+        "coordinate_scale_from_metres": 1000.0,
+        "point_coordinates_and_RGB_roundtrip_exact": true,
+        "raw_intensity_in_native_point_values": true,
+        "scan_id_preserved_as_object_and_layer": true,
+        "rhino3dm_version": "8.35.0",
+        "Rhino_8_UI_tested": false
+      },
+      "ascii_readback": {
+        "points": 830803,
+        "coordinate_and_RGB_roundtrip_exact": true,
+        "coordinate_units": "metres",
+        "properties": [
+          "x",
+          "y",
+          "z",
+          "red",
+          "green",
+          "blue"
+        ],
+        "encoding": "ASCII"
+      },
+      "output_files": {
+        "final_registered.3dm": {
+          "bytes": 29941346,
+          "sha256": "62f98c4acf566a60ece9ea917cd9fecd8c28e77915a376dff2e086a4a23121d8"
+        },
+        "final_registered_xyzrgb_ascii.ply": {
+          "bytes": 37422880,
+          "sha256": "376e84508f76d89d86314125ac2baacbd820ec2fa4709977f274650561340796"
+        }
+      }
+    }
+  }
+}

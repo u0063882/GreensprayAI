@@ -161,8 +161,8 @@
   "published_build_commit": "a3aca17c696d2acbfc9ace2e709772468c1afddb",
   "published_assets": {
     "01_final_aligned_pointclouds.zip": {
-      "bytes": 167512798,
-      "digest": "sha256:e67660be9028c40ee1f09ed9027e0268d401567f4811926074441062eff86c32"
+      "bytes": 346521574,
+      "digest": "sha256:1d7f55a0d2c66488d875828ab7297de33a913ffbacbe1697a9889f9363b908fb"
     },
     "02_final_mesh.zip": {
       "bytes": 52290558,
@@ -228,5 +228,7 @@
     "mesh_watertight": true,
     "mesh_matches_published_cloud": true,
     "method": "Read the published QC/transform ZIP members and first measured PLY samples via HTTP ranges; independently compose published corrections with the archived baseline poses and coordinates. Full-array preservation is additionally asserted during the successful build."
-  }
+  },
+  "rhino_compatibility_packaging_commit": "378130f21cb0dc7ae1d4578e8636550feef2df76",
+  "original_enriched_clouds_unchanged_by_compatibility_export": true
 }
