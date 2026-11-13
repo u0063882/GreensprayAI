@@ -45,7 +45,7 @@ V-hedge remains the limiting case: its ground normal is about **1.77°** from ou
 
 The same Current release and five assets are used. `01_final_aligned_pointclouds.zip` contains all four new PLYs; `03_transformations.zip` contains matching original-sensor-to-final and gravity-levelled-to-final matrices. Separate and recording-coloured contributions use the same final poses in `91_registered_contributions.zip`. Intensity/SIGNAL, NIR, reflectivity, derived leaf/wood RGB, source IDs, point order and retained point counts are preserved. Final matrices are already applied to PLY coordinates.
 
-Chandelier's mesh is independently rebuilt from the exact new PLY using the existing point-cloud-only mesher and parameters. Its canopy is watertight with **607,432 triangles**; the optional combined scene includes an open ground sheet. The mesh source hash must match the new PLY. Other datasets remain point clouds; no extra meshes were requested or generated.
+Chandelier's mesh is independently rebuilt from the exact new PLY using the existing point-cloud-only mesher and parameters. Its canopy is watertight with **607,116 triangles**; the optional combined scene includes an open ground sheet. The mesh source hash must match the new PLY. Other datasets remain point clouds; no extra meshes were requested or generated.
 
 Previous accepted working-frame XYZ, matrices and existing mesh are archived inside `90_QC.zip` at `QC/<dataset>/provenance/balanced_registration_baseline.zip`. New reports, composed corrections and before/after figures are at `QC/<dataset>/balanced_registration/`. Earlier QC figures describe earlier working frames. Rebuilds restore the archived working frame before upstream algorithms run, preventing double application of the final corrections.
 
@@ -60,3 +60,5 @@ python tools/refine_balanced_collection.py --stage /path/to/current_collection
 ```
 
 The full publisher restores these working frames before running preceding registration stages, then applies this final stage before packaging. Meshing can still be run independently through `run_meshing.py` with only a point cloud. Tests cover proper rigid transforms, asymmetric shape and terrain preservation, raw/RGB attribute retention, composed sensor-pose reconstruction, and exact repeat export after baseline restoration.
+
+The summary records the verified published build and its asset hashes. Local optimizer reruns can differ slightly; the published matrices and matching PLYs are authoritative.

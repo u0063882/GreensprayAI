@@ -22,7 +22,7 @@
           0.003700725930454285,
           0.9993151935407926,
           0.036816417344930796,
-          0.012923451465181604
+          0.012923451465181606
         ],
         [
           -0.006645604061281733,
@@ -38,35 +38,35 @@
         ]
       ],
       "mesh_watertight": null,
-      "baseline_sha256": "35f057e48cc4c82086d8fbe0974556205722f7eb121f221b06ad1326364d9613"
+      "baseline_sha256": "41eb50322457385b0118747ede3842cf87f1c073d11a807d37dd7ec155bbc5ca"
     },
     {
       "dataset": "spindle2",
       "points": 1282862,
       "relative_refinement_applied": true,
       "relative_rejection_reasons": [],
-      "ground_tilt_deg": 0.22757633247360684,
-      "observed_centre_tilt_deg": 0.9103412373781673,
-      "rotation_deg": 1.9735147855786581,
-      "primary_sha256": "bc575ad2748d33d2285d21e39986f787c3b16999254292cae7e8fad40e29704f",
+      "ground_tilt_deg": 0.22715499881166315,
+      "observed_centre_tilt_deg": 0.90865570366237,
+      "rotation_deg": 1.9719766601667146,
+      "primary_sha256": "31512fbe6d830714ee8ca1e1151a01ce01490d8d1fc492ec4e0bee28243556fd",
       "frame_transform": [
         [
-          0.9999921030484068,
-          -0.001211178158346227,
-          0.003785087620257627,
-          -0.5019467771204514
+          0.9999921953150532,
+          -0.001210259169568812,
+          0.0037609283060417702,
+          -0.5019474189932475
         ],
         [
-          0.0010809169674280636,
-          0.9994134358193841,
-          0.034228875561481104,
-          0.02371580814667009
+          0.0010809178682667923,
+          0.999414268732879,
+          0.03420454750010596,
+          0.023714156821586698
         ],
         [
-          -0.003824324689903908,
-          -0.03422451389227577,
-          0.9994068526828819,
-          0.02128041335340398
+          -0.0038001217799924756,
+          -0.0342002152897817,
+          0.9994077768101417,
+          0.02123438946325328
         ],
         [
           0.0,
@@ -76,35 +76,35 @@
         ]
       ],
       "mesh_watertight": null,
-      "baseline_sha256": "198ce38a5636bae7a9c70820fe7d8340ba8b4454c9cc36560cacb39ce906dba1"
+      "baseline_sha256": "25bedd65c6400ef52b8027fa64373a6ad942c0ed4a973a88a0c2152974c8e073"
     },
     {
       "dataset": "chandelier",
       "points": 1527905,
       "relative_refinement_applied": true,
       "relative_rejection_reasons": [],
-      "ground_tilt_deg": 0.7775572387348717,
-      "observed_centre_tilt_deg": 3.1116628730130445,
-      "rotation_deg": 4.1837453151430815,
-      "primary_sha256": "6616fc326c9d4f05b95cdd1e9544068c605ea4360d425394e90a26a5650ee7a4",
+      "ground_tilt_deg": 0.7782948798082376,
+      "observed_centre_tilt_deg": 3.1146175257001456,
+      "rotation_deg": 4.180913280697742,
+      "primary_sha256": "9b3b57a414df8bbe835fcbf59a57ef5e47bcee0dd4a316d30ea70f0277275d3d",
       "frame_transform": [
         [
-          0.9986738185218436,
-          -0.05032279315338313,
-          -0.010872933745860226,
-          0.045868717889837284
+          0.9986737357008236,
+          -0.05032280063097683,
+          -0.01088050357366798,
+          0.04586891081693115
         ],
         [
-          0.05097805881400079,
-          0.9960908535346763,
-          0.0721404811746939,
-          -2.1112796777867744
+          0.05097824726996897,
+          0.9960945358888216,
+          0.07208948520911557,
+          -2.111285429579021
         ],
         [
-          0.007200119343200247,
-          -0.07259909086071192,
-          0.9973352146032156,
-          0.12164515846233497
+          0.007210265365681394,
+          -0.07254854450013692,
+          0.9973388194411507,
+          0.12154363830187705
         ],
         [
           0.0,
@@ -114,7 +114,7 @@
         ]
       ],
       "mesh_watertight": true,
-      "baseline_sha256": "28c59ee9b10879ec77b815882b81dc08f33d87601453186d77d990160957e169"
+      "baseline_sha256": "5e1f67783418cb37909a5ccc1a423b0e51f0f8224e42d224fb263c09d9886eaf"
     },
     {
       "dataset": "vhedge",
@@ -123,28 +123,28 @@
       "relative_rejection_reasons": [
         "Excluded low-stem RMS improvement below 10%"
       ],
-      "ground_tilt_deg": 1.7712993695170793,
-      "observed_centre_tilt_deg": 7.102243181195827,
-      "rotation_deg": 2.126507370481292,
-      "primary_sha256": "cd219c52339fee63afefd6226d0b0e53cc1741045e5ea0aead2679c73a8a40a0",
+      "ground_tilt_deg": 1.7707473693243687,
+      "observed_centre_tilt_deg": 7.100019175908995,
+      "rotation_deg": 2.128608134525031,
+      "primary_sha256": "65a386969dbde8ee5bd5eda059f2f732c17d3d43faf65f9876848854d3e0f5b7",
       "frame_transform": [
         [
-          0.9998892116549392,
-          -0.014811971457296442,
-          0.0014730640219803653,
-          -0.21337866674303113
+          0.9998892720541078,
+          -0.014810895527481901,
+          0.0014425688131483184,
+          -0.21337924772920944
         ],
         [
-          0.014747192529990226,
-          0.9992035990730875,
-          0.03707678400120741,
-          -0.11160791513340923
+          0.014747171786198625,
+          0.9992021935668386,
+          0.037114650685765575,
+          -0.11161199283693068
         ],
         [
-          -0.002021071138782088,
-          -0.03705095276692658,
-          0.9993113339547967,
-          0.013416663270405364
+          -0.001991119136314769,
+          -0.03708926724663172,
+          0.9993099727810651,
+          0.013291219630159766
         ],
         [
           0.0,
@@ -154,42 +154,79 @@
         ]
       ],
       "mesh_watertight": null,
-      "baseline_sha256": "3b593109b495667286d4f9fe6336b1eb783822d3462dc646a03b7906230ea08e"
+      "baseline_sha256": "433e78e8a4fd8c5d92de9950178432c39f6691f99cf7257fcd0ee452feda340b"
     }
   ],
   "policy": "User-requested new fully registered outputs, using validated joint rigid refinement followed by a ground-first shared local frame. Retain relative poses when a new joint fit does not pass existing independent checks. No deformation, symmetry target, per-arm upright constraint or terrain flattening.",
-  "export_checks": [
-    {
-      "dataset": "spindle1",
-      "points": 1227174,
-      "baseline_identity_verified": true,
-      "primary_per_scan_matrix_reconstruction": true,
-      "non_coordinate_attributes_preserved": true,
-      "maximum_sensor_pose_error_m": 2.3841820340209097e-07
+  "published_build_commit": "a3aca17c696d2acbfc9ace2e709772468c1afddb",
+  "published_assets": {
+    "01_final_aligned_pointclouds.zip": {
+      "bytes": 167512798,
+      "digest": "sha256:e67660be9028c40ee1f09ed9027e0268d401567f4811926074441062eff86c32"
     },
-    {
-      "dataset": "spindle2",
-      "points": 1282862,
-      "baseline_identity_verified": true,
-      "primary_per_scan_matrix_reconstruction": true,
-      "non_coordinate_attributes_preserved": true,
-      "maximum_sensor_pose_error_m": 2.3841763940879446e-07
+    "02_final_mesh.zip": {
+      "bytes": 52290558,
+      "digest": "sha256:f8c8a1a56f48b1932ef3cd3fdd05e9adadf5149bcf5de4a8f541703ed77cbfa5"
     },
-    {
-      "dataset": "chandelier",
-      "points": 1527905,
-      "baseline_identity_verified": true,
-      "primary_per_scan_matrix_reconstruction": true,
-      "non_coordinate_attributes_preserved": true,
-      "maximum_sensor_pose_error_m": 2.3841826912729402e-07
+    "03_transformations.zip": {
+      "bytes": 29803,
+      "digest": "sha256:19081f5278dc8f27d240148e5eea9e833244f187f2a2d870663ef8b905a07088"
     },
-    {
-      "dataset": "vhedge",
-      "points": 830803,
-      "baseline_identity_verified": true,
-      "primary_per_scan_matrix_reconstruction": true,
-      "non_coordinate_attributes_preserved": true,
-      "maximum_sensor_pose_error_m": 2.3841798579837814e-07
+    "90_QC.zip": {
+      "bytes": 1802482721,
+      "digest": "sha256:5fd8c6b9824bea8f5f7358e40ee66dc18d18a39dd779987e0ea1b9a9df30d91e"
+    },
+    "91_registered_contributions.zip": {
+      "bytes": 462270472,
+      "digest": "sha256:137017796ed33e4c58264c0183a0d866b0d8323337b2e8b078c6b1fc1f296722"
     }
-  ]
+  },
+  "published_mesh_triangles": 607116,
+  "verification": {
+    "datasets": {
+      "spindle1": {
+        "points": 1227174,
+        "joint_applied": false,
+        "ground_tilt_deg": 0.1886269340191313,
+        "observed_centre_tilt_deg": 0.7545281816602574,
+        "all_attributes_preserved": true,
+        "maximum_matrix_difference_from_local_m_or_rotation": 0.0,
+        "published_matrix_composition_error": 0.0,
+        "published_sample_channels_and_coordinates_verified": true
+      },
+      "spindle2": {
+        "points": 1282862,
+        "joint_applied": true,
+        "ground_tilt_deg": 0.22715499881166315,
+        "observed_centre_tilt_deg": 0.90865570366237,
+        "all_attributes_preserved": true,
+        "maximum_matrix_difference_from_local_m_or_rotation": 0.00015687707766787184,
+        "published_matrix_composition_error": 0.0,
+        "published_sample_channels_and_coordinates_verified": true
+      },
+      "chandelier": {
+        "points": 1527905,
+        "joint_applied": true,
+        "ground_tilt_deg": 0.7782948798082376,
+        "observed_centre_tilt_deg": 3.1146175257001456,
+        "all_attributes_preserved": true,
+        "maximum_matrix_difference_from_local_m_or_rotation": 0.0001469240385412185,
+        "published_matrix_composition_error": 0.0,
+        "published_sample_channels_and_coordinates_verified": true
+      },
+      "vhedge": {
+        "points": 830803,
+        "joint_applied": false,
+        "ground_tilt_deg": 1.7707473693243687,
+        "observed_centre_tilt_deg": 7.100019175908995,
+        "all_attributes_preserved": true,
+        "maximum_matrix_difference_from_local_m_or_rotation": 0.00019621552090520744,
+        "published_matrix_composition_error": 4.669098663256932e-09,
+        "published_sample_channels_and_coordinates_verified": true
+      }
+    },
+    "mesh_watertight": true,
+    "mesh_matches_published_cloud": true,
+    "method": "Read the published QC/transform ZIP members and first measured PLY samples via HTTP ranges; independently compose published corrections with the archived baseline poses and coordinates. Full-array preservation is additionally asserted during the successful build."
+  }
 }
