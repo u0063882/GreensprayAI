@@ -1,0 +1,30 @@
+name: Add Rhino files to the current point-cloud bundle
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-current-results
+  cancel-in-progress: false
+jobs:
+  rhino:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[rhino-exports]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-rhino.txt
+      - name: Install the native Rhino file library
+        run: python -m pip install -r requirements-rhino.txt
+      - name: Test native and PLY interoperability
+        run: python -m unittest tests.test_rhino_export -v
+      - name: Add and verify Rhino exports without changing registration
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/publish_rhino_exports.py

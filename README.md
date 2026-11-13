@@ -16,6 +16,8 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 | [02_final_mesh.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) | Rebuilt chandelier canopy PLY/OBJ/STL, ground and combined scene, under `chandelier/` |
 | [03_transformations.zip](https://github.com/u0063882/GreensprayAI/releases/download/current/03_transformations.zip) | One matching `transformations.json` per dataset folder |
 
+**Rhino 8:** open `<dataset>/rhino/final_registered.3dm` from the point-cloud ZIP as a new document. It declares millimetre units, retains original point colours/intensity and separates scans onto layers. A simple ASCII XYZ/RGB PLY in metres is included alongside it. [Rhino import guide](docs/rhino_import.md). The complete parent PLY and all registration matrices remain unchanged.
+
 Each dataset has its **own ground-first local frame, in metres**. Output Z is a chosen ground/observed-centre compromise, not calibrated Earth vertical. Its final PLYs already have its matrices applied; do not apply them again. The dataset folders are separate capture results, not a common field-wide georeferenced scene.
 
 | Dataset | Status |

@@ -105,6 +105,9 @@ def main():
                 result=next((r for r in balanced if r['dataset']==item['dataset']),None)
                 if result:item['balanced_registration']=result
             before=frozen_hashes(stage,frozen_ids)
+        from tools.export_rhino import export_collection
+        export_collection(stage/'pointclouds')
+        before=frozen_hashes(stage,frozen_ids)
         provenance=stage/'QC/provenance';provenance.mkdir(parents=True,exist_ok=True)
         (provenance/'collection.json').write_text(json.dumps(dict(packaging_commit=commit,datasets=datasets,frozen_dataset_sha256=before),indent=2)+'\n')
         code=work/'code.zip';subprocess.run(['git','archive','--format=zip','--output',str(code),'HEAD'],cwd=ROOT,check=True)
