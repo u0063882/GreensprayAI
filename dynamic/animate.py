@@ -73,8 +73,8 @@ def sensor_position(times, positions, time):
     return np.array([np.interp(time, times, positions[:, axis]) for axis in range(3)])
 
 
-def display_rgb(rgb, gamma=.5, brightness=1.35, min_brightness=.45):
-    """Lift HSV value with one fixed curve while preserving RGB hue/saturation.
+def display_rgb(rgb, gamma=.85, brightness=1.6, min_brightness=0.):
+    """Lift HSV value smoothly, retaining intensity order and RGB hue/saturation.
 
     The source array is never changed. Exact black remains black. No frame
     statistics, class thresholds or per-frame normalization enter this mapping.
@@ -85,7 +85,12 @@ def display_rgb(rgb, gamma=.5, brightness=1.35, min_brightness=.45):
         raise ValueError('Use gamma > 0, brightness > 0 and 0 <= min-brightness <= 1')
     source = np.clip(np.asarray(rgb, dtype=float), 0., 1.)
     value = source.max(axis=1)
-    lifted = np.clip(np.maximum(brightness * value ** gamma, min_brightness), 0., 1.)
+    powered = value ** gamma
+    numerator = brightness * powered
+    # Bounded gain: black and white stay endpoints, without clipping a band
+    # of highlights to white. With the default zero floor every distinct input
+    # value retains a distinct brightness before GIF palette quantization.
+    lifted = np.maximum(numerator / ((1. - powered) + numerator), min_brightness)
     scale = np.divide(lifted, value, out=np.zeros_like(value), where=value > 0)
     return source * scale[:, None]
 
@@ -189,7 +194,7 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=200000,
            width=1200, height=650, view='both', elevation=22., azimuth=-60.,
            hold=2., full_bounds=False, camera='fixed', speed_window=1.,
            fov=100., near=.15, far=25., look_axis='x', point_size=3.,
-           gamma=.5, brightness=1.35, min_brightness=.45, background='#12181f'):
+           gamma=.85, brightness=1.6, min_brightness=0., background='#12181f'):
     if not isinstance(max_points, int) or max_points < 1:
         raise ValueError('max-points must be a positive integer')
     if width < 320 or height < 240 or view not in ['all', 'both', '3d', 'top']:
@@ -370,7 +375,7 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=200000,
                                        values_m_s=[float(x) if np.isfinite(x) else None for x in speeds]),
                   display_style=dict(gamma=gamma, brightness=brightness, min_brightness=min_brightness,
                                      point_area_pt2=point_size, opacity=1., background=matplotlib.colors.to_hex(background_rgb),
-                                     colour_mapping='Fixed hue/saturation-preserving value lift applied once; exact black remains black',
+                                     colour_mapping='Fixed hue/saturation-preserving gamma with bounded gain; default zero floor preserves intensity ordering without highlight clipping',
                                      source_RGB_and_intensity_unchanged=True),
                   display_bounds='full' if full_bounds else '0.5th–99.5th point percentiles, expanded to include sensor path',
                   units='metres', source_files_unchanged=True,
@@ -390,9 +395,9 @@ def main(argv=None, *, follow=False):
     p.add_argument('--speed-window', type=float, default=1., help='SLAM speed estimation window in capture seconds; default: 1')
     p.add_argument('--max-points', type=int, default=200000, help='Fixed display sample budget; default: 200000')
     p.add_argument('--point-size', type=float, default=3., help='Point marker area in squared points; default: 3')
-    p.add_argument('--gamma', type=float, default=.5, help='Fixed display brightness exponent; default: 0.5')
-    p.add_argument('--brightness', type=float, default=1.35, help='Display brightness multiplier; default: 1.35')
-    p.add_argument('--min-brightness', type=float, default=.45, help='Minimum nonblack display value; default: 0.45')
+    p.add_argument('--gamma', type=float, default=.85, help='Fixed display brightness exponent; default: 0.85')
+    p.add_argument('--brightness', type=float, default=1.6, help='Bounded brightness gain (no hard highlight clipping); default: 1.6')
+    p.add_argument('--min-brightness', type=float, default=0., help='Optional nonblack brightness floor; default: 0 to retain shadow differences')
     p.add_argument('--background', default='#12181f', help='Plot background colour; default: #12181f (charcoal)')
     p.add_argument('--view', choices=['all', 'both', '3d', 'top'], default='both' if follow else 'all', help='all: external 3D + sensor-eye + top; both: legacy two-panel view')
     p.add_argument('--width', type=int, help='Width in pixels; default: 1800 for all, 1200 for other views')

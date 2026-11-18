@@ -216,14 +216,18 @@ coordinates and include the entire sensor path. This keeps isolated outliers
 from shrinking the tree row on screen. `--full-bounds` includes the full cloud
 extent. These are display settings only: the source PLY is unchanged.
 
-Display defaults now lift dark colours using one fixed brightness curve,
+Display defaults gently lift dark colours using one fixed brightness curve,
 use larger opaque markers, and put all panels on a charcoal background.
-The gamma exponent is 0.5, brightness multiplier 1.35, minimum nonblack value
-0.45, and point marker area 3 squared points. The sensor-eye view has a bounded
+The gamma exponent is 0.85, bounded brightness gain is 1.6, and the brightness
+floor is zero. The gain uses `g*v / (1-v+g*v)` after gamma, instead of hard
+highlight clipping. Distinct source brightnesses stay ordered and distinct
+before GIF quantization, including dark returns and highlights. This replaces
+the earlier aggressive floor/clipping that made points look equally bright.
+Point marker area remains 3 squared points. The sensor-eye view has a bounded
 distance-based size increase for nearby points. Original green/brown hues and
-saturation are preserved; brown becomes easier to see as an amber/brown tone.
-The mapping is computed once for the complete display sample, so colour
-brightness does not pump as the map accumulates. Exact black stays black.
+saturation are preserved. The mapping is computed once for the complete
+display sample, so colour brightness does not pump as the map accumulates.
+Exact black stays black.
 Raw RGB, intensity, classification and geometry in the source files are not
 changed. The same settings apply to both GIF scripts and all layouts.
 

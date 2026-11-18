@@ -58,6 +58,18 @@ class MovingAnimationTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 display_rgb(np.array([[.1, .2, .1]]), **params)
 
+    def test_default_display_curve_does_not_flatten_shadows_or_clip_highlights(self):
+        intensity = np.linspace(0., 1., 1025)
+        hue = np.array([.3, 1., .4])
+        colours = display_rgb(intensity[:, None] * hue)
+        values = colours.max(axis=1)
+        self.assertTrue(np.all(np.diff(values) > 0))
+        self.assertEqual(values[0], 0.)
+        self.assertEqual(values[-1], 1.)
+        self.assertLess(values[-2], 1.)
+        self.assertGreater(values[1], 0.)
+        np.testing.assert_allclose(colours[1:] / values[1:, None], np.tile(hue, (len(values)-1, 1)))
+
     def test_speed_fit_uses_capture_seconds_and_handles_irregular_sampling(self):
         times = np.array([0., .08, .22, .39, .58, .81, 1.05, 1.2])
         velocity = np.array([1.2, -.5, .1])
