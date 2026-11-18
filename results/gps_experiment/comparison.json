@@ -1,0 +1,297 @@
+{
+  "status": "experimental_candidate_passed_internal_checks",
+  "accepted": true,
+  "reasons": [],
+  "scope": "Existing SDK baseline; experiment, not surveyed accuracy",
+  "baseline_geometry_changed": false,
+  "source_frames": 150,
+  "source_time_span_s": 14.900684000000183,
+  "clock": "shared-start",
+  "GPS_measurements": 130,
+  "split_policy": "Raw GPS one-second blocks mod 5: 0/1/2 training, 3 validation, 4 final test; SDK-withheld pixels split 50/50 for selection/final test",
+  "baseline_GPS": {
+    "training": {
+      "samples": 79,
+      "RMSE_m": 0.043830793888462845,
+      "median_m": 0.026080881119830094,
+      "p95_m": 0.0865036544629926
+    },
+    "held_out": {
+      "samples": 51,
+      "RMSE_m": 0.061235616133758684,
+      "median_m": 0.04912131827813945,
+      "p95_m": 0.1205361734910069
+    },
+    "validation": {
+      "samples": 24,
+      "RMSE_m": 0.051128832219802633,
+      "median_m": 0.05302636223146873,
+      "p95_m": 0.07321033338067917
+    },
+    "final_test": {
+      "samples": 27,
+      "RMSE_m": 0.06898739960834392,
+      "median_m": 0.03964849344795513,
+      "p95_m": 0.12943428006022153
+    }
+  },
+  "candidate_GPS": {
+    "training": {
+      "samples": 79,
+      "RMSE_m": 0.025486091638262934,
+      "median_m": 0.01893727747869283,
+      "p95_m": 0.046128152797458986
+    },
+    "held_out": {
+      "samples": 51,
+      "RMSE_m": 0.04904299603969038,
+      "median_m": 0.037896298271480035,
+      "p95_m": 0.09536312394439331
+    },
+    "validation": {
+      "samples": 24,
+      "RMSE_m": 0.04569133200895749,
+      "median_m": 0.04040006641103537,
+      "p95_m": 0.0628505457068437
+    },
+    "final_test": {
+      "samples": 27,
+      "RMSE_m": 0.05184065357024586,
+      "median_m": 0.03505768696198686,
+      "p95_m": 0.09567399807211084
+    }
+  },
+  "candidate_weights": [
+    {
+      "gps_sigma_m": 0.075,
+      "converged": true,
+      "eligible": true,
+      "GPS": {
+        "training": {
+          "samples": 79,
+          "RMSE_m": 0.02248284901586341,
+          "median_m": 0.015812669820197592,
+          "p95_m": 0.04335165341548079
+        },
+        "held_out": {
+          "samples": 51,
+          "RMSE_m": 0.049476557038985555,
+          "median_m": 0.03628949134130521,
+          "p95_m": 0.09208830972540724
+        },
+        "validation": {
+          "samples": 24,
+          "RMSE_m": 0.047811273635758794,
+          "median_m": 0.040396516779950986,
+          "p95_m": 0.06545381248764949
+        },
+        "final_test": {
+          "samples": 27,
+          "RMSE_m": 0.050911100891604964,
+          "median_m": 0.034227785577914366,
+          "p95_m": 0.09225420988721349
+        }
+      },
+      "baseline_GPS": {
+        "training": {
+          "samples": 79,
+          "RMSE_m": 0.04369906015448034,
+          "median_m": 0.02886081363726059,
+          "p95_m": 0.08699413058270646
+        },
+        "held_out": {
+          "samples": 51,
+          "RMSE_m": 0.06354261593406983,
+          "median_m": 0.047193328187800344,
+          "p95_m": 0.12524224600897924
+        },
+        "validation": {
+          "samples": 24,
+          "RMSE_m": 0.05256037159492916,
+          "median_m": 0.05332175192654578,
+          "p95_m": 0.07874133801914293
+        },
+        "final_test": {
+          "samples": 27,
+          "RMSE_m": 0.07191008844235332,
+          "median_m": 0.03933114424011062,
+          "p95_m": 0.13442696625305664
+        }
+      },
+      "validation_lidar_RMS_m": 0.08045209128302372
+    },
+    {
+      "gps_sigma_m": 0.15,
+      "converged": true,
+      "eligible": true,
+      "GPS": {
+        "training": {
+          "samples": 79,
+          "RMSE_m": 0.025486091638262934,
+          "median_m": 0.01893727747869283,
+          "p95_m": 0.046128152797458986
+        },
+        "held_out": {
+          "samples": 51,
+          "RMSE_m": 0.04904299603969038,
+          "median_m": 0.037896298271480035,
+          "p95_m": 0.09536312394439331
+        },
+        "validation": {
+          "samples": 24,
+          "RMSE_m": 0.04569133200895749,
+          "median_m": 0.04040006641103537,
+          "p95_m": 0.0628505457068437
+        },
+        "final_test": {
+          "samples": 27,
+          "RMSE_m": 0.05184065357024586,
+          "median_m": 0.03505768696198686,
+          "p95_m": 0.09567399807211084
+        }
+      },
+      "baseline_GPS": {
+        "training": {
+          "samples": 79,
+          "RMSE_m": 0.043830793888462845,
+          "median_m": 0.026080881119830094,
+          "p95_m": 0.0865036544629926
+        },
+        "held_out": {
+          "samples": 51,
+          "RMSE_m": 0.061235616133758684,
+          "median_m": 0.04912131827813945,
+          "p95_m": 0.1205361734910069
+        },
+        "validation": {
+          "samples": 24,
+          "RMSE_m": 0.051128832219802633,
+          "median_m": 0.05302636223146873,
+          "p95_m": 0.07321033338067917
+        },
+        "final_test": {
+          "samples": 27,
+          "RMSE_m": 0.06898739960834392,
+          "median_m": 0.03964849344795513,
+          "p95_m": 0.12943428006022153
+        }
+      },
+      "validation_lidar_RMS_m": 0.08037055808550389
+    },
+    {
+      "gps_sigma_m": 0.3,
+      "converged": true,
+      "eligible": true,
+      "GPS": {
+        "training": {
+          "samples": 79,
+          "RMSE_m": 0.03160992092293113,
+          "median_m": 0.023294486260168536,
+          "p95_m": 0.05482828839897672
+        },
+        "held_out": {
+          "samples": 51,
+          "RMSE_m": 0.05124680654660122,
+          "median_m": 0.04360201390694256,
+          "p95_m": 0.09877822418858792
+        },
+        "validation": {
+          "samples": 24,
+          "RMSE_m": 0.046358281343581276,
+          "median_m": 0.043230995580034376,
+          "p95_m": 0.06838350460565368
+        },
+        "final_test": {
+          "samples": 27,
+          "RMSE_m": 0.05523010057706656,
+          "median_m": 0.04360201390694256,
+          "p95_m": 0.10103723359185195
+        }
+      },
+      "baseline_GPS": {
+        "training": {
+          "samples": 79,
+          "RMSE_m": 0.04523138577310303,
+          "median_m": 0.031271235648774,
+          "p95_m": 0.0848785047369688
+        },
+        "held_out": {
+          "samples": 51,
+          "RMSE_m": 0.05767742279351889,
+          "median_m": 0.04875391207690297,
+          "p95_m": 0.11163599493728649
+        },
+        "validation": {
+          "samples": 24,
+          "RMSE_m": 0.04967809564250302,
+          "median_m": 0.048032879106389884,
+          "p95_m": 0.07956828069171891
+        },
+        "final_test": {
+          "samples": 27,
+          "RMSE_m": 0.06395340422562372,
+          "median_m": 0.05034462225368067,
+          "p95_m": 0.11740088983385122
+        }
+      },
+      "validation_lidar_RMS_m": 0.0803097252559544
+    }
+  ],
+  "selected_GPS_sigma_m": 0.15,
+  "lidar_validation": {
+    "baseline_RMS_m": 0.08029349567413112,
+    "candidate_RMS_m": 0.08037055808550389
+  },
+  "lidar_final_test": {
+    "baseline_RMS_m": 0.08030634379214946,
+    "candidate_RMS_m": 0.08039985137771323,
+    "baseline_coverage": 0.5815651515151515,
+    "candidate_coverage": 0.5800060606060606,
+    "paired_change": {
+      "mean_improvement_m": -8.699223197378805e-05,
+      "block_bootstrap_95pct_m": [
+        -0.00015603670092249796,
+        -3.051906537321171e-05
+      ],
+      "time_blocks": 15,
+      "positive_means": "lower capped nearest-neighbor cost"
+    }
+  },
+  "corrections": {
+    "maximum_XY_m": 0.10101541468058818,
+    "maximum_yaw_deg": 0.012496969097770615,
+    "positions_only_in_XY": true,
+    "height_roll_pitch_preserved": true
+  },
+  "antenna": {
+    "surveyed": false,
+    "uncertain_fit_body_m": [
+      0.13952411736756642,
+      0.13502706560713104,
+      0.17364971354911407
+    ],
+    "prior_sigma_m": 1.0,
+    "bounds_per_axis_m": 3.0,
+    "doubled_prior_effect_at_8m_m": 0.004080690390351881,
+    "caution": "Unmeasured lever arm is a nuisance parameter, not a recovered surveyed calibration; weakly observable components follow the prior"
+  },
+  "export": {
+    "points": 818820,
+    "raw_attributes_retained": true,
+    "baseline_points_deleted": 0,
+    "height_coordinates_unchanged": true,
+    "poses_and_points_share_same_corrections": true
+  },
+  "absolute_GPS_coordinates_omitted": true,
+  "limitations": [
+    "Timing uses the shared software-start assumption; latency is not estimated.",
+    "Horizontal GPS only; no altitude constraint, scale fit, tree symmetry or ground flattening.",
+    "Internal held-out comparisons cannot establish absolute LiDAR accuracy.",
+    "Candidate is exported even when rejected; inspect accepted/reasons before using it."
+  ],
+  "publication": {
+    "source_code_commit": "bb4997508c329c59cb19eb64795c88dcf1a6aaff",
+    "main_and_current_untouched": true,
+    "original_inputs_untouched": true
+  }
+}
