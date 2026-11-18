@@ -10,7 +10,9 @@ import numpy as np
 from PIL import Image
 
 from captures.leafwood import write_records
-from dynamic.animate import load_results, animation_clock, sensor_position, render
+from dynamic.animate import (load_results, animation_clock, sensor_position, render,
+                             trajectory_speeds, sensor_quaternion, rotate_vector,
+                             initial_camera_up, project_sensor_view)
 
 
 def result(directory, point_times=True):
@@ -38,6 +40,39 @@ def result(directory, point_times=True):
 
 
 class MovingAnimationTests(unittest.TestCase):
+    def test_speed_fit_uses_capture_seconds_and_handles_irregular_sampling(self):
+        times = np.array([0., .08, .22, .39, .58, .81, 1.05, 1.2])
+        velocity = np.array([1.2, -.5, .1])
+        positions = np.array([70., -20., 3.]) + times[:, None] * velocity
+        speed = trajectory_speeds(times, positions, window=.6)
+        np.testing.assert_allclose(speed, np.linalg.norm(velocity), atol=1e-12)
+        np.testing.assert_allclose(trajectory_speeds(times, np.tile(positions[0], (len(times), 1))), 0.)
+        self.assertTrue(np.isnan(trajectory_speeds(times[:1], positions[:1])[0]))
+
+    def test_quaternion_interpolation_tracks_orientation_and_antipodal_signs(self):
+        q = np.array([[0., 0., 0., 1.], [0., 0., 1., 0.]])
+        middle = sensor_quaternion(np.array([0., 2.]), q, 1.)
+        np.testing.assert_allclose(rotate_vector(middle, np.array([1., 0., 0.])), [0, 1, 0], atol=1e-12)
+        same = np.array([[0., 0., 0., 1.], [0., 0., 0., -1.]])
+        np.testing.assert_allclose(sensor_quaternion(np.array([0., 2.]), same, 1.), same[0])
+
+    def test_sensor_eye_projection_moves_with_sensor_and_clips_behind_it(self):
+        identity = np.array([0., 0., 0., 1.])
+        forward = np.array([1., 0., 0.])
+        up = initial_camera_up(identity, forward)
+        points = np.array([[2., 0., 0.], [-2., 0., 0.], [.01, 0., 0.], [2., 10., 0.], [30., 0., 0.]])
+        uv, indices, depth = project_sensor_view(points, np.zeros(3), identity, up, forward, 90., 1., .1, 25.)
+        np.testing.assert_array_equal(indices, [0])
+        np.testing.assert_allclose(uv, [[0, 0]])
+        uv, indices, depth = project_sensor_view(points, np.array([0., .5, 0.]), identity, up, forward, 90., 1., .1, 25.)
+        np.testing.assert_allclose(uv, [[.25, 0]])
+        # Actual mounting can rotate vertical away from body +Z. The initial
+        # camera calibration makes world +Z point up without changing points.
+        mounted = np.array([-np.sqrt(.5), 0., 0., np.sqrt(.5)])
+        up_body = initial_camera_up(mounted, forward)
+        uv, _, _ = project_sensor_view(np.array([[2., 0., 1.]]), np.zeros(3), mounted, up_body, forward, 90., 1., .1, 25.)
+        np.testing.assert_allclose(uv, [[0, .5]], atol=1e-12)
+
     def test_point_times_reveal_only_acquired_points_and_include_last_return(self):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary) / 'run/results'
@@ -96,6 +131,34 @@ class MovingAnimationTests(unittest.TestCase):
         for fps, speed in [(0, 1), (10, -1), (float('nan'), 1)]:
             with self.assertRaises(ValueError):
                 animation_clock(0, 1, fps, speed)
+
+    def test_follow_render_uses_pose_quaternions_and_speed_is_not_playback_rate(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary) / 'results'
+            result(directory)
+            trajectory = directory / 'trajectory.csv'
+            trajectory.write_text('frame_index,time_s,x_m,y_m,z_m,qx,qy,qz,qw\n'
+                                  '0,0,0,0,0,0,0,0,1\n1,0.5,0,1,0,0,0,0,1\n2,1,0,2,0,0,0,0,1\n')
+            with patch('socket.socket.connect', side_effect=AssertionError('Animation must stay offline')):
+                a = render(directory, fps=4, speed=1, max_points=200, width=640, height=400, hold=0., camera='sensor')
+                b = render(directory, directory / 'faster.gif', fps=4, speed=2, max_points=200, width=640, height=400, hold=0., camera='sensor')
+            self.assertEqual(a['camera'], 'sensor')
+            self.assertTrue(a['top_view_fixed'])
+            self.assertEqual(a['estimated_speed']['values_m_s'], b['estimated_speed']['values_m_s'])
+            np.testing.assert_allclose(a['estimated_speed']['values_m_s'], 2.)
+            with Image.open(directory / 'accumulation_follow.gif') as gif:
+                self.assertEqual(gif.n_frames, a['frames'])
+                first = np.array(gif.convert('RGB'))
+                gif.seek(gif.n_frames - 1)
+                last = np.array(gif.convert('RGB'))
+                self.assertFalse(np.array_equal(first, last))
+
+    def test_follow_view_requires_recorded_orientation(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary) / 'results'
+            result(directory)
+            with self.assertRaisesRegex(ValueError, 'qx,qy,qz,qw'):
+                render(directory, camera='sensor')
 
 
 if __name__ == '__main__':

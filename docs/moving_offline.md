@@ -196,6 +196,14 @@ after the final scan-centre time. The GIF loops and holds the finished map for
 two seconds. It animates the selected measured returns in the fused output,
 rather than replaying all overlapping returns in every raw scan.
 
+Both GIF scripts show **estimated sensor speed in m/s and km/h** at the top.
+This is the norm of a local linear-fit XYZ velocity from `trajectory.csv`,
+using a one-second centered time window (clipped at recording ends). It is
+derived from the SLAM trajectory, not GPS, and can reflect registration errors.
+Use `--speed-window 0.5` for a more responsive estimate or `--speed-window 2`
+for more smoothing. The estimate uses original capture seconds; `--speed`
+changes playback rate only. Both versions omit the former bottom text line.
+
 Defaults are **10 GIF frames/s, 2x playback and at most 60,000 displayed points**.
 One deterministic sample is selected for the whole movie; points do not change
 randomly between frames. Fixed view limits use the central 99% of cloud
@@ -217,6 +225,38 @@ is rounded to 10 ms and colours are quantized to a stable 256-colour palette.
 Frames are encoded incrementally so the full uncompressed movie is not held
 in memory. No ffmpeg, graphics window, GPU, SDK or online service is needed by
 this postprocessing script; `requirements-animation.txt` is sufficient.
+
+### Second version: view from inside the point cloud
+
+**`make_moving_gif_follow.py`** places a virtual perspective camera at the
+saved sensor/body origin. The left panel moves through the accumulated points
+using the recorded body-to-map orientations; the right panel stays a fixed
+top view with the red position marker and path. It does not orbit the cloud
+or change registered points. Camera translation is interpolated linearly and
+quaternion rotation uses shortest-arc SLERP. The camera is calibrated upright
+at the first pose, then remains rigidly attached to the moving body.
+
+```bat
+python make_moving_gif_follow.py --results "C:\Users\u0063882\Documents\moving_15s"
+```
+
+Output: **`moving_15s/results/accumulation_follow.gif`**, separate from the
+fixed-camera `accumulation.gif`. Both have settings and speed estimates in
+their corresponding `.gif.json` summaries.
+
+The sensor-eye version requires the `qx,qy,qz,qw` orientation columns already
+saved by `run_moving.py`. The forward viewing direction defaults to body +X
+for the supplied mounting; use `--look-axis y` or e.g. `--look-axis minus_x`
+for another mounting. Default horizontal field of view is 100 degrees, with
+near/far display clipping at 0.15 m and 25 m. Example of a wider view:
+
+```bat
+python make_moving_gif_follow.py --results "C:\Users\u0063882\Documents\moving_15s" --fov 120 --speed 1 --max-points 120000
+```
+
+`--near` and `--far` change perspective clipping in metres. `--full-bounds`
+affects the fixed map panels; `--azimuth`/`--elevation` are for the original
+external-camera script. Other animation settings are shared by both scripts.
 
 ## Installing packages on a disconnected machine
 
