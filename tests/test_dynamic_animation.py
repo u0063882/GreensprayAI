@@ -12,7 +12,7 @@ from PIL import Image
 from captures.leafwood import write_records
 from dynamic.animate import (load_results, animation_clock, sensor_position, render,
                              trajectory_speeds, sensor_quaternion, rotate_vector,
-                             initial_camera_up, project_sensor_view)
+                             initial_camera_up, project_sensor_view, display_rgb)
 
 
 def result(directory, point_times=True):
@@ -40,6 +40,24 @@ def result(directory, point_times=True):
 
 
 class MovingAnimationTests(unittest.TestCase):
+    def test_display_lift_preserves_hue_raw_rgb_and_is_independent_of_frame_content(self):
+        raw = np.array([[.02, .08, .03], [.12, .07, .03], [0., 0., 0.], [.4, 1., .5]])
+        original = raw.copy()
+        bright = display_rgb(raw)
+        np.testing.assert_array_equal(raw, original)
+        np.testing.assert_array_equal(bright[2], [0., 0., 0.])
+        self.assertTrue(np.all(bright >= raw))
+        self.assertTrue(np.all(bright <= 1.))
+        for i in [0, 1, 3]:
+            np.testing.assert_allclose(bright[i] / bright[i].max(), raw[i] / raw[i].max())
+        np.testing.assert_array_equal(bright, np.vstack([display_rgb(raw[:1]), display_rgb(raw[1:])]))
+        np.testing.assert_allclose(display_rgb(raw, gamma=1., brightness=1., min_brightness=0.), raw)
+
+    def test_display_lift_rejects_invalid_settings(self):
+        for params in [dict(gamma=0), dict(brightness=float('nan')), dict(min_brightness=1.1)]:
+            with self.assertRaises(ValueError):
+                display_rgb(np.array([[.1, .2, .1]]), **params)
+
     def test_speed_fit_uses_capture_seconds_and_handles_irregular_sampling(self):
         times = np.array([0., .08, .22, .39, .58, .81, 1.05, 1.2])
         velocity = np.array([1.2, -.5, .1])

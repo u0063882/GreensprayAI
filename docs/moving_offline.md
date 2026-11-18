@@ -209,17 +209,34 @@ for more smoothing. The estimate uses original capture seconds; `--speed`
 changes playback rate only. Both versions omit the former bottom text line.
 
 Defaults are **1800 x 650 pixels, 10 GIF frames/s, 2x playback and at most
-60,000 displayed points** for the combined layout.
+200,000 displayed points** for the combined layout.
 One deterministic sample is selected for the whole movie; points do not change
 randomly between frames. Fixed view limits use the central 99% of cloud
 coordinates and include the entire sensor path. This keeps isolated outliers
 from shrinking the tree row on screen. `--full-bounds` includes the full cloud
 extent. These are display settings only: the source PLY is unchanged.
 
+Display defaults now lift dark colours using one fixed brightness curve,
+use larger opaque markers, and put all panels on a charcoal background.
+The gamma exponent is 0.5, brightness multiplier 1.35, minimum nonblack value
+0.45, and point marker area 3 squared points. The sensor-eye view has a bounded
+distance-based size increase for nearby points. Original green/brown hues and
+saturation are preserved; brown becomes easier to see as an amber/brown tone.
+The mapping is computed once for the complete display sample, so colour
+brightness does not pump as the map accumulates. Exact black stays black.
+Raw RGB, intensity, classification and geometry in the source files are not
+changed. The same settings apply to both GIF scripts and all layouts.
+
+Adjust the display with `--point-size`, `--gamma`, `--brightness`,
+`--min-brightness` and `--background`. For example, `--point-size 4 --gamma 0.45`
+makes points still larger and lifts shadows more. To use the saved colours
+without a brightness adjustment, pass `--gamma 1 --brightness 1 --min-brightness 0`.
+You can reduce `--max-points` for quicker rendering and smaller GIFs.
+
 Examples (each command stays on one line in Anaconda Prompt):
 
 ```bat
-python make_moving_gif.py --results "C:\Users\u0063882\Documents\moving_15s" --speed 1 --max-points 120000
+python make_moving_gif.py --results "C:\Users\u0063882\Documents\moving_15s" --speed 1 --max-points 300000
 python make_moving_gif.py --results "C:\Users\u0063882\Documents\moving_15s" --view top --speed 4 --max-points 30000 --output "C:\Users\u0063882\Documents\moving_fast.gif"
 ```
 
@@ -260,7 +277,7 @@ for another mounting. Default horizontal field of view is 100 degrees, with
 near/far display clipping at 0.15 m and 25 m. Example of a wider view:
 
 ```bat
-python make_moving_gif_follow.py --results "C:\Users\u0063882\Documents\moving_15s" --fov 120 --speed 1 --max-points 120000
+python make_moving_gif_follow.py --results "C:\Users\u0063882\Documents\moving_15s" --fov 120 --speed 1 --max-points 300000
 ```
 
 `--near` and `--far` change perspective clipping in metres. These sensor-eye

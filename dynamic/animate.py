@@ -73,6 +73,23 @@ def sensor_position(times, positions, time):
     return np.array([np.interp(time, times, positions[:, axis]) for axis in range(3)])
 
 
+def display_rgb(rgb, gamma=.5, brightness=1.35, min_brightness=.45):
+    """Lift HSV value with one fixed curve while preserving RGB hue/saturation.
+
+    The source array is never changed. Exact black remains black. No frame
+    statistics, class thresholds or per-frame normalization enter this mapping.
+    """
+    if not all(math.isfinite(x) for x in [gamma, brightness, min_brightness]):
+        raise ValueError('Display colour settings must be finite')
+    if gamma <= 0 or brightness <= 0 or not 0 <= min_brightness <= 1:
+        raise ValueError('Use gamma > 0, brightness > 0 and 0 <= min-brightness <= 1')
+    source = np.clip(np.asarray(rgb, dtype=float), 0., 1.)
+    value = source.max(axis=1)
+    lifted = np.clip(np.maximum(brightness * value ** gamma, min_brightness), 0., 1.)
+    scale = np.divide(lifted, value, out=np.zeros_like(value), where=value > 0)
+    return source * scale[:, None]
+
+
 def trajectory_speeds(times, positions, window=1.):
     """Norm of a local least-squares XYZ velocity in capture seconds, not GIF time."""
     if not math.isfinite(window) or window <= 0:
@@ -168,10 +185,11 @@ def gif_blocks(frames, output, palette, duration_ms, hold_ms):
     return count
 
 
-def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
+def render(directory, output=None, *, fps=10., speed=2., max_points=200000,
            width=1200, height=650, view='both', elevation=22., azimuth=-60.,
            hold=2., full_bounds=False, camera='fixed', speed_window=1.,
-           fov=100., near=.15, far=25., look_axis='x'):
+           fov=100., near=.15, far=25., look_axis='x', point_size=3.,
+           gamma=.5, brightness=1.35, min_brightness=.45, background='#12181f'):
     if not isinstance(max_points, int) or max_points < 1:
         raise ValueError('max-points must be a positive integer')
     if width < 320 or height < 240 or view not in ['all', 'both', '3d', 'top']:
@@ -180,6 +198,8 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
         raise ValueError('Camera angles must be finite and hold must be between 0 and 600 seconds')
     if camera not in ['fixed', 'sensor']:
         raise ValueError('Camera must be fixed or sensor')
+    if not math.isfinite(point_size) or point_size <= 0:
+        raise ValueError('point-size must be positive and finite')
     if not math.isfinite(speed_window) or speed_window <= 0:
         raise ValueError('speed-window must be positive and finite')
     if not all(math.isfinite(x) for x in [fov, near, far]) or not (1 < fov < 179 and 0 < near < far):
@@ -221,6 +241,7 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
     point_times = all_point_times[chosen]
     xyz = np.column_stack([records[key][chosen] for key in ['x', 'y', 'z']])
     rgb = np.column_stack([records[key][chosen] for key in ['red', 'green', 'blue']]) / 255.
+    rgb = display_rgb(rgb, gamma, brightness, min_brightness)
     quantiles = [0., 1.] if full_bounds else [.005, .995]
     limits = np.quantile(np.column_stack([records[key] for key in ['x', 'y', 'z']]), quantiles, axis=0)
     low = np.minimum(limits[0], positions.min(axis=0))
@@ -234,7 +255,9 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     from PIL import Image
-    with plt.style.context('dark_background'):
+    background_rgb = matplotlib.colors.to_rgb(background)
+    with plt.style.context('dark_background'), plt.rc_context({'figure.facecolor': background_rgb,
+                                                              'axes.facecolor': background_rgb}):
         fig = plt.figure(figsize=(width / 100, height / 100), dpi=100)
         columns = 3 if view == 'all' else 2 if view == 'both' else 1
         ax3 = fig.add_subplot(1, columns, 1, projection='3d', computed_zorder=False) if show_external else None
@@ -252,7 +275,7 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
             ax3.set_box_aspect(high - low, zoom=.9)
             ax3.grid(False)
             for axis in [ax3.xaxis, ax3.yaxis, ax3.zaxis]:
-                axis.set_pane_color((.035, .04, .045, 1.))
+                axis.set_pane_color((*background_rgb, 1.))
                 axis.set_major_locator(MaxNLocator(nbins=5))
             ax3.tick_params(labelsize=8)
             ax3.scatter(*positions[0], c='#58dc88', s=40, marker='s', depthshade=False, label='Start', zorder=5)
@@ -285,11 +308,12 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
                 uv, visible, depth = project_sensor_view(q, sensor, quaternion, up_body,
                                                         forward_body, fov, aspect, near, far)
                 clouds.append(eye_ax.scatter(uv[:, 0], uv[:, 1], c=colour[visible],
-                                            s=np.clip(3. / depth, .6, 5.), linewidths=0))
+                                            s=point_size * np.clip(4. / depth, 1., 3.),
+                                            linewidths=0, alpha=1.))
             if ax3 is not None:
-                clouds.append(ax3.scatter(q[:, 0], q[:, 1], q[:, 2], c=colour, s=1., linewidths=0, depthshade=False, rasterized=True, zorder=2))
+                clouds.append(ax3.scatter(q[:, 0], q[:, 1], q[:, 2], c=colour, s=point_size, linewidths=0, alpha=1., depthshade=False, rasterized=True, zorder=2))
             if ax2 is not None:
-                clouds.append(ax2.scatter(q[:, 0], q[:, 1], c=colour, s=1., linewidths=0, zorder=2))
+                clouds.append(ax2.scatter(q[:, 0], q[:, 1], c=colour, s=point_size, linewidths=0, alpha=1., zorder=2))
             path = np.vstack([positions[times < time], sensor])
             if ax3 is not None:
                 trail3.set_data_3d(path[:, 0], path[:, 1], path[:, 2])
@@ -311,7 +335,7 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
         reserved = [(0, 0, 0), (255, 255, 255), (255, 54, 54), (255, 100, 100),
                     (88, 220, 136), (151, 98, 53), (48, 183, 70), (128, 128, 128),
                     (64, 64, 64), (192, 192, 192), (32, 32, 32), (224, 224, 224),
-                    (9, 10, 11), (96, 96, 96), (160, 160, 160), (16, 16, 16)]
+                    tuple(int(round(x * 255)) for x in background_rgb), (96, 96, 96), (160, 160, 160), (16, 16, 16)]
         palette.putpalette(palette.getpalette()[:720] + [value for colour in reserved for value in colour])
         fd, temporary = tempfile.mkstemp(prefix='.' + output.stem + '-', suffix='.gif', dir=output.parent)
         os.close(fd)
@@ -344,6 +368,10 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
                                        window_s=speed_window, independent_of_playback_speed=True,
                                        trajectory_time_s=times.tolist(),
                                        values_m_s=[float(x) if np.isfinite(x) else None for x in speeds]),
+                  display_style=dict(gamma=gamma, brightness=brightness, min_brightness=min_brightness,
+                                     point_area_pt2=point_size, opacity=1., background=matplotlib.colors.to_hex(background_rgb),
+                                     colour_mapping='Fixed hue/saturation-preserving value lift applied once; exact black remains black',
+                                     source_RGB_and_intensity_unchanged=True),
                   display_bounds='full' if full_bounds else '0.5th–99.5th point percentiles, expanded to include sensor path',
                   units='metres', source_files_unchanged=True,
                   note='Only the selected returns stored in the fused PLY are animated; this is not a replay of every raw scan return.')
@@ -360,7 +388,12 @@ def main(argv=None, *, follow=False):
     p.add_argument('--fps', type=float, default=10., help='Requested GIF frames/second; default: 10')
     p.add_argument('--speed', type=float, default=2., help='Playback speed multiplier; default: 2')
     p.add_argument('--speed-window', type=float, default=1., help='SLAM speed estimation window in capture seconds; default: 1')
-    p.add_argument('--max-points', type=int, default=60000, help='Fixed display sample budget; default: 60000')
+    p.add_argument('--max-points', type=int, default=200000, help='Fixed display sample budget; default: 200000')
+    p.add_argument('--point-size', type=float, default=3., help='Point marker area in squared points; default: 3')
+    p.add_argument('--gamma', type=float, default=.5, help='Fixed display brightness exponent; default: 0.5')
+    p.add_argument('--brightness', type=float, default=1.35, help='Display brightness multiplier; default: 1.35')
+    p.add_argument('--min-brightness', type=float, default=.45, help='Minimum nonblack display value; default: 0.45')
+    p.add_argument('--background', default='#12181f', help='Plot background colour; default: #12181f (charcoal)')
     p.add_argument('--view', choices=['all', 'both', '3d', 'top'], default='both' if follow else 'all', help='all: external 3D + sensor-eye + top; both: legacy two-panel view')
     p.add_argument('--width', type=int, help='Width in pixels; default: 1800 for all, 1200 for other views')
     p.add_argument('--height', type=int, default=650)
@@ -379,7 +412,9 @@ def main(argv=None, *, follow=False):
                azimuth=a.azimuth, hold=a.hold, full_bounds=a.full_bounds,
                camera='sensor' if follow else 'fixed', speed_window=a.speed_window,
                fov=getattr(a, 'fov', 100.), near=getattr(a, 'near', .15),
-               far=getattr(a, 'far', 25.), look_axis=getattr(a, 'look_axis', 'x'))
+               far=getattr(a, 'far', 25.), look_axis=getattr(a, 'look_axis', 'x'),
+               point_size=a.point_size, gamma=a.gamma, brightness=a.brightness,
+               min_brightness=a.min_brightness, background=a.background)
     except (ValueError, OSError, KeyError) as error:
         p.error(str(error))
 
