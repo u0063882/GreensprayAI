@@ -1,5 +1,8 @@
 # Moving OS0 pilot: first 15 seconds
 
+For a local run without GitHub Actions or release downloads, use
+[the offline runner and installation guide](moving_offline.md).
+
 The independent `dynamic/` pipeline opens only a capture-time-trimmed PCAP.
 The full input ZIP is downloaded and SHA-256 checked on the Actions runner;
 the remaining recording is not passed to SLAM. All packet types, including

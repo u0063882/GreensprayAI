@@ -2,10 +2,10 @@
 from pathlib import Path
 from collections import OrderedDict
 import hashlib,io,json,struct,zipfile
-import requests
 
 class RangeReader(io.RawIOBase):
     def __init__(self,url,size,block_bytes=4*1024*1024):
+        import requests
         self.url=url;self.size=size;self.position=0;self.block_bytes=block_bytes;self.cache=OrderedDict();self.session=requests.Session();self.downloaded=0
     def readable(self):return True
     def seekable(self):return True
@@ -31,6 +31,9 @@ class RangeReader(io.RawIOBase):
 
 
 def trim_classic_pcap(source,target,seconds):
+    import math
+    if seconds is not None and (not math.isfinite(seconds) or seconds<=0):
+        raise ValueError('seconds must be positive and finite, or None for the complete recording')
     header=source.read(24)
     formats={b'\xd4\xc3\xb2\xa1':('<',1e-6),b'\xa1\xb2\xc3\xd4':('>',1e-6),b'\x4d\x3c\xb2\xa1':('<',1e-9),b'\xa1\xb2\x3c\x4d':('>',1e-9)}
     if len(header)!=24 or header[:4] not in formats:raise ValueError('Expected classic PCAP; do not guess a PCAP-NG layout')
@@ -44,7 +47,7 @@ def trim_classic_pcap(source,target,seconds):
             sec,fraction,captured,original=struct.unpack(endian+'IIII',packet);stamp=sec+fraction*unit
             if captured>16*1024*1024 or captured>original:raise ValueError('Implausible packet byte count')
             if first is None:first=stamp
-            if stamp-first>=seconds:break
+            if seconds is not None and stamp-first>=seconds:break
             payload=source.read(captured)
             if len(payload)!=captured:raise ValueError('Truncated packet payload')
             if last is not None and stamp<last:reordered+=1
@@ -85,7 +88,8 @@ def prepare_local(archive_path,output,seconds=15.,expected_sha256=None):
                 if matches[0].file_size>2*1024*1024:raise ValueError('Unexpectedly large metadata')
                 (output/(stem+suffix)).write_bytes(archive.read(matches[0]))
         with archive.open(pc) as source:report=trim_classic_pcap(source,pcap,seconds)
-    report.update(source_zip_sha256=archive_sha,source_zip_bytes=archive_path.stat().st_size,source_pcap_bytes=pc.file_size,source_member=pc.filename,full_archive_checksum_verified=bool(expected_sha256),policy='All packet types within the first capture-time interval only; full release ZIP checksum verified before extraction. No stationary results read or changed.')
+    checksum_policy='Full ZIP SHA-256 computed'+(' and verified against expected digest' if expected_sha256 else '; no external expected digest supplied')
+    report.update(source_zip_sha256=archive_sha,source_zip_bytes=archive_path.stat().st_size,source_pcap_bytes=pc.file_size,source_member=pc.filename,full_archive_checksum_verified=bool(expected_sha256),policy=checksum_policy+'. All packet types within the selected capture-time interval only. No stationary results read or changed.')
     (output/'preparation.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2),flush=True);return pcap,report
 
 

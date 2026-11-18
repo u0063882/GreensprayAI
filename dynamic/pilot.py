@@ -4,8 +4,9 @@ Only the already trimmed PCAP is opened. Existing stationary results are not
 read, registered, exported, meshed or replaced by this module.
 """
 from pathlib import Path
-import argparse,csv,json,os,time,sys
-os.environ.setdefault('OMP_NUM_THREADS','2');os.environ.setdefault('OPENBLAS_NUM_THREADS','2');os.environ.setdefault('MPLCONFIGDIR','/tmp/greenspray-dynamic-mpl')
+import argparse,csv,json,os,time,sys,tempfile
+os.environ.setdefault('OMP_NUM_THREADS','2');os.environ.setdefault('OPENBLAS_NUM_THREADS','2')
+os.environ.setdefault('MPLCONFIGDIR',str(Path(tempfile.gettempdir())/'greenspray-dynamic-mpl'))
 ROOT=Path(__file__).resolve().parent.parent;sys.path.insert(0,str(ROOT))
 import numpy as np
 from scipy.spatial import cKDTree
@@ -46,18 +47,31 @@ def packet_audit(path,info,first_capture_unix):
     return T,dict(**counts,initial_gravity_method=status,initial_gravity_samples=len(acc),initial_acceleration_median_body=np.median(acc,axis=0).tolist() if len(acc) else None,initial_acceleration_MAD_body=np.median(abs(acc-np.median(acc,axis=0)),axis=0).tolist() if len(acc) else None,initial_gyro_norm_median_deg_s=float(np.median(np.linalg.norm(gyro,axis=1))) if len(gyro) else None,initial_body_to_map=T.tolist(),caution='Accelerometer median under vehicle motion is approximate, not surveyed Earth vertical or a fitted tree-up correction.')
 
 
-def navigation(h5path,host_times,positions):
+def navigation(h5path,host_times,positions,*,clock='absolute',capture_start=None):
     if not h5path.exists():return dict(available=False),None
     import h5py
     with h5py.File(h5path) as h:t=np.asarray(h['time']).ravel();lat=np.asarray(h['lat']).ravel();lon=np.asarray(h['lon']).ravel()
+    if not (len(t)==len(lat)==len(lon)):raise ValueError('GPS time/lat/lon lengths differ')
     valid=np.isfinite(t)&np.isfinite(lat)&np.isfinite(lon);t,lat,lon=t[valid],lat[valid],lon[valid];order=np.argsort(t);t,lat,lon=t[order],lat[order],lon[order]
-    keep=(host_times>=t.min())&(host_times<=t.max())
-    if keep.sum()<5:return dict(available=True,matched_frames=int(keep.sum()),time_alignment='No sufficient overlap between PCAP host Unix timestamps and GPS log; no invented offset'),None
-    ll=np.c_[np.interp(host_times[keep],t,lat),np.interp(host_times[keep],t,lon)];phi=np.deg2rad(ll[:,0].mean());north_factor=111132.92-559.82*np.cos(2*phi)+1.175*np.cos(4*phi);east_factor=111412.84*np.cos(phi)-93.5*np.cos(3*phi)
+    if len(t)<2:return dict(available=True,matched_frames=0,time_alignment='Fewer than two valid GPS samples'),None
+    t,unique=np.unique(t,return_index=True);lat,lon=lat[unique],lon[unique]
+    if len(t)<2:return dict(available=True,matched_frames=0,time_alignment='Fewer than two distinct GPS times'),None
+    if clock=='shared-start':
+        if capture_start is None or not np.isfinite(capture_start):raise ValueError('Shared-start timing requires the first PCAP packet timestamp')
+        query=t[0]+(np.asarray(host_times)-capture_start)
+        timing='Assumed common software start: GPS first valid time + elapsed PCAP capture time; no rate scaling or endpoint warping. Startup latency and antenna lever arm uncalibrated.'
+    elif clock=='absolute':
+        query=np.asarray(host_times)
+        timing='PCAP capture times interpolated directly against H5 time; no invented clock offset; synchronization and antenna lever arm uncalibrated'
+    else:raise ValueError('Unknown GPS clock policy')
+    clock_report=dict(clock_policy=clock,time_alignment=timing,gps_samples=len(t),gps_log_duration_s=float(t[-1]-t[0]))
+    keep=(query>=t.min())&(query<=t.max())
+    if keep.sum()<5:return dict(available=True,matched_frames=int(keep.sum()),**clock_report,reason='Insufficient time overlap for a trajectory comparison'),None
+    ll=np.c_[np.interp(query[keep],t,lat),np.interp(query[keep],t,lon)];phi=np.deg2rad(ll[:,0].mean());north_factor=111132.92-559.82*np.cos(2*phi)+1.175*np.cos(4*phi);east_factor=111412.84*np.cos(phi)-93.5*np.cos(3*phi)
     gps=(ll-ll[0])*[north_factor,east_factor];gps=gps[:,::-1];p=positions[keep,:2];x=p-p.mean(0);y=gps-gps.mean(0);u,_,vt=np.linalg.svd(x.T@y);R=vt.T@u.T
     if np.linalg.det(R)<0:vt[-1]*=-1;R=vt.T@u.T
     fit=(p-p.mean(0))@R.T+gps.mean(0);error=np.linalg.norm(fit-gps,axis=1);gps_path=float(np.linalg.norm(np.diff(gps,axis=0),axis=1).sum());slam_path=float(np.linalg.norm(np.diff(p,axis=0),axis=1).sum())
-    return dict(available=True,matched_frames=int(keep.sum()),time_alignment='PCAP host Unix time interpolated against H5 time; hardware synchronization and antenna lever arm not calibrated',gps_path_m=gps_path,slam_path_over_same_times_m=slam_path,slam_to_gps_path_ratio=slam_path/gps_path if gps_path>.1 else None,rigid_2D_fit_rmse_m=float(np.sqrt(np.mean(error**2))),gps_endpoint_displacement_m=float(np.linalg.norm(gps[-1]-gps[0])),no_scale_fit=True,absolute_GPS_coordinates_omitted=True),dict(time=host_times[keep],gps=gps,slam_fit=fit)
+    return dict(available=True,matched_frames=int(keep.sum()),**clock_report,gps_path_m=gps_path,slam_path_over_same_times_m=slam_path,slam_to_gps_path_ratio=slam_path/gps_path if gps_path>.1 else None,rigid_2D_fit_rmse_m=float(np.sqrt(np.mean(error**2))),gps_endpoint_displacement_m=float(np.linalg.norm(gps[-1]-gps[0])),no_scale_fit=True,absolute_GPS_coordinates_omitted=True),dict(time=query[keep],gps=gps,slam_fit=fit)
 
 
 def consistency(features):
@@ -84,13 +98,18 @@ def ground_check(points,features):
     if n[2]<.8:return dict(supported=False,reason='No near-up dominant ground plane')
     p=p[ids];rms=float(np.sqrt(np.mean((p@n+offset)**2)));quarters=[]
     for group in np.array_split(np.arange(len(features)),4):
+        if not len(group):
+            quarters.append(dict(points=0,median_signed_distance_m=None,RMS_m=None));continue
         q=np.concatenate([features[i]['after'] for i in group]);d=q@n+offset;keep=abs(d)<.10
         quarters.append(dict(points=int(keep.sum()),median_signed_distance_m=float(np.median(d[keep])) if keep.any() else None,RMS_m=float(np.sqrt(np.mean(d[keep]**2))) if keep.any() else None))
     return dict(supported=True,normal=n.tolist(),offset=offset,RMS_m=rms,tilt_from_initial_IMU_up_deg=float(np.degrees(np.arccos(np.clip(n[2],-1,1)))),time_quartiles=quarters,caution='Dominant measured low surface only; a real orchard floor can slope or have grass ridges. This fit is diagnostic and never flattens points or changes poses.')
 
 
-def run(pcap_path,output,voxel=.15,max_range=25.):
-    started=time.monotonic();pcap_path=Path(pcap_path);output=Path(output);output.mkdir(parents=True,exist_ok=True);prep=json.loads((pcap_path.parent/'preparation.json').read_text());source=open_source(str(pcap_path));info=source.sensor_info[0];T0,packets=packet_audit(pcap_path,info,prep['capture_first_unix']);config=mapping.SlamConfig.create('lio');config.deskew_method='constant_velocity';config.voxel_size=voxel;config.min_range=1.;config.max_range=max_range;config.max_iterations=50;config.initial_pose=T0;engine=mapping.SlamEngine.create([info],config);lut=core.XYZLut(info,True);writer=osf.Writer(str(output/'pilot15s.osf'),[info]);model=json.loads((ROOT/'dynamic/shared_leafwood_model.json').read_text());window=info.format.column_window;expected=(window[1]-window[0])%info.format.columns_per_frame+1
+def run(pcap_path,output,voxel=.15,max_range=25.,*,gps_clock='absolute',rhino=True,generic_outputs=False):
+    started=time.monotonic();pcap_path=Path(pcap_path);output=Path(output);output.mkdir(parents=True,exist_ok=True);prep=json.loads((pcap_path.parent/'preparation.json').read_text())
+    requested=prep.get('requested_seconds',15.);interval='Full input recording' if requested is None else f'First {requested:g} seconds'
+    cloud_path=output/('registered.ply' if generic_outputs else 'pilot_registered.ply');report_path=output/('report.json' if generic_outputs else 'pilot_report.json');osf_path=output/('registered.osf' if generic_outputs else 'pilot15s.osf');preview_name='preview.png' if generic_outputs else 'pilot_preview.png'
+    source=open_source(str(pcap_path));info=source.sensor_info[0];T0,packets=packet_audit(pcap_path,info,prep['capture_first_unix']);config=mapping.SlamConfig.create('lio');config.deskew_method='constant_velocity';config.voxel_size=voxel;config.min_range=1.;config.max_range=max_range;config.max_iterations=50;config.initial_pose=T0;engine=mapping.SlamEngine.create([info],config);lut=core.XYZLut(info,True);writer=osf.Writer(str(osf_path),[info]);model=json.loads((ROOT/'dynamic/shared_leafwood_model.json').read_text());window=info.format.column_window;expected=(window[1]-window[0])%info.format.columns_per_frame+1
     poses=[];times=[];host=[];frame_ids=[];column_times=[];statuses=[];features=[];chunks=[];dropped=[];flags=[];t0=None
     dtype=np.dtype([('x','<f4'),('y','<f4'),('z','<f4'),('red','u1'),('green','u1'),('blue','u1'),('reflectivity','u1'),('intensity','<u2'),('signal','<u2'),('near_ir','<u2'),('scan_id','<u4'),('frame_id','<u4'),('pixel_index','<u4'),('time_offset_s','<f8'),('leafwood_class','u1'),('wood_score','<f4')])
     try:
@@ -127,30 +146,37 @@ def run(pcap_path,output,voxel=.15,max_range=25.):
             if index%10==0:print('SLAM',index,round(elapsed,3),'s; pose',np.round(middle[:3,3],3).tolist(),flush=True)
     finally:writer.close();source.close()
     if len(poses)<3:raise RuntimeError('Fewer than three complete processed frames')
-    p=np.concatenate(chunks);p=p[measured_indices(np.c_[p['x'],p['y'],p['z']],.025)];write_records(output/'pilot_registered.ply',p,comment='15-second moving pilot; Ouster per-column motion compensation; provisional shared leaf/wood display; scan_id=processed frame index')
+    p=np.concatenate(chunks);p=p[measured_indices(np.c_[p['x'],p['y'],p['z']],.025)];write_records(cloud_path,p,comment=interval+'; Ouster per-column motion compensation; provisional shared leaf/wood display; scan_id=processed frame index')
     np.savez_compressed(output/'per_column_poses.npz',body_to_world=np.array(poses),column_timestamp_ns=np.array(column_times),status=np.array(statuses),frame_id=np.array(frame_ids),host_unix=np.array(host),relative_seconds=np.array(times))
-    centres=np.array([c[np.flatnonzero(s&1)[len(np.flatnonzero(s&1))//2]] for c,s in zip(poses,statuses)]);positions=centres[:,:3,3];dt=np.diff(times);steps=np.linalg.norm(np.diff(positions,axis=0),axis=1);angles=np.degrees(np.linalg.norm(Rotation.from_matrix(np.einsum('nij,njk->nik',centres[:-1,:3,:3].transpose(0,2,1),centres[1:,:3,:3])).as_rotvec(),axis=1));nav,nav_plot=navigation(pcap_path.with_suffix('.h5'),np.array(host),positions);held=consistency(features);ground=ground_check(np.c_[p['x'],p['y'],p['z']],features)
+    centres=np.array([c[np.flatnonzero(s&1)[len(np.flatnonzero(s&1))//2]] for c,s in zip(poses,statuses)]);positions=centres[:,:3,3];dt=np.diff(times);steps=np.linalg.norm(np.diff(positions,axis=0),axis=1);angles=np.degrees(np.linalg.norm(Rotation.from_matrix(np.einsum('nij,njk->nik',centres[:-1,:3,:3].transpose(0,2,1),centres[1:,:3,:3])).as_rotvec(),axis=1));nav,nav_plot=navigation(pcap_path.with_suffix('.h5'),np.array(host),positions,clock=gps_clock,capture_start=prep['capture_first_unix']);held=consistency(features);ground=ground_check(np.c_[p['x'],p['y'],p['z']],features)
     if np.any(dt<=0):flags.append('Non-increasing lidar frame timestamps')
     if nav.get('slam_to_gps_path_ratio') is not None and nav.get('gps_endpoint_displacement_m',0)>1 and not .5<nav['slam_to_gps_path_ratio']<2:flags.append('Large disagreement with GPS travelled distance; timing/lever arm also need review')
     if held['after'] and held['before'] and held['after']['mean_capped_RMS_m']>held['before']['mean_capped_RMS_m']*1.05:flags.append('Withheld return consistency worsens relative to the unregistered baseline')
     moving=bool(np.linalg.norm(positions[-1]-positions[0])>.5)
     recommendation='review_flags_before_full_run' if flags else 'plausible_pilot_continue_with_QC' if moving else 'insufficient_motion_to_validate_moving_SLAM'
-    report=dict(status=recommendation,flags=flags,scope='First 15 seconds only; no full-recording mapping, mesh, ground flattening or tree symmetry constraints',source=prep,sensor=dict(model='OS-0-128',firmware='3.1.0',fps=10,FOV_deg=180,expected_columns=expected,columns_per_frame=info.format.columns_per_frame),SDK_version=__import__('importlib.metadata',fromlist=['version']).version('ouster-sdk'),SLAM=dict(backend='Ouster SDK LIOSlamEngine, same engine as ouster-cli slam',deskew_method='constant_velocity',internal_voxel_m=voxel,min_range_m=1.,max_range_m=max_range,max_iterations=50,withheld_pixel_fraction=.20,second_returns_at_withheld_pixels_also_removed=True),packets=packets,processed_frames=len(poses),dropped_incomplete_frames=dropped,processed_time_span_s=float(times[-1]-times[0]),retained_first_return_points=len(p),trajectory=dict(path_length_m=float(steps.sum()),endpoint_displacement_m=float(np.linalg.norm(positions[-1]-positions[0])),maximum_frame_step_m=float(steps.max()),maximum_frame_rotation_deg=float(angles.max()),maximum_speed_m_s=float(np.max(steps/np.maximum(dt,1e-9))),vertical_range_m=float(np.ptp(positions[:,2]))),GNSS_diagnostic=nav,held_out_consistency=held,ground_diagnostic=ground,elapsed_compute_s=time.monotonic()-started,export=dict(source_return='first return only; dual-return raw channels retained in processed OSF',sample_policy='One real return per 4 cm frame voxel, then one per 2.5 cm map voxel; no averaged/invented points',raw_channels=['signal','intensity','near_ir','reflectivity','frame_id','pixel_index'],time_offset_reference_lidar_ns=t0,RGB='Existing shared stationary leaf/wood model used only for provisional display; different acquisition/illumination not revalidated; never used by this SLAM fit'),limitations=['Internal diagnostics only, no surveyed accuracy guarantee.','GNSS uses uncalibrated capture-host timing and antenna lever arm; no GNSS constraints fitted.','No loop closure or pose graph optimization in this first-pass pilot.','180-degree view and repeated orchard geometry can cause drift, and foliage can move.'])
+    report=dict(status=recommendation,flags=flags,scope=interval+'; no mesh, ground flattening or tree symmetry constraints',source=prep,sensor=dict(model=str(info.prod_line),firmware=str(info.fw_rev),fps=info.format.fps,lidar_mode=str(info.config.lidar_mode),expected_columns=expected,columns_per_frame=info.format.columns_per_frame),SDK_version=__import__('importlib.metadata',fromlist=['version']).version('ouster-sdk'),SLAM=dict(backend='Ouster SDK LIOSlamEngine, same engine as ouster-cli slam',deskew_method='constant_velocity',internal_voxel_m=voxel,min_range_m=1.,max_range_m=max_range,max_iterations=50,withheld_pixel_fraction=.20,second_returns_at_withheld_pixels_also_removed=True),packets=packets,processed_frames=len(poses),dropped_incomplete_frames=dropped,processed_time_span_s=float(times[-1]-times[0]),retained_first_return_points=len(p),trajectory=dict(path_length_m=float(steps.sum()),endpoint_displacement_m=float(np.linalg.norm(positions[-1]-positions[0])),maximum_frame_step_m=float(steps.max()),maximum_frame_rotation_deg=float(angles.max()),maximum_speed_m_s=float(np.max(steps/np.maximum(dt,1e-9))),vertical_range_m=float(np.ptp(positions[:,2]))),GNSS_diagnostic=nav,held_out_consistency=held,ground_diagnostic=ground,elapsed_compute_s=time.monotonic()-started,export=dict(source_return='first return only; dual-return raw channels retained in processed OSF',sample_policy='One real return per 4 cm frame voxel, then one per 2.5 cm map voxel; no averaged/invented points',raw_channels=['signal','intensity','near_ir','reflectivity','frame_id','pixel_index'],time_offset_reference_lidar_ns=t0,RGB='Existing shared stationary leaf/wood model used only for provisional display; different acquisition/illumination not revalidated; never used by this SLAM fit'),limitations=['Internal diagnostics only, no surveyed accuracy guarantee.','GNSS uses uncalibrated capture-host timing and antenna lever arm; no GNSS constraints fitted.','No loop closure or pose graph optimization in this first-pass pilot.','180-degree view and repeated orchard geometry can cause drift, and foliage can move.'])
     with (output/'trajectory.csv').open('w',newline='') as f:
         w=csv.writer(f,lineterminator='\n');w.writerow(['frame_index','frame_id','time_s','capture_host_unix','x_m','y_m','z_m','qx','qy','qz','qw'])
         for i,(C,t,h,fid) in enumerate(zip(centres,times,host,frame_ids)):w.writerow([i,fid,t,h,*C[:3,3],*Rotation.from_matrix(C[:3,:3]).as_quat()])
-    plot(output,p,np.array(times),positions,nav_plot,report)
+    report['limitations'][1]='GPS comparison uses the reported clock policy; startup latency and antenna lever arm are uncalibrated. GPS does not constrain the fitted map.'
+    report['trajectory']['maximum_frame_rotation_at_index']=int(np.argmax(angles)+1)
+    plot(output,p,np.array(times),positions,nav_plot,report,title=interval+' moving OS0 trial',filename=preview_name)
     # Small preview arrays enable remote review without sending raw scans to
     # the language model or relying on a large binary transfer to this workspace.
     ix=np.linspace(0,len(p)-1,min(2500,len(p))).astype(int);report['preview_sample']=dict(xyz=np.round(np.c_[p['x'],p['y'],p['z']][ix],4).tolist(),rgb=np.c_[p['red'],p['green'],p['blue']][ix].tolist());report['preview_trajectory']=np.round(positions,5).tolist();report['preview_time_s']=np.round(times,6).tolist()
-    (output/'pilot_report.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
-    from tools.export_rhino import export_file
-    report['rhino_export']=export_file(output/'pilot_registered.ply',output/'rhino');(output/'pilot_report.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
-    (output/'README.txt').write_text('MOVING LIDAR 15-SECOND PILOT — QC RESULT\n\nRead pilot_report.json before using the map. This is not a validated full-recording reconstruction.\nThe PLY is in metres; RGB is provisional shared leaf/wood display. Raw signal/NIR and source frame/pixel IDs are retained for selected real first returns. scan_id is the processed frame index.\nThe OSF retains the selected complete scans and per-column SDK poses. per_column_poses.npz and trajectory.csv expose those poses/times.\nNative Rhino 8 files in rhino/ are in MILLIMETRES; physical geometry is unchanged.\nNo stationary result, Current-release asset, mesh, GPS constraint, loop closure or tree shape prior is used or replaced by this pilot.\n')
+    report_path.write_text(json.dumps(report,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    if rhino:
+        from tools.export_rhino import export_file
+        report['rhino_export']=export_file(cloud_path,output/'rhino')
+        report_path.write_text(json.dumps(report,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    if generic_outputs:
+        transformations=dict(units='metres',convention='Column-vector homogeneous transforms: map_point = body_to_world @ body_point. Ouster XYZLut applies sensor-to-body extrinsics first.',note='Frame-centre poses are summaries; use the per-column poses in per_column_poses.npz to reproduce motion-compensated points. Do not apply poses again to registered.ply.',column_poses='per_column_poses.npz',frames=[dict(scan_id=i,frame_id=fid,time_s=float(t),body_to_world=C.tolist()) for i,(fid,t,C) in enumerate(zip(frame_ids,times,centres))])
+        (output/'transformations.json').write_text(json.dumps(transformations,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    (output/'README.txt').write_text('MOVING LIDAR — '+interval+' — QC RESULT\n\nRead '+report_path.name+' before using the map. This is not an independently validated reconstruction.\nThe PLY is in metres; RGB is provisional shared leaf/wood display. Raw signal/NIR and source frame/pixel IDs are retained for selected real first returns. scan_id is the processed frame index.\nThe OSF retains the selected complete scans and per-column SDK poses. per_column_poses.npz and trajectory.csv expose those poses/times.\nNative Rhino 8 files, when requested, are in rhino/ in MILLIMETRES; physical geometry is unchanged.\nNo stationary result, Current-release asset, mesh, GPS constraint, loop closure or tree shape prior is used or replaced by this run.\n',encoding='utf-8')
     print('PILOT SUMMARY',json.dumps({k:report[k] for k in ['status','flags','processed_frames','processed_time_span_s','retained_first_return_points','trajectory','GNSS_diagnostic','elapsed_compute_s']}),flush=True);return report
 
 
-def plot(output,records,times,positions,nav,report):
+def plot(output,records,times,positions,nav,report,*,title='15-second moving OS0 pilot',filename='pilot_preview.png'):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -159,13 +185,13 @@ def plot(output,records,times,positions,nav,report):
     ax=axes[0,1]
     if nav:
         ax.plot(nav['gps'][:,0],nav['gps'][:,1],label='GNSS antenna, local');ax.plot(nav['slam_fit'][:,0],nav['slam_fit'][:,1],label='SLAM, rigid fit without scale');ax.legend(fontsize=8);ax.set_aspect('equal')
-    else:ax.text(.1,.5,'No valid host-time/GNSS overlap',transform=ax.transAxes)
+    else:ax.text(.1,.5,'No GPS comparison available\nSee report for clock policy and coverage',transform=ax.transAxes)
     ax.set(title='GNSS diagnostic · timing/lever arm uncalibrated',xlabel='Relative east (m)',ylabel='Relative north (m)')
     ax=axes[1,0];ax.scatter(q[:,0],q[:,1],c=rgb,s=.35,alpha=.5,linewidths=0);ax.plot(positions[:,0],positions[:,1],c='#c52843',lw=1);ax.set(title='Pilot measured map · top view',xlabel='Map X (m)',ylabel='Map Y (m)',aspect='equal')
     travel=positions[-1,:2]-positions[0,:2];travel/=max(np.linalg.norm(travel),1e-9);along=q[:,:2]@travel
     ax=axes[1,1];ax.scatter(along,q[:,2],c=rgb,s=.35,alpha=.5,linewidths=0);ax.set(title='Height profile along travelled direction',xlabel='Along travel projection (m)',ylabel='Gravity-initialized Z (m)',aspect='equal')
     for ax in axes.flat:ax.grid(alpha=.2)
-    fig.suptitle('15-second moving OS0 pilot · '+report['status'],fontsize=13);fig.text(.5,.012,'Constant-velocity per-column deskew; 20% return holdout. Colours are provisional leaf/wood display. No tree straightening or ground flattening.',ha='center',fontsize=8);fig.tight_layout(rect=(0,.04,1,.95));fig.savefig(Path(output)/'pilot_preview.png',dpi=125);plt.close(fig)
+    fig.suptitle(title+' · '+report['status'],fontsize=13);fig.text(.5,.012,'Constant-velocity per-column deskew; 20% return holdout. Colours are provisional leaf/wood display. No tree straightening or ground flattening.',ha='center',fontsize=8);fig.tight_layout(rect=(0,.04,1,.95));fig.savefig(Path(output)/filename,dpi=125);plt.close(fig)
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--pcap',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--voxel',type=float,default=.15);a=p.parse_args();run(a.pcap,a.output,a.voxel)

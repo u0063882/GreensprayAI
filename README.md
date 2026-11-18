@@ -4,6 +4,8 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 
 **[Current downloads](https://github.com/u0063882/GreensprayAI/releases/tag/current)** · [Mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) · [Cross-row QA](docs/cross_row_quality.md) · [Registration in MATLAB terms](docs/registration_matlab.md)
 
+**Moving sensor:** [Run the Python registration offline](docs/moving_offline.md) with `run_moving.py`. Accepts a local ZIP or PCAP/JSON/H5; defaults to the first 15 seconds. [Pilot results and assessment](docs/QC/dynamic_pilot/README.md).
+
 **[Current final registration and orientation report](docs/balanced_registration.md).** All four datasets now use a ground-first local output frame. Validated joint refinements are added for Spindle 2 and Chandelier; accepted relative poses are retained for Spindle 1 and V-hedge. Chandelier's matching mesh is rebuilt independently. All measured samples, raw channels, derived leaf/wood RGB and source IDs are retained. V-hedge still has a visible residual lean; no tree-shape symmetry or deformation is imposed.
 
 ## Current results
