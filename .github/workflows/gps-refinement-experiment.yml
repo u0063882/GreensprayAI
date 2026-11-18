@@ -1,0 +1,52 @@
+name: Compare GPS-constrained trajectory refinement
+on:
+  push:
+    branches: [experiment/gps-constrained-slam]
+  workflow_dispatch:
+    inputs:
+      audit_only:
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: gps-refinement-experiment
+  cancel-in-progress: false
+jobs:
+  compare:
+    if: contains(github.event.head_commit.message, '[gps-experiment') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MPLCONFIGDIR: /tmp/greenspray-gps-mpl
+      AUDIT_ONLY: ${{ contains(github.event.head_commit.message, '[gps-experiment-audit]') || inputs.audit_only == true }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install audit dependencies
+        if: env.AUDIT_ONLY == 'true'
+        run: python -m pip install numpy==2.3.5 scipy==1.17.0 h5py==3.16.0
+      - name: Install mapping dependencies
+        if: env.AUDIT_ONLY != 'true'
+        run: python -m pip install -r requirements-moving.txt
+      - name: Run isolated GPS experiment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$AUDIT_ONLY" = "true" ]; then
+            python -m dynamic.run_gps_experiment --audit-only
+          else
+            python -m unittest tests.test_gps_refinement -v
+            python -m dynamic.run_gps_experiment
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gps-experiment
+          path: /tmp/greenspray-gps-experiment/output/
+          if-no-files-found: ignore
