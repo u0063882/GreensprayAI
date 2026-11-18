@@ -164,6 +164,60 @@ complete reconstruction merely because an output file exists.
 `python run_moving.py --help` lists the options. Running the command does not
 consume ChatGPT tokens or publish anything online.
 
+## Make a GIF of the accumulating cloud and moving sensor
+
+After registration, run the independent **`make_moving_gif.py`** script from
+the repository root. It reads only the enriched PLY and `trajectory.csv`.
+It does not read the PCAP, run registration, change poses or edit source files.
+
+In your existing Anaconda Prompt with `(greenspray)` active, update the code
+and install the small set of animation dependencies (installation is online;
+rendering is offline):
+
+```bat
+git pull
+python -m pip install -r requirements-animation.txt
+python make_moving_gif.py --results "C:\Users\u0063882\Documents\moving_15s"
+```
+
+The run folder or its `results/` subfolder is accepted. The default output is
+**`moving_15s/results/accumulation.gif`**, with a settings summary beside it at
+`accumulation.gif.json`. Published pilot folders containing `pilot_registered.ply`
+and `trajectory.csv` are also supported. Do not use the simplified Rhino PLY:
+it omits the scan indices needed for time alignment.
+
+The movie shows a fixed **3D view plus top view**, saved point colours, a red
+sensor/body-origin marker and its accumulating red path. Points appear using
+their saved acquisition times; the sensor position is interpolated between
+the saved trajectory samples. If per-point times are absent, the script joins
+`scan_id` with the trajectory's `frame_index` and reveals whole scans instead.
+The last frame contains the complete display sample, including returns just
+after the final scan-centre time. The GIF loops and holds the finished map for
+two seconds. It animates the selected measured returns in the fused output,
+rather than replaying all overlapping returns in every raw scan.
+
+Defaults are **10 GIF frames/s, 2x playback and at most 60,000 displayed points**.
+One deterministic sample is selected for the whole movie; points do not change
+randomly between frames. Fixed view limits use the central 99% of cloud
+coordinates and include the entire sensor path. This keeps isolated outliers
+from shrinking the tree row on screen. `--full-bounds` includes the full cloud
+extent. These are display settings only: the source PLY is unchanged.
+
+Examples (each command stays on one line in Anaconda Prompt):
+
+```bat
+python make_moving_gif.py --results "C:\Users\u0063882\Documents\moving_15s" --speed 1 --max-points 120000
+python make_moving_gif.py --results "C:\Users\u0063882\Documents\moving_15s" --view top --speed 4 --max-points 30000 --output "C:\Users\u0063882\Documents\moving_fast.gif"
+```
+
+For another 3D camera, use `--azimuth -120 --elevation 25`. Other options are
+`--fps`, `--width`, `--height` and `--hold`; see `python make_moving_gif.py --help`.
+More points, pixels and frames increase rendering time and GIF size. GIF timing
+is rounded to 10 ms and colours are quantized to a stable 256-colour palette.
+Frames are encoded incrementally so the full uncompressed movie is not held
+in memory. No ffmpeg, graphics window, GPU, SDK or online service is needed by
+this postprocessing script; `requirements-animation.txt` is sufficient.
+
 ## Installing packages on a disconnected machine
 
 Before disconnecting, on a computer with the **same OS, CPU architecture and
