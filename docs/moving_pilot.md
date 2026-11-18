@@ -2,6 +2,8 @@
 
 For a local run without GitHub Actions or release downloads, use
 [the offline runner and installation guide](moving_offline.md).
+For an annotated explanation of the code, see the
+[workflow, SDK boundaries and GPS role](moving_registration_workflow.md).
 
 The independent `dynamic/` pipeline opens only a capture-time-trimmed PCAP.
 The full input ZIP is downloaded and SHA-256 checked on the Actions runner;
@@ -20,9 +22,10 @@ including their second returns. Original ranges are restored before saving
 the posed OSF and attributes. Held-out consistency compares scans roughly
 0.5 seconds apart using the same measured points before and after mapping.
 It is a capped nearest-neighbour diagnostic affected by sampling/occlusion,
-not a surveyed accuracy score. GNSS checks use capture-host Unix timestamps
-and a rigid horizontal fit without scale; antenna lever arm and timing are
-uncalibrated. Absolute GNSS coordinates are omitted from reports.
+not a surveyed accuracy score. GNSS checks use capture timestamps under the
+selected clock policy and a rigid horizontal fit without scale; antenna lever
+arm and timing are uncalibrated. These checks do not constrain SLAM or move
+the exported cloud. Absolute GNSS coordinates are omitted from reports.
 
 The map retains selected original first returns, raw signal/intensity, NIR,
 reflectivity, source frame/pixel IDs, times and provisional shared leaf/wood

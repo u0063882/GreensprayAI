@@ -12,6 +12,10 @@ repository, not just `run_moving.py`, because it imports the included modules
 and shared colour model. `Dynamic.zip` is a separate input download; git pull
 does not download release assets.
 
+For the annotated code walkthrough and what comes from Ouster versus our own
+Python code, see [the registration workflow and GPS explanation](moving_registration_workflow.md).
+GPS currently checks the completed trajectory; it does not restrict SLAM poses.
+
 ## 1. Install once
 
 Use **64-bit Python 3.12**. These versions were exercised on Linux with Python

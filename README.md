@@ -6,6 +6,8 @@ Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surf
 
 **Moving sensor:** [Run the Python registration offline](docs/moving_offline.md) with `run_moving.py`. Accepts a local ZIP or PCAP/JSON/H5; defaults to the first 15 seconds. [Pilot results and assessment](docs/QC/dynamic_pilot/README.md).
 
+[Moving-registration code walkthrough: Ouster SDK vs our code, pose conventions and the current GPS role](docs/moving_registration_workflow.md).
+
 [Animate the accumulated cloud and moving sensor as a GIF](docs/moving_offline.md#make-a-gif-of-the-accumulating-cloud-and-moving-sensor) with `make_moving_gif.py`: **external 3D | sensor-eye | top view** in one synchronized 1 x 3 layout, with estimated speed in m/s and km/h. The earlier two-panel views remain available.
 
 **[Current final registration and orientation report](docs/balanced_registration.md).** All four datasets now use a ground-first local output frame. Validated joint refinements are added for Spindle 2 and Chandelier; accepted relative poses are retained for Spindle 1 and V-hedge. Chandelier's matching mesh is rebuilt independently. All measured samples, raw channels, derived leaf/wood RGB and source IDs are retained. V-hedge still has a visible residual lean; no tree-shape symmetry or deformation is imposed.
