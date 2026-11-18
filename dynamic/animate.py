@@ -194,7 +194,9 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=200000,
            width=1200, height=650, view='both', elevation=22., azimuth=-60.,
            hold=2., full_bounds=False, camera='fixed', speed_window=1.,
            fov=100., near=.15, far=25., look_axis='x', point_size=3.,
-           gamma=.85, brightness=1.6, min_brightness=0., background='#12181f'):
+           gamma=.85, brightness=1.6, min_brightness=0., background='#12181f',
+           shading='none', normal_radius=.1, normal_neighbors=32, ambient=.6,
+           light_azimuth=315., light_elevation=50.):
     if not isinstance(max_points, int) or max_points < 1:
         raise ValueError('max-points must be a positive integer')
     if width < 320 or height < 240 or view not in ['all', 'both', '3d', 'top']:
@@ -205,6 +207,8 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=200000,
         raise ValueError('Camera must be fixed or sensor')
     if not math.isfinite(point_size) or point_size <= 0:
         raise ValueError('point-size must be positive and finite')
+    if shading not in ['none', 'normals']:
+        raise ValueError('shading must be none or normals')
     if not math.isfinite(speed_window) or speed_window <= 0:
         raise ValueError('speed-window must be positive and finite')
     if not all(math.isfinite(x) for x in [fov, near, far]) or not (1 < fov < 179 and 0 < near < far):
@@ -233,6 +237,8 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=200000,
     if duration_ms + hold_ms > 655350:
         raise ValueError('Frame duration plus final hold exceeds the GIF timing limit')
     default_name = 'accumulation_combined.gif' if view == 'all' else 'accumulation_follow.gif' if camera == 'sensor' else 'accumulation.gif'
+    if shading == 'normals':
+        default_name = default_name.replace('.gif', '_normals.gif')
     output = Path(output).expanduser().resolve() if output else data['directory'] / default_name
     if output.suffix.lower() != '.gif':
         raise ValueError('Output filename must end in .gif')
@@ -247,8 +253,25 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=200000,
     xyz = np.column_stack([records[key][chosen] for key in ['x', 'y', 'z']])
     rgb = np.column_stack([records[key][chosen] for key in ['red', 'green', 'blue']]) / 255.
     rgb = display_rgb(rgb, gamma, brightness, min_brightness)
+    all_xyz = np.column_stack([records[key] for key in ['x', 'y', 'z']])
+    lighting_report = dict(mode='none')
+    if shading == 'normals':
+        from dynamic.lighting import estimate_display_normals, diffuse_factors
+        print(f'Estimating display normals for {len(xyz):,} points using the full cloud...', flush=True)
+        normals, confidence = estimate_display_normals(all_xyz, xyz, normal_radius, normal_neighbors)
+        factors = diffuse_factors(normals, confidence, ambient, light_azimuth, light_elevation)
+        rgb *= factors[:, None]
+        lighting_report = dict(mode='normals', radius_m=normal_radius, maximum_neighbors=normal_neighbors,
+                               ambient=ambient, light_azimuth_deg=light_azimuth, light_elevation_deg=light_elevation,
+                               shaded_points=int(np.count_nonzero(confidence > 0)),
+                               mean_confidence=float(confidence.mean()),
+                               geometry_support='Full final registered cloud, including later returns; offline visualization only',
+                               method='Batched local PCA, planarity-weighted two-sided diffuse shading with fixed world light',
+                               uncertain_neighborhoods='Fade to original display colour; no inferred surface lighting',
+                               cast_shadows=False)
+        print(f'Normal shading supported for {lighting_report["shaded_points"]:,}/{len(xyz):,} displayed points', flush=True)
     quantiles = [0., 1.] if full_bounds else [.005, .995]
-    limits = np.quantile(np.column_stack([records[key] for key in ['x', 'y', 'z']]), quantiles, axis=0)
+    limits = np.quantile(all_xyz, quantiles, axis=0)
     low = np.minimum(limits[0], positions.min(axis=0))
     high = np.maximum(limits[1], positions.max(axis=0))
     span = np.maximum(high - low, .5)
@@ -377,6 +400,7 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=200000,
                                      point_area_pt2=point_size, opacity=1., background=matplotlib.colors.to_hex(background_rgb),
                                      colour_mapping='Fixed hue/saturation-preserving gamma with bounded gain; default zero floor preserves intensity ordering without highlight clipping',
                                      source_RGB_and_intensity_unchanged=True),
+                  lighting=lighting_report,
                   display_bounds='full' if full_bounds else '0.5th–99.5th point percentiles, expanded to include sensor path',
                   units='metres', source_files_unchanged=True,
                   note='Only the selected returns stored in the fused PLY are animated; this is not a replay of every raw scan return.')
@@ -399,6 +423,12 @@ def main(argv=None, *, follow=False):
     p.add_argument('--brightness', type=float, default=1.6, help='Bounded brightness gain (no hard highlight clipping); default: 1.6')
     p.add_argument('--min-brightness', type=float, default=0., help='Optional nonblack brightness floor; default: 0 to retain shadow differences')
     p.add_argument('--background', default='#12181f', help='Plot background colour; default: #12181f (charcoal)')
+    p.add_argument('--shading', choices=['none', 'normals'], default='none', help='Optional surface lighting; default: none')
+    p.add_argument('--normal-radius', type=float, default=.1, help='Maximum normal neighborhood radius in metres; default: 0.1')
+    p.add_argument('--normal-neighbors', type=int, default=32, help='Maximum normal neighbors (6-256); default: 32')
+    p.add_argument('--ambient', type=float, default=.6, help='Ambient light fraction (0-1); default: 0.6')
+    p.add_argument('--light-azimuth', type=float, default=315., help='Fixed world light azimuth in degrees; default: 315')
+    p.add_argument('--light-elevation', type=float, default=50., help='Fixed world light elevation in degrees; default: 50')
     p.add_argument('--view', choices=['all', 'both', '3d', 'top'], default='both' if follow else 'all', help='all: external 3D + sensor-eye + top; both: legacy two-panel view')
     p.add_argument('--width', type=int, help='Width in pixels; default: 1800 for all, 1200 for other views')
     p.add_argument('--height', type=int, default=650)
@@ -419,7 +449,9 @@ def main(argv=None, *, follow=False):
                fov=getattr(a, 'fov', 100.), near=getattr(a, 'near', .15),
                far=getattr(a, 'far', 25.), look_axis=getattr(a, 'look_axis', 'x'),
                point_size=a.point_size, gamma=a.gamma, brightness=a.brightness,
-               min_brightness=a.min_brightness, background=a.background)
+               min_brightness=a.min_brightness, background=a.background,
+               shading=a.shading, normal_radius=a.normal_radius, normal_neighbors=a.normal_neighbors,
+               ambient=a.ambient, light_azimuth=a.light_azimuth, light_elevation=a.light_elevation)
     except (ValueError, OSError, KeyError) as error:
         p.error(str(error))
 

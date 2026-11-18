@@ -1,4 +1,5 @@
 # Independent postprocessing; no Ouster SDK or registration dependencies.
 numpy==2.3.5
+scipy==1.17.0
 matplotlib==3.10.8
 Pillow==13.0.0

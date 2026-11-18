@@ -237,6 +237,48 @@ makes points still larger and lifts shadows more. To use the saved colours
 without a brightness adjustment, pass `--gamma 1 --brightness 1 --min-brightness 0`.
 You can reduce `--max-points` for quicker rendering and smaller GIFs.
 
+### Optional normal-based surface shading
+
+Use **`--shading normals`** to add matte surface lighting from estimated local
+normals. The default remains `--shading none`, so the current appearance stays
+available. Update animation dependencies once; SciPy is used for neighborhoods
+and is already installed by the moving-registration requirements:
+
+```bat
+git pull
+python -m pip install -r requirements-animation.txt
+python make_moving_gif.py --results "C:\Users\u0063882\Documents\moving_15s" --shading normals
+```
+
+Default output: **`results/accumulation_combined_normals.gif`**, leaving the
+unshaded `accumulation_combined.gif` available for comparison. The option also
+works with `make_moving_gif_follow.py` and the other view layouts.
+
+Normals are estimated once for the displayed points using local PCA and the
+**full saved cloud** as neighborhood support, rather than the thinned display sample. The
+default neighborhood is at most 32 points within 0.10 m. Processing uses small
+batches to limit memory. Planarity confidence reduces shading on sparse,
+line-like or volumetric neighborhoods; unsupported points retain their
+unshaded display colour rather than receiving an arbitrary dark patch.
+
+A world-fixed virtual light at azimuth 315 degrees and elevation 50 degrees
+gives the same lighting to each point throughout the movie and in all panels.
+Two-sided diffuse lighting avoids flicker from arbitrary normal sign. The
+default ambient fraction is 0.6, keeping even a confident surface at least
+60% as bright as its unshaded display colour. The original signal-based
+brightness differences and green/brown hues are still modulated, not replaced
+by a new colour map. This is **surface shading, not cast shadows or occlusion**;
+there is no mesh or continuous surface to block the virtual light.
+
+Controls: `--ambient 0.75` makes lighting subtler; `--ambient 0.45` makes it
+stronger. `--light-azimuth` and `--light-elevation` turn the virtual light.
+`--normal-radius` (metres) and `--normal-neighbors` adjust normal support.
+The `.gif.json` report records these settings and the number of supported
+display points. This is offline shading from the complete final geometry,
+including later returns; it does not imply normals were observed in real time.
+No normals, colours, intensity values or coordinates are written back to the
+source PLY, and registration is never rerun.
+
 Examples (each command stays on one line in Anaconda Prompt):
 
 ```bat
