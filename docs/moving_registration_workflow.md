@@ -237,5 +237,7 @@ gps_residual = antenna_ENU - measured_antenna_ENU
 Those weighted GPS residuals could be combined with relative-motion constraints
 in a pose-graph optimization. They would then influence the trajectory and
 require reapplying corrected per-column poses to the original measurements.
-**This stage is not implemented in the current moving program.** It should not
-be confused with the present post-hoc rigid overlay or GPS warning flag.
+**The original `run_moving.py` does not implement that stage.** On this
+experimental branch, a separate [GPS refinement command](gps_refinement_experiment.md)
+tests soft GPS and relative-motion constraints after SDK mapping. It should
+not be confused with the original post-hoc overlay or GPS warning flag.

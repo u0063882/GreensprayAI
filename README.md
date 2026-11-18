@@ -1,5 +1,7 @@
 # GreensprayAI
 
+**Experimental branch:** [GPS-constrained moving-map refinement and comparison](docs/gps_refinement_experiment.md). Use `refine_moving_gps.py` on an existing SDK result. The original `run_moving.py` remains unchanged and its GPS check is still diagnostic only.
+
 Ouster OS0-128 orchard registration, cross-row quality checks, and observed-surface / closed shrink-wrap-style meshing. One repository contains the active code, MATLAB-format description and current result metadata.
 
 **[Current downloads](https://github.com/u0063882/GreensprayAI/releases/tag/current)** · [Mesh](https://github.com/u0063882/GreensprayAI/releases/download/current/02_final_mesh.zip) · [Cross-row QA](docs/cross_row_quality.md) · [Registration in MATLAB terms](docs/registration_matlab.md)
