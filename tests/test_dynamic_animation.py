@@ -142,10 +142,19 @@ class MovingAnimationTests(unittest.TestCase):
             with patch('socket.socket.connect', side_effect=AssertionError('Animation must stay offline')):
                 a = render(directory, fps=4, speed=1, max_points=200, width=640, height=400, hold=0., camera='sensor')
                 b = render(directory, directory / 'faster.gif', fps=4, speed=2, max_points=200, width=640, height=400, hold=0., camera='sensor')
+                c = render(directory, fps=4, speed=2, max_points=200, width=960,
+                           height=400, hold=0., view='all')
             self.assertEqual(a['camera'], 'sensor')
             self.assertTrue(a['top_view_fixed'])
             self.assertEqual(a['estimated_speed']['values_m_s'], b['estimated_speed']['values_m_s'])
             np.testing.assert_allclose(a['estimated_speed']['values_m_s'], 2.)
+            self.assertEqual(c['panel_layout'], [['external_3d', 'sensor_eye', 'top']])
+            self.assertEqual(c['frames'], b['frames'])
+            self.assertEqual(c['capture_time_range_s'], b['capture_time_range_s'])
+            self.assertEqual(c['estimated_speed'], b['estimated_speed'])
+            with Image.open(directory / 'accumulation_combined.gif') as gif:
+                self.assertEqual(gif.size, (960, 400))
+                self.assertEqual(gif.n_frames, c['frames'])
             with Image.open(directory / 'accumulation_follow.gif') as gif:
                 self.assertEqual(gif.n_frames, a['frames'])
                 first = np.array(gif.convert('RGB'))

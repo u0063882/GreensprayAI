@@ -167,7 +167,9 @@ consume ChatGPT tokens or publish anything online.
 ## Make a GIF of the accumulating cloud and moving sensor
 
 After registration, run the independent **`make_moving_gif.py`** script from
-the repository root. It reads only the enriched PLY and `trajectory.csv`.
+the repository root. Its default layout is **one row with three synchronized
+panels: external 3D view | sensor-eye view | top view**.
+It reads only the enriched PLY and `trajectory.csv`.
 It does not read the PCAP, run registration, change poses or edit source files.
 
 In your existing Anaconda Prompt with `(greenspray)` active, update the code
@@ -181,12 +183,14 @@ python make_moving_gif.py --results "C:\Users\u0063882\Documents\moving_15s"
 ```
 
 The run folder or its `results/` subfolder is accepted. The default output is
-**`moving_15s/results/accumulation.gif`**, with a settings summary beside it at
-`accumulation.gif.json`. Published pilot folders containing `pilot_registered.ply`
+**`moving_15s/results/accumulation_combined.gif`**, with a settings summary beside
+it at `accumulation_combined.gif.json`. Published pilot folders containing `pilot_registered.ply`
 and `trajectory.csv` are also supported. Do not use the simplified Rhino PLY:
 it omits the scan indices needed for time alignment.
 
-The movie shows a fixed **3D view plus top view**, saved point colours, a red
+The left panel is a fixed external 3D view, the middle panel looks from the
+moving sensor, and the right panel is a fixed top view. They share the same
+accumulating point sample and frame time. The fixed map panels show a red
 sensor/body-origin marker and its accumulating red path. Points appear using
 their saved acquisition times; the sensor position is interpolated between
 the saved trajectory samples. If per-point times are absent, the script joins
@@ -204,7 +208,8 @@ Use `--speed-window 0.5` for a more responsive estimate or `--speed-window 2`
 for more smoothing. The estimate uses original capture seconds; `--speed`
 changes playback rate only. Both versions omit the former bottom text line.
 
-Defaults are **10 GIF frames/s, 2x playback and at most 60,000 displayed points**.
+Defaults are **1800 x 650 pixels, 10 GIF frames/s, 2x playback and at most
+60,000 displayed points** for the combined layout.
 One deterministic sample is selected for the whole movie; points do not change
 randomly between frames. Fixed view limits use the central 99% of cloud
 coordinates and include the entire sensor path. This keeps isolated outliers
@@ -218,7 +223,11 @@ python make_moving_gif.py --results "C:\Users\u0063882\Documents\moving_15s" --s
 python make_moving_gif.py --results "C:\Users\u0063882\Documents\moving_15s" --view top --speed 4 --max-points 30000 --output "C:\Users\u0063882\Documents\moving_fast.gif"
 ```
 
-For another 3D camera, use `--azimuth -120 --elevation 25`. Other options are
+For another external 3D camera, use `--azimuth -120 --elevation 25`.
+The middle panel accepts the sensor-eye options described below, including
+`--fov 120`. To reproduce the older external + top layout, use `--view both`;
+this writes `results/accumulation.gif`. `--view all` explicitly selects the
+new combined layout. Other options are
 `--fps`, `--width`, `--height` and `--hold`; see `python make_moving_gif.py --help`.
 More points, pixels and frames increase rendering time and GIF size. GIF timing
 is rounded to 10 ms and colours are quantized to a stable 256-colour palette.
@@ -240,9 +249,9 @@ at the first pose, then remains rigidly attached to the moving body.
 python make_moving_gif_follow.py --results "C:\Users\u0063882\Documents\moving_15s"
 ```
 
-Output: **`moving_15s/results/accumulation_follow.gif`**, separate from the
-fixed-camera `accumulation.gif`. Both have settings and speed estimates in
-their corresponding `.gif.json` summaries.
+Output: **`moving_15s/results/accumulation_follow.gif`**. This older two-panel
+version remains available alongside the primary combined GIF. All versions
+have settings and speed estimates in their corresponding `.gif.json` summaries.
 
 The sensor-eye version requires the `qx,qy,qz,qw` orientation columns already
 saved by `run_moving.py`. The forward viewing direction defaults to body +X
@@ -254,9 +263,10 @@ near/far display clipping at 0.15 m and 25 m. Example of a wider view:
 python make_moving_gif_follow.py --results "C:\Users\u0063882\Documents\moving_15s" --fov 120 --speed 1 --max-points 120000
 ```
 
-`--near` and `--far` change perspective clipping in metres. `--full-bounds`
-affects the fixed map panels; `--azimuth`/`--elevation` are for the original
-external-camera script. Other animation settings are shared by both scripts.
+`--near` and `--far` change perspective clipping in metres. These sensor-eye
+options also work in the combined layout. `--full-bounds` affects the fixed
+map panels; `--azimuth`/`--elevation` control the external 3D panel. Other
+animation settings are shared by both scripts.
 
 ## Installing packages on a disconnected machine
 

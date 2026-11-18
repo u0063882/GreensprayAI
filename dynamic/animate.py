@@ -174,8 +174,8 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
            fov=100., near=.15, far=25., look_axis='x'):
     if not isinstance(max_points, int) or max_points < 1:
         raise ValueError('max-points must be a positive integer')
-    if width < 320 or height < 240 or view not in ['both', '3d', 'top']:
-        raise ValueError('Use width >= 320, height >= 240, and view both/3d/top')
+    if width < 320 or height < 240 or view not in ['all', 'both', '3d', 'top']:
+        raise ValueError('Use width >= 320, height >= 240, and view all/both/3d/top')
     if not all(math.isfinite(x) for x in [hold, elevation, azimuth]) or not 0 <= hold <= 600:
         raise ValueError('Camera angles must be finite and hold must be between 0 and 600 seconds')
     if camera not in ['fixed', 'sensor']:
@@ -195,16 +195,19 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
     times, positions = data['times'], data['positions']
     speeds = trajectory_speeds(times, positions, speed_window)
     quaternions = data['quaternions']
-    if camera == 'sensor' and quaternions is None:
+    show_eye = view != 'top' and (camera == 'sensor' or view == 'all')
+    show_external = view != 'top' and (camera == 'fixed' or view == 'all')
+    show_top = view != '3d'
+    if show_eye and quaternions is None:
         raise ValueError('Sensor-eye view requires qx,qy,qz,qw body-to-map rotations in trajectory.csv')
-    up_body = initial_camera_up(quaternions[0], forward_body) if camera == 'sensor' else None
+    up_body = initial_camera_up(quaternions[0], forward_body) if show_eye else None
     start = min(0., float(times[0]), float(all_point_times.min()))
     end = max(float(times[-1]), float(all_point_times.max()))
     clock, duration_ms = animation_clock(start, end, fps, speed)
     hold_ms = int(round(hold * 100)) * 10
     if duration_ms + hold_ms > 655350:
         raise ValueError('Frame duration plus final hold exceeds the GIF timing limit')
-    default_name = 'accumulation_follow.gif' if camera == 'sensor' else 'accumulation.gif'
+    default_name = 'accumulation_combined.gif' if view == 'all' else 'accumulation_follow.gif' if camera == 'sensor' else 'accumulation.gif'
     output = Path(output).expanduser().resolve() if output else data['directory'] / default_name
     if output.suffix.lower() != '.gif':
         raise ValueError('Output filename must end in .gif')
@@ -233,9 +236,10 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
     from PIL import Image
     with plt.style.context('dark_background'):
         fig = plt.figure(figsize=(width / 100, height / 100), dpi=100)
-        ax3 = fig.add_subplot(121 if view == 'both' else 111, projection='3d', computed_zorder=False) if view != 'top' and camera == 'fixed' else None
-        eye_ax = fig.add_subplot(121 if view == 'both' else 111) if view != 'top' and camera == 'sensor' else None
-        ax2 = fig.add_subplot(122 if view == 'both' else 111) if view != '3d' else None
+        columns = 3 if view == 'all' else 2 if view == 'both' else 1
+        ax3 = fig.add_subplot(1, columns, 1, projection='3d', computed_zorder=False) if show_external else None
+        eye_ax = fig.add_subplot(1, columns, 2 if view == 'all' else 1) if show_eye else None
+        ax2 = fig.add_subplot(1, columns, columns) if show_top else None
         if eye_ax is not None:
             eye_ax.set(xlim=(-1, 1), ylim=(-1, 1), title='Sensor-eye view')
             eye_ax.set_xticks([])
@@ -265,7 +269,7 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
         if legend_ax is not None:
             legend_ax.legend(loc='upper right', fontsize=8)
         title = fig.suptitle('', fontsize=11 if width >= 900 else 9)
-        fig.subplots_adjust(left=.045, right=.97, bottom=.08, top=.84, wspace=.28)
+        fig.subplots_adjust(left=.025 if view == 'all' else .045, right=.97, bottom=.08, top=.84, wspace=.28)
         clouds = []
 
         def frame(time):
@@ -328,10 +332,13 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
                   pixels=[width, height], actual_fps=1000 / duration_ms, playback_speed=speed,
                   capture_time_range_s=[start, end], final_hold_s=hold,
                   encoded_duration_s=(count * duration_ms + hold_ms) / 1000,
-                  accumulation_clock=data['time_source'], fixed_axes=camera == 'fixed',
-                  camera=camera, top_view_fixed=True,
+                  accumulation_clock=data['time_source'], fixed_axes=not show_eye,
+                  camera='combined' if view == 'all' else camera,
+                  panel_layout=([['external_3d', 'sensor_eye', 'top']] if view == 'all' else
+                                [[name for name, shown in [('external_3d', show_external), ('sensor_eye', show_eye), ('top', show_top)] if shown]]),
+                  external_view_fixed=show_external, top_view_fixed=show_top,
                   sensor_camera=dict(look_axis_body=look_axis, horizontal_fov_deg=fov, near_m=near, far_m=far,
-                                     orientation='Recorded body-to-map quaternion SLERP; upright calibrated at first pose then body-fixed') if camera == 'sensor' else None,
+                                     orientation='Recorded body-to-map quaternion SLERP; upright calibrated at first pose then body-fixed') if show_eye else None,
                   estimated_speed=dict(source='SLAM trajectory, not GPS', units='m/s',
                                        method='Norm of XYZ velocity from a centered local linear fit; window clipped at recording boundaries',
                                        window_s=speed_window, independent_of_playback_speed=True,
@@ -346,30 +353,29 @@ def render(directory, output=None, *, fps=10., speed=2., max_points=60000,
 
 
 def main(argv=None, *, follow=False):
-    description = 'Sensor-eye accumulating cloud and fixed top view, rendered to GIF.' if follow else __doc__
+    description = 'Sensor-eye accumulating cloud and fixed top view, rendered to GIF.' if follow else 'Synchronized external 3D, sensor-eye and top views in a 1 x 3 accumulating-cloud GIF.'
     p = argparse.ArgumentParser(description=description)
     p.add_argument('--results', type=Path, required=True, help='Run folder or its results/ subfolder')
-    p.add_argument('--output', type=Path, help='GIF path; default: results/accumulation_follow.gif' if follow else 'GIF path; default: results/accumulation.gif')
+    p.add_argument('--output', type=Path, help='GIF path; otherwise chosen by view (combined: results/accumulation_combined.gif)')
     p.add_argument('--fps', type=float, default=10., help='Requested GIF frames/second; default: 10')
     p.add_argument('--speed', type=float, default=2., help='Playback speed multiplier; default: 2')
     p.add_argument('--speed-window', type=float, default=1., help='SLAM speed estimation window in capture seconds; default: 1')
     p.add_argument('--max-points', type=int, default=60000, help='Fixed display sample budget; default: 60000')
-    p.add_argument('--view', choices=['both', '3d', 'top'], default='both')
-    p.add_argument('--width', type=int, default=1200)
+    p.add_argument('--view', choices=['all', 'both', '3d', 'top'], default='both' if follow else 'all', help='all: external 3D + sensor-eye + top; both: legacy two-panel view')
+    p.add_argument('--width', type=int, help='Width in pixels; default: 1800 for all, 1200 for other views')
     p.add_argument('--height', type=int, default=650)
     p.add_argument('--elevation', type=float, default=22.)
     p.add_argument('--azimuth', type=float, default=-60.)
     p.add_argument('--hold', type=float, default=2., help='Extra seconds to hold completed map; default: 2')
     p.add_argument('--full-bounds', action='store_true', help='Include all spatial outliers in fixed display limits')
-    if follow:
-        p.add_argument('--fov', type=float, default=100., help='Sensor-eye horizontal field of view in degrees; default: 100')
-        p.add_argument('--near', type=float, default=.15, help='Sensor-eye near clipping distance in metres; default: 0.15')
-        p.add_argument('--far', type=float, default=25., help='Sensor-eye far clipping distance in metres; default: 25')
-        p.add_argument('--look-axis', choices=['x', 'y', 'z', 'minus_x', 'minus_y', 'minus_z'], default='x', help='Camera forward axis in the recorded body frame; default: x')
+    p.add_argument('--fov', type=float, default=100., help='Sensor-eye horizontal field of view in degrees; default: 100')
+    p.add_argument('--near', type=float, default=.15, help='Sensor-eye near clipping distance in metres; default: 0.15')
+    p.add_argument('--far', type=float, default=25., help='Sensor-eye far clipping distance in metres; default: 25')
+    p.add_argument('--look-axis', choices=['x', 'y', 'z', 'minus_x', 'minus_y', 'minus_z'], default='x', help='Camera forward axis in the recorded body frame; default: x')
     a = p.parse_args(argv)
     try:
         render(a.results, a.output, fps=a.fps, speed=a.speed, max_points=a.max_points,
-               view=a.view, width=a.width, height=a.height, elevation=a.elevation,
+               view=a.view, width=a.width if a.width is not None else (1800 if a.view == 'all' else 1200), height=a.height, elevation=a.elevation,
                azimuth=a.azimuth, hold=a.hold, full_bounds=a.full_bounds,
                camera='sensor' if follow else 'fixed', speed_window=a.speed_window,
                fov=getattr(a, 'fov', 100.), near=getattr(a, 'near', .15),
