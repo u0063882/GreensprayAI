@@ -1,0 +1,31 @@
+{
+  "scope": "Existing first-15-second SDK result; no baseline geometry modified",
+  "frames": 150,
+  "gps_samples_in_interval": 130,
+  "gps_log_samples": 534,
+  "gps_log_duration_s": 61.299999952316284,
+  "clock": "shared-start",
+  "baseline_GPS_scores": {
+    "training": {
+      "samples": 69,
+      "RMSE_m": 0.07109170908926497,
+      "median_m": 0.06584736440636045,
+      "p95_m": 0.10564982274785091
+    },
+    "held_out": {
+      "samples": 61,
+      "RMSE_m": 0.07159684707711292,
+      "median_m": 0.059004322147848474,
+      "p95_m": 0.09968469789079158
+    }
+  },
+  "lidar_path_m": 6.251394570391211,
+  "gps_path_m": 5.7067123153778105,
+  "lever_arm": "Unmeasured; baseline rigid overlay assumes zero only for this diagnostic",
+  "absolute_GPS_coordinates_omitted": true,
+  "publication": {
+    "source_code_commit": "894526775f0aa1fb57fcf1539df8947b71da324b",
+    "main_and_current_untouched": true,
+    "original_inputs_untouched": true
+  }
+}
