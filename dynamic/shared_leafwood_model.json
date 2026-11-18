@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "method": "Toolbox scheme-13 displayed Lab a*/b* k-means; higher mean raw NIR cluster provisionally leaf",
+  "scope": "shared collection",
+  "lab_centres": [
+    [
+      -30.623305711579352,
+      20.584797570185703
+    ],
+    [
+      -17.252437933583895,
+      21.60412159083876
+    ]
+  ],
+  "leaf_cluster": 0,
+  "mean_raw_nir_by_cluster": [
+    8749.290006580602,
+    3142.459465944538
+  ],
+  "scans": 67,
+  "training_samples": 274432,
+  "maximum_samples_per_scan": 4096,
+  "source": "GreenSprayToolbox utility/readOS0.m sbfn_ousterColors",
+  "note": "Feature-equivalent port, not bit-identical MATLAB output; no botanically labelled validation",
+  "model_sha256": "a3ebf12ce41a409d87ea894fec6057b024af6dc8f761b04c0c38fe0f8f004bad"
+}

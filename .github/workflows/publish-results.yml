@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish:
-    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[rhino-exports]')
+    if: github.event_name != 'push' || (!contains(github.event.head_commit.message, '[rhino-exports]') && !contains(github.event.head_commit.message, '[dynamic-pilot]'))
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
